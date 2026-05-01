@@ -3,21 +3,22 @@ import Link from "next/link";
 type Props = {
   variant?: "dark" | "light";
   showSubtitle?: boolean;
+  className?: string;
 };
 
-export default function Logo({ variant = "dark", showSubtitle = true }: Props) {
+export default function Logo({ variant = "dark", showSubtitle = true, className = "" }: Props) {
   const textColor = variant === "dark" ? "text-dark" : "text-white";
-  const subColor = variant === "dark" ? "text-gray-500" : "text-off-white/80";
+  const subColor = variant === "dark" ? "text-gray-700" : "text-off-white";
   return (
-    <Link href="/" className="inline-flex flex-col items-start leading-none group">
-      <span className={`flex items-center font-black text-2xl tracking-tight ${textColor}`}>
+    <Link href="/" className={`inline-flex flex-col items-center leading-none group ${className}`}>
+      <span className={`flex items-baseline font-black text-3xl tracking-tight ${textColor}`}>
         <span>gym</span>
-        <GearIcon className="mx-0.5 h-7 w-7 -translate-y-[1px]" />
+        <GearIcon className="mx-[1px] h-9 w-9 self-center -translate-y-[2px]" />
         <span>ps</span>
       </span>
       {showSubtitle && (
         <span
-          className={`text-[10px] uppercase tracking-[0.2em] font-medium mt-0.5 ${subColor}`}
+          className={`text-[11px] tracking-[0.18em] font-medium mt-1 ${subColor}`}
         >
           automation platform
         </span>
@@ -28,26 +29,50 @@ export default function Logo({ variant = "dark", showSubtitle = true }: Props) {
 
 export function GearIcon({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 32 32" className={className} aria-hidden="true">
+    <svg viewBox="0 0 64 64" className={className} aria-hidden="true">
       <defs>
-        <linearGradient id="gear-grad" x1="0" y1="0" x2="1" y2="0">
+        <linearGradient id="gymops-gear-grad" x1="0%" y1="100%" x2="100%" y2="0%">
           <stop offset="0%" stopColor="#3E788E" />
           <stop offset="100%" stopColor="#66B3A3" />
         </linearGradient>
       </defs>
-      <path
-        fill="url(#gear-grad)"
-        d="M16 2.4l2.1 2.4 3.1-.9 1 3.1 3.1 1-.9 3.1 2.4 2.1-2.4 2.1.9 3.1-3.1 1-1 3.1-3.1-.9L16 23l-2.1-2.4-3.1.9-1-3.1-3.1-1 .9-3.1L5.2 12l2.4-2.1-.9-3.1 3.1-1 1-3.1 3.1.9L16 2.4z"
-      />
-      <circle cx="16" cy="12.7" r="4.2" fill="#fff" />
-      <circle cx="16" cy="12.7" r="1.5" fill="url(#gear-grad)" />
-      <g stroke="#fff" strokeWidth="0.6" fill="none" opacity="0.8">
-        <path d="M11 12.7H7" />
-        <path d="M21 12.7h4" />
-        <path d="M16 7.7V5" />
-        <circle cx="7" cy="12.7" r="0.8" fill="#fff" />
-        <circle cx="25" cy="12.7" r="0.8" fill="#fff" />
-        <circle cx="16" cy="5" r="0.8" fill="#fff" />
+
+      {/* 8 teeth */}
+      <g fill="url(#gymops-gear-grad)">
+        <rect x="29" y="0.5" width="6" height="9" rx="1" />
+        <rect x="29" y="0.5" width="6" height="9" rx="1" transform="rotate(45 32 32)" />
+        <rect x="29" y="0.5" width="6" height="9" rx="1" transform="rotate(90 32 32)" />
+        <rect x="29" y="0.5" width="6" height="9" rx="1" transform="rotate(135 32 32)" />
+        <rect x="29" y="0.5" width="6" height="9" rx="1" transform="rotate(180 32 32)" />
+        <rect x="29" y="0.5" width="6" height="9" rx="1" transform="rotate(225 32 32)" />
+        <rect x="29" y="0.5" width="6" height="9" rx="1" transform="rotate(270 32 32)" />
+        <rect x="29" y="0.5" width="6" height="9" rx="1" transform="rotate(315 32 32)" />
+      </g>
+
+      {/* gear body (donut: filled disc with hollow center) */}
+      <circle cx="32" cy="32" r="22.5" fill="url(#gymops-gear-grad)" />
+      <circle cx="32" cy="32" r="10.5" fill="#ffffff" />
+
+      {/* internal circuit traces (light, on gear body) */}
+      <g stroke="#ffffff" strokeWidth="0.9" fill="#ffffff" strokeLinecap="round" opacity="0.92">
+        <line x1="32" y1="11" x2="32" y2="20.5" />
+        <circle cx="32" cy="11" r="1.3" />
+        <line x1="43.5" y1="32" x2="52" y2="32" />
+        <circle cx="52" cy="32" r="1.3" />
+        <line x1="20.5" y1="32" x2="12" y2="32" />
+        <circle cx="12" cy="32" r="1.3" />
+        <line x1="40.2" y1="23.8" x2="46.5" y2="17.5" />
+        <circle cx="46.5" cy="17.5" r="1.3" />
+        <line x1="23.8" y1="40.2" x2="17.5" y2="46.5" />
+        <circle cx="17.5" cy="46.5" r="1.3" />
+      </g>
+
+      {/* external circuit traces (gradient, extending outside gear) */}
+      <g stroke="url(#gymops-gear-grad)" strokeWidth="1.3" fill="url(#gymops-gear-grad)" strokeLinecap="round">
+        <line x1="49" y1="15" x2="58" y2="6" />
+        <circle cx="58" cy="6" r="1.6" />
+        <line x1="56" y1="49" x2="62" y2="55" />
+        <circle cx="62" cy="55" r="1.6" />
       </g>
     </svg>
   );
