@@ -3,46 +3,25 @@ import Link from "next/link";
 
 type Props = {
   variant?: "dark" | "light";
-  showSubtitle?: boolean;
   className?: string;
 };
 
-export default function Logo({ variant = "dark", showSubtitle = true, className = "" }: Props) {
-  if (variant === "dark") {
-    return (
-      <Link
-        href="/"
-        aria-label="GymOps – automation platform"
-        className={`inline-block ${className}`}
-      >
-        <Image
-          src="/logo.png"
-          alt="GymOps"
-          width={400}
-          height={125}
-          priority
-          className="h-12 w-auto"
-        />
-      </Link>
-    );
-  }
-
+export default function Logo({ variant = "dark", className = "" }: Props) {
+  const src = variant === "light" ? "/logo-wit.png" : "/logo.png";
   return (
     <Link
       href="/"
       aria-label="GymOps – automation platform"
-      className={`inline-flex flex-col items-start leading-none ${className}`}
+      className={`inline-block ${className}`}
     >
-      <span className="flex items-baseline font-black text-3xl tracking-tight text-white">
-        <span>gym</span>
-        <GearIcon className="mx-[1px] h-9 w-9 self-center -translate-y-[2px]" />
-        <span>ps</span>
-      </span>
-      {showSubtitle && (
-        <span className="text-[11px] tracking-[0.18em] font-medium mt-1 text-off-white">
-          automation platform
-        </span>
-      )}
+      <Image
+        src={src}
+        alt="GymOps"
+        width={400}
+        height={125}
+        priority
+        className="h-12 w-auto"
+      />
     </Link>
   );
 }
