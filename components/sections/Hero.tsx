@@ -8,7 +8,7 @@ export default function Hero() {
       <div className="container-page py-20 grid lg:grid-cols-2 gap-16 items-center">
         <div>
           <Badge>Alles-in-één Gym Automation Platform</Badge>
-          <h1 className="text-5xl lg:text-[64px] font-black leading-[1.1] text-dark mt-4">
+          <h1 className="text-4xl sm:text-5xl xl:text-6xl font-black leading-[1.1] text-dark mt-4 break-words">
             Ontgrendel de Kracht van jouw Fitnessonderneming
           </h1>
           <p className="text-lg text-gray-600 mt-5 max-w-lg leading-relaxed">

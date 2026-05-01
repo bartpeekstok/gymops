@@ -8,6 +8,17 @@ html {
 
 body {
   @apply text-dark antialiased;
+  overflow-x: hidden;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
 }
 
 @layer components {
