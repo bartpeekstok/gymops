@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 type Props = {
@@ -7,19 +8,38 @@ type Props = {
 };
 
 export default function Logo({ variant = "dark", showSubtitle = true, className = "" }: Props) {
-  const textColor = variant === "dark" ? "text-dark" : "text-white";
-  const subColor = variant === "dark" ? "text-gray-700" : "text-off-white";
+  if (variant === "dark") {
+    return (
+      <Link
+        href="/"
+        aria-label="GymOps – automation platform"
+        className={`inline-block ${className}`}
+      >
+        <Image
+          src="/logo.png"
+          alt="GymOps"
+          width={400}
+          height={125}
+          priority
+          className="h-12 w-auto"
+        />
+      </Link>
+    );
+  }
+
   return (
-    <Link href="/" className={`inline-flex flex-col items-center leading-none group ${className}`}>
-      <span className={`flex items-baseline font-black text-3xl tracking-tight ${textColor}`}>
+    <Link
+      href="/"
+      aria-label="GymOps – automation platform"
+      className={`inline-flex flex-col items-start leading-none ${className}`}
+    >
+      <span className="flex items-baseline font-black text-3xl tracking-tight text-white">
         <span>gym</span>
         <GearIcon className="mx-[1px] h-9 w-9 self-center -translate-y-[2px]" />
         <span>ps</span>
       </span>
       {showSubtitle && (
-        <span
-          className={`text-[11px] tracking-[0.18em] font-medium mt-1 ${subColor}`}
-        >
+        <span className="text-[11px] tracking-[0.18em] font-medium mt-1 text-off-white">
           automation platform
         </span>
       )}
@@ -37,7 +57,6 @@ export function GearIcon({ className = "" }: { className?: string }) {
         </linearGradient>
       </defs>
 
-      {/* 8 teeth */}
       <g fill="url(#gymops-gear-grad)">
         <rect x="29" y="0.5" width="6" height="9" rx="1" />
         <rect x="29" y="0.5" width="6" height="9" rx="1" transform="rotate(45 32 32)" />
@@ -49,11 +68,9 @@ export function GearIcon({ className = "" }: { className?: string }) {
         <rect x="29" y="0.5" width="6" height="9" rx="1" transform="rotate(315 32 32)" />
       </g>
 
-      {/* gear body (donut: filled disc with hollow center) */}
       <circle cx="32" cy="32" r="22.5" fill="url(#gymops-gear-grad)" />
       <circle cx="32" cy="32" r="10.5" fill="#ffffff" />
 
-      {/* internal circuit traces (light, on gear body) */}
       <g stroke="#ffffff" strokeWidth="0.9" fill="#ffffff" strokeLinecap="round" opacity="0.92">
         <line x1="32" y1="11" x2="32" y2="20.5" />
         <circle cx="32" cy="11" r="1.3" />
@@ -67,8 +84,12 @@ export function GearIcon({ className = "" }: { className?: string }) {
         <circle cx="17.5" cy="46.5" r="1.3" />
       </g>
 
-      {/* external circuit traces (gradient, extending outside gear) */}
-      <g stroke="url(#gymops-gear-grad)" strokeWidth="1.3" fill="url(#gymops-gear-grad)" strokeLinecap="round">
+      <g
+        stroke="url(#gymops-gear-grad)"
+        strokeWidth="1.3"
+        fill="url(#gymops-gear-grad)"
+        strokeLinecap="round"
+      >
         <line x1="49" y1="15" x2="58" y2="6" />
         <circle cx="58" cy="6" r="1.6" />
         <line x1="56" y1="49" x2="62" y2="55" />
