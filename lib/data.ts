@@ -19,121 +19,121 @@ export const trustedLogos = [
 ];
 
 export const dashboardStats = [
-  { label: "Statistiek 1", value: "00", sub: "Sublabel", color: "white" as const },
-  { label: "Statistiek 2", value: "€0", sub: "Sublabel", color: "accent" as const },
-  { label: "Statistiek 3", value: "0 mnd", sub: "Sublabel", color: "white" as const },
-  { label: "Statistiek 4", value: "0%", sub: "Sublabel", color: "white" as const },
+  { label: "Nieuwe aanmeldingen", value: "24", sub: "Deze maand", color: "white" as const },
+  { label: "Jaaromzet", value: "€37.228", sub: "Jaar tot heden", color: "accent" as const },
+  { label: "Gem. looptijd", value: "8 mnd", sub: "Gem. betrokkenheid", color: "white" as const },
+  { label: "Retentie", value: "96%", sub: "Levenslange waarde", color: "white" as const },
 ];
 
 export const atRiskMembers = [
-  { name: "Demo Naam 1", days: "0 dagen" },
-  { name: "Demo Naam 2", days: "0 dagen" },
-  { name: "Demo Naam 3", days: "0 dagen" },
+  { name: "Sander V.", days: "10 dagen" },
+  { name: "Lisa de B.", days: "20 dagen" },
+  { name: "Mark P.", days: "28 dagen" },
 ];
 
 export const everythingCards = [
   {
     icon: "users",
-    title: "Placeholder Titel 1",
-    body: "Placeholder beschrijving voor de eerste kaart. Vervang met je eigen tekst over wat dit feature doet voor de eindgebruiker.",
+    title: "Betere Ledenervaring",
+    body: "Ons platform biedt geautomatiseerde communicatie, uitgebreid ledenbeheer en helpt mensen hun fitnessdoelen te bereiken — wat zorgt voor meer retentie en een sterkere community.",
   },
   {
     icon: "gear",
-    title: "Placeholder Titel 2",
-    body: "Placeholder beschrijving voor de tweede kaart. Vervang met je eigen tekst over hoe dit gymeigenaren helpt.",
+    title: "Eenvoudig Beheer",
+    body: "Vereenvoudig de complexiteit van het runnen van een gym zonder meerdere losse programma's. Beheer dagelijkse operaties, leadgeneratie, conversie en ledeninteractie op één plek.",
   },
   {
     icon: "chart",
-    title: "Placeholder Titel 3",
-    body: "Placeholder beschrijving voor de derde kaart. Vervang met je eigen tekst over data en analyses.",
+    title: "Datagedreven Beslissingen",
+    body: "Neem slimmere zakelijke beslissingen met uitgebreide data — bekijk robuuste analyses over operaties, marketing, ledeninteractie en trainingseffectiviteit.",
   },
 ];
 
 export const coreFeatureTabs = [
   {
     icon: "credit-card",
-    title: "Placeholder feature 1",
-    body: "Korte placeholder tekst over feature 1. Vul aan met eigen content.",
+    title: "Gestroomlijnde facturatie en betalingen",
+    body: "Automatiseer je factuurcyclus en gebruik integraties zoals Stripe om betalingswrijving te verminderen — inclusief financiële overzichten om beslissingen te onderbouwen.",
   },
   {
     icon: "users",
-    title: "Placeholder feature 2",
-    body: "Korte placeholder tekst over feature 2. Vul aan met eigen content.",
+    title: "Ledenbeheer eenvoudig gemaakt",
+    body: "Maak het beheren van ledendata eenvoudig met een CRM dat onboarding en offboarding automatiseert en data over trends en aanwezigheid vastlegt.",
   },
   {
     icon: "calendar",
-    title: "Placeholder feature 3",
-    body: "Korte placeholder tekst over feature 3. Vul aan met eigen content.",
+    title: "Roosters vereenvoudigd",
+    body: "Bespaar tijd op planning met geautomatiseerde klasboekingen en real-time beschikbaarheid, en maximaliseer klassencapaciteit met intelligente algoritmen.",
   },
 ];
 
 export const growColumns = [
   {
-    title: "Placeholder kolom 1",
-    body: "Korte placeholder tekst over groei-onderwerp 1. Vervang met eigen content.",
+    title: "Leadgeneratie en conversie",
+    body: "Pak elke verkoopkans met SEO-geoptimaliseerde websitepagina's, kant-en-klare workflows en geautomatiseerde berichten. Gebruik analyses om je marketingstrategie continu te optimaliseren.",
   },
   {
-    title: "Placeholder kolom 2",
-    body: "Korte placeholder tekst over groei-onderwerp 2. Vervang met eigen content.",
+    title: "Leden betrokken houden",
+    body: "Verbeter ledenrelaties met twee-weg SMS, geautomatiseerde enquêtes en gebruik gedragsdata om retentie te verbeteren en leden langer te binden.",
   },
   {
-    title: "Placeholder kolom 3",
-    body: "Korte placeholder tekst over groei-onderwerp 3. Vervang met eigen content.",
+    title: "Communicatie stroomlijnen",
+    body: "Maak communicatie moeiteloos met gepersonaliseerde, geautomatiseerde berichten via SMS, e-mail en sociale media — allemaal vanuit één dashboard.",
   },
 ];
 
 export const trainTabs = [
   {
     icon: "smartphone",
-    title: "Placeholder training 1",
-    body: "Korte placeholder tekst over training-feature 1.",
+    title: "Alles-in-één app voor trainingen",
+    body: "Houd leden betrokken door een plek te bieden om trainingen te loggen, lessen te reserveren en prestaties te delen op sociale feeds binnen de app.",
   },
   {
     icon: "dumbbell",
-    title: "Placeholder training 2",
-    body: "Korte placeholder tekst over training-feature 2.",
+    title: "Krachtige trainingsplanner",
+    body: "Maak aangepaste trainingen, programma's, benchmarks en video's en lever ze direct aan je leden via één eenvoudig te gebruiken app.",
   },
   {
     icon: "star",
-    title: "Placeholder training 3",
-    body: "Korte placeholder tekst over training-feature 3.",
+    title: "Premium trainingen van partners",
+    body: "Leden kunnen genieten van trainingen van gecertificeerde partners die naadloos zijn geïntegreerd in de GymOps app — zonder extra abonnement.",
   },
 ];
 
 export const whyCards = [
   {
-    title: "Placeholder reden 1",
-    body: "Korte placeholder tekst over waarom dit platform onderscheidend is. Vervang met eigen content.",
+    title: "Geworteld in Echte Ervaring",
+    body: "Als voormalige gymeigenaren kennen we dezelfde uitdagingen als jij — daarom bouwden we GymOps met focus op gebruiksvriendelijkheid en efficiëntie die écht werkt in de praktijk.",
   },
   {
-    title: "Placeholder reden 2",
-    body: "Korte placeholder tekst over waarom dit platform onderscheidend is. Vervang met eigen content.",
+    title: "Gedreven door een Rebel Spirit",
+    body: "Wij weigeren de status quo van software die “alles doet maar niets goed”. Jij krijgt een gerichte set functies die je daadwerkelijk gebruikt — en geweldig vindt.",
   },
   {
-    title: "Placeholder reden 3",
-    body: "Korte placeholder tekst over waarom dit platform onderscheidend is. Vervang met eigen content.",
+    title: "Toegewijd aan jouw Succes",
+    body: "Meer dan 1 miljoen check-ins zijn verwerkt via GymOps. Ons team van fitnessliefhebbers en techexperts blijft de software continu verbeteren om de groei van jouw gym te ondersteunen.",
   },
   {
-    title: "Placeholder reden 4",
-    body: "Korte placeholder tekst over waarom dit platform onderscheidend is. Vervang met eigen content.",
+    title: "Kampioen van Gezondheid en Geluk",
+    body: "Door gymeigenaren de juiste tools te geven, creëren we een gezondere wereld — we maken welzijn toegankelijk en gymbeheer moeiteloos.",
   },
 ];
 
 export const successQuotes = [
   {
-    quote: "Placeholder klant-quote nummer een. Vervang met een echte testimonial.",
-    name: "Demo Klant 1",
-    company: "Demo Gym 1",
+    quote: "Letterlijk alles is verdubbeld dankzij GymOps — van ons ledenbestand tot onze maandelijkse omzet.",
+    name: "Robert de Vries",
+    company: "eigenaar CrossFit Oost",
   },
   {
-    quote: "Placeholder klant-quote nummer twee. Vervang met een echte testimonial.",
-    name: "Demo Klant 2",
-    company: "Demo Gym 2",
+    quote: "Het platform is met ons meegegroeid en alle integraties maken ons leven zo veel makkelijker. Van 20 naar bijna 400 leden.",
+    name: "Sandra Bakker",
+    company: "Dominion MMA Rotterdam",
   },
   {
-    quote: "Placeholder klant-quote nummer drie. Vervang met een echte testimonial.",
-    name: "Demo Klant 3",
-    company: "Demo Gym 3",
+    quote: "GymOps heeft ons gered tijdens de pandemie. Het zag eruit alsof we veel investeerden in technologie, en dat was gratis.",
+    name: "Tim van den Berg",
+    company: "BC-Fit Utrecht",
   },
 ];
 
@@ -142,61 +142,69 @@ export const pricingPlans = [
     name: "Gratis",
     price: "€0",
     period: "",
-    description: "Korte placeholder beschrijving voor het instaptarief.",
-    processing: "0,00% + €0,00",
-    support: "Placeholder support-omschrijving.",
+    tag: "Voor starters",
+    description: "Kleine gyms en studio's klaar om de basis te leggen voor groei en succes.",
+    processingPin: "4,99% + €0,30 (pin)",
+    processingIncasso: "2,89% + €0,30 (incasso)",
+    support: "Zelfbedieningsbronnen en AI-ondersteuning met 48 uur reactietijd voor menselijke hulp.",
     cta: "Gratis starten",
     ctaVariant: "outline" as const,
     note: "Geen maandelijkse kosten",
     highlighted: false,
     features: [
-      "Placeholder feature 1",
-      "Placeholder feature 2",
-      "Placeholder feature 3",
-      "Placeholder feature 4",
-      "Placeholder feature 5",
-      "Placeholder feature 6",
+      "Onbeperkte leden",
+      "Digitale waivers",
+      "Klasrooster",
+      "QR-code inchecken",
+      "Ledenapp",
+      "Basisrapportage",
     ],
   },
   {
     name: "Pro",
     price: "€149",
     period: "/maand",
-    description: "Korte placeholder beschrijving voor het middelste tarief.",
-    processing: "0,00% + €0,00",
-    support: "Placeholder support-omschrijving.",
-    cta: "Plan een Demo",
+    tag: "Meest populair",
+    description: "Middelgrote gyms en studio's klaar om hun bedrijf te schalen en operaties te optimaliseren.",
+    processingPin: "2,89% + €0,30 (pin)",
+    processingIncasso: "0,79% + €0,30 (incasso)",
+    support: "AI-ondersteuning, live reacties en de mogelijkheid om video-ondersteuningsgesprekken in te plannen.",
+    cta: "Plan een Demo →",
     ctaVariant: "primary" as const,
-    note: "Meest Populair",
+    note: "Meest populair",
     highlighted: true,
     features: [
       "Alles uit Gratis",
-      "Placeholder pro feature 1",
-      "Placeholder pro feature 2",
-      "Placeholder pro feature 3",
-      "Placeholder pro feature 4",
-      "Placeholder pro feature 5",
-      "Placeholder pro feature 6",
+      "Geavanceerde rapportage",
+      "Automatiseringen",
+      "Lagere verwerkingskosten",
+      "Prioriteit klantenservice",
+      "Wachtlijstbeheer",
+      "Afsprakenbeheer",
+      "Aangepaste velden",
     ],
   },
   {
     name: "Max",
     price: "€219",
     period: "/maand",
-    description: "Korte placeholder beschrijving voor het hoogste tarief.",
-    processing: "0,00% + €0,00",
-    support: "Placeholder support-omschrijving.",
-    cta: "Plan een Demo",
+    tag: "Voor gevestigde gyms",
+    description: "Gevestigde gyms en studio's klaar om operaties te stroomlijnen en groei te versnellen.",
+    processingPin: "2,75% + €0,30 (pin)",
+    processingIncasso: "0,79% + €0,30 (incasso)",
+    support: "AI-ondersteuning, live reacties en de mogelijkheid om video-ondersteuningsgesprekken in te plannen.",
+    cta: "Plan een Demo →",
     ctaVariant: "outline" as const,
     note: "",
     highlighted: false,
     features: [
       "Alles uit Pro",
-      "Placeholder max feature 1",
-      "Placeholder max feature 2",
-      "Placeholder max feature 3",
-      "Placeholder max feature 4",
-      "Placeholder max feature 5",
+      "Laagste verwerkingstarieven",
+      "Multi-locatie ondersteuning",
+      "Geavanceerde CRM",
+      "Aangepaste app branding",
+      "API-toegang",
+      "Toegewijd accountmanager",
     ],
   },
 ];
@@ -218,109 +226,122 @@ export const featureGroups: { name: string; rows: FeatureRow[] }[] = [
   {
     name: "Interne functies",
     rows: [
-      { label: "Placeholder feature A", values: ["✓", "✓", "✓"] },
-      { label: "Placeholder feature B", values: ["✓", "✓", "✓"] },
-      { label: "Placeholder feature C", values: ["✓", "✓", "✓"] },
-      { label: "Placeholder feature D", values: ["—", "✓", "✓"] },
-      { label: "Placeholder feature E", values: ["—", "✓", "✓"] },
-      { label: "Placeholder feature F", values: ["—", "—", "✓"] },
-      { label: "Placeholder feature G", values: ["—", "—", "✓"] },
+      { label: "AI-ondersteuning", values: ["✓", "✓", "✓"] },
+      { label: "Ledenapp", values: ["✓", "✓", "✓"] },
+      { label: "Medewerkers-app", values: ["✓", "✓", "✓"] },
+      { label: "Wachtlijstbeheer", values: ["—", "✓", "✓"] },
+      { label: "Geavanceerde rapportage", values: ["—", "✓", "✓"] },
+      { label: "Multi-locatie ondersteuning", values: ["—", "—", "✓"] },
+      { label: "API-toegang", values: ["—", "—", "✓"] },
     ],
   },
   {
     name: "Externe integraties",
     rows: [
-      { label: "Integratie A", values: ["✓", "✓", "✓"] },
-      { label: "Integratie B", values: ["—", "✓", "✓"] },
-      { label: "Integratie C", values: ["—", "✓", "✓"] },
+      { label: "Stripe", values: ["✓", "✓", "✓"] },
+      { label: "Mailchimp", values: ["—", "✓", "✓"] },
+      { label: "Zapier", values: ["—", "✓", "✓"] },
     ],
   },
 ];
 
 export const faqs = [
   {
-    question: "Placeholder vraag 1?",
+    question: "Wat kost GymOps en wat is er inbegrepen per abonnement?",
     answer:
-      "Placeholder antwoord op vraag 1. Vervang met je eigen FAQ-content over prijzen en abonnementen.",
+      "GymOps biedt drie abonnementen: Gratis (€0/maand) voor kleine gyms met basisfunctionaliteit, Pro (€149/maand) voor groeiende studio's met geavanceerde rapportage en automatiseringen, en Max (€219/maand) voor gevestigde gyms met alle mogelijkheden inclusief multi-locatie en API-toegang.",
   },
   {
-    question: "Placeholder vraag 2?",
+    question: "Welke betalingstypes worden ondersteund?",
     answer:
-      "Placeholder antwoord op vraag 2. Vervang met je eigen FAQ-content over ondersteunde betaalmethoden.",
+      "Je kunt accepteren: terugkerende lidmaatschapsbetalingen, eenmalige aankopen en drop-ins, PT-sessies en klassenpakketten, en point-of-sale retailbetalingen. GymOps ondersteunt creditcards, iDEAL, SEPA-incasso en internationale transacties.",
   },
   {
-    question: "Placeholder vraag 3?",
+    question: "Hoe lang duurt de installatie?",
     answer:
-      "Placeholder antwoord op vraag 3. Vervang met je eigen FAQ-content over installatie en onboarding.",
+      "De meeste gyms zijn binnen enkele dagen live. Onze onboarding omvat setup en data-import vanuit je huidige systeem, staftraining, communicatieondersteuning voor leden en live lanceringsassistentie.",
   },
   {
-    question: "Placeholder vraag 4?",
+    question: "Zijn er langlopende contracten?",
     answer:
-      "Placeholder antwoord op vraag 4. Vervang met je eigen FAQ-content over ondersteunde gym-types.",
+      "Nee. GymOps werkt volledig op maandbasis. Je kunt op elk moment opzeggen zonder verborgen kosten of uitstapboetes. We verdienen ons bestaansrecht elke maand opnieuw.",
   },
   {
-    question: "Placeholder vraag 5?",
+    question: "Werkt GymOps voor CrossFit gyms en vechtsporten academies?",
     answer:
-      "Placeholder antwoord op vraag 5. Vervang met je eigen FAQ-content over rapportage.",
+      "Absoluut. We ondersteunen CrossFit-specifieke programmering en benchmarks, band- en rangvolging voor vechtsporten, kracht- en conditioneringstraining, groepslessen en personal training, en aangepaste programmasjablonen.",
   },
   {
-    question: "Placeholder vraag 6?",
+    question: "Welke rapportagetools zijn er inbegrepen?",
     answer:
-      "Placeholder antwoord op vraag 6. Vervang met je eigen FAQ-content over contracten en opzegging.",
+      "Je kunt bijhouden: omzet en verkoopprestaties, ledenretentie en -groei, aanwezigheidstrends en klassenprestaties, PT-sessies, medewerkersbetrokkenheid en exporteerbare rapporten met aangepaste weergaven.",
   },
 ];
 
 export const shortQuotes = [
-  { quote: "Placeholder korte quote 1", name: "Demo K. 1" },
-  { quote: "Placeholder korte quote 2", name: "Demo K. 2" },
-  { quote: "Placeholder korte quote 3", name: "Demo K. 3" },
-  { quote: "Placeholder korte quote 4", name: "Demo K. 4" },
-  { quote: "Placeholder korte quote 5", name: "Demo K. 5" },
-  { quote: "Placeholder korte quote 6", name: "Demo K. 6" },
-  { quote: "Placeholder korte quote 7", name: "Demo K. 7" },
-  { quote: "Placeholder korte quote 8", name: "Demo K. 8" },
+  { quote: "Heeft ons leven zoveel makkelijker gemaakt", name: "Ben J." },
+  { quote: "Zo eenvoudig te gebruiken!", name: "Matthijs H." },
+  { quote: "Bespaart mij tijd én geld", name: "Trina K." },
+  { quote: "Intuïtief, ze denken aan alles", name: "Theresa S." },
+  { quote: "Ze geven echt om kleine gym-eigenaren", name: "Shad W." },
+  { quote: "De ledenervaring is uitstekend", name: "Hannah C." },
+  { quote: "Niet meer weg te denken uit ons bedrijf", name: "Jason L." },
+  { quote: "Onmisbaar voor onze groei", name: "Sarah M." },
+];
+
+export const featuredKlantQuotes = [
+  {
+    quote:
+      "Ik had me geen beter ondersteuningssysteem of aanmoedigingsteam kunnen voorstellen. In maand 6 hebben we elke meetbare doelstelling gehaald die we voor de eerste 12 maanden hadden gesteld. Deze software heeft daar een grote rol in gespeeld.",
+    name: "Graeme McMillan, Win Fitness",
+  },
+  {
+    quote:
+      "Onze klanten zijn onder de indruk van jouw eenvoudige systeem. Jij maakt mijn werk op zakelijk vlak gemakkelijker, zodat ik me kan blijven richten op de relaties met mijn leden.",
+    name: "Aaron R., Head Trainer, Konza Strength",
+  },
 ];
 
 export const customerStories = [
   {
-    title: "Placeholder verhaal 1",
-    body: "Korte placeholder samenvatting van het eerste klantverhaal.",
+    title: "GymOps Gratis — Nul kosten, maximaal resultaat",
+    body: "Ontdek hoe vroege gebruikers van GymOps Gratis ons toonaangevende systeem inzetten om hun gym volledig gratis te beheren en toch professioneel over te komen.",
   },
   {
-    title: "Placeholder verhaal 2",
-    body: "Korte placeholder samenvatting van het tweede klantverhaal.",
+    title: "Klanttevredenheid verhogen met de GymOps Open",
+    body: "Ontdek hoe CrossFit Station GymOps gebruikte om de meest efficiënte en plezierige Open ooit te organiseren — tot grote vreugde van hun leden.",
   },
   {
-    title: "Placeholder verhaal 3",
-    body: "Korte placeholder samenvatting van het derde klantverhaal.",
+    title: "Merchandise verkopen zonder risico via Pre-Orders",
+    body: "Leer hoe een gym GymOps Pre-Orders gebruikte om fan-shirts te verkopen als fundraiser, met €0 financieel risico en volledige controle.",
   },
 ];
 
 export const supportQuotes = [
-  { quote: "Placeholder support quote 1", name: "Demo K. A" },
-  { quote: "Placeholder support quote 2", name: "Demo K. B" },
-  { quote: "Placeholder support quote 3", name: "Demo K. C" },
-  { quote: "Placeholder support quote 4", name: "Demo K. D" },
-  { quote: "Placeholder support quote 5", name: "Demo K. E" },
-  { quote: "Placeholder support quote 6", name: "Demo K. F" },
-  { quote: "Placeholder support quote 7", name: "Demo K. G" },
-  { quote: "Placeholder support quote 8", name: "Demo K. H" },
+  { quote: "Snelle reacties zodat ik me kan focussen op mijn bedrijf", name: "Joshua A." },
+  { quote: "UX en de klantenservice zijn beiden top!", name: "Logan G." },
+  { quote: "Hun klantenservice is écht van het hoogste niveau!", name: "Sarah M." },
+  { quote: "Echte mensen die jouw bedrijf begrijpen.", name: "Pete G." },
+  { quote: "Support altijd klaar om elk probleem op te lossen.", name: "Dawn S." },
+  { quote: "De support is serieus fenomenaal.", name: "Karen H." },
+  { quote: "Het team hielp ons overleven tijdens Covid-19!", name: "Brandon E." },
+  { quote: "De allerbeste klantenservice, zonder twijfel.", name: "Jennifer V." },
 ];
 
 export const founders = [
   {
-    initials: "AA",
-    name: "Naam Oprichter 1",
+    initials: "DU",
+    name: "Daan Uijlenbroek",
     role: "CEO",
-    bio: "Korte placeholder bio voor de eerste oprichter. Vervang met de echte achtergrond.",
-    history: "Placeholder ervaring / vorige rollen.",
+    bio: "Een levenslange fitnessliefhebber. Daan heeft zijn hele carrière in startups gewerkt. Van 2010 tot 2012 mede-eigenaar van CrossFit Amsterdam, daarna Training Lab Rotterdam dat hij runde tot 2019. Na de verkoop richtte hij zijn focus op GymOps — om andere gymeigenaren te helpen hun operaties te stroomlijnen en blijvend succes te bereiken.",
+    history: "Gyms eigendom van: CrossFit Amsterdam (2010–2012) / Training Lab Rotterdam (2013–2019)",
   },
   {
-    initials: "BB",
-    name: "Naam Oprichter 2",
+    initials: "CM",
+    name: "Chris Meijer",
     role: "Product Directeur",
-    bio: "Korte placeholder bio voor de tweede oprichter. Vervang met de echte achtergrond.",
-    history: "Placeholder ervaring / vorige rollen.",
+    bio: "Als voormalig mede-eigenaar van CrossFit Amsterdam zet Chris zijn praktijkervaring in de branche in om intuïtieve tools te bouwen voor gymeigenaren, coaches en leden.",
+    history: "Gyms eigendom van: CrossFit Amsterdam (2010–2012)",
   },
 ];
 
@@ -331,4 +352,81 @@ export const investors = [
   "Investeerder 4",
   "Investeerder 5",
   "Investeerder 6",
+];
+
+export const values = [
+  {
+    number: "01",
+    title: "Branche-ervaring die ertoe doet",
+    body: "We hebben de uitdagingen van gymeigenaarschap zelf meegemaakt. Die praktijkkennis vormt elke productbeslissing, zodat jij tools krijgt gebouwd door mensen die jouw wereld écht begrijpen.",
+  },
+  {
+    number: "02",
+    title: "Gyms helpen levens te veranderen",
+    body: "Onze missie is gymeigenaren succesvol te maken. Als zij slagen, vinden meer mensen gezondheid, community en zelfvertrouwen. Dat is impact die verder reikt dan zakelijk succes alleen.",
+  },
+  {
+    number: "03",
+    title: "Snel, gefocust en efficiënt",
+    body: "We geloven dat kleine, gespecialiseerde teams de beste resultaten leveren. Met minder bureaucratie en meer verantwoordelijkheid bewegen we snel — met AI als kracht om elke klant eersteklas ondersteuning te bieden.",
+  },
+];
+
+export const integrations = [
+  { name: "Stripe", desc: "betalingsverwerking" },
+  { name: "iDEAL", desc: "Nederlandse betaalmethode" },
+  { name: "Mailchimp", desc: "e-mailmarketing" },
+  { name: "Slack", desc: "teamcommunicatie" },
+  { name: "Facebook Ads", desc: "adverteren" },
+  { name: "Google Analytics", desc: "webanalyse" },
+  { name: "Zapier", desc: "workflow automatisering" },
+  { name: "En meer…", desc: "" },
+];
+
+export const productPillars = [
+  {
+    icon: "settings",
+    tag: "BEHEER",
+    tagline: "De kern van jouw gymbeheer",
+    body: "Beheer je volledige gym vanuit één dashboard. Van facturatie en roosters tot ledenbeheer en rapportage — alles geautomatiseerd, alles verbonden.",
+    features: [
+      "Geautomatiseerde facturatie en betalingen via iDEAL, pin en incasso",
+      "CRM met volledig ledenbeheer en aanwezigheidsregistratie",
+      "Klasrooster met automatische boekingen en wachtlijstbeheer",
+      "QR-code check-in via kiosk of mobiel",
+      "Financiële dashboards en exporteerbare rapporten",
+      "Digitale waivers en documentbeheer",
+    ],
+    cta: "Meer over Beheer →",
+  },
+  {
+    icon: "trending-up",
+    tag: "GROEI",
+    tagline: "Zet prospects om in betalende leden",
+    body: "Mis nooit meer een potentieel lid. GymOps Groei automatiseert je leadopvolging, marketingcommunicatie en retentiestrategieën — zodat jouw gym blijft groeien.",
+    features: [
+      "Geautomatiseerde lead-workflows met SMS en e-mail opvolging",
+      "SEO-geoptimaliseerde landingspagina's voor ledenwerving",
+      "Twee-weg SMS voor persoonlijke communicatie op schaal",
+      "Gedragsgestuurde retentie-alerts voor at-risk leden",
+      "Integratie met Facebook Ads en Google Analytics",
+      "Enquêtes en NPS-tracking voor ledentevredenheid",
+    ],
+    cta: "Meer over Groei →",
+  },
+  {
+    icon: "dumbbell",
+    tag: "TRAINING",
+    tagline: "Het enige trainingsvolgsysteem dat jouw gym nodig heeft",
+    body: "Geef je leden een plek om te trainen, bij te houden en te groeien. GymOps Training bouwt community en betrokkenheid door workout-tracking en programmering in één app te combineren.",
+    features: [
+      "Dagelijkse workout-logging voor leden via de app",
+      "Aangepaste programma's, benchmarks en video-instructies",
+      "Sociaal feed met prestaties en community-interactie",
+      "Koppeling met de ledenapp voor klassenboeking én training",
+      "Trainingen van gecertificeerde partners beschikbaar in de app",
+      "Coach-feedback en prestatiegeschiedenis per lid",
+    ],
+    cta: "Meer over Training →",
+  },
 ];

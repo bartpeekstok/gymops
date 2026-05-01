@@ -8,8 +8,8 @@ export default function CtaBanner() {
         <div className="text-white">
           <h2 className="text-4xl font-black">Klaar wanneer jij het bent</h2>
           <p className="mt-4 text-off-white/90 max-w-md">
-            Placeholder ondertitel. Vervang met je eigen tekst over flexibiliteit en
-            geen langlopende contracten.
+            Geen langlopende contracten, geen verborgen kosten, en een platform dat zich
+            aanpast aan elke fitnessspecialisatie.
           </p>
           <div className="mt-6">
             <Button

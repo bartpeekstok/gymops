@@ -1,6 +1,11 @@
 import Button from "@/components/ui/Button";
 import TestimonialCard from "@/components/ui/TestimonialCard";
-import { shortQuotes, customerStories, supportQuotes } from "@/lib/data";
+import {
+  shortQuotes,
+  customerStories,
+  supportQuotes,
+  featuredKlantQuotes,
+} from "@/lib/data";
 
 export default function CustomersPage() {
   const doubledQuotes = [...shortQuotes, ...shortQuotes];
@@ -21,7 +26,8 @@ export default function CustomersPage() {
             5000+ gyms kozen GymOps om hun fitnessonderneming te stroomlijnen en te laten groeien.
           </h1>
           <p className="text-off-white/90 mt-5 max-w-2xl mx-auto">
-            Placeholder ondertitel. Vervang met je eigen tekst over klanten en resultaten.
+            5.000+ gyms kozen GymOps om hun fitnessonderneming te stroomlijnen en te laten
+            groeien. Sluit je aan voor fantastische resultaten en een betere klantervaring.
           </p>
           <div className="mt-8">
             <Button variant="primary" href="/demo">
@@ -47,20 +53,14 @@ export default function CustomersPage() {
       <section className="bg-white py-20">
         <div className="container-page grid lg:grid-cols-2 gap-16 items-start">
           <div className="space-y-10">
-            <div>
-              <p className="text-gray-600 italic text-lg leading-relaxed">
-                &ldquo;Placeholder lange klant-quote nummer een. Vervang met een echte uitgebreide
-                testimonial over jullie samenwerking.&rdquo;
-              </p>
-              <p className="font-bold text-dark mt-4">— Demo Klant A, Demo Gym A</p>
-            </div>
-            <div>
-              <p className="text-gray-600 italic text-lg leading-relaxed">
-                &ldquo;Placeholder lange klant-quote nummer twee. Vervang met een echte uitgebreide
-                testimonial over de impact op het bedrijf.&rdquo;
-              </p>
-              <p className="font-bold text-dark mt-4">— Demo Klant B, Demo Gym B</p>
-            </div>
+            {featuredKlantQuotes.map((q) => (
+              <div key={q.name}>
+                <p className="text-gray-600 italic text-lg leading-relaxed">
+                  &ldquo;{q.quote}&rdquo;
+                </p>
+                <p className="font-bold text-dark mt-4">— {q.name}</p>
+              </div>
+            ))}
           </div>
 
           <div className="bg-gradient-to-br from-primary to-accent rounded-2xl h-96 w-full" />
@@ -102,9 +102,10 @@ export default function CustomersPage() {
             <div className="bg-white rounded-2xl p-10 shadow-md border border-gray-100">
               <span className="text-accent text-7xl leading-none font-serif block">&ldquo;</span>
               <p className="text-xl font-medium text-dark -mt-4 leading-relaxed">
-                Placeholder grote support-quote. Vervang met een echte testimonial over service.
+                Jouw behulpzame support en eenvoudig platform zorgen samen voor een echt
+                uitstekend product!
               </p>
-              <p className="mt-6 font-bold text-dark">— Demo Klant Hoofd, Demo Gym</p>
+              <p className="mt-6 font-bold text-dark">— Tiffany R., Stroller Strong Moms</p>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-3">
@@ -119,10 +120,11 @@ export default function CustomersPage() {
       <section className="bg-navy text-white py-16 text-center">
         <div className="container-page">
           <h2 className="text-3xl font-black">
-            Fitnessstudio&apos;s over de hele wereld bedienen
+            Fitnessondernemingen over de hele wereld bedienen
           </h2>
-          <p className="text-off-white/80 mt-4 max-w-xl mx-auto">
-            Probeer GymOps gratis en zie zelf het verschil.
+          <p className="text-off-white/80 mt-4 max-w-2xl mx-auto">
+            Probeer GymOps gratis en zie zelf het verschil. Beheer je fitnessonderneming
+            efficiënter met toonaangevende gymsoftware én een ervaren team dat je ondersteunt.
           </p>
           <div className="mt-8">
             <Button variant="primary" href="/demo" className="bg-accent hover:bg-accent/90 text-dark">

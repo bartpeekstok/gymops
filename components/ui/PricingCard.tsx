@@ -5,8 +5,10 @@ type Props = {
   name: string;
   price: string;
   period: string;
+  tag: string;
   description: string;
-  processing: string;
+  processingPin: string;
+  processingIncasso: string;
   support: string;
   cta: string;
   ctaVariant: "primary" | "outline";
@@ -19,8 +21,10 @@ export default function PricingCard({
   name,
   price,
   period,
+  tag,
   description,
-  processing,
+  processingPin,
+  processingIncasso,
   support,
   cta,
   ctaVariant,
@@ -39,7 +43,8 @@ export default function PricingCard({
           {note}
         </span>
       )}
-      <h3 className="font-black text-2xl text-dark">{name}</h3>
+      <p className="text-xs uppercase tracking-wider text-primary font-bold">{tag}</p>
+      <h3 className="font-black text-2xl text-dark mt-1">{name}</h3>
       <div className="mt-4 flex items-baseline gap-1">
         <span className="text-5xl font-black text-dark">{price}</span>
         {period && <span className="text-gray-500 text-lg">{period}</span>}
@@ -48,7 +53,8 @@ export default function PricingCard({
       <div className="mt-6 space-y-3 text-sm">
         <div>
           <p className="text-xs uppercase tracking-wider text-primary font-bold">Verwerkingstarief</p>
-          <p className="text-dark font-medium">{processing}</p>
+          <p className="text-dark font-medium">{processingPin}</p>
+          <p className="text-dark font-medium">{processingIncasso}</p>
         </div>
         <div>
           <p className="text-xs uppercase tracking-wider text-primary font-bold">Support</p>

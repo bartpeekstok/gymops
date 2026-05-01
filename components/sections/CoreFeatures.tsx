@@ -27,7 +27,7 @@ export default function CoreFeatures() {
           </div>
           <h2 className="text-4xl font-black text-dark mt-3">Het Hart van jouw Gymbeheer</h2>
           <p className="text-gray-600 mt-3 max-w-xl mx-auto">
-            Placeholder ondertitel. Vervang met eigen tekst over administratieve workflow.
+            Vereenvoudig en stroomlijn je administratieve workflow.
           </p>
         </div>
 

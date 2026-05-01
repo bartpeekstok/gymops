@@ -30,7 +30,7 @@ export default function PricingPage() {
         </svg>
         <div className="container-page relative z-10">
           <p className="text-accent uppercase tracking-wider font-bold text-sm">
-            Alles-in-één Gymbeheer Software
+            Alles-in-één Gym Automation Platform
           </p>
           <h1 className="text-4xl lg:text-5xl font-black mt-3 max-w-3xl mx-auto leading-tight">
             Schaal je bedrijf met flexibele abonnementen die bij jouw behoeften passen.
@@ -45,8 +45,10 @@ export default function PricingPage() {
               <PricingCard key={plan.name} {...plan} />
             ))}
           </div>
-          <p className="text-center text-sm text-gray-500 mt-6">
-            *Prijzen in EUR. Neem contact op voor internationaal.
+          <p className="text-center text-sm text-gray-500 mt-6 max-w-3xl mx-auto">
+            *Prijzen in EUR. Neem contact op met sales voor internationale tarieven.{" "}
+            **AI-ondersteuning lost 60% van de gesprekken op met een klanttevredenheidsscore
+            van 95%.
           </p>
         </div>
       </section>
@@ -136,8 +138,8 @@ export default function PricingPage() {
       <section className="bg-navy text-white py-16 text-center">
         <div className="container-page">
           <h2 className="text-3xl font-black max-w-3xl mx-auto leading-snug">
-            Ons klantenserviceteam, bestaande uit huidige en voormalige gymeigenaren, staat
-            klaar om je rond te leiden.
+            Ons team, bestaande uit huidige en voormalige gymeigenaren, staat klaar om je
+            rond te leiden.
           </h2>
           <div className="mt-8">
             <Button variant="primary" href="/demo" className="bg-accent hover:bg-accent/90 text-dark">

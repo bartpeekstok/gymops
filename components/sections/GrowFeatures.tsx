@@ -15,7 +15,7 @@ export default function GrowFeatures() {
           </div>
           <h2 className="text-4xl font-black text-dark mt-3">Verander Prospects in Leden</h2>
           <p className="text-gray-600 mt-3 max-w-xl mx-auto">
-            Placeholder ondertitel over leadgeneratie en conversie.
+            Laat potentiële leden niet door de vingers glippen.
           </p>
         </div>
 

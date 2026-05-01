@@ -6,7 +6,7 @@ export default function TrustedBy() {
     <section className="px-6 lg:px-16 py-8">
       <div className="bg-navy rounded-2xl py-10 overflow-hidden">
         <h2 className="text-white text-center font-bold text-xl mb-8">
-          Vertrouwd door toonaangevende fitnessmerken
+          Vertrouwd door toonaangevende fitnessondernemingen
         </h2>
         <div className="overflow-hidden">
           <div className="flex logo-scroll whitespace-nowrap w-max">

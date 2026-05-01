@@ -27,7 +27,7 @@ export default function TrainFeatures() {
           </div>
           <h2 className="text-4xl font-black text-dark mt-3">Verbeter de Ledenervaring</h2>
           <p className="text-gray-600 mt-3 max-w-xl mx-auto">
-            Placeholder ondertitel over trainingen en community.
+            Volg trainingen en bouw een hechte community.
           </p>
         </div>
 

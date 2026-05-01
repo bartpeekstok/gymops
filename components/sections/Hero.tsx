@@ -7,13 +7,13 @@ export default function Hero() {
     <section className="bg-white">
       <div className="container-page py-20 grid lg:grid-cols-2 gap-16 items-center">
         <div>
-          <Badge>Alles-in-één Gymbeheer Software</Badge>
+          <Badge>Alles-in-één Gym Automation Platform</Badge>
           <h1 className="text-5xl lg:text-[64px] font-black leading-[1.1] text-dark mt-4">
-            Placeholder hoofdtitel voor GymOps
+            Ontgrendel de Kracht van jouw Fitnessonderneming
           </h1>
           <p className="text-lg text-gray-600 mt-5 max-w-lg leading-relaxed">
-            Placeholder ondertitel. Vervang met je eigen waardepropositie en{" "}
-            <strong>positionering</strong> voor de Nederlandse gymmarkt.
+            Automatiseer, stroomlijn en laat je fitnessonderneming groeien met een probleemloze
+            software <strong>gebouwd door gymeigenaren, voor gymeigenaren.</strong>
           </p>
           <div className="flex flex-wrap gap-4 mt-8">
             <Button variant="primary" href="/demo">
