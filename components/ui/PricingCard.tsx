@@ -43,7 +43,7 @@ export default function PricingCard({
           {note}
         </span>
       )}
-      <p className="text-xs uppercase tracking-wider text-primary font-bold">{tag}</p>
+      <p className="text-xs tracking-wider text-primary font-bold">{tag}</p>
       <h3 className="font-black text-2xl text-dark mt-1">{name}</h3>
       <div className="mt-4 flex items-baseline gap-1">
         <span className="text-5xl font-black text-dark">{price}</span>
@@ -52,12 +52,12 @@ export default function PricingCard({
       <p className="mt-3 text-gray-600 min-h-[60px]">{description}</p>
       <div className="mt-6 space-y-3 text-sm">
         <div>
-          <p className="text-xs uppercase tracking-wider text-primary font-bold">Verwerkingstarief</p>
+          <p className="text-xs tracking-wider text-primary font-bold">Verwerkingstarief</p>
           <p className="text-dark font-medium">{processingPin}</p>
           <p className="text-dark font-medium">{processingIncasso}</p>
         </div>
         <div>
-          <p className="text-xs uppercase tracking-wider text-primary font-bold">Support</p>
+          <p className="text-xs tracking-wider text-primary font-bold">Support</p>
           <p className="text-gray-600">{support}</p>
         </div>
       </div>

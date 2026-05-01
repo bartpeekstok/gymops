@@ -25,7 +25,7 @@ export default function Footer() {
           <div>
             <Logo variant="light" />
             <p className="text-off-white/80 text-sm mt-4 max-w-xs leading-relaxed">
-              Placeholder tagline. Vervang met je eigen positionering.
+              Gymbeheer software gebouwd door gymeigenaren, voor gymeigenaren.
             </p>
             <div className="flex items-center gap-2 mt-4">
               <div className="flex">
@@ -38,7 +38,7 @@ export default function Footer() {
           </div>
           {columns.map((col) => (
             <div key={col.title}>
-              <h4 className="font-bold text-sm uppercase tracking-wider mb-4">{col.title}</h4>
+              <h4 className="font-bold text-sm tracking-wider mb-4">{col.title}</h4>
               <ul className="space-y-3">
                 {col.links.map((link) => (
                   <li key={link}>

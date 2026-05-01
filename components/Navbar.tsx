@@ -43,7 +43,7 @@ export default function Navbar() {
             Inloggen
           </Link>
           <Button variant="primary" href="/demo">
-            Plan een Demo
+            Plan een demo
           </Button>
         </div>
 
@@ -73,7 +73,7 @@ export default function Navbar() {
               Inloggen
             </Link>
             <Button variant="primary" href="/demo" className="mt-2">
-              Plan een Demo
+              Plan een demo
             </Button>
           </div>
         </div>

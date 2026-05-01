@@ -12,10 +12,10 @@ export default function EverythingYouNeed() {
   return (
     <section className="bg-accent-light py-20">
       <div className="container-page text-center">
-        <p className="text-primary uppercase tracking-wider font-bold text-sm">
+        <p className="text-primary tracking-wider font-bold text-sm">
           Alles wat je nodig hebt
         </p>
-        <h2 className="text-4xl font-black text-dark mt-2">Alles op Één Plek</h2>
+        <h2 className="text-4xl font-black text-dark mt-2">Alles op één plek</h2>
         <p className="text-gray-600 max-w-2xl mx-auto mt-4">
           Het succes van jouw gym begint met de juiste tools. Ons eenvoudig te gebruiken,
           verbonden platform biedt de slimste oplossingen voor elke behoefte.
@@ -41,7 +41,7 @@ export default function EverythingYouNeed() {
         </p>
         <div className="flex flex-wrap gap-4 justify-center mt-5">
           <Button variant="primary" href="/demo">
-            Plan een Demo →
+            Plan een demo →
           </Button>
           <Button variant="outline" href="/prijzen">
             Gratis aanmelden

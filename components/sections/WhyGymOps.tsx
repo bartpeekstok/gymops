@@ -16,11 +16,11 @@ export default function WhyGymOps() {
   return (
     <section className="bg-gray-50 py-20">
       <div className="container-page">
-        <p className="text-primary uppercase tracking-wider font-bold text-sm">
+        <p className="text-primary tracking-wider font-bold text-sm">
           Waarom GymOps?
         </p>
         <h2 className="text-4xl font-black text-dark mt-2 max-w-2xl">
-          De Tools die je Nodig Hebt. Het Team dat je Vertrouwt.
+          De tools die je nodig hebt. Het team dat je vertrouwt.
         </h2>
 
         <div

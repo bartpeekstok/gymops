@@ -14,7 +14,7 @@ export default function DashboardMockup() {
         <div className="grid grid-cols-2 gap-3">
           {dashboardStats.map((s) => (
             <div key={s.label} className="bg-navy-card rounded-xl p-4">
-              <p className="text-off-white/60 text-[10px] uppercase tracking-wider font-semibold">
+              <p className="text-off-white/60 text-[10px] tracking-wider font-semibold">
                 {s.label}
               </p>
               <p
@@ -30,7 +30,7 @@ export default function DashboardMockup() {
         </div>
 
         <div className="bg-navy-card rounded-xl p-4 mt-3">
-          <p className="text-off-white/60 text-[10px] uppercase tracking-wider font-semibold mb-3">
+          <p className="text-off-white/60 text-[10px] tracking-wider font-semibold mb-3">
             Leden met risico
           </p>
           <ul className="space-y-2">

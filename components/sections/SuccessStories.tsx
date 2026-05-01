@@ -12,7 +12,7 @@ export default function SuccessStories() {
   return (
     <section className="bg-white py-20">
       <div className="container-page">
-        <p className="text-primary uppercase tracking-wider font-bold text-sm">
+        <p className="text-primary tracking-wider font-bold text-sm">
           Lees onze succesverhalen
         </p>
 

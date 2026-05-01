@@ -7,7 +7,7 @@ export default function AboutPage() {
       <section className="bg-white pt-16 pb-20">
         <div className="container-page grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <p className="text-primary uppercase tracking-wider font-bold text-sm">
+            <p className="text-primary tracking-wider font-bold text-sm">
               Gymsoftware gebouwd door gymeigenaren
             </p>
             <h1 className="text-5xl font-black text-dark mt-3 leading-tight">
@@ -45,7 +45,7 @@ export default function AboutPage() {
 
       <section className="bg-gray-50 py-20">
         <div className="container-page">
-          <h2 className="text-3xl font-black text-dark text-center">Ontmoet de Oprichters</h2>
+          <h2 className="text-3xl font-black text-dark text-center">Ontmoet de oprichters</h2>
           <div className="grid md:grid-cols-2 gap-8 mt-12">
             {founders.map((f, i) => (
               <div key={f.name} className="bg-white rounded-2xl p-8 shadow-sm">
@@ -79,7 +79,7 @@ export default function AboutPage() {
 
       <section className="bg-white py-20">
         <div className="container-page">
-          <h2 className="text-3xl font-black text-dark text-center">Onze Partners in Groei</h2>
+          <h2 className="text-3xl font-black text-dark text-center">Onze partners in groei</h2>
           <p className="text-gray-600 text-center max-w-3xl mx-auto mt-4 leading-relaxed">
             GymOps is trots gesteund door investeerders die geloven in onze langetermijnmissie.
             Met hun steun schalen we onze missie om gyms niet alleen vandaag, maar voor

@@ -29,8 +29,8 @@ export default function PricingPage() {
           <path d="M0 70 Q 25 20, 50 70 T 100 70" strokeWidth="0.5" />
         </svg>
         <div className="container-page relative z-10">
-          <p className="text-accent uppercase tracking-wider font-bold text-sm">
-            Alles-in-één Gym Automation Platform
+          <p className="text-accent tracking-wider font-bold text-sm">
+            Alles-in-één gym automation platform
           </p>
           <h1 className="text-4xl lg:text-5xl font-black mt-3 max-w-3xl mx-auto leading-tight">
             Schaal je bedrijf met flexibele abonnementen die bij jouw behoeften passen.
@@ -81,7 +81,7 @@ export default function PricingPage() {
                     <tr key={group.name} className="bg-gray-50">
                       <td
                         colSpan={4}
-                        className="py-3 px-4 text-xs font-bold uppercase tracking-wider text-primary"
+                        className="py-3 px-4 text-xs font-bold tracking-wider text-primary"
                       >
                         {group.name}
                       </td>

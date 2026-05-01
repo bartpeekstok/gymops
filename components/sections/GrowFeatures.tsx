@@ -10,10 +10,10 @@ export default function GrowFeatures() {
           <div className="inline-flex items-center gap-2 justify-center">
             <GearIcon className="h-6 w-6" />
             <span className="text-sm font-bold tracking-wider">
-              GymOps <span className="text-primary">GROEI</span>
+              GymOps <span className="text-primary">Groei</span>
             </span>
           </div>
-          <h2 className="text-4xl font-black text-dark mt-3">Verander Prospects in Leden</h2>
+          <h2 className="text-4xl font-black text-dark mt-3">Verander prospects in leden</h2>
           <p className="text-gray-600 mt-3 max-w-xl mx-auto">
             Laat potentiële leden niet door de vingers glippen.
           </p>

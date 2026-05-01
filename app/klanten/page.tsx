@@ -19,8 +19,8 @@ export default function CustomersPage() {
           <div className="absolute top-1/2 left-1/2 h-24 w-24 rounded-full border border-accent -translate-x-1/2 -translate-y-1/2" />
         </div>
         <div className="container-page relative z-10">
-          <p className="text-accent uppercase tracking-wider font-bold text-sm">
-            Slimme Gymsoftware voor Slimme Gymeigenaren
+          <p className="text-accent tracking-wider font-bold text-sm">
+            Slimme gymsoftware voor slimme gymeigenaren
           </p>
           <h1 className="text-4xl lg:text-5xl font-black mt-3 max-w-3xl mx-auto leading-tight">
             5000+ gyms kozen GymOps om hun fitnessonderneming te stroomlijnen en te laten groeien.
@@ -31,7 +31,7 @@ export default function CustomersPage() {
           </p>
           <div className="mt-8">
             <Button variant="primary" href="/demo">
-              Plan een Demo
+              Plan een demo
             </Button>
           </div>
         </div>
@@ -128,7 +128,7 @@ export default function CustomersPage() {
           </p>
           <div className="mt-8">
             <Button variant="primary" href="/demo" className="bg-accent hover:bg-accent/90 text-dark">
-              Plan een Demo
+              Plan een demo
             </Button>
           </div>
         </div>

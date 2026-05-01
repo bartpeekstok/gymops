@@ -16,7 +16,7 @@ export default function ProductsPage() {
         <div className="container-page">
           <Badge className="bg-accent/20 text-accent">Producten</Badge>
           <h1 className="text-4xl lg:text-5xl font-black mt-3 max-w-3xl mx-auto leading-tight">
-            Één Platform. Alles wat je nodig hebt.
+            Eén platform. Alles wat je nodig hebt.
           </h1>
           <p className="text-off-white/80 mt-5 max-w-2xl mx-auto">
             GymOps biedt een compleet ecosysteem van producten die naadloos samenwerken —
@@ -40,7 +40,7 @@ export default function ProductsPage() {
                 <div className="lg:[direction:ltr]">
                   <div className="inline-flex items-center gap-2">
                     <Icon className="h-6 w-6 text-primary" />
-                    <span className="text-primary uppercase tracking-wider font-bold text-sm">
+                    <span className="text-primary tracking-wider font-bold text-sm">
                       GymOps {p.tag}
                     </span>
                   </div>
@@ -107,7 +107,7 @@ export default function ProductsPage() {
               href="/demo"
               className="bg-accent hover:bg-accent/90 text-dark"
             >
-              Plan een Demo →
+              Plan een demo →
             </Button>
             <Button
               variant="outline"

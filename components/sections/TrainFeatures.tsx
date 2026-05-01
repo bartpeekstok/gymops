@@ -22,10 +22,10 @@ export default function TrainFeatures() {
           <div className="inline-flex items-center gap-2 justify-center">
             <GearIcon className="h-6 w-6" />
             <span className="text-sm font-bold tracking-wider">
-              GymOps <span className="text-primary">TRAINING</span>
+              GymOps <span className="text-primary">Training</span>
             </span>
           </div>
-          <h2 className="text-4xl font-black text-dark mt-3">Verbeter de Ledenervaring</h2>
+          <h2 className="text-4xl font-black text-dark mt-3">Verbeter de ledenervaring</h2>
           <p className="text-gray-600 mt-3 max-w-xl mx-auto">
             Volg trainingen en bouw een hechte community.
           </p>

@@ -34,17 +34,17 @@ export const atRiskMembers = [
 export const everythingCards = [
   {
     icon: "users",
-    title: "Betere Ledenervaring",
+    title: "Betere ledenervaring",
     body: "Ons platform biedt geautomatiseerde communicatie, uitgebreid ledenbeheer en helpt mensen hun fitnessdoelen te bereiken — wat zorgt voor meer retentie en een sterkere community.",
   },
   {
     icon: "gear",
-    title: "Eenvoudig Beheer",
+    title: "Eenvoudig beheer",
     body: "Vereenvoudig de complexiteit van het runnen van een gym zonder meerdere losse programma's. Beheer dagelijkse operaties, leadgeneratie, conversie en ledeninteractie op één plek.",
   },
   {
     icon: "chart",
-    title: "Datagedreven Beslissingen",
+    title: "Datagedreven beslissingen",
     body: "Neem slimmere zakelijke beslissingen met uitgebreide data — bekijk robuuste analyses over operaties, marketing, ledeninteractie en trainingseffectiviteit.",
   },
 ];
@@ -102,19 +102,19 @@ export const trainTabs = [
 
 export const whyCards = [
   {
-    title: "Geworteld in Echte Ervaring",
+    title: "Geworteld in echte ervaring",
     body: "Als voormalige gymeigenaren kennen we dezelfde uitdagingen als jij — daarom bouwden we GymOps met focus op gebruiksvriendelijkheid en efficiëntie die écht werkt in de praktijk.",
   },
   {
-    title: "Gedreven door een Rebel Spirit",
+    title: "Gedreven door een rebel spirit",
     body: "Wij weigeren de status quo van software die “alles doet maar niets goed”. Jij krijgt een gerichte set functies die je daadwerkelijk gebruikt — en geweldig vindt.",
   },
   {
-    title: "Toegewijd aan jouw Succes",
+    title: "Toegewijd aan jouw succes",
     body: "Meer dan 1 miljoen check-ins zijn verwerkt via GymOps. Ons team van fitnessliefhebbers en techexperts blijft de software continu verbeteren om de groei van jouw gym te ondersteunen.",
   },
   {
-    title: "Kampioen van Gezondheid en Geluk",
+    title: "Kampioen van gezondheid en geluk",
     body: "Door gymeigenaren de juiste tools te geven, creëren we een gezondere wereld — we maken welzijn toegankelijk en gymbeheer moeiteloos.",
   },
 ];
@@ -169,7 +169,7 @@ export const pricingPlans = [
     processingPin: "2,89% + €0,30 (pin)",
     processingIncasso: "0,79% + €0,30 (incasso)",
     support: "AI-ondersteuning, live reacties en de mogelijkheid om video-ondersteuningsgesprekken in te plannen.",
-    cta: "Plan een Demo →",
+    cta: "Plan een demo →",
     ctaVariant: "primary" as const,
     note: "Meest populair",
     highlighted: true,
@@ -193,7 +193,7 @@ export const pricingPlans = [
     processingPin: "2,75% + €0,30 (pin)",
     processingIncasso: "0,79% + €0,30 (incasso)",
     support: "AI-ondersteuning, live reacties en de mogelijkheid om video-ondersteuningsgesprekken in te plannen.",
-    cta: "Plan een Demo →",
+    cta: "Plan een demo →",
     ctaVariant: "outline" as const,
     note: "",
     highlighted: false,
@@ -304,7 +304,7 @@ export const featuredKlantQuotes = [
 
 export const customerStories = [
   {
-    title: "GymOps Gratis — Nul kosten, maximaal resultaat",
+    title: "GymOps Gratis — nul kosten, maximaal resultaat",
     body: "Ontdek hoe vroege gebruikers van GymOps Gratis ons toonaangevende systeem inzetten om hun gym volledig gratis te beheren en toch professioneel over te komen.",
   },
   {
@@ -386,7 +386,7 @@ export const integrations = [
 export const productPillars = [
   {
     icon: "settings",
-    tag: "BEHEER",
+    tag: "Beheer",
     tagline: "De kern van jouw gymbeheer",
     body: "Beheer je volledige gym vanuit één dashboard. Van facturatie en roosters tot ledenbeheer en rapportage — alles geautomatiseerd, alles verbonden.",
     features: [
@@ -401,7 +401,7 @@ export const productPillars = [
   },
   {
     icon: "trending-up",
-    tag: "GROEI",
+    tag: "Groei",
     tagline: "Zet prospects om in betalende leden",
     body: "Mis nooit meer een potentieel lid. GymOps Groei automatiseert je leadopvolging, marketingcommunicatie en retentiestrategieën — zodat jouw gym blijft groeien.",
     features: [
@@ -416,7 +416,7 @@ export const productPillars = [
   },
   {
     icon: "dumbbell",
-    tag: "TRAINING",
+    tag: "Training",
     tagline: "Het enige trainingsvolgsysteem dat jouw gym nodig heeft",
     body: "Geef je leden een plek om te trainen, bij te houden en te groeien. GymOps Training bouwt community en betrokkenheid door workout-tracking en programmering in één app te combineren.",
     features: [
