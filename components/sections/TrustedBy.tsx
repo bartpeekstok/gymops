@@ -19,9 +19,11 @@ export default function TrustedBy() {
               <Image
                 src={logo.src}
                 alt={logo.name}
-                width={200}
-                height={80}
-                className="max-h-20 w-auto object-contain"
+                width={300}
+                height={120}
+                className={`w-auto object-contain ${
+                  "larger" in logo && logo.larger ? "max-h-[120px]" : "max-h-20"
+                }`}
               />
             </div>
           ))}
