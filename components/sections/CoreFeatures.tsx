@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Pen, Star, Mail, Zap, PartyPopper, CalendarCheck, Plus } from "lucide-react";
+import { Pen, Star, Mail, Zap, PartyPopper, CalendarCheck } from "lucide-react";
 import Button from "../ui/Button";
 import { GearIcon } from "../Logo";
 import { coreFeatureTabs } from "@/lib/data";
@@ -67,36 +67,56 @@ export default function CoreFeatures() {
             </div>
           </div>
 
-          <div className="bg-white shadow-xl rounded-2xl p-6 border border-gray-100">
-            <div className="flex items-center justify-between mb-4">
-              <h4 className="font-bold text-dark">Werkrooster</h4>
-              <button className="bg-primary text-white text-xs font-semibold px-3 py-1.5 rounded inline-flex items-center gap-1">
-                <Plus className="h-3 w-3" /> Uren toevoegen
-              </button>
+          <div className="relative pb-8 pr-8">
+            <div className="bg-white shadow-xl rounded-2xl p-6 border border-gray-100">
+              <div className="flex items-center justify-between mb-5">
+                <h4 className="font-bold text-dark">Activiteit</h4>
+                <span className="text-xs text-gray-500 flex items-center gap-1.5">
+                  <span className="h-2 w-2 rounded-full bg-green-500" />
+                  Live
+                </span>
+              </div>
+              <ul className="space-y-3">
+                {[
+                  { Icon: Pen, text: "Handgeschreven kaart naar Lisa de B.", time: "2 min geleden", bg: "bg-primary" },
+                  { Icon: Star, text: "Review-verzoek naar Mark P.", time: "12 min geleden", bg: "bg-accent" },
+                  { Icon: Mail, text: "Welkomstmail naar lead Sander V.", time: "18 min geleden", bg: "bg-primary-dark" },
+                  { Icon: CalendarCheck, text: "Afspraak met Jeroen K. — di 14:00", time: "27 min geleden", bg: "bg-primary" },
+                  { Icon: PartyPopper, text: "Bring-a-Friend event aangemaakt", time: "1 uur geleden", bg: "bg-accent" },
+                  { Icon: Zap, text: "Tariefswijziging live op website", time: "2 uur geleden", bg: "bg-primary-dark" },
+                ].map(({ Icon, text, time, bg }) => (
+                  <li key={text} className="flex items-start gap-3 pb-3 border-b border-gray-100 last:border-0 last:pb-0">
+                    <div className={`h-9 w-9 rounded-lg flex items-center justify-center flex-shrink-0 ${bg}`}>
+                      <Icon className="h-4 w-4 text-white" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm text-dark">{text}</p>
+                      <p className="text-xs text-gray-500 mt-0.5">{time}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div className="border border-gray-100 rounded-lg overflow-hidden">
-              <table className="w-full text-sm">
-                <thead className="bg-gray-50">
-                  <tr className="text-left text-xs uppercase text-gray-500">
-                    <th className="px-4 py-2.5">Dag</th>
-                    <th className="px-4 py-2.5">Start</th>
-                    <th className="px-4 py-2.5">Einde</th>
-                  </tr>
-                </thead>
-                <tbody>
+
+            <div className="absolute -bottom-2 -right-2 w-36 bg-[#0f1f24] rounded-[20px] p-1.5 shadow-2xl border border-primary/40">
+              <div className="bg-primary rounded-[16px] p-2.5">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-white text-[10px] font-bold">Activiteit</span>
+                  <span className="h-1.5 w-1.5 rounded-full bg-green-300" />
+                </div>
+                <div className="space-y-1.5">
                   {[
-                    ["Wo", "9:00", "16:00"],
-                    ["Do", "9:00", "16:00"],
-                    ["Vr", "9:00", "16:00"],
-                  ].map(([d, s, e]) => (
-                    <tr key={d} className="border-t border-gray-100">
-                      <td className="px-4 py-3 font-semibold text-dark">{d}</td>
-                      <td className="px-4 py-3 text-gray-600">{s}</td>
-                      <td className="px-4 py-3 text-gray-600">{e}</td>
-                    </tr>
+                    { Icon: Pen, text: "Kaart → Lisa" },
+                    { Icon: Star, text: "Review → Mark" },
+                    { Icon: Mail, text: "Mail → Sander" },
+                  ].map(({ Icon, text }) => (
+                    <div key={text} className="bg-white/15 backdrop-blur rounded-md p-1.5 flex items-center gap-1.5">
+                      <Icon className="h-3 w-3 text-white flex-shrink-0" />
+                      <p className="text-white text-[10px] flex-1">{text}</p>
+                    </div>
                   ))}
-                </tbody>
-              </table>
+                </div>
+              </div>
             </div>
           </div>
         </div>
