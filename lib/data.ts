@@ -84,8 +84,8 @@ export const growColumns = [
     body: "Onze websites zijn ingericht op goede vindbaarheid door zoekmachines en, misschien nog belangrijker, ingericht om goed door AI search gevonden te worden. Via GymOps draai je gerichte campagnes op je doelgroepen via Meta ads, maar ook campagnes via WhatsApp en e-mail staan al voor je klaar. Wist je dat je ex-leden soms maar een klein duwtje nodig hebben om weer terug te komen? Ook hier heeft GymOps kant en klare processen voor, zonder dat mensen zich gespamd voelen.",
   },
   {
-    title: "Leden betrokken houden",
-    body: "Verbeter ledenrelaties met twee-weg SMS, geautomatiseerde enquêtes en gebruik gedragsdata om retentie te verbeteren en leden langer te binden.",
+    title: "Leadconversie",
+    body: "Nadat een lead z'n gegevens heeft achtergelaten, is het belangrijk dat er snel gereageerd wordt. Binnen één minuut ontvangen leads WhatsApp berichten en/of e-mails en spoort GymOps jou aan om snel persoonlijk contact op te nemen. Zodra een proefles of intake is geboekt, zorgt GymOps ervoor dat leads herinneringsberichten krijgen totdat ze in je gym staan.",
   },
   {
     title: "Communicatie stroomlijnen",
