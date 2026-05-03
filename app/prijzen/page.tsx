@@ -76,8 +76,7 @@ export default function PricingPage() {
       <section className="bg-navy text-white py-16 text-center">
         <div className="container-page">
           <h2 className="text-3xl font-black max-w-3xl mx-auto leading-snug">
-            Ons team, bestaande uit huidige en voormalige gymeigenaren, staat klaar om je
-            rond te leiden.
+            Jouw gym verdient een systeem dat voor je werkt
           </h2>
           <div className="mt-8">
             <Button variant="primary" href="/demo" className="bg-accent hover:bg-accent/90 text-dark">
