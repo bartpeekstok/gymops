@@ -21,7 +21,7 @@ export default function TrustedBy() {
                 alt={logo.name}
                 width={200}
                 height={80}
-                className="max-h-16 w-auto object-contain"
+                className="max-h-20 w-auto object-contain"
               />
             </div>
           ))}
