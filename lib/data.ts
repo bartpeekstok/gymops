@@ -49,7 +49,7 @@ export const coreFeatureTabs = [
   {
     icon: "pen",
     title: "Handgeschreven kaarten",
-    body: "Via ons systeem stuur je een handgeschreven kaart met persoonlijke tekst binnen 15 seconden. Makkelijk via de mobiele app of vanachter je laptop.",
+    body: "Via ons systeem stuur je een handgeschreven kaart met persoonlijke tekst binnen 15 seconden. Makkelijk via de mobiele app of vanachter je laptop.\n\nHeeft iemand al erg lang geen kaartje meer gehad? Dan kan GymOps je daar ook even aan herinneren.",
   },
   {
     icon: "mail",
