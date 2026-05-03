@@ -17,7 +17,7 @@ export default function ProductsPage() {
         <div className="container-page">
           <Badge className="bg-accent/20 text-accent">Producten</Badge>
           <h1 className="text-4xl lg:text-5xl font-black mt-3 max-w-3xl mx-auto leading-tight">
-            Twee producten. Eén platform.
+            Pulse komt er binnenkort bij
           </h1>
           <p className="text-off-white/80 mt-5 max-w-2xl mx-auto">
             GymOps Flow voor je complete gym-automatisering. Pulse komt binnenkort erbij voor
