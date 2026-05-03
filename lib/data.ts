@@ -125,7 +125,7 @@ export const whyCards = [
   },
   {
     title: "Gedreven door een rebel spirit",
-    body: "Wij weigeren de status quo van software die “alles doet maar niets goed”. Jij krijgt een gerichte set functies die je daadwerkelijk gebruikt — en geweldig vindt.",
+    body: "Wij weigeren de status quo van software die “alles doet maar niets goed”. Jij krijgt een set functies die je daadwerkelijk gebruikt omdat ze werken. Dat weten we, want we gebruiken ze zelf ook.",
   },
   {
     title: "Snelle support, in je eigen taal",
