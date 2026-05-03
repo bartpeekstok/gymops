@@ -14,9 +14,9 @@ export default function GrowFeatures() {
     <section className="bg-gray-50 py-20">
       <div className="container-page">
         <div className="text-center">
-          <div className="inline-flex items-center gap-2 justify-center">
-            <GearIcon className="h-6 w-6" />
-            <span className="text-sm font-bold tracking-wider">
+          <div className="inline-flex items-center gap-3 justify-center">
+            <GearIcon className="h-12 w-12" />
+            <span className="text-3xl font-bold tracking-wider">
               GymOps <span className="text-primary">Flow</span>
             </span>
           </div>
