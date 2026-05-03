@@ -7,15 +7,11 @@ export const navLinks = [
 ];
 
 export const trustedLogos = [
-  "DEMO GYM A",
-  "DEMO GYM B",
-  "DEMO GYM C",
-  "DEMO GYM D",
-  "DEMO GYM E",
-  "DEMO GYM F",
-  "DEMO GYM G",
-  "DEMO GYM H",
-  "DEMO GYM I",
+  { name: "CrossFit Alkmaar", src: "/logo-cfa.png" },
+  { name: "CrossFit Naarden", src: "/logo-cfn.png" },
+  { name: "CrossFit Capelle", src: "/logo-cfc.png" },
+  { name: "CrossFit Leiden", src: "/logo-cfl.png" },
+  { name: "GymBox", src: "/logo-gymbox.png" },
 ];
 
 export const dashboardStats = [
