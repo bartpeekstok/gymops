@@ -54,7 +54,7 @@ export default function IntegrationsSlider() {
                 alt={it.name}
                 width={120}
                 height={60}
-                className="max-h-12 w-auto object-contain"
+                className="max-h-[72px] w-auto object-contain"
               />
             ) : (
               <p className="font-black text-dark text-lg">{it.name}</p>
