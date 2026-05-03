@@ -43,9 +43,6 @@ export default function EverythingYouNeed() {
           <Button variant="primary" href="/demo">
             Plan een demo →
           </Button>
-          <Button variant="outline" href="/prijzen">
-            Gratis aanmelden
-          </Button>
         </div>
       </div>
     </section>
