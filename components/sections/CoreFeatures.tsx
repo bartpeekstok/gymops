@@ -28,7 +28,7 @@ export default function CoreFeatures() {
               GymOps <span className="text-primary">Flow</span>
             </span>
           </div>
-          <h2 className="text-4xl font-black text-dark mt-3">De beste ledenervaring, leadopvolging en overzicht in taken</h2>
+          <h2 className="text-4xl font-black text-dark mt-3">De beste ledenervaring</h2>
           <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
             Elk gym is anders. Andere leden, andere mijlpalen, andere stem. GymOps is van
             begin tot eind ingericht op jouw gym, en blijft meebewegen.
