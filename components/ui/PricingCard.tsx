@@ -2,77 +2,100 @@ import { Check } from "lucide-react";
 import Button from "./Button";
 
 type Props = {
+  productLabel: string;
+  status: string;
   name: string;
   price: string;
   period: string;
-  tag: string;
-  description: string;
-  processingPin: string;
-  processingIncasso: string;
-  support: string;
+  disclaimer: string;
+  yearlyOption: string;
   cta: string;
   ctaVariant: "primary" | "outline";
-  note: string;
   highlighted: boolean;
+  comingSoon: boolean;
   features: string[];
 };
 
 export default function PricingCard({
+  productLabel,
+  status,
   name,
   price,
   period,
-  tag,
-  description,
-  processingPin,
-  processingIncasso,
-  support,
+  disclaimer,
+  yearlyOption,
   cta,
   ctaVariant,
-  note,
   highlighted,
+  comingSoon,
   features,
 }: Props) {
   return (
     <div
       className={`relative bg-white rounded-2xl p-8 shadow-sm flex flex-col ${
-        highlighted ? "border-4 border-primary" : "border border-gray-200"
+        comingSoon
+          ? "border-2 border-dashed border-gray-300"
+          : highlighted
+            ? "border-4 border-primary"
+            : "border border-gray-200"
       }`}
     >
-      {highlighted && (
-        <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold uppercase tracking-wider px-4 py-1 rounded-full">
-          {note}
+      <div className="flex items-center gap-2 mb-3 flex-wrap">
+        <span className="text-sm font-bold text-primary">{productLabel}</span>
+        <span
+          className={`text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded-full ${
+            comingSoon ? "bg-gray-100 text-gray-500" : "bg-accent-light text-primary"
+          }`}
+        >
+          {status}
         </span>
+      </div>
+
+      <h3 className={`font-black text-3xl ${comingSoon ? "text-gray-500" : "text-dark"}`}>
+        {name}
+      </h3>
+
+      <div className="mt-4 flex items-baseline gap-2">
+        <span
+          className={`text-5xl font-black ${comingSoon ? "text-gray-400" : "text-dark"}`}
+        >
+          {price}
+        </span>
+        <span
+          className={`${
+            comingSoon
+              ? "text-gray-500 font-bold uppercase tracking-wider text-xs"
+              : "text-gray-500 text-lg"
+          }`}
+        >
+          {period}
+        </span>
+      </div>
+
+      {disclaimer && (
+        <p className="text-sm text-gray-600 mt-4 leading-relaxed">{disclaimer}</p>
       )}
-      <p className="text-xs tracking-wider text-primary font-bold">{tag}</p>
-      <h3 className="font-black text-2xl text-dark mt-1">{name}</h3>
-      <div className="mt-4 flex items-baseline gap-1">
-        <span className="text-5xl font-black text-dark">{price}</span>
-        {period && <span className="text-gray-500 text-lg">{period}</span>}
-      </div>
-      <p className="mt-3 text-gray-600 min-h-[60px]">{description}</p>
-      <div className="mt-6 space-y-3 text-sm">
-        <div>
-          <p className="text-xs tracking-wider text-primary font-bold">Verwerkingstarief</p>
-          <p className="text-dark font-medium">{processingPin}</p>
-          <p className="text-dark font-medium">{processingIncasso}</p>
-        </div>
-        <div>
-          <p className="text-xs tracking-wider text-primary font-bold">Support</p>
-          <p className="text-gray-600">{support}</p>
-        </div>
-      </div>
+      {yearlyOption && (
+        <p className="text-sm text-gray-600 mt-2 leading-relaxed">{yearlyOption}</p>
+      )}
+
       <div className="mt-6">
         <Button variant={ctaVariant} href="/demo" className="w-full">
           {cta}
         </Button>
-        {!highlighted && note && (
-          <p className="text-center text-primary font-semibold mt-3 text-sm">{note}</p>
-        )}
       </div>
+
       <ul className="mt-8 space-y-3 border-t border-gray-100 pt-6">
         {features.map((f) => (
-          <li key={f} className="flex items-start gap-2 text-sm text-gray-700">
-            <Check className="h-5 w-5 text-accent flex-shrink-0" />
+          <li
+            key={f}
+            className={`flex items-start gap-2 text-sm ${
+              comingSoon ? "text-gray-500" : "text-gray-700"
+            }`}
+          >
+            <Check
+              className={`h-5 w-5 flex-shrink-0 ${comingSoon ? "text-gray-400" : "text-accent"}`}
+            />
             <span>{f}</span>
           </li>
         ))}

@@ -1,8 +1,8 @@
-import { Star, Check, Minus } from "lucide-react";
+import { Star } from "lucide-react";
 import Button from "@/components/ui/Button";
 import PricingCard from "@/components/ui/PricingCard";
 import FaqItem from "@/components/ui/FaqItem";
-import { pricingPlans, featureGroups, faqs } from "@/lib/data";
+import { pricingPlans, faqs } from "@/lib/data";
 
 export default function PricingPage() {
   return (
@@ -39,73 +39,11 @@ export default function PricingPage() {
       </section>
 
       <section className="bg-gray-50 py-16">
-        <div className="container-page">
-          <div className="grid md:grid-cols-3 gap-6 items-stretch">
+        <div className="container-page max-w-5xl">
+          <div className="grid md:grid-cols-2 gap-6 items-stretch">
             {pricingPlans.map((plan) => (
               <PricingCard key={plan.name} {...plan} />
             ))}
-          </div>
-          <p className="text-center text-sm text-gray-500 mt-6 max-w-3xl mx-auto">
-            *Prijzen in EUR. Neem contact op met sales voor internationale tarieven.{" "}
-            **AI-ondersteuning lost 60% van de gesprekken op met een klanttevredenheidsscore
-            van 95%.
-          </p>
-        </div>
-      </section>
-
-      <section className="bg-white py-20">
-        <div className="container-page">
-          <h2 className="text-3xl font-black text-dark text-center max-w-3xl mx-auto">
-            Vergelijk alle functies en kies een abonnement dat bij jou past.
-          </h2>
-          <div className="mt-10 overflow-x-auto">
-            <table className="w-full border-collapse">
-              <thead>
-                <tr>
-                  <th className="text-left py-4 px-4 text-sm font-bold text-dark border-b border-gray-200">
-                    Functie
-                  </th>
-                  {["Gratis", "Pro", "Max"].map((tier) => (
-                    <th
-                      key={tier}
-                      className="text-center py-4 px-4 text-sm font-bold text-dark border-b border-gray-200"
-                    >
-                      {tier}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {featureGroups.map((group) => (
-                  <>
-                    <tr key={group.name} className="bg-gray-50">
-                      <td
-                        colSpan={4}
-                        className="py-3 px-4 text-xs font-bold tracking-wider text-primary"
-                      >
-                        {group.name}
-                      </td>
-                    </tr>
-                    {group.rows.map((row) => (
-                      <tr key={row.label} className="border-b border-gray-100">
-                        <td className="py-3 px-4 text-sm text-dark">{row.label}</td>
-                        {row.values.map((v, i) => (
-                          <td key={i} className="py-3 px-4 text-center text-sm text-gray-700">
-                            {v === "✓" ? (
-                              <Check className="h-5 w-5 text-accent inline" />
-                            ) : v === "—" ? (
-                              <Minus className="h-4 w-4 text-gray-300 inline" />
-                            ) : (
-                              v
-                            )}
-                          </td>
-                        ))}
-                      </tr>
-                    ))}
-                  </>
-                ))}
-              </tbody>
-            </table>
           </div>
         </div>
       </section>
