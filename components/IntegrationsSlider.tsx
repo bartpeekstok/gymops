@@ -2,24 +2,25 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { integrations } from "@/lib/data";
 
 export default function IntegrationsSlider() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [paused, setPaused] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const dragState = useRef({ startX: 0, startScroll: 0 });
 
   const items = [...integrations, ...integrations];
 
   useEffect(() => {
-    if (paused) return;
+    if (paused || isDragging) return;
     const el = containerRef.current;
     if (!el) return;
 
     let rafId: number;
     let last = performance.now();
     let acc = 0;
-    const speedPxPerSec = 50;
+    const speedPxPerSec = 75;
 
     const tick = (now: number) => {
       const dt = now - last;
@@ -40,57 +41,61 @@ export default function IntegrationsSlider() {
 
     rafId = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafId);
-  }, [paused]);
+  }, [paused, isDragging]);
 
-  const scroll = (dir: "prev" | "next") => {
+  const handleMouseDown = (e: React.MouseEvent) => {
     const el = containerRef.current;
     if (!el) return;
-    el.scrollBy({ left: dir === "next" ? 240 : -240, behavior: "smooth" });
+    setIsDragging(true);
+    dragState.current = { startX: e.pageX, startScroll: el.scrollLeft };
   };
 
-  return (
-    <div className="relative">
-      <div
-        ref={containerRef}
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-        className="flex gap-6 overflow-x-auto scrollbar-hide"
-      >
-        {items.map((it, i) => (
-          <div
-            key={`${it.name}-${i}`}
-            className="flex-shrink-0 w-44 h-32 bg-white border border-gray-100 rounded-xl flex items-center justify-center"
-            title={it.name}
-          >
-            {it.src ? (
-              <Image
-                src={it.src}
-                alt={it.name}
-                width={120}
-                height={60}
-                className="max-h-[72px] w-auto object-contain"
-              />
-            ) : (
-              <p className="font-black text-dark text-lg">{it.name}</p>
-            )}
-          </div>
-        ))}
-      </div>
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    const el = containerRef.current;
+    if (!el) return;
+    e.preventDefault();
+    const dx = e.pageX - dragState.current.startX;
+    el.scrollLeft = dragState.current.startScroll - dx;
+  };
 
-      <button
-        onClick={() => scroll("prev")}
-        aria-label="Vorige"
-        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 h-10 w-10 rounded-full bg-white border border-gray-200 shadow flex items-center justify-center hover:bg-gray-50 transition-colors z-10"
-      >
-        <ChevronLeft className="h-5 w-5 text-primary" />
-      </button>
-      <button
-        onClick={() => scroll("next")}
-        aria-label="Volgende"
-        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 h-10 w-10 rounded-full bg-white border border-gray-200 shadow flex items-center justify-center hover:bg-gray-50 transition-colors z-10"
-      >
-        <ChevronRight className="h-5 w-5 text-primary" />
-      </button>
+  const stopDrag = () => setIsDragging(false);
+
+  return (
+    <div
+      ref={containerRef}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => {
+        setPaused(false);
+        stopDrag();
+      }}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={stopDrag}
+      className={`flex gap-6 overflow-x-auto scrollbar-hide select-none ${
+        isDragging ? "cursor-grabbing" : "cursor-grab"
+      }`}
+    >
+      {items.map((it, i) => (
+        <div
+          key={`${it.name}-${i}`}
+          className="flex-shrink-0 w-44 h-32 bg-white border border-gray-100 rounded-xl flex items-center justify-center"
+          title={it.name}
+        >
+          {it.src ? (
+            <Image
+              src={it.src}
+              alt={it.name}
+              width={120}
+              height={60}
+              className="max-h-[72px] w-auto object-contain pointer-events-none"
+              draggable={false}
+            />
+          ) : (
+            <p className="font-black text-dark text-lg pointer-events-none">{it.name}</p>
+          )}
+        </div>
+      ))}
     </div>
   );
 }
