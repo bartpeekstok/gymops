@@ -41,7 +41,7 @@ export const everythingCards = [
   {
     icon: "chart",
     title: "Custom website",
-    body: "Wij weten zelf hoe druk het is om een goede gym te runnen waarin je wilt dat je leden de aandacht krijgen die ze verdienen. Een lid dat zich gezien voelt, is een lid voor het leven!\n\nDoordat GymOps alle zaken die er toe doen automatisch signaleert en opvolgt, heb jij meer tijd om te doen wat er echt toe doet: het coachen van je leden en hen de best mogelijke ervaring bieden. GymOps is geen systeem dat draait op alleen maar automatische berichten, wij zorgen juist dat persoonlijk contact mogelijk is en dat niks wordt overgeslagen.",
+    body: "Een custom website met jouw kleuren en tone of voice. Ingericht om gevonden te worden door zoekmachines, maar ook om door AI search engines opgemerkt te worden.\n\nBij GymOps bouwen we websites met dezelfde professionele technologie die wordt gebruikt door bedrijven als Netflix, Nike, Uber en Spotify. We gebruiken geen standaard WordPress-thema's of page builders, we bouwen maatwerk software die is geoptimaliseerd voor snelheid, veiligheid en conversie.\n\nSimpel gezegd: jouw website is gebouwd als een app, niet als een document. Dat maakt het sneller, veiliger en een stuk professioneler dan wat de meeste gyms gebruiken.",
   },
 ];
 
