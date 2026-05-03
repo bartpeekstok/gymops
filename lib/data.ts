@@ -120,6 +120,10 @@ export const whyCards = [
     body: "Als gym owners weten we hoe het is om een gym te runnen. We hebben de afgelopen jaren zelf meerdere software pakketten gebruikt, maar geen één was echt ingericht op het runnen van een coaching gym als de onze. Daarom hebben we GymOps gebouwd, onze eigen gyms draaien er ook op.",
   },
   {
+    title: "Geen weken wachten. Geen offertes.",
+    body: "Nieuwe abonnementsvorm? Tariefswijziging? Een nieuwe coach in het team? Wij passen je website binnen een werkweek aan. Inbegrepen.",
+  },
+  {
     title: "Gedreven door een rebel spirit",
     body: "Wij weigeren de status quo van software die “alles doet maar niets goed”. Jij krijgt een gerichte set functies die je daadwerkelijk gebruikt — en geweldig vindt.",
   },
@@ -130,10 +134,6 @@ export const whyCards = [
   {
     title: "Kampioen van gezondheid en geluk",
     body: "Door gymeigenaren de juiste tools te geven, creëren we een gezondere wereld — we maken welzijn toegankelijk en gymbeheer moeiteloos.",
-  },
-  {
-    title: "Geen weken wachten. Geen offertes.",
-    body: "Nieuwe abonnementsvorm? Tariefswijziging? Een nieuwe coach in het team? Wij passen je website binnen een werkweek aan. Inbegrepen.",
   },
 ];
 
