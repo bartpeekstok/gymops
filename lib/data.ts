@@ -41,7 +41,7 @@ export const everythingCards = [
   {
     icon: "chart",
     title: "Meer tijd voor je leden",
-    body: "Neem slimmere zakelijke beslissingen met uitgebreide data — bekijk robuuste analyses over operaties, marketing, ledeninteractie en trainingseffectiviteit.",
+    body: "Wij weten zelf hoe druk het is om een goede gym te runnen waarin je wilt dat je leden de aandacht krijgen die ze verdienen. Een lid dat zich gezien voelt, is een lid voor het leven!\n\nDoordat GymOps alle zaken die er toe doen automatisch signaleert en opvolgt, heb jij meer tijd om te doen wat er echt toe doet: het coachen van je leden en hen de best mogelijke ervaring bieden. GymOps is geen systeem dat draait op alleen maar automatische berichten, wij zorgen juist dat persoonlijk contact mogelijk is en dat niks wordt overgeslagen.",
   },
 ];
 
