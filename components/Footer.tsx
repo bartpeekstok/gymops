@@ -8,10 +8,6 @@ const columns = [
     links: ["Flow", "Prijzen"],
   },
   {
-    title: "Bronnen",
-    links: ["Blog", "Evenementen", "Kennisbank", "Release-notities"],
-  },
-  {
     title: "GymOps",
     links: ["Over ons", "Werken bij ons", "Algemene voorwaarden", "Privacybeleid"],
   },

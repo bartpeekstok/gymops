@@ -3,7 +3,6 @@ export const navLinks = [
   { label: "Prijzen", href: "/prijzen" },
   { label: "Klanten", href: "/klanten" },
   { label: "Over ons", href: "/over-ons" },
-  { label: "Bronnen", href: "#", hasDropdown: true },
 ];
 
 export const trustedLogos = [
