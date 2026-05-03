@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Users, ArrowRight } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Badge from "@/components/ui/Badge";
@@ -91,16 +92,25 @@ export default function ProductsPage() {
           <h2 className="text-3xl font-black text-dark text-center max-w-3xl mx-auto">
             Werkt naadloos samen met jouw favoriete tools
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-12">
             {integrations.map((it) => (
               <div
                 key={it.name}
-                className="bg-white border border-gray-100 rounded-xl p-6 text-center"
+                className="bg-white border border-gray-100 rounded-xl p-6 flex flex-col items-center justify-center min-h-[140px] gap-3"
+                title={it.desc}
               >
-                <p className="font-black text-dark text-lg">{it.name}</p>
-                {it.desc && (
-                  <p className="text-xs text-gray-500 tracking-wider mt-1">{it.desc}</p>
+                {it.src ? (
+                  <Image
+                    src={it.src}
+                    alt={it.name}
+                    width={120}
+                    height={60}
+                    className="max-h-12 w-auto object-contain"
+                  />
+                ) : (
+                  <p className="font-black text-dark text-lg">{it.name}</p>
                 )}
+                <p className="text-[11px] text-gray-500 tracking-wider text-center">{it.desc}</p>
               </div>
             ))}
           </div>

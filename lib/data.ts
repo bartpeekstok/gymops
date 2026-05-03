@@ -367,13 +367,16 @@ export const values = [
 ];
 
 export const integrations = [
-  { name: "SportBit", desc: "ledenbeheer & rooster" },
-  { name: "Facebook", desc: "social media" },
-  { name: "Instagram", desc: "social media" },
-  { name: "Meta Ads", desc: "advertenties" },
-  { name: "Google", desc: "reviews & search" },
-  { name: "WhatsApp", desc: "ledencommunicatie" },
-  { name: "Writify", desc: "handgeschreven kaarten" },
+  { name: "SportBit", desc: "ledenbeheer & rooster", src: "/integ-sportbit.png" },
+  { name: "Facebook", desc: "social media", src: "/integ-facebook.png" },
+  { name: "Instagram", desc: "social media", src: "/integ-instagram.jpg" },
+  { name: "Meta Ads", desc: "advertenties", src: "/integ-meta.png" },
+  { name: "Google", desc: "reviews & search", src: "/integ-google.webp" },
+  { name: "WhatsApp", desc: "ledencommunicatie", src: "/integ-whatsapp.avif" },
+  { name: "Writify", desc: "handgeschreven kaarten", src: "/integ-writify.jpg" },
+  { name: "Stripe", desc: "betalingsverwerking", src: "" },
+  { name: "iDEAL", desc: "Nederlandse betaalmethode", src: "" },
+  { name: "Slack", desc: "teamcommunicatie", src: "" },
 ];
 
 export const productPillars = [
