@@ -253,7 +253,7 @@ export const faqs = [
   {
     question: "Wie bouwt mijn website en wat als ik iets wil aanpassen?",
     answer:
-      "Wij bouwen je website op maat in dezelfde technologie als bedrijven als Netflix en Spotify — geen WordPress-thema of page builder. Nieuwe abonnementsvorm? Tariefswijziging? Een nieuwe coach in het team? Wij passen je website binnen één werkweek aan. Inbegrepen, geen offertes.",
+      "Wij bouwen je website op maat in dezelfde technologie als bedrijven als Netflix en Spotify. Geen WordPress-thema of page builder. Nieuwe abonnementsvorm? Tariefswijziging? Een nieuwe coach in het team? Wij passen je website binnen één werkweek aan. Inbegrepen, geen offertes.",
   },
   {
     question: "Hoe lang duurt de onboarding?",
