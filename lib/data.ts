@@ -74,7 +74,7 @@ export const coreFeatureTabs = [
   {
     icon: "heart",
     title: "De eerste 90 dagen zijn het belangrijkst!",
-    body: "Om ervoor te zorgen dat nieuwe leden veranderen in leden voor het leven, is het belangrijk dat er de eerste negentig dagen veel contactmomenten zijn. Dat kunnen korte appjes zijn, maar ook even bellen of een mailtje sturen. GymOps heeft meerdere nieuwe leden flows klaarstaan: onze voorkeur heeft veel persoonlijk contact. Maar als jouw team daar nog niet klaar voor is, kunnen we een deel automatiseren.",
+    body: "Om ervoor te zorgen dat nieuwe leden veranderen in leden voor het leven, is het belangrijk dat er de eerste negentig dagen veel contactmomenten zijn. Dat kunnen korte appjes zijn, maar ook even bellen of een mailtje sturen. Door GymOps vergeten jij en je coaches geen van deze momenten meer.",
   },
 ];
 
