@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Pen, Star, Mail, PartyPopper, CalendarCheck, Trophy } from "lucide-react";
+import { Pen, Star, Mail, Zap, PartyPopper, CalendarCheck, Trophy } from "lucide-react";
 import Button from "../ui/Button";
 import { GearIcon } from "../Logo";
 import { coreFeatureTabs } from "@/lib/data";
