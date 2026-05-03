@@ -166,11 +166,18 @@ export const pricingPlans = [
     comingSoon: false,
     features: [
       "Volledig ingericht platform",
-      "Custom website inbegrepen",
+      "Custom website (SEO + AI search)",
+      "Leadcapture & opvolging via WhatsApp en e-mail",
+      "Handgeschreven kaarten via app of laptop",
+      "Google reviews op het juiste moment",
+      "Mijlpaal-signalering (verjaardagen, 100ste les, PR's)",
+      "Onboarding-flow voor nieuwe leden (eerste 90 dagen)",
+      "Event-pagina's (Bring-a-Friend, Hyrox, open dag)",
+      "Slim afsprakenplannen",
+      "Branded e-mails, kaarten en agenda-uitnodigingen",
       "SportBit-integratie",
-      "Handgeschreven kaarten",
-      "4 onboarding-calls + bezoek",
       "Onbeperkt flows & campagnes",
+      "4 onboarding-calls + bezoek",
     ],
   },
   {
@@ -233,34 +240,34 @@ export const featureGroups: { name: string; rows: FeatureRow[] }[] = [
 
 export const faqs = [
   {
-    question: "Wat kost GymOps en wat is er inbegrepen per abonnement?",
+    question: "Wat kost GymOps en wat is er inbegrepen?",
     answer:
-      "GymOps biedt drie abonnementen: Gratis (€0/maand) voor kleine gyms met basisfunctionaliteit, Pro (€149/maand) voor groeiende studio's met geavanceerde rapportage en automatiseringen, en Max (€219/maand) voor gevestigde gyms met alle mogelijkheden inclusief multi-locatie en API-toegang.",
+      "GymOps Flow kost €450 per maand (excl. BTW). Bij jaarbetaling betaal je 11 maanden (€4.950) en is de 12e gratis. Inbegrepen: een custom website, leadgeneratie en -opvolging via WhatsApp en e-mail, handgeschreven kaarten, Google reviews op het juiste moment, mijlpaal-signalering, onboarding-flow voor nieuwe leden, event-pagina's, slim afsprakenplannen, SportBit-integratie, branded communicatie, en 4 onboarding-calls plus een bezoek bij je gym.",
   },
   {
-    question: "Welke betalingstypes worden ondersteund?",
+    question: "Voor welke gyms is GymOps gemaakt?",
     answer:
-      "Je kunt accepteren: terugkerende lidmaatschapsbetalingen, eenmalige aankopen en drop-ins, PT-sessies en klassenpakketten, en point-of-sale retailbetalingen. GymOps ondersteunt creditcards, iDEAL, SEPA-incasso en internationale transacties.",
+      "GymOps is gebouwd door gym owners, voor coaching gyms. CrossFit-boxen, hyrox-studio's, kracht- en conditioneringsgyms en vechtsportacademies hebben we de meeste ervaring mee. Werkt jouw gym anders? Plan een demo, dan kijken we samen of GymOps past.",
   },
   {
-    question: "Hoe lang duurt de installatie?",
+    question: "Wie bouwt mijn website en wat als ik iets wil aanpassen?",
     answer:
-      "De meeste gyms zijn binnen enkele dagen live. Onze onboarding omvat setup en data-import vanuit je huidige systeem, staftraining, communicatieondersteuning voor leden en live lanceringsassistentie.",
+      "Wij bouwen je website op maat in dezelfde technologie als bedrijven als Netflix en Spotify — geen WordPress-thema of page builder. Nieuwe abonnementsvorm? Tariefswijziging? Een nieuwe coach in het team? Wij passen je website binnen één werkweek aan. Inbegrepen, geen offertes.",
   },
   {
-    question: "Zijn er langlopende contracten?",
+    question: "Hoe lang duurt de onboarding?",
     answer:
-      "Nee. GymOps werkt volledig op maandbasis. Je kunt op elk moment opzeggen zonder verborgen kosten of uitstapboetes. We verdienen ons bestaansrecht elke maand opnieuw.",
+      "De meeste gyms zijn binnen vier weken live. De onboarding bestaat uit 4 begeleide calls plus een bezoek bij je gym op locatie. We importeren je bestaande ledendata, richten je customer journeys in en koppelen SportBit zodat alles vanaf dag één werkt.",
   },
   {
-    question: "Werkt GymOps voor CrossFit gyms en vechtsporten academies?",
+    question: "Zit ik vast aan een lang contract?",
     answer:
-      "Absoluut. We ondersteunen CrossFit-specifieke programmering en benchmarks, band- en rangvolging voor vechtsporten, kracht- en conditioneringstraining, groepslessen en personal training, en aangepaste programmasjablonen.",
+      "Je gaat een commitment van 12 maanden aan. Daarna loopt het maandelijks door en kun je op elk moment opzeggen. Geen verborgen kosten, geen uitstapboetes.",
   },
   {
-    question: "Welke rapportagetools zijn er inbegrepen?",
+    question: "Wat is Pulse en wanneer komt het beschikbaar?",
     answer:
-      "Je kunt bijhouden: omzet en verkoopprestaties, ledenretentie en -groei, aanwezigheidstrends en klassenprestaties, PT-sessies, medewerkersbetrokkenheid en exporteerbare rapporten met aangepaste weergaven.",
+      "Pulse is onze uitbreiding voor je team: een Staff App, Management Dashboard, onbeperkt medewerkers en incidentregistratie met audit-trail. Komt later dit jaar als 'Flow + Pulse'. Bestaande Flow-klanten upgraden zonder setupkosten vanuit hun bestaande account. Prijs volgt.",
   },
 ];
 
