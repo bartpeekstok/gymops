@@ -40,7 +40,7 @@ export const everythingCards = [
   },
   {
     icon: "chart",
-    title: "Meer tijd voor je leden",
+    title: "Custom website",
     body: "Wij weten zelf hoe druk het is om een goede gym te runnen waarin je wilt dat je leden de aandacht krijgen die ze verdienen. Een lid dat zich gezien voelt, is een lid voor het leven!\n\nDoordat GymOps alle zaken die er toe doen automatisch signaleert en opvolgt, heb jij meer tijd om te doen wat er echt toe doet: het coachen van je leden en hen de best mogelijke ervaring bieden. GymOps is geen systeem dat draait op alleen maar automatische berichten, wij zorgen juist dat persoonlijk contact mogelijk is en dat niks wordt overgeslagen.",
   },
 ];
@@ -52,9 +52,9 @@ export const coreFeatureTabs = [
     body: "Via ons systeem stuur je een handgeschreven kaart met persoonlijke tekst binnen 15 seconden. Makkelijk via de mobiele app of vanachter je laptop.",
   },
   {
-    icon: "users",
-    title: "Ledenbeheer eenvoudig gemaakt",
-    body: "Maak het beheren van ledendata eenvoudig met een CRM dat onboarding en offboarding automatiseert en data over trends en aanwezigheid vastlegt.",
+    icon: "star",
+    title: "Vraag om reviews op het juiste moment",
+    body: "Google reviews zijn belangrijk voor kleine gyms. Via GymOps vraagt je leden op het juiste moment of ze een Google review willen achterlaten. Voorbeeld: als iemand net z'n cadeau voor de eerste 100 lessen in ontvangst heeft genomen, is het een mooi moment om te vragen of hij iets over je gym wil schrijven.",
   },
   {
     icon: "calendar",

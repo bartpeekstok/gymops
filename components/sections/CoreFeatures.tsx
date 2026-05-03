@@ -1,14 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { Pen, Users, Calendar, Plus } from "lucide-react";
+import { Pen, Star, Calendar, Plus } from "lucide-react";
 import Button from "../ui/Button";
 import { GearIcon } from "../Logo";
 import { coreFeatureTabs } from "@/lib/data";
 
 const iconMap = {
   pen: Pen,
-  users: Users,
+  star: Star,
   calendar: Calendar,
 } as const;
 
