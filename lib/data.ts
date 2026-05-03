@@ -52,11 +52,6 @@ export const coreFeatureTabs = [
     body: "Via ons systeem stuur je een handgeschreven kaart met persoonlijke tekst binnen 15 seconden. Makkelijk via de mobiele app of vanachter je laptop.",
   },
   {
-    icon: "star",
-    title: "Vraag om reviews op het juiste moment",
-    body: "Google reviews zijn belangrijk voor kleine gyms. Via GymOps vraag je leden precies op het juiste moment of ze een Google review willen achterlaten.",
-  },
-  {
     icon: "mail",
     title: "Geen onpersoonlijke mailtjes uit het systeem van je leverancier",
     body: "Elke omgeving krijgt jouw branding. Mails, kaarten, agenda-uitnodigingen, alles komt uit jouw gym, niet uit een GymOps-template.",
@@ -99,6 +94,10 @@ export const growColumns = [
   {
     title: "Geen weken wachten. Geen offertes.",
     body: "Nieuwe abonnementsvorm? Tariefswijziging? Een nieuwe coach in het team? Wij passen je website binnen een werkweek aan. Inbegrepen.",
+  },
+  {
+    title: "Vraag om reviews op het juiste moment",
+    body: "Google reviews zijn belangrijk voor kleine gyms. Via GymOps vraag je leden precies op het juiste moment of ze een Google review willen achterlaten.",
   },
 ];
 

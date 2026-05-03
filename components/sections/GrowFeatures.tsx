@@ -19,7 +19,7 @@ export default function GrowFeatures() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mt-12">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-12">
           {growColumns.map((col) => (
             <div key={col.title}>
               <h3 className="font-bold text-dark text-lg">{col.title}</h3>
