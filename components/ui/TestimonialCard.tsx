@@ -10,7 +10,7 @@ export default function TestimonialCard({ quote, name, company, className = "" }
     <div className={`bg-white rounded-xl p-5 shadow-sm ${className}`}>
       <p className="text-sm text-dark italic">&ldquo;{quote}&rdquo;</p>
       <p className="mt-2 text-xs text-gray-500 font-semibold">
-        — {name}
+        – {name}
         {company ? `, ${company}` : ""}
       </p>
     </div>

@@ -91,7 +91,7 @@ export default function AboutPage() {
             Wil je weten of GymOps voor jouw gym werkt?
           </h2>
           <p className="text-off-white/80 mt-4">
-            Plan een demo, dan laten we het je zien — door iemand die zelf een gym runt.
+            Plan een demo, dan laten we het je zien – door iemand die zelf een gym runt.
           </p>
           <div className="mt-8">
             <Button

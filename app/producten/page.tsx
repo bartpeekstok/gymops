@@ -40,9 +40,16 @@ export default function ProductsPage() {
                 }`}
               >
                 <div className="lg:[direction:ltr]">
-                  <div className="flex items-center gap-2 mb-3">
+                  <div className="inline-flex items-center gap-3 mb-3">
+                    <GearIcon className="h-12 w-12" />
+                    <span className="text-3xl font-bold tracking-wider">
+                      GymOps{" "}
+                      <span className={isComingSoon ? "text-gray-400" : "text-primary"}>
+                        {p.productName.replace("GymOps ", "")}
+                      </span>
+                    </span>
                     <span
-                      className={`text-xs uppercase tracking-wider font-bold px-2 py-1 rounded-full ${
+                      className={`text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded-full ${
                         isComingSoon
                           ? "bg-gray-100 text-gray-500"
                           : "bg-accent-light text-primary"
@@ -51,10 +58,7 @@ export default function ProductsPage() {
                       {p.tag}
                     </span>
                   </div>
-                  <p className="text-primary tracking-wider font-bold text-sm">
-                    {p.productName}
-                  </p>
-                  <h2 className="text-3xl font-black text-dark mt-2">{p.tagline}</h2>
+                  <h2 className="text-3xl font-black text-dark mt-3">{p.tagline}</h2>
                   <p className="text-gray-600 mt-4 leading-relaxed">{p.body}</p>
                   <ul className="mt-6 space-y-2">
                     {p.features.map((f) => (
@@ -110,7 +114,6 @@ export default function ProductsPage() {
                 ) : (
                   <p className="font-black text-dark text-lg">{it.name}</p>
                 )}
-                <p className="text-[11px] text-gray-500 tracking-wider text-center">{it.desc}</p>
               </div>
             ))}
           </div>

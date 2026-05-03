@@ -24,7 +24,7 @@ export default function SuccessStories() {
             <span className="text-accent text-8xl leading-none font-serif block">&ldquo;</span>
             <p className="text-xl font-medium leading-relaxed -mt-6">{current.quote}</p>
             <p className="mt-6 font-bold">
-              {current.name} <span className="text-off-white/70 font-normal">— {current.company}</span>
+              {current.name} <span className="text-off-white/70 font-normal">– {current.company}</span>
             </p>
             <div className="flex items-center justify-between mt-8">
               <a href="#" className="text-accent font-semibold">

@@ -109,7 +109,7 @@ export const trainTabs = [
   {
     icon: "star",
     title: "Premium trainingen van partners",
-    body: "Leden kunnen genieten van trainingen van gecertificeerde partners die naadloos zijn geïntegreerd in de GymOps app — zonder extra abonnement.",
+    body: "Leden kunnen genieten van trainingen van gecertificeerde partners die naadloos zijn geïntegreerd in de GymOps app – zonder extra abonnement.",
   },
 ];
 
@@ -134,7 +134,7 @@ export const whyCards = [
 
 export const successQuotes = [
   {
-    quote: "Letterlijk alles is verdubbeld dankzij GymOps — van ons ledenbestand tot onze maandelijkse omzet.",
+    quote: "Letterlijk alles is verdubbeld dankzij GymOps – van ons ledenbestand tot onze maandelijkse omzet.",
     name: "Robert de Vries",
     company: "eigenaar CrossFit Oost",
   },
@@ -185,7 +185,7 @@ export const pricingPlans = [
     productLabel: "GymOps Pro",
     status: "binnenkort",
     name: "Flow + Pulse",
-    price: "—",
+    price: "–",
     period: "Prijs volgt",
     disclaimer: "Pulse komt later dit jaar. Upgrade dan zonder setupkosten, vanuit je bestaande Flow-account.",
     yearlyOption: "",
@@ -223,18 +223,18 @@ export const featureGroups: { name: string; rows: FeatureRow[] }[] = [
       { label: "AI-ondersteuning", values: ["✓", "✓", "✓"] },
       { label: "Ledenapp", values: ["✓", "✓", "✓"] },
       { label: "Medewerkers-app", values: ["✓", "✓", "✓"] },
-      { label: "Wachtlijstbeheer", values: ["—", "✓", "✓"] },
-      { label: "Geavanceerde rapportage", values: ["—", "✓", "✓"] },
-      { label: "Multi-locatie ondersteuning", values: ["—", "—", "✓"] },
-      { label: "API-toegang", values: ["—", "—", "✓"] },
+      { label: "Wachtlijstbeheer", values: ["–", "✓", "✓"] },
+      { label: "Geavanceerde rapportage", values: ["–", "✓", "✓"] },
+      { label: "Multi-locatie ondersteuning", values: ["–", "–", "✓"] },
+      { label: "API-toegang", values: ["–", "–", "✓"] },
     ],
   },
   {
     name: "Externe integraties",
     rows: [
       { label: "Stripe", values: ["✓", "✓", "✓"] },
-      { label: "Mailchimp", values: ["—", "✓", "✓"] },
-      { label: "Zapier", values: ["—", "✓", "✓"] },
+      { label: "Mailchimp", values: ["–", "✓", "✓"] },
+      { label: "Zapier", values: ["–", "✓", "✓"] },
     ],
   },
 ];
@@ -298,12 +298,12 @@ export const featuredKlantQuotes = [
 
 export const customerStories = [
   {
-    title: "GymOps Gratis — nul kosten, maximaal resultaat",
+    title: "GymOps Gratis – nul kosten, maximaal resultaat",
     body: "Ontdek hoe vroege gebruikers van GymOps Gratis ons toonaangevende systeem inzetten om hun gym volledig gratis te beheren en toch professioneel over te komen.",
   },
   {
     title: "Klanttevredenheid verhogen met de GymOps Open",
-    body: "Ontdek hoe CrossFit Station GymOps gebruikte om de meest efficiënte en plezierige Open ooit te organiseren — tot grote vreugde van hun leden.",
+    body: "Ontdek hoe CrossFit Station GymOps gebruikte om de meest efficiënte en plezierige Open ooit te organiseren – tot grote vreugde van hun leden.",
   },
   {
     title: "Merchandise verkopen zonder risico via Pre-Orders",
@@ -327,14 +327,14 @@ export const founders = [
     initials: "JV",
     name: "Jeroen van Duijn",
     role: "Mede-oprichter GymOps · Eigenaar CrossFit Leiden",
-    bio: "Als eigenaar van CrossFit Leiden weet ik als geen ander hoe het is om alles zelf te doen. Coaches aansturen via WhatsApp, leads opvolgen tussen de trainingen door, en hopen dat niemand stilletjes opzegt zonder dat je het merkt.\n\nIk was het al vrij snel zat om reactief te ondernemen. Ik wilde een systeem dat voor mij werkt — ook als ik zelf op de vloer sta. Met een achtergrond in financial controlling was ik altijd al bezig met controle via systemen en data. Over de afgelopen tien jaar ben ik uiteindelijk geland in een systeem dat mij de beste inzichten en controle geeft, en dat ik continu doorontwikkel.\n\nTwee jaar geleden raakte ik in contact met Bart van CrossFit Alkmaar. We gingen steeds meer sparren over hoe we onze systemen en inzichten beter konden inrichten. Uit die samenwerking is GymOps ontstaan.\n\nVandaag draait mijn gym volledig op GymOps Flow. Elke lead wordt automatisch opgevolgd, nieuwe leden krijgen een welkomstflow van 30 dagen, en ik stuur handgeschreven kaarten zonder er zelf aan te hoeven denken. De impact? Meer leden, betere retentie, en ik kan weer doen waar ik goed in ben: coachen. Maar Flow is voor mij de basis — dagelijks ben ik ook GymOps Pulse verder aan het ontwikkelen. Wat dit precies inhoudt en hoe het jouw leven en dat van je team nog makkelijker maakt, horen jullie snel.\n\nIk kan me eerlijk gezegd niet meer voorstellen hoe het zonder was. En dat is precies wat ik wil bereiken voor andere gym-eigenaren.",
+    bio: "Als eigenaar van CrossFit Leiden weet ik als geen ander hoe het is om alles zelf te doen. Coaches aansturen via WhatsApp, leads opvolgen tussen de trainingen door, en hopen dat niemand stilletjes opzegt zonder dat je het merkt.\n\nIk was het al vrij snel zat om reactief te ondernemen. Ik wilde een systeem dat voor mij werkt – ook als ik zelf op de vloer sta. Met een achtergrond in financial controlling was ik altijd al bezig met controle via systemen en data. Over de afgelopen tien jaar ben ik uiteindelijk geland in een systeem dat mij de beste inzichten en controle geeft, en dat ik continu doorontwikkel.\n\nTwee jaar geleden raakte ik in contact met Bart van CrossFit Alkmaar. We gingen steeds meer sparren over hoe we onze systemen en inzichten beter konden inrichten. Uit die samenwerking is GymOps ontstaan.\n\nVandaag draait mijn gym volledig op GymOps Flow. Elke lead wordt automatisch opgevolgd, nieuwe leden krijgen een welkomstflow van 30 dagen, en ik stuur handgeschreven kaarten zonder er zelf aan te hoeven denken. De impact? Meer leden, betere retentie, en ik kan weer doen waar ik goed in ben: coachen. Maar Flow is voor mij de basis – dagelijks ben ik ook GymOps Pulse verder aan het ontwikkelen. Wat dit precies inhoudt en hoe het jouw leven en dat van je team nog makkelijker maakt, horen jullie snel.\n\nIk kan me eerlijk gezegd niet meer voorstellen hoe het zonder was. En dat is precies wat ik wil bereiken voor andere gym-eigenaren.",
     history: "",
   },
   {
     initials: "BP",
     name: "Bart Peekstok",
     role: "Mede-oprichter GymOps · Eigenaar CrossFit Alkmaar",
-    bio: "Ik weet hoe een gym werkt, want ik sta er zelf al meer dan 12 jaar middenin. Leads die er tussenuit glippen, opvolging die blijft liggen, een klantreis die nergens op papier staat en taken die niet worden opgepakt of vergeten. Ik heb het allemaal jarenlang werkbaar geprobeerd te maken — terwijl ik alle andere ballen als gym-eigenaar ook nog in de lucht aan het houden was. Precies daarom hebben we GymOps gebouwd.\n\nHet systeem regelt je hele leadflow en klantreis automatisch, van het eerste contactmoment tot de viering van de 100e workout. In het Nederlands, afgestemd op hoe jouw gym écht werkt, en met mensen bereikbaar die je begrijpen omdat we hetzelfde pad hebben gelopen.\n\nDit is wat ik zelf tien jaar geleden al had willen hebben.",
+    bio: "Ik weet hoe een gym werkt, want ik sta er zelf al meer dan 12 jaar middenin. Leads die er tussenuit glippen, opvolging die blijft liggen, een klantreis die nergens op papier staat en taken die niet worden opgepakt of vergeten. Ik heb het allemaal jarenlang werkbaar geprobeerd te maken – terwijl ik alle andere ballen als gym-eigenaar ook nog in de lucht aan het houden was. Precies daarom hebben we GymOps gebouwd.\n\nHet systeem regelt je hele leadflow en klantreis automatisch, van het eerste contactmoment tot de viering van de 100e workout. In het Nederlands, afgestemd op hoe jouw gym écht werkt, en met mensen bereikbaar die je begrijpen omdat we hetzelfde pad hebben gelopen.\n\nDit is wat ik zelf tien jaar geleden al had willen hebben.",
     history: "",
   },
 ];

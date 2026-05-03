@@ -43,7 +43,7 @@ export default function CustomersPage() {
             {doubledQuotes.map((q, i) => (
               <span key={i} className="text-dark font-medium mx-8 text-sm">
                 <span className="italic">&ldquo;{q.quote}&rdquo;</span>
-                <span className="text-gray-500 ml-2">— {q.name}</span>
+                <span className="text-gray-500 ml-2">– {q.name}</span>
               </span>
             ))}
           </div>
@@ -58,7 +58,7 @@ export default function CustomersPage() {
                 <p className="text-gray-600 italic text-lg leading-relaxed">
                   &ldquo;{q.quote}&rdquo;
                 </p>
-                <p className="font-bold text-dark mt-4">— {q.name}</p>
+                <p className="font-bold text-dark mt-4">– {q.name}</p>
               </div>
             ))}
           </div>
@@ -105,7 +105,7 @@ export default function CustomersPage() {
                 Jouw behulpzame support en eenvoudig platform zorgen samen voor een echt
                 uitstekend product!
               </p>
-              <p className="mt-6 font-bold text-dark">— Tiffany R., Stroller Strong Moms</p>
+              <p className="mt-6 font-bold text-dark">– Tiffany R., Stroller Strong Moms</p>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-3">

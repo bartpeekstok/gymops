@@ -17,7 +17,7 @@ const activityFeed = [
   { Icon: Pen, text: "Handgeschreven kaart naar Lisa de B.", time: "2 min geleden", bg: "bg-primary" },
   { Icon: Star, text: "Review-verzoek naar Mark P.", time: "12 min geleden", bg: "bg-accent" },
   { Icon: Mail, text: "Welkomstmail naar lead Sander V.", time: "18 min geleden", bg: "bg-primary-dark" },
-  { Icon: CalendarCheck, text: "Afspraak met Jeroen K. — di 14:00", time: "27 min geleden", bg: "bg-primary" },
+  { Icon: CalendarCheck, text: "Afspraak met Jeroen K. – di 14:00", time: "27 min geleden", bg: "bg-primary" },
   { Icon: PartyPopper, text: "Bring-a-Friend event aangemaakt", time: "1 uur geleden", bg: "bg-accent" },
   { Icon: Zap, text: "Tariefswijziging live op website", time: "2 uur geleden", bg: "bg-primary-dark" },
 ];
