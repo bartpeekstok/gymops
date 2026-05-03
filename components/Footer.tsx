@@ -25,7 +25,7 @@ export default function Footer() {
           <div>
             <Logo variant="light" />
             <p className="text-off-white/80 text-sm mt-4 max-w-xs leading-relaxed">
-              Gymbeheer software gebouwd door gymeigenaren, voor gymeigenaren.
+              Jouw gym verdient een systeem dat voor je werkt.
             </p>
             <div className="flex items-center gap-2 mt-4">
               <div className="flex">
