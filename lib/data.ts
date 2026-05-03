@@ -116,8 +116,8 @@ export const trainTabs = [
 
 export const whyCards = [
   {
-    title: "Geworteld in echte ervaring",
-    body: "Als voormalige gymeigenaren kennen we dezelfde uitdagingen als jij — daarom bouwden we GymOps met focus op gebruiksvriendelijkheid en efficiëntie die écht werkt in de praktijk.",
+    title: "We weten hoe het is",
+    body: "Als gym owners weten we hoe het is om een gym te runnen. We hebben de afgelopen jaren zelf meerdere software pakketten gebruikt, maar geen één was echt ingericht op het runnen van een coaching gym als de onze. Daarom hebben we GymOps gebouwd, onze eigen gyms draaien er ook op.",
   },
   {
     title: "Gedreven door een rebel spirit",
