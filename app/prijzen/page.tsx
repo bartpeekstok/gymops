@@ -33,7 +33,7 @@ export default function PricingPage() {
             Alles-in-één gym automation platform
           </p>
           <h1 className="text-4xl lg:text-5xl font-black mt-3 max-w-3xl mx-auto leading-tight">
-            Schaal je bedrijf met flexibele abonnementen die bij jouw behoeften passen.
+            Geen verborgen kosten, binnen vier weken live met een systeem dat voor jou werkt
           </h1>
         </div>
       </section>
