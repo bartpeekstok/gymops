@@ -9,18 +9,15 @@ export default function Hero() {
         <div>
           <Badge>Alles-in-één gym automation platform</Badge>
           <h1 className="text-4xl sm:text-5xl xl:text-6xl font-black leading-[1.1] text-dark mt-4 break-words">
-            Ontgrendel de kracht van jouw fitnessonderneming
+            GymOps neemt over wat jou weghoudt van je leden
           </h1>
           <p className="text-lg text-gray-600 mt-5 max-w-lg leading-relaxed">
-            Automatiseer, stroomlijn en laat je fitnessonderneming groeien met een probleemloze
-            software <strong>gebouwd door gymeigenaren, voor gymeigenaren.</strong>
+            Het complete systeem voor de beste ledenervaring, leadopvolging en team-aansturing.{" "}
+            <strong>Gebouwd voor en door coaching gym owners.</strong>
           </p>
           <div className="flex flex-wrap gap-4 mt-8">
             <Button variant="primary" href="/demo">
-              Plan een demo →
-            </Button>
-            <Button variant="outline" href="/prijzen">
-              Gratis starten
+              Plan een demo
             </Button>
           </div>
         </div>
