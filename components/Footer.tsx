@@ -5,7 +5,7 @@ import Logo from "./Logo";
 const columns = [
   {
     title: "Product",
-    links: ["Beheer", "Groei", "Training", "Prijzen", "Functies"],
+    links: ["Flow", "Groei", "Training", "Prijzen", "Functies"],
   },
   {
     title: "Bronnen",

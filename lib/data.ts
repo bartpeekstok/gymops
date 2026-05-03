@@ -382,7 +382,7 @@ export const integrations = [
 export const productPillars = [
   {
     icon: "settings",
-    tag: "Beheer",
+    tag: "Flow",
     tagline: "De kern van jouw gymbeheer",
     body: "Beheer je volledige gym vanuit één dashboard. Van facturatie en roosters tot ledenbeheer en rapportage — alles geautomatiseerd, alles verbonden.",
     features: [
@@ -393,7 +393,7 @@ export const productPillars = [
       "Financiële dashboards en exporteerbare rapporten",
       "Digitale waivers en documentbeheer",
     ],
-    cta: "Meer over Beheer →",
+    cta: "Meer over Flow →",
   },
   {
     icon: "trending-up",

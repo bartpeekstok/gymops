@@ -22,7 +22,7 @@ export default function CoreFeatures() {
           <div className="inline-flex items-center gap-2 justify-center">
             <GearIcon className="h-6 w-6" />
             <span className="text-sm font-bold tracking-wider">
-              GymOps <span className="text-primary">Beheer</span>
+              GymOps <span className="text-primary">Flow</span>
             </span>
           </div>
           <h2 className="text-4xl font-black text-dark mt-3">Het hart van jouw gymbeheer</h2>
