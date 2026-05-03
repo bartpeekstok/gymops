@@ -385,7 +385,7 @@ export const productPillars = [
     tag: "Beschikbaar",
     productName: "GymOps Flow",
     tagline: "Het complete systeem voor je gym",
-    body: "Flow neemt over wat jou weghoudt van je leden. Van leadgeneratie tot persoonlijke kaartjes, van event-pagina's tot Google reviews — Flow handelt het op het juiste moment voor je af.",
+    body: "Flow neemt over wat jou weghoudt van je leden. Van leadgeneratie tot persoonlijke kaartjes, van event-pagina's tot Google reviews. Flow handelt het op het juiste moment voor je af.",
     features: [
       "Custom website (SEO + AI search)",
       "Leadcapture & opvolging via WhatsApp en e-mail",
