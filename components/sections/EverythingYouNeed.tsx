@@ -30,7 +30,7 @@ export default function EverythingYouNeed() {
                   <Icon className="h-7 w-7 text-primary" />
                 </div>
                 <h3 className="font-black text-xl text-dark mt-5">{card.title}</h3>
-                <p className="text-gray-600 mt-3 leading-relaxed">{card.body}</p>
+                <p className="text-gray-600 mt-3 leading-relaxed whitespace-pre-line">{card.body}</p>
               </div>
             );
           })}
