@@ -54,7 +54,7 @@ export const coreFeatureTabs = [
   {
     icon: "star",
     title: "Vraag om reviews op het juiste moment",
-    body: "Google reviews zijn belangrijk voor kleine gyms. Via GymOps vraagt je leden op het juiste moment of ze een Google review willen achterlaten. Voorbeeld: als iemand net z'n cadeau voor de eerste 100 lessen in ontvangst heeft genomen, is het een mooi moment om te vragen of hij iets over je gym wil schrijven.",
+    body: "Google reviews zijn belangrijk voor kleine gyms. Via GymOps vraagt je leden precies op het juiste moment of ze een Google review willen achterlaten.",
   },
   {
     icon: "calendar",
