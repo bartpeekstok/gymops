@@ -173,7 +173,7 @@ export const pricingPlans = [
       "Mijlpaal-signalering (verjaardagen, 100ste les, PR's)",
       "Onboarding-flow voor nieuwe leden (eerste 90 dagen)",
       "Event-pagina's (Bring-a-Friend, Hyrox, open dag)",
-      "Slim afsprakenplannen",
+      "Slim afspraken plannen",
       "Branded e-mails, kaarten en agenda-uitnodigingen",
       "SportBit-integratie",
       "Onbeperkt flows & campagnes",
