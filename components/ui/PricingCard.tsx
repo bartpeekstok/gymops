@@ -55,29 +55,27 @@ export default function PricingCard({
         {name}
       </h3>
 
-      <div className="mt-4 flex items-baseline gap-2">
-        <span
-          className={`text-5xl font-black ${comingSoon ? "text-gray-400" : "text-dark"}`}
-        >
-          {price}
-        </span>
-        <span
-          className={`${
-            comingSoon
-              ? "text-gray-500 font-bold uppercase tracking-wider text-xs"
-              : "text-gray-500 text-lg"
-          }`}
-        >
-          {period}
-        </span>
-      </div>
+      {comingSoon ? (
+        <div className="mt-4">
+          <span className="text-3xl font-black text-gray-400 uppercase tracking-wider">
+            {period}
+          </span>
+        </div>
+      ) : (
+        <div className="mt-4 flex items-baseline gap-2">
+          <span className="text-5xl font-black text-dark">{price}</span>
+          <span className="text-gray-500 text-lg">{period}</span>
+        </div>
+      )}
 
-      {disclaimer && (
-        <p className="text-sm text-gray-600 mt-4 leading-relaxed">{disclaimer}</p>
-      )}
-      {yearlyOption && (
-        <p className="text-sm text-gray-600 mt-2 leading-relaxed">{yearlyOption}</p>
-      )}
+      <div className="flex-grow">
+        {disclaimer && (
+          <p className="text-sm text-gray-600 mt-4 leading-relaxed">{disclaimer}</p>
+        )}
+        {yearlyOption && (
+          <p className="text-sm text-gray-600 mt-2 leading-relaxed">{yearlyOption}</p>
+        )}
+      </div>
 
       <div className="mt-6">
         <Button variant={ctaVariant} href="/demo" className="w-full">
