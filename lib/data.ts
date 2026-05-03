@@ -31,7 +31,7 @@ export const everythingCards = [
   {
     icon: "users",
     title: "Betere ledenervaring",
-    body: "GymOps signaleert wat jij anders pas laat op de bank thuis bedenkt: Jeroen is al drie weken niet geweest, is Lisa nou morgen jarig? Mark heeft vandaag zijn 100ste les meegedaan, heeft hij wel een cadeautje gekregen?\n\nEr wordt automatisch een taak aangemaakt bij de coach voor wie dit is. Zo blijft al het ledencontact persoonlijk en oprecht. GymOps zorgt ervoor dat er niks wordt vergeten.",
+    body: "GymOps signaleert wat jij anders pas laat op de bank thuis bedenkt: Jeroen is al drie weken niet geweest, is Lisa nou morgen jarig? Mark heeft vandaag zijn 100ste les meegedaan, heeft hij wel een cadeautje gekregen?\n\nEr wordt automatisch een taak aangemaakt bij de coach voor wie dit is. Zo blijft al het ledencontact persoonlijk en oprecht. Een persoonlijk bericht doet zoveel meer dan weer een geautomatiseerd mailtje.",
   },
   {
     icon: "gear",
