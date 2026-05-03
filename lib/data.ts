@@ -88,16 +88,8 @@ export const growColumns = [
     body: "Nadat een lead z'n gegevens heeft achtergelaten, is het belangrijk dat er snel gereageerd wordt. Binnen één minuut ontvangen leads WhatsApp berichten en/of e-mails en spoort GymOps jou aan om snel persoonlijk contact op te nemen.\n\nZodra een proefles of intake is geboekt, zorgt GymOps ervoor dat leads herinneringsberichten krijgen totdat ze in je gym staan. Niet te veel berichten, maar wel genoeg om jouw show rate hoog te houden.",
   },
   {
-    title: "Communicatie stroomlijnen",
-    body: "Maak communicatie moeiteloos met gepersonaliseerde, geautomatiseerde berichten via SMS, e-mail en sociale media — allemaal vanuit één dashboard.",
-  },
-  {
-    title: "Geen weken wachten. Geen offertes.",
-    body: "Nieuwe abonnementsvorm? Tariefswijziging? Een nieuwe coach in het team? Wij passen je website binnen een werkweek aan. Inbegrepen.",
-  },
-  {
-    title: "Vraag om reviews op het juiste moment",
-    body: "Google reviews zijn belangrijk voor kleine gyms. Via GymOps vraag je leden precies op het juiste moment of ze een Google review willen achterlaten.",
+    title: "Reviews",
+    body: "Google reviews zijn belangrijk voor kleine gyms. Via GymOps vraag je leden precies op het juiste moment of ze een Google review willen achterlaten.\n\nJe leden willen dit vaak graag doen, maar denken daar simpelweg niet aan. De meeste GymOps gebruikers hebben meer dan 250 Google reviews!",
   },
 ];
 
@@ -135,6 +127,10 @@ export const whyCards = [
   {
     title: "Kampioen van gezondheid en geluk",
     body: "Door gymeigenaren de juiste tools te geven, creëren we een gezondere wereld — we maken welzijn toegankelijk en gymbeheer moeiteloos.",
+  },
+  {
+    title: "Geen weken wachten. Geen offertes.",
+    body: "Nieuwe abonnementsvorm? Tariefswijziging? Een nieuwe coach in het team? Wij passen je website binnen een werkweek aan. Inbegrepen.",
   },
 ];
 
