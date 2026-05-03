@@ -362,7 +362,7 @@ export const values = [
   {
     number: "03",
     title: "Snel, gefocust en efficiënt",
-    body: "We geloven dat kleine, gespecialiseerde teams de beste resultaten leveren. Met minder bureaucratie en meer verantwoordelijkheid bewegen we snel — en houden we elke klant persoonlijk dichtbij, met support van mensen die zelf een gym runnen.",
+    body: "We geloven dat kleine, gespecialiseerde teams de beste resultaten leveren. Met minder bureaucratie en meer verantwoordelijkheid bewegen we snel. We houden elke klant persoonlijk dichtbij, met support van mensen die zelf een gym runnen.",
   },
 ];
 
