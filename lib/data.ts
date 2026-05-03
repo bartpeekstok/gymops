@@ -76,6 +76,11 @@ export const coreFeatureTabs = [
     title: "Vergeet geen mijlpaal meer",
     body: "GymOps zorgt ervoor dat je belangrijke momenten voor je leden nooit vergeet. Iemand die z'n 100ste les heeft meegedaan bijvoorbeeld. Maar ook verjaardagen, persoonlijk records en andere speciale momenten worden nooit meer overgeslagen.",
   },
+  {
+    icon: "heart",
+    title: "De eerste 90 dagen zijn het belangrijkst!",
+    body: "Om ervoor te zorgen dat nieuwe leden veranderen in leden voor het leven, is het belangrijk dat er de eerste negentig dagen veel contactmomenten zijn. Dat kunnen korte appjes zijn, maar ook even bellen of een mailtje sturen. GymOps heeft meerdere nieuwe leden flows klaarstaan: onze voorkeur heeft veel persoonlijk contact. Maar als jouw team daar nog niet klaar voor is, kunnen we een deel automatiseren.",
+  },
 ];
 
 export const growColumns = [

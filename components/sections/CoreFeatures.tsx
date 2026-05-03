@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Pen, Star, Mail, Zap, PartyPopper, CalendarCheck, Trophy } from "lucide-react";
+import { Pen, Star, Mail, Zap, PartyPopper, CalendarCheck, Trophy, Heart } from "lucide-react";
 import Button from "../ui/Button";
 import { GearIcon } from "../Logo";
 import { coreFeatureTabs } from "@/lib/data";
@@ -13,6 +13,7 @@ const iconMap = {
   party: PartyPopper,
   "calendar-check": CalendarCheck,
   trophy: Trophy,
+  heart: Heart,
 } as const;
 
 export default function CoreFeatures() {
