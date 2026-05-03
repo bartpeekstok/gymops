@@ -39,12 +39,12 @@ export const everythingCards = [
   },
   {
     icon: "gear",
-    title: "Eenvoudig beheer",
+    title: "Automatische leadopvolging",
     body: "Vereenvoudig de complexiteit van het runnen van een gym zonder meerdere losse programma's. Beheer dagelijkse operaties, leadgeneratie, conversie en ledeninteractie op één plek.",
   },
   {
     icon: "chart",
-    title: "Datagedreven beslissingen",
+    title: "Meer tijd voor je leden",
     body: "Neem slimmere zakelijke beslissingen met uitgebreide data — bekijk robuuste analyses over operaties, marketing, ledeninteractie en trainingseffectiviteit.",
   },
 ];
