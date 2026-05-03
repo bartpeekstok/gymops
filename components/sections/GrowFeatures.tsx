@@ -23,7 +23,7 @@ export default function GrowFeatures() {
           {growColumns.map((col) => (
             <div key={col.title}>
               <h3 className="font-bold text-dark text-lg">{col.title}</h3>
-              <p className="text-gray-600 mt-3 leading-relaxed">{col.body}</p>
+              <p className="text-gray-600 mt-3 leading-relaxed whitespace-pre-line">{col.body}</p>
             </div>
           ))}
         </div>

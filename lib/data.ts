@@ -81,7 +81,7 @@ export const coreFeatureTabs = [
 export const growColumns = [
   {
     title: "Leadgeneratie",
-    body: "Onze websites zijn ingericht op goede vindbaarheid door zoekmachines en, misschien nog belangrijker, ingericht om goed door AI search gevonden te worden. Via GymOps draai je gerichte campagnes op je doelgroepen via Meta ads, maar ook campagnes via WhatsApp en e-mail staan al voor je klaar. Wist je dat je ex-leden soms maar een klein duwtje nodig hebben om weer terug te komen? Ook hier heeft GymOps kant en klare processen voor, zonder dat mensen zich gespamd voelen.",
+    body: "Onze websites zijn ingericht op goede vindbaarheid door zoekmachines en, misschien nog belangrijker, ingericht om goed door AI search gevonden te worden.\n\nVia GymOps draai je gerichte campagnes op je doelgroepen via Meta ads, maar ook campagnes via WhatsApp en e-mail staan al voor je klaar. Wist je dat je ex-leden soms maar een klein duwtje nodig hebben om weer terug te komen? Ook hier heeft GymOps kant en klare processen voor, zonder dat mensen zich gespamd voelen.",
   },
   {
     title: "Leadconversie",
