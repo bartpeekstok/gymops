@@ -167,7 +167,7 @@ export const pricingPlans = [
     features: [
       "Volledig ingericht platform",
       "Custom website inbegrepen",
-      "Sportbit-integratie",
+      "SportBit-integratie",
       "Handgeschreven kaarten",
       "4 onboarding-calls + bezoek",
       "Onbeperkt flows & campagnes",
