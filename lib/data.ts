@@ -36,7 +36,7 @@ export const everythingCards = [
   {
     icon: "gear",
     title: "Automatische leadopvolging",
-    body: "Vereenvoudig de complexiteit van het runnen van een gym zonder meerdere losse programma's. Beheer dagelijkse operaties, leadgeneratie, conversie en ledeninteractie op één plek.",
+    body: "Verlies geen lead meer uit het oog. Iemand die z'n gegevens achterlaat op social media, je website of via een QR code krijgt automatisch een WhatsApp bericht, e-mail. Daarnaast worden er gelijk taken aangemaakt bij het personeel om zo snel mogelijk contact op te nemen.\n\nKrijg je iemand niet gelijk te pakken? Dan blijft GymOps automatisch berichten sturen en meldingen bij coaches maken zodat je nooit meer leads vergeet.",
   },
   {
     icon: "chart",
