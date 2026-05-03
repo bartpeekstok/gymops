@@ -58,7 +58,7 @@ export default function CoreFeatures() {
                   <Icon className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
                   <div>
                     <h3 className="font-bold text-dark text-lg">{tab.title}</h3>
-                    <p className="text-gray-600 mt-2">{tab.body}</p>
+                    <p className="text-gray-600 mt-2 whitespace-pre-line">{tab.body}</p>
                   </div>
                 </div>
               </div>
