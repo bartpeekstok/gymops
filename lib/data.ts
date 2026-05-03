@@ -135,6 +135,10 @@ export const whyCards = [
     title: "Kampioen van gezondheid en geluk",
     body: "Door gymeigenaren de juiste tools te geven, creëren we een gezondere wereld — we maken welzijn toegankelijk en gymbeheer moeiteloos.",
   },
+  {
+    title: "Snelle support, in je eigen taal",
+    body: "Heb je vragen of wil je zaken gewijzigd hebben? Dan heb je snel contact. Niet met iemand in een andere tijdzone, maar met een gym owner uit Nederland die snapt wat je wilt.",
+  },
 ];
 
 export const successQuotes = [
