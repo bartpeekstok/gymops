@@ -26,9 +26,6 @@ export default function CoreFeatures() {
             </span>
           </div>
           <h2 className="text-4xl font-black text-dark mt-3">De beste ledenervaring, leadopvolging en overzicht in taken</h2>
-          <p className="text-gray-600 mt-3 max-w-xl mx-auto">
-            Vereenvoudig en stroomlijn je administratieve workflow.
-          </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 mt-12 items-start">
