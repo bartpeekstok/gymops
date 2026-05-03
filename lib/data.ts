@@ -41,7 +41,7 @@ export const everythingCards = [
   {
     icon: "chart",
     title: "Custom website",
-    body: "Bij GymOps bouwen we websites met dezelfde professionele technologie die wordt gebruikt door bedrijven als Netflix, Nike, Uber en Spotify. We gebruiken geen standaard WordPress-thema's of page builders, we bouwen maatwerk software die is geoptimaliseerd voor snelheid, veiligheid en conversie.\n\nSimpel gezegd: jouw website is gebouwd als een app, niet als een document. Dat maakt het sneller, veiliger en een stuk professioneler dan wat de meeste gyms gebruiken.\n\nAlle formulieren en leadcapture-momenten zijn direct gekoppeld aan het GymOps systeem via beveiligde webhooks. Geen handmatig overtikken, geen gemiste leads. Elke pagina is opgebouwd volgens bewezen conversieprincipes: strategische call-to-actions, sociale bewijskracht, urgentie-elementen en heldere stappen naar actie.",
+    body: "Bij GymOps bouwen we websites met dezelfde professionele technologie die wordt gebruikt door bedrijven als Netflix, Nike, Uber en Spotify. We gebruiken geen standaard WordPress-thema's of page builders, we bouwen maatwerk software die is geoptimaliseerd voor snelheid, veiligheid en conversie.\n\nSimpel gezegd: jouw website is gebouwd als een app, niet als een document. Dat maakt het sneller, veiliger en een stuk professioneler dan wat de meeste gyms gebruiken.",
   },
 ];
 
