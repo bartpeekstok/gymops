@@ -80,14 +80,17 @@ export const coreFeatureTabs = [
 
 export const growColumns = [
   {
+    icon: "megaphone",
     title: "Leadgeneratie",
     body: "Onze websites zijn ingericht op goede vindbaarheid door zoekmachines en, misschien nog belangrijker, ingericht om goed door AI search gevonden te worden.\n\nVia GymOps draai je gerichte campagnes op je doelgroepen via Meta ads, maar ook campagnes via WhatsApp en e-mail staan al voor je klaar. Wist je dat je ex-leden soms maar een klein duwtje nodig hebben om weer terug te komen? Ook hier heeft GymOps kant en klare processen voor, zonder dat mensen zich gespamd voelen.",
   },
   {
+    icon: "send",
     title: "Leadconversie",
     body: "Nadat een lead z'n gegevens heeft achtergelaten, is het belangrijk dat er snel gereageerd wordt. Binnen één minuut ontvangen leads WhatsApp berichten en/of e-mails en spoort GymOps jou aan om snel persoonlijk contact op te nemen.\n\nZodra een proefles of intake is geboekt, zorgt GymOps ervoor dat leads herinneringsberichten krijgen totdat ze in je gym staan. Niet te veel berichten, maar wel genoeg om jouw show rate hoog te houden.",
   },
   {
+    icon: "star",
     title: "Reviews",
     body: "Google reviews zijn belangrijk voor kleine gyms. Via GymOps vraag je leden precies op het juiste moment of ze een Google review willen achterlaten.\n\nJe leden willen dit vaak graag doen, maar denken daar simpelweg niet aan. De meeste GymOps gebruikers hebben meer dan 250 Google reviews!",
   },
