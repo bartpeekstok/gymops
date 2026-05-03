@@ -178,6 +178,7 @@ export const pricingPlans = [
       "SportBit-integratie",
       "Onbeperkt flows & campagnes",
       "4 onboarding-calls + bezoek",
+      "Snelle support van gym owners die snappen wat je wilt",
     ],
   },
   {
