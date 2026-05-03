@@ -47,9 +47,9 @@ export const everythingCards = [
 
 export const coreFeatureTabs = [
   {
-    icon: "credit-card",
-    title: "Gestroomlijnde facturatie en betalingen",
-    body: "Automatiseer je factuurcyclus en gebruik integraties zoals Stripe om betalingswrijving te verminderen — inclusief financiële overzichten om beslissingen te onderbouwen.",
+    icon: "pen",
+    title: "Handgeschreven kaarten",
+    body: "Via ons systeem stuur je een handgeschreven kaart met persoonlijke tekst binnen 15 seconden. Makkelijk via de mobiele app of vanachter je laptop.",
   },
   {
     icon: "users",
