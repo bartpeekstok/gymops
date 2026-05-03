@@ -62,11 +62,6 @@ export const coreFeatureTabs = [
     body: "Elke omgeving krijgt jouw branding. Mails, kaarten, agenda-uitnodigingen, alles komt uit jouw gym, niet uit een GymOps-template.",
   },
   {
-    icon: "zap",
-    title: "Geen weken wachten. Geen offertes.",
-    body: "Nieuwe abonnementsvorm? Tariefswijziging? Een nieuwe coach in het team? Wij passen je website binnen een werkweek aan. Inbegrepen.",
-  },
-  {
     icon: "party",
     title: "Bring a Friend events, Hyrox simulaties, open dag, allemaal in 5 minuten live.",
     body: "Eventpagina, inschrijfformulier met directe betaling, bevestigingsmail, taak voor je team, en een after-event flow naar abonnement.",
@@ -75,6 +70,11 @@ export const coreFeatureTabs = [
     icon: "calendar-check",
     title: "Slim afspraken plannen, zonder heen-en-weer.",
     body: "We koppelen jouw beschikbaarheid en die van je team aan het systeem. Leads en leden krijgen alleen tijden te zien die jullie het best uitkomen. Scheelt uren per week aan mailtjes.",
+  },
+  {
+    icon: "trophy",
+    title: "Vergeet geen mijlpaal meer",
+    body: "GymOps zorgt ervoor dat je belangrijke momenten voor je leden nooit vergeet. Iemand die z'n 100ste les heeft meegedaan bijvoorbeeld. Maar ook verjaardagen, persoonlijk records en andere speciale momenten worden nooit meer overgeslagen.",
   },
 ];
 
@@ -90,6 +90,10 @@ export const growColumns = [
   {
     title: "Communicatie stroomlijnen",
     body: "Maak communicatie moeiteloos met gepersonaliseerde, geautomatiseerde berichten via SMS, e-mail en sociale media — allemaal vanuit één dashboard.",
+  },
+  {
+    title: "Geen weken wachten. Geen offertes.",
+    body: "Nieuwe abonnementsvorm? Tariefswijziging? Een nieuwe coach in het team? Wij passen je website binnen een werkweek aan. Inbegrepen.",
   },
 ];
 
