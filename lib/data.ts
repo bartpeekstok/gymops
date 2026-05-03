@@ -54,12 +54,27 @@ export const coreFeatureTabs = [
   {
     icon: "star",
     title: "Vraag om reviews op het juiste moment",
-    body: "Google reviews zijn belangrijk voor kleine gyms. Via GymOps vraagt je leden precies op het juiste moment of ze een Google review willen achterlaten.",
+    body: "Google reviews zijn belangrijk voor kleine gyms. Via GymOps vraag je leden precies op het juiste moment of ze een Google review willen achterlaten.",
   },
   {
-    icon: "calendar",
-    title: "Roosters vereenvoudigd",
-    body: "Bespaar tijd op planning met geautomatiseerde klasboekingen en real-time beschikbaarheid, en maximaliseer klassencapaciteit met intelligente algoritmen.",
+    icon: "mail",
+    title: "Geen onpersoonlijke mailtjes uit het systeem van je leverancier",
+    body: "Elke omgeving krijgt jouw branding. Mails, kaarten, agenda-uitnodigingen, alles komt uit jouw gym, niet uit een GymOps-template.",
+  },
+  {
+    icon: "zap",
+    title: "Geen weken wachten. Geen offertes.",
+    body: "Nieuwe abonnementsvorm? Tariefswijziging? Een nieuwe coach in het team? Wij passen je website binnen een werkweek aan. Inbegrepen.",
+  },
+  {
+    icon: "party",
+    title: "Bring a Friend events, Hyrox simulaties, open dag, allemaal in 5 minuten live.",
+    body: "Eventpagina, inschrijfformulier met directe betaling, bevestigingsmail, taak voor je team, en een after-event flow naar abonnement.",
+  },
+  {
+    icon: "calendar-check",
+    title: "Slim afspraken plannen, zonder heen-en-weer.",
+    body: "We koppelen jouw beschikbaarheid en die van je team aan het systeem. Leads en leden krijgen alleen tijden te zien die jullie het best uitkomen. Scheelt uren per week aan mailtjes.",
   },
 ];
 

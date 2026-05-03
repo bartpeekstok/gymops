@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Pen, Star, Calendar, Plus } from "lucide-react";
+import { Pen, Star, Mail, Zap, PartyPopper, CalendarCheck, Plus } from "lucide-react";
 import Button from "../ui/Button";
 import { GearIcon } from "../Logo";
 import { coreFeatureTabs } from "@/lib/data";
@@ -9,7 +9,10 @@ import { coreFeatureTabs } from "@/lib/data";
 const iconMap = {
   pen: Pen,
   star: Star,
-  calendar: Calendar,
+  mail: Mail,
+  zap: Zap,
+  party: PartyPopper,
+  "calendar-check": CalendarCheck,
 } as const;
 
 export default function CoreFeatures() {
@@ -26,6 +29,10 @@ export default function CoreFeatures() {
             </span>
           </div>
           <h2 className="text-4xl font-black text-dark mt-3">De beste ledenervaring, leadopvolging en overzicht in taken</h2>
+          <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+            Elk gym is anders. Andere leden, andere mijlpalen, andere stem. GymOps is van
+            begin tot eind ingericht op jouw gym, en blijft meebewegen.
+          </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 mt-12 items-start">
