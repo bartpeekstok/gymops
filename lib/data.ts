@@ -377,6 +377,7 @@ export const integrations = [
   { name: "Stripe", desc: "betalingsverwerking", src: "/integ-stripe.png" },
   { name: "iDEAL", desc: "Nederlandse betaalmethode", src: "/integ-ideal.svg" },
   { name: "Slack", desc: "teamcommunicatie", src: "/integ-slack.png" },
+  { name: "Zapier", desc: "workflow automatisering", src: "/integ-zapier.png" },
 ];
 
 export const productPillars = [

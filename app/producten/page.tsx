@@ -1,9 +1,9 @@
-import Image from "next/image";
 import { Users, ArrowRight } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Badge from "@/components/ui/Badge";
 import { GearIcon } from "@/components/Logo";
-import { productPillars, integrations } from "@/lib/data";
+import IntegrationsSlider from "@/components/IntegrationsSlider";
+import { productPillars } from "@/lib/data";
 
 const iconMap = {
   gear: GearIcon,
@@ -94,28 +94,10 @@ export default function ProductsPage() {
       <section className="bg-gray-50 py-20">
         <div className="container-page">
           <h2 className="text-3xl font-black text-dark text-center max-w-3xl mx-auto">
-            Werkt naadloos samen met jouw favoriete tools
+            GymOps werkt naadloos samen met meer dan honderd andere tools
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-12">
-            {integrations.map((it) => (
-              <div
-                key={it.name}
-                className="bg-white border border-gray-100 rounded-xl p-6 flex flex-col items-center justify-center min-h-[140px] gap-3"
-                title={it.desc}
-              >
-                {it.src ? (
-                  <Image
-                    src={it.src}
-                    alt={it.name}
-                    width={120}
-                    height={60}
-                    className="max-h-12 w-auto object-contain"
-                  />
-                ) : (
-                  <p className="font-black text-dark text-lg">{it.name}</p>
-                )}
-              </div>
-            ))}
+          <div className="mt-12">
+            <IntegrationsSlider />
           </div>
         </div>
       </section>
