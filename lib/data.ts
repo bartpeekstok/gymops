@@ -128,14 +128,6 @@ export const whyCards = [
     body: "Wij weigeren de status quo van software die “alles doet maar niets goed”. Jij krijgt een gerichte set functies die je daadwerkelijk gebruikt — en geweldig vindt.",
   },
   {
-    title: "Toegewijd aan jouw succes",
-    body: "Meer dan 1 miljoen check-ins zijn verwerkt via GymOps. Ons team van fitnessliefhebbers en techexperts blijft de software continu verbeteren om de groei van jouw gym te ondersteunen.",
-  },
-  {
-    title: "Kampioen van gezondheid en geluk",
-    body: "Door gymeigenaren de juiste tools te geven, creëren we een gezondere wereld — we maken welzijn toegankelijk en gymbeheer moeiteloos.",
-  },
-  {
     title: "Snelle support, in je eigen taal",
     body: "Heb je vragen of wil je zaken gewijzigd hebben? Dan heb je snel contact. Niet met iemand in een andere tijdzone, maar met een gym owner uit Nederland die snapt wat je wilt.",
   },
