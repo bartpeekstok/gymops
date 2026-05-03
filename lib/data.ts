@@ -374,9 +374,9 @@ export const integrations = [
   { name: "Google", desc: "reviews & search", src: "/integ-google.webp" },
   { name: "WhatsApp", desc: "ledencommunicatie", src: "/integ-whatsapp.avif" },
   { name: "Writify", desc: "handgeschreven kaarten", src: "/integ-writify.jpg" },
-  { name: "Stripe", desc: "betalingsverwerking", src: "" },
-  { name: "iDEAL", desc: "Nederlandse betaalmethode", src: "" },
-  { name: "Slack", desc: "teamcommunicatie", src: "" },
+  { name: "Stripe", desc: "betalingsverwerking", src: "/integ-stripe.png" },
+  { name: "iDEAL", desc: "Nederlandse betaalmethode", src: "/integ-ideal.svg" },
+  { name: "Slack", desc: "teamcommunicatie", src: "/integ-slack.png" },
 ];
 
 export const productPillars = [
