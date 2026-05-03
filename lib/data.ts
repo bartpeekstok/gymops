@@ -85,7 +85,7 @@ export const growColumns = [
   },
   {
     title: "Leadconversie",
-    body: "Nadat een lead z'n gegevens heeft achtergelaten, is het belangrijk dat er snel gereageerd wordt. Binnen één minuut ontvangen leads WhatsApp berichten en/of e-mails en spoort GymOps jou aan om snel persoonlijk contact op te nemen.\n\nZodra een proefles of intake is geboekt, zorgt GymOps ervoor dat leads herinneringsberichten krijgen totdat ze in je gym staan.",
+    body: "Nadat een lead z'n gegevens heeft achtergelaten, is het belangrijk dat er snel gereageerd wordt. Binnen één minuut ontvangen leads WhatsApp berichten en/of e-mails en spoort GymOps jou aan om snel persoonlijk contact op te nemen.\n\nZodra een proefles of intake is geboekt, zorgt GymOps ervoor dat leads herinneringsberichten krijgen totdat ze in je gym staan. Niet te veel berichten, maar wel genoeg om jouw show rate hoog te houden.",
   },
   {
     title: "Communicatie stroomlijnen",
