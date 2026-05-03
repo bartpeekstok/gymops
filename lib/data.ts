@@ -243,7 +243,7 @@ export const faqs = [
   {
     question: "Wat kost GymOps en wat is er inbegrepen?",
     answer:
-      "GymOps Flow kost €450 per maand (excl. BTW). Bij jaarbetaling betaal je 11 maanden (€4.950) en is de 12e gratis. Inbegrepen: een custom website, leadgeneratie en -opvolging via WhatsApp en e-mail, handgeschreven kaarten, Google reviews op het juiste moment, mijlpaal-signalering, onboarding-flow voor nieuwe leden, event-pagina's, slim afsprakenplannen, SportBit-integratie, branded communicatie, en 4 onboarding-calls plus een bezoek bij je gym.",
+      "GymOps Flow kost €450 per maand (excl. BTW). Bij jaarbetaling betaal je 11 maanden (€4.950) en is de 12e gratis.",
   },
   {
     question: "Voor welke gyms is GymOps gemaakt?",
