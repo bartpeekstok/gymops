@@ -2,15 +2,18 @@ import Image from "next/image";
 import { trustedLogos } from "@/lib/data";
 
 export default function TrustedBy() {
+  const doubled = [...trustedLogos, ...trustedLogos];
   return (
-    <section className="bg-gray-50 py-14">
+    <section className="bg-gray-50 py-14 overflow-hidden">
       <div className="container-page">
-        <h2 className="text-center font-bold text-lg text-gray-700">Onze klanten</h2>
-        <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 items-center">
-          {trustedLogos.map((logo) => (
+        <h2 className="text-center font-bold text-lg text-gray-700 mb-10">Onze klanten</h2>
+      </div>
+      <div className="overflow-hidden">
+        <div className="flex logo-scroll w-max items-center gap-20">
+          {doubled.map((logo, i) => (
             <div
-              key={logo.name}
-              className="flex items-center justify-center h-20"
+              key={`${logo.name}-${i}`}
+              className="flex items-center justify-center h-20 w-40 flex-shrink-0"
               title={logo.name}
             >
               <Image
