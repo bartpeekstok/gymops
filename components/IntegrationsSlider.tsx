@@ -16,16 +16,30 @@ export default function IntegrationsSlider() {
     const el = containerRef.current;
     if (!el) return;
 
-    const interval = setInterval(() => {
-      const halfWidth = el.scrollWidth / 2;
-      if (el.scrollLeft >= halfWidth) {
-        el.scrollLeft -= halfWidth;
-      } else {
-        el.scrollLeft += 1;
-      }
-    }, 20);
+    let rafId: number;
+    let last = performance.now();
+    let acc = 0;
+    const speedPxPerSec = 50;
 
-    return () => clearInterval(interval);
+    const tick = (now: number) => {
+      const dt = now - last;
+      last = now;
+      acc += (speedPxPerSec * dt) / 1000;
+      const halfWidth = el.scrollWidth / 2;
+      if (acc >= 1) {
+        const step = Math.floor(acc);
+        acc -= step;
+        if (el.scrollLeft >= halfWidth) {
+          el.scrollLeft -= halfWidth;
+        } else {
+          el.scrollLeft += step;
+        }
+      }
+      rafId = requestAnimationFrame(tick);
+    };
+
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
   }, [paused]);
 
   const scroll = (dir: "prev" | "next") => {
@@ -40,7 +54,7 @@ export default function IntegrationsSlider() {
         ref={containerRef}
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
-        className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth"
+        className="flex gap-6 overflow-x-auto scrollbar-hide"
       >
         {items.map((it, i) => (
           <div
