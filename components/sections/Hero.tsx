@@ -9,7 +9,7 @@ export default function Hero() {
         <div>
           <Badge>Alles-in-één gym automation platform</Badge>
           <h1 className="text-4xl sm:text-5xl xl:text-6xl font-black leading-[1.1] text-dark mt-4 break-words">
-            GymOps neemt over wat jou weghoudt van je leden
+            Het beste CRM systeem op de markt, gebouwd voor en door coaching gym-owners
           </h1>
           <p className="text-lg text-gray-600 mt-5 max-w-lg leading-relaxed">
             Het complete systeem voor de beste ledenervaring, leadopvolging en team-aansturing.{" "}
