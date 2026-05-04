@@ -9,7 +9,7 @@ export default function Hero() {
         <div className="text-center max-w-5xl mx-auto">
           <Badge>Alles-in-één gym automation platform</Badge>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.1] text-dark mt-6 break-words [hyphens:none]">
-            Het beste CRM systeem op de markt, gebouwd voor en door coaching gym-owners
+            Het beste CRM systeem op de markt, gebouwd voor en door gym-owners
           </h1>
         </div>
         <div className="grid lg:grid-cols-2 gap-16 items-center mt-16">
