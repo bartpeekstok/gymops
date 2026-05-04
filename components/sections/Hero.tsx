@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <section className="bg-white">
       <div className="container-page py-20">
-        <div className="text-left max-w-5xl">
+        <div className="text-left">
           <Badge>Alles-in-één gym automation platform</Badge>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.1] text-dark mt-6 break-words [hyphens:none]">
             Het beste CRM systeem op de markt, gebouwd voor en door gym-owners
