@@ -40,7 +40,7 @@ export const everythingCards = [
   {
     icon: "check",
     title: "Geen taak wordt vergeten",
-    body: "Elke taak voor je team wordt automatisch toegewezen aan de juiste coach. Niet opgepakt vandaag? Dan blijft-ie staan en komt-ie morgen weer onder de aandacht.\n\nGeen losse WhatsApp-groepjes, geen vergeten ledencontact. CrossFit Alkmaar en CrossFit Leiden draaien er al jaren op. Jouw team werkt voorspelbaar, en jij houdt overzicht.",
+    body: "Elke taak voor je team wordt automatisch toegewezen aan de juiste coach. Niet opgepakt vandaag? Dan blijft-ie staan en komt-ie morgen weer onder de aandacht.\n\nGaat een coach op vakantie of valt iemand uit? Een collega neemt openstaande taken in één klik over. Geen losse WhatsApp-groepjes, geen vergeten ledencontact. Jouw team werkt voorspelbaar, en jij houdt overzicht.",
   },
 ];
 
