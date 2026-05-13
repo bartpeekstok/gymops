@@ -12,8 +12,8 @@ import {
   RotateCcw,
   Check,
 } from "lucide-react";
+import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
-import { GearIcon } from "@/components/Logo";
 import { coreFeatureTabs, atRiskMembers } from "@/lib/data";
 
 const iconMap = {
@@ -297,21 +297,21 @@ function RotateMockup() {
 export default function LedenervaringPage() {
   return (
     <main className="bg-white">
-      <section className="py-20 lg:py-28 bg-gradient-to-b from-accent-light/40 to-white">
-        <div className="container-page text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-3 justify-center mb-6">
-            <GearIcon className="h-12 w-12" />
-            <span className="text-3xl font-bold tracking-wider">
-              GymOps <span className="text-primary">Flow</span>
-            </span>
-          </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-dark leading-tight">
+      <section className="bg-white">
+        <div className="container-page py-20">
+          <Badge>GymOps Flow · Ledenervaring</Badge>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.1] text-dark mt-6 break-words [hyphens:none]">
             Alles wat Flow doet voor jouw ledenervaring
           </h1>
-          <p className="text-gray-600 mt-6 text-lg leading-relaxed">
+          <p className="text-lg text-gray-600 max-w-3xl leading-relaxed mt-6">
             Persoonlijk contact op de juiste momenten, zonder dat jij of je team er actief
             aan hoeft te denken. Van eerste lead tot 100ste les.
           </p>
+          <div className="flex flex-wrap gap-4 mt-8">
+            <Button variant="primary" href="/demo">
+              Plan een demo
+            </Button>
+          </div>
         </div>
       </section>
 

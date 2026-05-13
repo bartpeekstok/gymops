@@ -44,7 +44,7 @@ export default function GrowFeatures() {
         </div>
 
         <div className="text-center mt-12">
-          <Button variant="outline" href="/producten">
+          <Button variant="outline" href="/leadopvolging">
             Meer informatie
           </Button>
         </div>

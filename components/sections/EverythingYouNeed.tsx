@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { ArrowRight, Zap, Heart, CheckCheck } from "lucide-react";
+import { Zap, Heart, CheckCheck } from "lucide-react";
 import Button from "../ui/Button";
 import { everythingCards } from "@/lib/data";
 
@@ -26,21 +25,12 @@ export default function EverythingYouNeed() {
           {everythingCards.map((card) => {
             const Icon = iconMap[card.icon as keyof typeof iconMap];
             return (
-              <div key={card.title} className="bg-white rounded-2xl p-8 shadow-sm flex flex-col">
+              <div key={card.title} className="bg-white rounded-2xl p-8 shadow-sm">
                 <div className="h-14 w-14 rounded-full bg-accent-light flex items-center justify-center">
                   <Icon className="h-7 w-7 text-primary" />
                 </div>
                 <h3 className="font-black text-xl text-dark mt-5">{card.title}</h3>
                 <p className="text-gray-600 mt-3 leading-relaxed whitespace-pre-line">{card.body}</p>
-                {"href" in card && card.href && (
-                  <Link
-                    href={card.href}
-                    className="mt-5 inline-flex items-center gap-1 text-primary font-bold hover:gap-2 transition-all"
-                  >
-                    Meer informatie
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                )}
               </div>
             );
           })}
