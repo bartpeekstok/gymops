@@ -46,8 +46,8 @@ export default function CoreFeatures() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-          {coreFeatureTabs.map((tab) => {
+        <div className="space-y-8 mt-12 max-w-3xl mx-auto">
+          {coreFeatureTabs.slice(0, 3).map((tab) => {
             const Icon = iconMap[tab.icon as keyof typeof iconMap];
             return (
               <div
@@ -66,57 +66,9 @@ export default function CoreFeatures() {
           })}
         </div>
 
-        <div className="relative max-w-2xl mx-auto mt-20 pb-8 pr-8">
-          <div className="bg-white shadow-xl rounded-2xl p-6 border border-gray-100">
-            <div className="flex items-center justify-between mb-5">
-              <h4 className="font-bold text-dark">Activiteit</h4>
-              <span className="text-xs text-gray-500 flex items-center gap-1.5">
-                <span className="h-2 w-2 rounded-full bg-green-500" />
-                Live
-              </span>
-            </div>
-            <ul className="space-y-3">
-              {activityFeed.map(({ Icon, text, time, bg }) => (
-                <li
-                  key={text}
-                  className="flex items-start gap-3 pb-3 border-b border-gray-100 last:border-0 last:pb-0"
-                >
-                  <div className={`h-9 w-9 rounded-lg flex items-center justify-center flex-shrink-0 ${bg}`}>
-                    <Icon className="h-4 w-4 text-white" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm text-dark">{text}</p>
-                    <p className="text-xs text-gray-500 mt-0.5">{time}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="absolute -bottom-2 -right-2 w-36 bg-[#0f1f24] rounded-[20px] p-1.5 shadow-2xl border border-primary/40">
-            <div className="bg-primary rounded-[16px] p-2.5">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-white text-[10px] font-bold">Activiteit</span>
-                <span className="h-1.5 w-1.5 rounded-full bg-green-300" />
-              </div>
-              <div className="space-y-1.5">
-                {phoneFeed.map(({ Icon, text }) => (
-                  <div
-                    key={text}
-                    className="bg-white/15 backdrop-blur rounded-md p-1.5 flex items-center gap-1.5"
-                  >
-                    <Icon className="h-3 w-3 text-white flex-shrink-0" />
-                    <p className="text-white text-[10px] flex-1">{text}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-16 text-center">
-          <Button variant="outline" href="/producten">
-            Meer informatie
+        <div className="mt-12 text-center">
+          <Button variant="outline" href="/ledenervaring">
+            Bekijk alles
           </Button>
         </div>
       </div>
