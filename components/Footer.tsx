@@ -52,9 +52,8 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="container-page py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-off-white/60">
+        <div className="container-page py-5 text-xs text-off-white/60">
           <span>© 2025 GymOps B.V.</span>
-          <span>Adresregel placeholder, Plaats</span>
         </div>
       </div>
     </footer>
