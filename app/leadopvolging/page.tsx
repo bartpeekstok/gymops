@@ -348,7 +348,7 @@ export default function LeadopvolgingPage() {
         <div className="container-page py-20">
           <Badge>GymOps Flow · Leadopvolging</Badge>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.1] text-dark mt-6 break-words [hyphens:none]">
-            Alles wat Flow doet om jouw leads klant te maken
+            Verander je leads in leden
           </h1>
           <p className="text-lg text-gray-600 max-w-3xl leading-relaxed mt-6">
             Snelheid, persoonlijk contact en consistentie. Op alle kanalen waar je leads
