@@ -117,11 +117,11 @@ function PartyMockup() {
 
 function SparklesMockup() {
   const days = [
-    { day: "Dag 1", text: "Welkomstmail + WhatsApp", done: true },
-    { day: "Dag 7", text: "Check-in door coach", done: true },
-    { day: "Dag 30", text: "Eerste evaluatie en doelen", done: true },
-    { day: "Dag 60", text: "Voortgangsgesprek", done: false },
-    { day: "Dag 90", text: "Persoonlijke kaart + uitnodiging community", done: false },
+    { day: "Welkom", text: "Welkomstmail en WhatsApp", done: true },
+    { day: "Eerste week", text: "Check-in door coach", done: true },
+    { day: "Eerste maand", text: "Evaluatie en doelen stellen", done: true },
+    { day: "Halverwege", text: "Voortgangsgesprek", done: false },
+    { day: "Afronding", text: "Persoonlijke kaart en community moment", done: false },
   ];
   return (
     <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-6 max-w-md">

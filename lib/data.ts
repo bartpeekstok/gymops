@@ -63,8 +63,8 @@ export const coreFeatureTabs = [
   },
   {
     icon: "sparkles",
-    title: "Welkomstflow voor de eerste 90 dagen",
-    body: "De eerste 90 dagen zijn cruciaal voor of een lid blijft. GymOps stuurt automatisch berichten op dag 1, 7, 30, 60 en 90, en zet taken klaar voor jouw coach om persoonlijk contact te zoeken op de juiste momenten.\n\nGeen lid valt nog van de radar in de kwetsbare eerste weken.",
+    title: "Welkomstflow voor nieuwe leden",
+    body: "De eerste weken zijn cruciaal voor of een lid blijft. GymOps stuurt automatisch berichten op de juiste momenten en zet taken klaar voor jouw coach om persoonlijk contact te zoeken.\n\nGeen lid valt nog van de radar in de kwetsbare beginperiode.",
   },
   {
     icon: "calendar-check",
