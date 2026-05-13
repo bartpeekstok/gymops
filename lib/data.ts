@@ -32,16 +32,71 @@ export const everythingCards = [
     icon: "zap",
     title: "Geen lead meer kwijt",
     body: "Iedere lead die binnenkomt via je website, social media of een QR code krijgt binnen één minuut een WhatsApp én e-mail. Bij je coach komt direct een taak binnen om persoonlijk contact op te nemen.\n\nKrijg je iemand niet gelijk te pakken? Dan blijft GymOps geautomatiseerd opvolgen tot er reactie is. GymOps gyms zien hun leadconversie meetbaar omhoog gaan in het eerste kwartaal.",
+    href: "/leadopvolging",
   },
   {
     icon: "heart",
     title: "Geen lid meer vergeten",
     body: "GymOps signaleert wanneer een lid even niet geweest is, jarig is, of een mijlpaal nadert. Een persoonlijk berichtje of handgeschreven kaart vertrekt op het juiste moment.\n\nLeden voelen zich écht gezien en blijven langer. Op diezelfde piekmomenten vraagt GymOps automatisch om een Google review. Leden willen er vaak best één achterlaten, maar denken er zelf niet aan.",
+    href: "/ledenervaring",
   },
   {
     icon: "check",
     title: "Geen taak wordt vergeten",
     body: "Elke taak voor je team wordt automatisch toegewezen aan de juiste coach. Niet opgepakt vandaag? Dan blijft-ie staan en komt-ie morgen weer onder de aandacht.\n\nGaat een coach op vakantie of valt iemand uit? Een collega neemt openstaande taken in één klik over. Geen losse WhatsApp-groepjes, geen vergeten ledencontact. Jouw team werkt voorspelbaar, en jij houdt overzicht.",
+  },
+];
+
+export const leadNurtureTabs = [
+  {
+    icon: "zap",
+    title: "Binnen één minuut reactie op elke lead",
+    body: "Snelheid is statistisch de grootste factor in leadconversie. Zodra iemand zijn gegevens achterlaat, krijgt hij binnen één minuut een WhatsApp én e-mail. Geen wachten tot je tussen lessen door tijd vindt.\n\nGymOps gyms zien hun leadconversie hierdoor meetbaar omhoog gaan in het eerste kwartaal.",
+  },
+  {
+    icon: "inbox",
+    title: "Leads vanuit elk kanaal automatisch binnen",
+    body: "Website-formulier, Meta Ads, QR codes in je gym, een DM op Instagram, een mailtje uit het niets. Alles komt automatisch in GymOps binnen, gekoppeld aan dezelfde lead.\n\nGeen handmatig overtypen, niets dat verloren gaat tussen kanalen door.",
+  },
+  {
+    icon: "message",
+    title: "Multi-channel opvolging met WhatsApp en e-mail",
+    body: "Mensen reageren niet altijd op een mailtje, maar wel op WhatsApp. Of andersom. GymOps stuurt automatisch beide en past de tone-of-voice aan op je gym.\n\nGeen sjabloon-mail uit de leverancierssoftware, wel een bericht dat persoonlijk voelt.",
+  },
+  {
+    icon: "user-check",
+    title: "Persoonlijk contact blijft bij jouw coach",
+    body: "Automatisering doet het werk, jouw coach maakt het persoonlijk. Bij elke nieuwe lead komt er direct een taak binnen bij de juiste coach met de boodschap: bel of app deze persoon even op.\n\nZo blijft het beste van twee werelden: snelheid van automatisering, warmte van persoonlijk contact.",
+  },
+  {
+    icon: "calendar-check",
+    title: "Direct een proefles boeken zonder heen-en-weer",
+    body: "Leads krijgen een persoonlijke link naar je beschikbaarheid en die van je coaches. Ze kiezen zelf een slot dat jullie het beste uitkomt.\n\nGeen mailtjes over en weer, geen dubbele afspraken, geen lege agenda's. Alleen kwalitatieve afspraken die ook echt doorgaan.",
+  },
+  {
+    icon: "repeat",
+    title: "Persistente opvolging tot er reactie is",
+    body: "Krijg je iemand niet meteen te pakken? Dan stopt GymOps niet bij één poging. Er volgen automatisch opvolgberichten in een natuurlijk ritme, op het juiste tijdstip van de dag.\n\nNooit spammerig, wel net genoeg om bovenop de stapel te blijven liggen tot je antwoord krijgt.",
+  },
+  {
+    icon: "bell",
+    title: "Show-rate omhoog met automatische reminders",
+    body: "Een proefles geboekt is nog geen lead die opdaagt. GymOps stuurt reminders via WhatsApp en e-mail tot je lead daadwerkelijk in je gym staat.\n\nMinder no-shows, meer kwalitatieve eerste contactmomenten op de mat.",
+  },
+  {
+    icon: "tag",
+    title: "Berichten met jouw branding, niet die van GymOps",
+    body: "Elke mail, WhatsApp en agenda-uitnodiging komt uit jouw gym. Met jouw logo, jouw toon, jouw kleuren. Niets verraadt dat er een systeem onder zit.\n\nVoor de lead voelt het alsof jij hem persoonlijk volgt. En in zekere zin doe je dat ook.",
+  },
+  {
+    icon: "trending-up",
+    title: "Na de intake gaat het opvolgen door",
+    body: "Veel gyms stoppen na de proefles. Een grote fout. GymOps blijft de lead na de intake automatisch begeleiden richting een besluit, met de juiste informatie op het juiste moment.\n\nNiet aandringen, wel zorgen dat de lead niet wegglipt in twijfel.",
+  },
+  {
+    icon: "rotate",
+    title: "Verloren leads later opnieuw in beeld",
+    body: "Niet elke lead is meteen klaar om te starten. Sommige hebben een paar maanden nodig. GymOps brengt ze automatisch later weer in beeld met een passend bericht, zonder ze te spammen.\n\nLeads die anders volledig zouden verdwijnen, krijgen alsnog een tweede en derde kans om klant te worden.",
   },
 ];
 
