@@ -35,7 +35,7 @@ export const everythingCards = [
   {
     icon: "heart",
     title: "Geen lid meer vergeten",
-    body: "GymOps signaleert wanneer een lid even niet geweest is, jarig is, of een mijlpaal nadert. Een persoonlijk berichtje of handgeschreven kaart vertrekt op het juiste moment.\n\nLeden voelen zich écht gezien, blijven langer en vertellen het door.",
+    body: "GymOps signaleert wanneer een lid even niet geweest is, jarig is, of een mijlpaal nadert. Een persoonlijk berichtje of handgeschreven kaart vertrekt op het juiste moment.\n\nLeden voelen zich écht gezien en blijven langer. Op diezelfde piekmomenten vraagt GymOps automatisch om een Google review. Leden willen er vaak best één achterlaten, maar denken er zelf niet aan.",
   },
   {
     icon: "check",
