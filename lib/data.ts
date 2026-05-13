@@ -134,19 +134,19 @@ export const whyCards = [
 
 export const successQuotes = [
   {
-    quote: "Letterlijk alles is verdubbeld dankzij GymOps – van ons ledenbestand tot onze maandelijkse omzet.",
-    name: "Robert de Vries",
-    company: "eigenaar CrossFit Oost",
+    quote: "In drie maanden zijn we van 22% naar 61% leadconversie gegaan. Elke lead wordt nu automatisch opgevolgd. Ik hoef er niet meer aan te denken.",
+    name: "Jeroen van Duijn",
+    company: "CrossFit Leiden",
   },
   {
-    quote: "Het platform is met ons meegegroeid en alle integraties maken ons leven zo veel makkelijker. Van 20 naar bijna 400 leden.",
-    name: "Sandra Bakker",
-    company: "Dominion MMA Rotterdam",
+    quote: "Twee maanden na de start al 8 nieuwe leden direct uit de automatisering. Het systeem doet het werk terwijl wij bezig zijn met de community.",
+    name: "Kees Houwaart",
+    company: "Gymbox Noordwijk",
   },
   {
-    quote: "GymOps heeft ons gered tijdens de pandemie. Het zag eruit alsof we veel investeerden in technologie, en dat was gratis.",
-    name: "Tim van den Berg",
-    company: "BC-Fit Utrecht",
+    quote: "Mijn coaches werken eindelijk consistent. Iedereen weet wat er moet gebeuren en ik hoef er niet meer achteraan te zitten.",
+    name: "Bart Peekstok",
+    company: "CrossFit Alkmaar",
   },
 ];
 
