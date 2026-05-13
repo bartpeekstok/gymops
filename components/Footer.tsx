@@ -2,14 +2,23 @@ import Link from "next/link";
 import { Star } from "lucide-react";
 import Logo from "./Logo";
 
-const columns = [
+type FooterItem = { label: string; href?: string };
+
+const columns: { title: string; links: FooterItem[] }[] = [
   {
     title: "Product",
-    links: ["Flow", "Prijzen"],
+    links: [
+      { label: "Flow", href: "#" },
+      { label: "Prijzen", href: "#" },
+    ],
   },
   {
     title: "GymOps",
-    links: ["Over ons", "Algemene voorwaarden", "Privacybeleid"],
+    links: [
+      { label: "Over ons", href: "/over-ons" },
+      { label: "Algemene voorwaarden" },
+      { label: "Privacybeleid" },
+    ],
   },
 ];
 
@@ -36,14 +45,18 @@ export default function Footer() {
             <div key={col.title}>
               <h4 className="font-bold text-sm tracking-wider mb-4">{col.title}</h4>
               <ul className="space-y-3">
-                {col.links.map((link) => (
-                  <li key={link}>
-                    <Link
-                      href="#"
-                      className="text-off-white/80 hover:text-accent transition-colors text-sm"
-                    >
-                      {link}
-                    </Link>
+                {col.links.map((item) => (
+                  <li key={item.label}>
+                    {item.href ? (
+                      <Link
+                        href={item.href}
+                        className="text-off-white/80 hover:text-accent transition-colors text-sm"
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <span className="text-off-white/80 text-sm">{item.label}</span>
+                    )}
                   </li>
                 ))}
               </ul>
