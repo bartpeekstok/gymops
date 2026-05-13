@@ -30,17 +30,17 @@ export const everythingCards = [
   {
     icon: "zap",
     title: "Geen lead meer kwijt",
-    body: "Iedere lead — via je website, social media of een QR code — krijgt binnen één minuut een WhatsApp én e-mail. Bij je coach komt direct een taak binnen om persoonlijk contact op te nemen.\n\nKrijg je iemand niet gelijk te pakken? Dan blijft GymOps geautomatiseerd opvolgen tot er reactie is. GymOps gyms zien hun leadconversie meetbaar omhoog gaan in het eerste kwartaal.",
+    body: "Iedere lead die binnenkomt via je website, social media of een QR code krijgt binnen één minuut een WhatsApp én e-mail. Bij je coach komt direct een taak binnen om persoonlijk contact op te nemen.\n\nKrijg je iemand niet gelijk te pakken? Dan blijft GymOps geautomatiseerd opvolgen tot er reactie is. GymOps gyms zien hun leadconversie meetbaar omhoog gaan in het eerste kwartaal.",
   },
   {
     icon: "heart",
     title: "Geen lid meer vergeten",
-    body: "GymOps signaleert wanneer een lid even niet geweest is, jarig is, of z'n 100ste les gaat doen. Een persoonlijk berichtje of handgeschreven kaart vertrekt op het juiste moment.\n\nResultaat: gemiddelde looptijd van 8 maanden, 96% retentie, en leden die zich écht gezien voelen.",
+    body: "GymOps signaleert wanneer een lid even niet geweest is, jarig is, of een mijlpaal nadert. Een persoonlijk berichtje of handgeschreven kaart vertrekt op het juiste moment.\n\nLeden voelen zich écht gezien, blijven langer en vertellen het door.",
   },
   {
     icon: "check",
-    title: "Geen taak meer blijven liggen",
-    body: "Elke taak voor je team wordt automatisch toegewezen aan de juiste coach. Niet opgepakt vandaag? Dan blijft-ie staan en komt-ie morgen weer onder de aandacht.\n\nGeen losse WhatsApp-groepjes, geen vergeten ledencontact. CrossFit Alkmaar en CrossFit Leiden draaien er al jaren op — jouw team werkt voorspelbaar, en jij houdt overzicht.",
+    title: "Geen taak wordt vergeten",
+    body: "Elke taak voor je team wordt automatisch toegewezen aan de juiste coach. Niet opgepakt vandaag? Dan blijft-ie staan en komt-ie morgen weer onder de aandacht.\n\nGeen losse WhatsApp-groepjes, geen vergeten ledencontact. CrossFit Alkmaar en CrossFit Leiden draaien er al jaren op. Jouw team werkt voorspelbaar, en jij houdt overzicht.",
   },
 ];
 
