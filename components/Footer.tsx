@@ -9,7 +9,7 @@ const columns = [
   },
   {
     title: "GymOps",
-    links: ["Over ons", "Werken bij ons", "Algemene voorwaarden", "Privacybeleid"],
+    links: ["Over ons", "Algemene voorwaarden", "Privacybeleid"],
   },
 ];
 
