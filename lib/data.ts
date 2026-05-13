@@ -11,6 +11,7 @@ export const trustedLogos = [
   { name: "CrossFit Capelle", src: "/logo-cfc.png", larger: true },
   { name: "CrossFit Leiden", src: "/logo-cfl.png", larger: true },
   { name: "GymBox", src: "/logo-gymbox.png" },
+  { name: "Unscared CrossFit", src: "/logo-unscared.jpg" },
 ];
 
 export const dashboardStats = [
