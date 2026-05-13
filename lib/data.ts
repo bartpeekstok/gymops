@@ -28,19 +28,19 @@ export const atRiskMembers = [
 
 export const everythingCards = [
   {
-    icon: "users",
-    title: "Betere ledenervaring",
-    body: "GymOps signaleert wat jij anders pas laat op de bank thuis bedenkt: Jeroen is al drie weken niet geweest, is Lisa nou morgen jarig? Mark heeft vandaag zijn 100ste les meegedaan, heeft hij wel een cadeautje gekregen?\n\nEr wordt automatisch een taak aangemaakt bij de coach voor wie dit is. Zo blijft al het ledencontact persoonlijk en oprecht. Een persoonlijk bericht doet zoveel meer dan weer een geautomatiseerd mailtje.",
+    icon: "zap",
+    title: "Geen lead meer kwijt",
+    body: "Iedere lead — via je website, social media of een QR code — krijgt binnen één minuut een WhatsApp én e-mail. Bij je coach komt direct een taak binnen om persoonlijk contact op te nemen.\n\nKrijg je iemand niet gelijk te pakken? Dan blijft GymOps geautomatiseerd opvolgen tot er reactie is. GymOps gyms zien hun leadconversie meetbaar omhoog gaan in het eerste kwartaal.",
   },
   {
-    icon: "gear",
-    title: "Automatische leadopvolging",
-    body: "Verlies geen lead meer uit het oog. Iemand die z'n gegevens achterlaat op social media, je website of via een QR code krijgt automatisch een WhatsApp bericht en e-mail. Daarnaast worden er gelijk taken aangemaakt bij het personeel om zo snel mogelijk contact op te nemen.\n\nKrijg je iemand niet gelijk te pakken? Dan blijft GymOps automatisch berichten sturen en meldingen bij coaches maken zodat je nooit meer leads vergeet.",
+    icon: "heart",
+    title: "Geen lid meer vergeten",
+    body: "GymOps signaleert wanneer een lid even niet geweest is, jarig is, of z'n 100ste les gaat doen. Een persoonlijk berichtje of handgeschreven kaart vertrekt op het juiste moment.\n\nResultaat: gemiddelde looptijd van 8 maanden, 96% retentie, en leden die zich écht gezien voelen.",
   },
   {
-    icon: "chart",
-    title: "Custom website",
-    body: "Bij GymOps bouwen we websites met dezelfde professionele technologie die wordt gebruikt door bedrijven als Netflix, Nike, Uber en Spotify. We gebruiken geen standaard WordPress-thema's of page builders, we bouwen maatwerk software die is geoptimaliseerd voor snelheid, veiligheid en conversie.\n\nSimpel gezegd: jouw website is gebouwd als een app, niet als een document. Dat maakt het sneller, veiliger en een stuk professioneler dan wat de meeste gyms gebruiken.",
+    icon: "check",
+    title: "Geen taak meer blijven liggen",
+    body: "Elke taak voor je team wordt automatisch toegewezen aan de juiste coach. Niet opgepakt vandaag? Dan blijft-ie staan en komt-ie morgen weer onder de aandacht.\n\nGeen losse WhatsApp-groepjes, geen vergeten ledencontact. CrossFit Alkmaar en CrossFit Leiden draaien er al jaren op — jouw team werkt voorspelbaar, en jij houdt overzicht.",
   },
 ];
 

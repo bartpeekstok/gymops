@@ -1,11 +1,11 @@
-import { Users, Settings, BarChart3 } from "lucide-react";
+import { Zap, Heart, CheckCheck } from "lucide-react";
 import Button from "../ui/Button";
 import { everythingCards } from "@/lib/data";
 
 const iconMap = {
-  users: Users,
-  gear: Settings,
-  chart: BarChart3,
+  zap: Zap,
+  heart: Heart,
+  check: CheckCheck,
 } as const;
 
 export default function EverythingYouNeed() {
