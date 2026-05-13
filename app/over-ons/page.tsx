@@ -6,47 +6,23 @@ export default function AboutPage() {
   return (
     <>
       <section className="bg-white pt-16 pb-20">
-        <div className="container-page grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <p className="text-primary tracking-wider font-bold text-sm">
-              Gebouwd door gym-eigenaren, voor gym-eigenaren
-            </p>
-            <h1 className="text-5xl font-black text-dark mt-3 leading-tight">
-              Hallo! Wij zijn GymOps!
-            </h1>
-            <p className="text-gray-600 mt-5 leading-relaxed">
-              GymOps is opgericht door Jeroen van Duijn (CrossFit Leiden) en Bart Peekstok
-              (CrossFit Alkmaar). Onze eigen gyms draaien op het systeem en we ontwikkelen het
-              dagelijks door op basis van wat in de praktijk werkt.
-            </p>
-            <p className="text-gray-600 mt-4 leading-relaxed">
-              We bouwen GymOps voor coaching gyms zoals die van ons: in het Nederlands,
-              afgestemd op hoe een gym écht werkt, en met support van mensen die hetzelfde
-              pad hebben gelopen.
-            </p>
-          </div>
-
-          <div className="relative">
-            <div className="grid grid-cols-2 gap-4">
-              {founders.map((f) => (
-                <div
-                  key={f.name}
-                  className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-lg"
-                >
-                  <Image
-                    src={f.photo}
-                    alt={f.name}
-                    fill
-                    sizes="(max-width: 1024px) 50vw, 25vw"
-                    className="object-cover"
-                  />
-                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                    <p className="text-white font-bold text-sm">{f.name}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+        <div className="container-page max-w-3xl">
+          <p className="text-primary tracking-wider font-bold text-sm">
+            Gebouwd door gym-eigenaren, voor gym-eigenaren
+          </p>
+          <h1 className="text-5xl font-black text-dark mt-3 leading-tight">
+            Hallo! Wij zijn GymOps!
+          </h1>
+          <p className="text-gray-600 mt-5 leading-relaxed">
+            GymOps is opgericht door Jeroen van Duijn (CrossFit Leiden) en Bart Peekstok
+            (CrossFit Alkmaar). Onze eigen gyms draaien op het systeem en we ontwikkelen het
+            dagelijks door op basis van wat in de praktijk werkt.
+          </p>
+          <p className="text-gray-600 mt-4 leading-relaxed">
+            We bouwen GymOps voor coaching gyms zoals die van ons: in het Nederlands,
+            afgestemd op hoe een gym écht werkt, en met support van mensen die hetzelfde
+            pad hebben gelopen.
+          </p>
         </div>
       </section>
 
