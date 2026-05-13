@@ -96,7 +96,7 @@ export const leadNurtureTabs = [
   {
     icon: "trending-up",
     title: "Na de intake gaat het opvolgen door",
-    body: "Veel gyms stoppen na de proefles. Een grote fout. GymOps blijft de lead na de intake automatisch begeleiden richting een besluit, met de juiste informatie op het juiste moment.\n\nZodra de lead beslist, gaat het abonnement automatisch live in SportBit. Geen dubbele administratie, geen handmatig overtypen.",
+    body: "Veel gyms stoppen na de proefles. Een grote fout. GymOps blijft de lead na de intake automatisch begeleiden richting een besluit, met de juiste informatie op het juiste moment.\n\nZodra het abonnement in SportBit live gaat, pakt GymOps het automatisch op en start de welkomstflow voor het nieuwe lid. Geen dubbele administratie, geen handmatig overtypen.",
   },
   {
     icon: "rotate",
