@@ -26,10 +26,7 @@ export default function SuccessStories() {
             <p className="mt-6 font-bold">
               {current.name} <span className="text-off-white/70 font-normal">– {current.company}</span>
             </p>
-            <div className="flex items-center justify-between mt-8">
-              <a href="#" className="text-accent font-semibold">
-                Lees het verhaal →
-              </a>
+            <div className="flex items-center justify-end mt-8">
               <div className="flex gap-2">
                 <button
                   onClick={() => setIdx((i) => (i - 1 + total) % total)}
