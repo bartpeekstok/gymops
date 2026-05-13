@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Button from "@/components/ui/Button";
 import { founders, values } from "@/lib/data";
 
@@ -26,14 +27,22 @@ export default function AboutPage() {
           </div>
 
           <div className="relative">
-            <div className="bg-gradient-to-br from-primary to-accent rounded-2xl h-80 w-full" />
-            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex -space-x-3">
-              {["JV", "BP"].map((init) => (
+            <div className="grid grid-cols-2 gap-4">
+              {founders.map((f) => (
                 <div
-                  key={init}
-                  className="h-14 w-14 rounded-full border-4 border-white bg-navy text-white flex items-center justify-center font-bold text-sm shadow"
+                  key={f.name}
+                  className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-lg"
                 >
-                  {init}
+                  <Image
+                    src={f.photo}
+                    alt={f.name}
+                    fill
+                    sizes="(max-width: 1024px) 50vw, 25vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                    <p className="text-white font-bold text-sm">{f.name}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -45,14 +54,16 @@ export default function AboutPage() {
         <div className="container-page">
           <h2 className="text-3xl font-black text-dark text-center">Ontmoet de oprichters</h2>
           <div className="grid md:grid-cols-2 gap-8 mt-12">
-            {founders.map((f, i) => (
+            {founders.map((f) => (
               <div key={f.name} className="bg-white rounded-2xl p-8 shadow-sm">
-                <div
-                  className={`h-24 w-24 rounded-full flex items-center justify-center font-black text-2xl ${
-                    i === 0 ? "bg-primary/20 text-primary" : "bg-accent/20 text-accent"
-                  }`}
-                >
-                  {f.initials}
+                <div className="relative h-24 w-24 rounded-full overflow-hidden">
+                  <Image
+                    src={f.photo}
+                    alt={f.name}
+                    fill
+                    sizes="96px"
+                    className="object-cover"
+                  />
                 </div>
                 <h3 className="font-black text-xl text-dark mt-5">{f.name}</h3>
                 <p className="text-gray-500 font-medium text-sm mt-1">{f.role}</p>
