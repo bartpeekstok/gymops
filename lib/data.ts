@@ -59,6 +59,11 @@ export const leadNurtureTabs = [
     body: "Website-formulier, Meta Ads, QR codes in je gym, een DM op Instagram, een mailtje uit het niets. Alles komt automatisch in GymOps binnen, gekoppeld aan dezelfde lead.\n\nGeen handmatig overtypen, niets dat verloren gaat tussen kanalen door.",
   },
   {
+    icon: "layout",
+    title: "Een dashboard waar je elke lead in beeld hebt",
+    body: "Open GymOps en je ziet in één oogopslag: wie er nieuw binnenkwam, wie er wacht op een proefles, wie er nog opvolging nodig heeft. Per lead zie je het kanaal, de status en het laatste contactmoment.\n\nGeen leads die je 's avonds op de bank thuis ineens herinnert. Alles overzichtelijk op één plek, voor jou én je team.",
+  },
+  {
     icon: "message",
     title: "Multi-channel opvolging met WhatsApp en e-mail",
     body: "Mensen reageren niet altijd op een mailtje, maar wel op WhatsApp. Of andersom. GymOps stuurt automatisch beide en past de tone-of-voice aan op je gym.\n\nGeen sjabloon-mail uit de leverancierssoftware, wel een bericht dat persoonlijk voelt.",
@@ -97,6 +102,11 @@ export const leadNurtureTabs = [
     icon: "rotate",
     title: "Verloren leads later opnieuw in beeld",
     body: "Niet elke lead is meteen klaar om te starten. Sommige hebben een paar maanden nodig. GymOps brengt ze automatisch later weer in beeld met een passend bericht, zonder ze te spammen.\n\nLeads die anders volledig zouden verdwijnen, krijgen alsnog een tweede en derde kans om klant te worden.",
+  },
+  {
+    icon: "pen",
+    title: "Handgeschreven kaarten naar ex-leden en koude leads",
+    body: "Soms heeft een digitaal bericht z'n grens. Een handgeschreven kaart in de bus valt op tussen het werk en de Bol.com pakketten. Met één klik in GymOps stuur je een kaart met persoonlijke tekst naar een ex-lid of een koude lead.\n\nJe kunt ook automatisch een kaart laten sturen bij een mijlpaal of na een x aantal maanden stilte. Persoonlijk, fysiek, en onverwacht.",
   },
 ];
 

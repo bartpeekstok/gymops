@@ -1,6 +1,7 @@
 import {
   Zap,
   Inbox,
+  LayoutDashboard,
   MessageSquare,
   UserCheck,
   CalendarCheck,
@@ -9,6 +10,7 @@ import {
   Tag,
   TrendingUp,
   RotateCcw,
+  Pen,
   Mail,
   MessageCircle,
   QrCode,
@@ -23,6 +25,7 @@ import { leadNurtureTabs } from "@/lib/data";
 const iconMap = {
   zap: Zap,
   inbox: Inbox,
+  layout: LayoutDashboard,
   message: MessageSquare,
   "user-check": UserCheck,
   "calendar-check": CalendarCheck,
@@ -31,6 +34,7 @@ const iconMap = {
   tag: Tag,
   "trending-up": TrendingUp,
   rotate: RotateCcw,
+  pen: Pen,
 } as const;
 
 function FeatureMockup({ icon }: { icon: string }) {
@@ -39,6 +43,8 @@ function FeatureMockup({ icon }: { icon: string }) {
       return <ZapMockup />;
     case "inbox":
       return <InboxMockup />;
+    case "layout":
+      return <DashboardMockup />;
     case "message":
       return <MessageMockup />;
     case "user-check":
@@ -55,6 +61,8 @@ function FeatureMockup({ icon }: { icon: string }) {
       return <TrendingMockup />;
     case "rotate":
       return <RotateMockup />;
+    case "pen":
+      return <PenCardMockup />;
     default:
       return null;
   }
@@ -317,6 +325,63 @@ function TrendingMockup() {
           </li>
         ))}
       </ol>
+    </div>
+  );
+}
+
+function DashboardMockup() {
+  const leads = [
+    { name: "Sander V.", source: "Meta Ads", status: "Nieuw", color: "bg-blue-100 text-blue-700" },
+    { name: "Lisa B.", source: "Website", status: "Proefles gepland", color: "bg-green-100 text-green-700" },
+    { name: "Mark P.", source: "QR code in box", status: "In gesprek", color: "bg-amber-100 text-amber-700" },
+    { name: "Linda H.", source: "Instagram DM", status: "Wacht op reactie", color: "bg-rose-100 text-rose-700" },
+    { name: "Tom B.", source: "Website", status: "Nieuw", color: "bg-blue-100 text-blue-700" },
+  ];
+  return (
+    <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-6 max-w-md w-full">
+      <div className="flex items-center justify-between mb-5">
+        <div>
+          <p className="font-black text-dark">Alle leads in beeld</p>
+          <p className="text-xs text-gray-500">Bijgewerkt zojuist</p>
+        </div>
+        <span className="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full font-bold">
+          12 deze week
+        </span>
+      </div>
+      <div className="space-y-2">
+        {leads.map((l) => (
+          <div key={l.name} className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+            <div className="h-9 w-9 rounded-full bg-gradient-to-br from-primary to-accent text-white font-black text-sm flex items-center justify-center flex-shrink-0">
+              {l.name.charAt(0)}
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="font-bold text-dark text-sm truncate">{l.name}</p>
+              <p className="text-xs text-gray-500 truncate">{l.source}</p>
+            </div>
+            <span
+              className={`text-[10px] font-bold px-2 py-1 rounded-full whitespace-nowrap ${l.color}`}
+            >
+              {l.status}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function PenCardMockup() {
+  return (
+    <div className="relative">
+      <div className="absolute -inset-4 bg-gradient-to-br from-amber-100/40 to-rose-100/30 rounded-3xl -z-10" />
+      <div className="bg-amber-50 rounded-2xl shadow-2xl p-10 border border-amber-200/60 -rotate-1 max-w-md">
+        <p className="font-serif italic text-2xl text-amber-900">Hé Mark,</p>
+        <p className="font-serif italic text-amber-900/80 mt-5 leading-relaxed text-lg">
+          We missen je in de box. Hoe is het met je trainingen? Loop eens binnen voor een
+          open les, we trakteren.
+        </p>
+        <p className="font-serif italic text-amber-900 mt-8">— Daan &amp; team Zuidlaren</p>
+      </div>
     </div>
   );
 }
