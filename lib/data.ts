@@ -96,7 +96,7 @@ export const leadNurtureTabs = [
   {
     icon: "trending-up",
     title: "Na de intake gaat het opvolgen door",
-    body: "Veel gyms stoppen na de proefles. Een grote fout. GymOps blijft de lead na de intake automatisch begeleiden richting een besluit, met de juiste informatie op het juiste moment.\n\nNiet aandringen, wel zorgen dat de lead niet wegglipt in twijfel.",
+    body: "Veel gyms stoppen na de proefles. Een grote fout. GymOps blijft de lead na de intake automatisch begeleiden richting een besluit, met de juiste informatie op het juiste moment.\n\nZodra de lead beslist, gaat het abonnement automatisch live in SportBit. Geen dubbele administratie, geen handmatig overtypen.",
   },
   {
     icon: "rotate",
@@ -149,7 +149,7 @@ export const coreFeatureTabs = [
   {
     icon: "heart",
     title: "Houd je trouwe leden in beeld",
-    body: "GymOps signaleert wanneer een lid even niet geweest is en zet automatisch een taak klaar bij de juiste coach om persoonlijk contact te leggen. Geen massamailtje, maar een berichtje van iemand die ze kennen.\n\nEven te druk? Dan blijft de taak openstaan tot hij is afgehandeld. Zo glipt niemand stilletjes weg.",
+    body: "Via de SportBit-koppeling weet GymOps wie er wanneer in de gym staat. Het systeem signaleert direct wanneer een lid even niet geweest is en zet automatisch een taak klaar bij de juiste coach om persoonlijk contact te leggen. Geen massamailtje, maar een berichtje van iemand die ze kennen.\n\nEven te druk? Dan blijft de taak openstaan tot hij is afgehandeld. Zo glipt niemand stilletjes weg.",
   },
   {
     icon: "star",

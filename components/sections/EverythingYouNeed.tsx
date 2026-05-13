@@ -17,8 +17,8 @@ export default function EverythingYouNeed() {
         </p>
         <h2 className="text-4xl font-black text-dark mt-2">Alles op één plek</h2>
         <p className="text-gray-600 max-w-2xl mx-auto mt-4">
-          Het succes van jouw gym begint met de juiste tools. Ons eenvoudig te gebruiken,
-          verbonden platform biedt de slimste oplossingen voor elke behoefte.
+          Het succes van jouw gym begint met de juiste tools. GymOps koppelt naadloos met
+          SportBit en alle tools die je al gebruikt, zodat alles op één plek samenkomt.
         </p>
 
         <div className="grid md:grid-cols-3 gap-6 mt-12 text-left">

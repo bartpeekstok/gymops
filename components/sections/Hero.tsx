@@ -10,8 +10,8 @@ export default function Hero() {
           Elke lead opgevolgd. Elk lid gezien. Elke taak gedaan.
         </h1>
         <p className="text-lg text-gray-600 max-w-3xl leading-relaxed mt-6">
-          Het systeem voor leadopvolging, ledenbehoud en team-aansturing. Gebouwd voor en door
-          gym-owners.
+          Het systeem voor leadopvolging, ledenbehoud en team-aansturing, naadloos gekoppeld
+          aan SportBit. Gebouwd voor en door gym-owners.
         </p>
         <div className="flex flex-wrap gap-4 mt-8">
           <Button variant="primary" href="/demo">
