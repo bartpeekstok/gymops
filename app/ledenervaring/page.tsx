@@ -65,7 +65,7 @@ function PenMockup() {
         <p className="font-serif italic text-amber-900/80 mt-5 leading-relaxed text-lg">
           Gefeliciteerd met je verjaardag! Geniet van je dag, en tot dinsdag in de box.
         </p>
-        <p className="font-serif italic text-amber-900 mt-8">— Jeroen &amp; team CFA</p>
+        <p className="font-serif italic text-amber-900 mt-8">— Daan &amp; team Zuidlaren</p>
       </div>
     </div>
   );
@@ -78,10 +78,10 @@ function MailMockup() {
         <div className="h-10 w-10 rounded-xl bg-primary flex items-center justify-center">
           <span className="text-white font-black text-lg">C</span>
         </div>
-        <p className="text-white font-bold">CrossFit Alkmaar</p>
+        <p className="text-white font-bold">CrossFit Zuidlaren</p>
       </div>
       <div className="p-6">
-        <p className="text-xs text-gray-500">van: info@crossfitalkmaar.nl</p>
+        <p className="text-xs text-gray-500">van: info@crossfitzuidlaren.nl</p>
         <p className="font-black text-dark text-lg mt-2">Welkom Sander, fijn dat je er bent!</p>
         <p className="text-gray-600 mt-3 text-sm leading-relaxed">
           Top dat je morgen langskomt voor je proefles. Wat kun je verwachten? We beginnen met
@@ -173,7 +173,7 @@ function CalendarMockup() {
       </div>
       <div className="mt-5 pt-5 border-t border-gray-100 flex items-center gap-2 text-xs text-gray-500">
         <CalendarCheck className="h-4 w-4 text-primary" />
-        Bevestigd bij jou én bij coach Bart
+        Bevestigd bij jou én bij coach Daan
       </div>
     </div>
   );
@@ -184,7 +184,7 @@ function BellMockup() {
     <div className="bg-gradient-to-br from-[#075e54] to-[#128c7e] rounded-2xl p-6 shadow-xl max-w-md">
       <div className="bg-[#dcf8c6] rounded-2xl rounded-tl-none p-4 shadow-md max-w-[85%]">
         <p className="text-sm text-dark leading-relaxed">
-          Hoi Sander! 👋 Morgen om 10:00 staat je proefles bij CrossFit Alkmaar. Laat even
+          Hoi Sander! 👋 Morgen om 10:00 staat je proefles bij CrossFit Zuidlaren. Laat even
           weten of het lukt!
         </p>
         <p className="text-[10px] text-gray-500 mt-2 text-right">9:43</p>
@@ -211,7 +211,7 @@ function TrophyMockup() {
         Mark heeft vandaag zijn 100ste les gedaan!
       </p>
       <div className="mt-6 bg-white/10 rounded-xl p-4 backdrop-blur-sm border border-white/10">
-        <p className="text-sm font-bold">Taak voor coach Bart</p>
+        <p className="text-sm font-bold">Taak voor coach Daan</p>
         <p className="text-sm mt-1 opacity-90">
           Stuur Mark een persoonlijke kaart en regel een 100-les shirt
         </p>
@@ -256,7 +256,7 @@ function StarMockup() {
       <div className="flex items-center gap-3 mb-5 pb-5 border-b border-gray-100">
         <Image src="/integ-google.webp" alt="Google" width={36} height={36} />
         <div>
-          <p className="font-black text-dark text-sm">CrossFit Alkmaar</p>
+          <p className="font-black text-dark text-sm">CrossFit Zuidlaren</p>
           <div className="flex items-center gap-1 mt-1">
             {[1, 2, 3, 4, 5].map((i) => (
               <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
@@ -285,7 +285,7 @@ function RotateMockup() {
           Hé Mark, je hebt al even niet bij ons getraind. Volgende week starten we een nieuw
           6-weekse programma. Interesse om even bij te praten?
         </p>
-        <p className="text-xs text-gray-500 mt-2">Bart · CFA</p>
+        <p className="text-xs text-gray-500 mt-2">Daan · CrossFit Zuidlaren</p>
       </div>
       <div className="mt-3 bg-primary text-white rounded-2xl rounded-tr-none p-4 max-w-[85%] ml-auto">
         <p className="text-sm">Goed dat je belt! Misschien is dit het juiste moment om weer in te stappen.</p>
