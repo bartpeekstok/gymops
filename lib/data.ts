@@ -11,7 +11,7 @@ export const trustedLogos = [
   { name: "CrossFit Capelle", src: "/logo-cfc.png", larger: true },
   { name: "CrossFit Leiden", src: "/logo-cfl.png", larger: true },
   { name: "GymBox", src: "/logo-gymbox.png" },
-  { name: "Unscared CrossFit", src: "/logo-unscared.jpg" },
+  { name: "Unscared CrossFit", src: "/logo-unscared.jpg", larger: true },
 ];
 
 export const dashboardStats = [
@@ -62,9 +62,19 @@ export const coreFeatureTabs = [
     body: "Eventpagina, inschrijfformulier met directe betaling, bevestigingsmail, taak voor je team, en een after-event flow naar abonnement.",
   },
   {
+    icon: "sparkles",
+    title: "Welkomstflow voor de eerste 90 dagen",
+    body: "De eerste 90 dagen zijn cruciaal voor of een lid blijft. GymOps stuurt automatisch berichten op dag 1, 7, 30, 60 en 90, en zet taken klaar voor jouw coach om persoonlijk contact te zoeken op de juiste momenten.\n\nGeen lid valt nog van de radar in de kwetsbare eerste weken.",
+  },
+  {
     icon: "calendar-check",
     title: "Slim afspraken plannen, zonder heen-en-weer.",
     body: "We koppelen jouw beschikbaarheid en die van je team aan het systeem. Leads en leden krijgen alleen tijden te zien die jullie het best uitkomen. Scheelt uren per week aan mailtjes.",
+  },
+  {
+    icon: "bell",
+    title: "Show-rate omhoog met slimme reminders",
+    body: "Heeft een lead een proefles geboekt? GymOps stuurt automatisch reminders via WhatsApp en e-mail tot ze in je gym staan. Niet te veel berichten, maar genoeg om je opkomstpercentage hoog te houden.\n\nMinder no-shows betekent meer leads die echt klant worden.",
   },
   {
     icon: "trophy",
@@ -75,6 +85,16 @@ export const coreFeatureTabs = [
     icon: "heart",
     title: "Oog voor nieuwe en oudere leden",
     body: "Bij nieuwe leden is het belangrijk om ze minstens de eerste 90 dagen veel aandacht te geven. In GymOps vind je meerdere customer journeys met veel contactmomenten voor nieuwe leden.\n\nBestaande leden verdienen ook aandacht: GymOps signaleert wanneer iemand even niet geweest is en zorgt ervoor dat jij persoonlijk contact kan opnemen. Ben je nu even te druk? Dan blijft deze taak open staan zodat het niet wordt vergeten.",
+  },
+  {
+    icon: "star",
+    title: "Google reviews op het juiste moment",
+    body: "Tevreden leden willen vaak best een Google review achterlaten, maar denken er zelf niet aan. GymOps vraagt het automatisch op piekmomenten: na een mijlpaal, na een PR, na een goede les.\n\nDe meeste GymOps gebruikers staan al op 250+ Google reviews.",
+  },
+  {
+    icon: "rotate",
+    title: "Ex-leden terughalen zonder ze te spammen",
+    body: "Soms heeft een ex-lid alleen een klein duwtje nodig om weer terug te komen. GymOps heeft kant-en-klare reactivatie-flows met WhatsApp en mail, op een toon die past bij jouw gym.\n\nGeen massamailtje dat als spam voelt, wel een persoonlijke uitnodiging op het juiste moment.",
   },
 ];
 
