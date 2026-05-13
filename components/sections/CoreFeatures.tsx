@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { Pen, Mail, PartyPopper } from "lucide-react";
 import Button from "../ui/Button";
 import { GearIcon } from "../Logo";
@@ -10,6 +13,9 @@ const iconMap = {
 } as const;
 
 export default function CoreFeatures() {
+  const [hovered, setHovered] = useState<number | null>(null);
+  const active = hovered ?? 0;
+
   return (
     <section className="bg-white py-20">
       <div className="container-page">
@@ -28,22 +34,48 @@ export default function CoreFeatures() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mt-16">
-          <div className="space-y-8">
+          <div
+            className="space-y-8"
+            onMouseLeave={() => setHovered(null)}
+          >
             {coreFeatureTabs.slice(0, 3).map((tab, idx) => {
               const Icon = iconMap[tab.icon as keyof typeof iconMap];
-              const isActive = idx === 0;
+              const isActive = active === idx;
               return (
                 <div
                   key={tab.title}
-                  className={`pt-5 ${isActive ? "border-t-4 border-primary" : "border-t border-gray-200"}`}
+                  onMouseEnter={() => setHovered(idx)}
+                  className={`pt-5 transition-all duration-300 cursor-default ${
+                    isActive
+                      ? "border-t-4 border-primary"
+                      : "border-t border-gray-200"
+                  }`}
                 >
                   <div className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary flex-shrink-0">
+                    <div
+                      className={`flex h-10 w-10 items-center justify-center rounded-full flex-shrink-0 transition-colors duration-300 ${
+                        isActive
+                          ? "bg-primary/10 text-primary"
+                          : "bg-gray-100 text-gray-400"
+                      }`}
+                    >
                       <Icon className="h-5 w-5" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-dark text-lg">{tab.title}</h3>
-                      <p className="text-gray-600 mt-2 whitespace-pre-line">{tab.body.split("\n\n")[0]}</p>
+                      <h3
+                        className={`font-bold text-lg transition-colors duration-300 ${
+                          isActive ? "text-dark" : "text-gray-400"
+                        }`}
+                      >
+                        {tab.title}
+                      </h3>
+                      <p
+                        className={`mt-2 whitespace-pre-line transition-colors duration-300 ${
+                          isActive ? "text-gray-600" : "text-gray-400"
+                        }`}
+                      >
+                        {tab.body.split("\n\n")[0]}
+                      </p>
                     </div>
                   </div>
                 </div>
