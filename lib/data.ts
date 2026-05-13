@@ -83,8 +83,8 @@ export const coreFeatureTabs = [
   },
   {
     icon: "heart",
-    title: "Oog voor nieuwe en oudere leden",
-    body: "Bij nieuwe leden is het belangrijk om ze minstens de eerste 90 dagen veel aandacht te geven. In GymOps vind je meerdere customer journeys met veel contactmomenten voor nieuwe leden.\n\nBestaande leden verdienen ook aandacht: GymOps signaleert wanneer iemand even niet geweest is en zorgt ervoor dat jij persoonlijk contact kan opnemen. Ben je nu even te druk? Dan blijft deze taak open staan zodat het niet wordt vergeten.",
+    title: "Houd je trouwe leden in beeld",
+    body: "GymOps signaleert wanneer een lid even niet geweest is en zet automatisch een taak klaar bij de juiste coach om persoonlijk contact te leggen. Geen massamailtje, maar een berichtje van iemand die ze kennen.\n\nEven te druk? Dan blijft de taak openstaan tot hij is afgehandeld. Zo glipt niemand stilletjes weg.",
   },
   {
     icon: "star",
