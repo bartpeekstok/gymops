@@ -11,8 +11,8 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <TrustedBy />
       <EverythingYouNeed />
+      <TrustedBy />
       <CoreFeatures />
       <GrowFeatures />
       <WhyGymOps />
