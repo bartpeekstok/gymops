@@ -43,7 +43,7 @@ export default function CoreFeatures() {
                     </div>
                     <div>
                       <h3 className="font-bold text-dark text-lg">{tab.title}</h3>
-                      <p className="text-gray-600 mt-2 whitespace-pre-line">{tab.body}</p>
+                      <p className="text-gray-600 mt-2 whitespace-pre-line">{tab.body.split("\n\n")[0]}</p>
                     </div>
                   </div>
                 </div>
