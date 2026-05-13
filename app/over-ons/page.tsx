@@ -1,28 +1,32 @@
 import Image from "next/image";
+import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
 import { founders, values } from "@/lib/data";
 
 export default function AboutPage() {
   return (
     <>
-      <section className="bg-white pt-16 pb-20">
-        <div className="container-page max-w-3xl">
-          <p className="text-primary tracking-wider font-bold text-sm">
-            Gebouwd door gym-eigenaren, voor gym-eigenaren
-          </p>
-          <h1 className="text-5xl font-black text-dark mt-3 leading-tight">
-            Hallo! Wij zijn GymOps!
+      <section className="bg-white">
+        <div className="container-page py-20">
+          <Badge>Gebouwd door gym-eigenaren, voor gym-eigenaren</Badge>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.1] text-dark mt-6 break-words [hyphens:none]">
+            Hallo! Wij zijn GymOps.
           </h1>
-          <p className="text-gray-600 mt-5 leading-relaxed">
+          <p className="text-lg text-gray-600 max-w-3xl leading-relaxed mt-6">
             GymOps is opgericht door Jeroen van Duijn (CrossFit Leiden) en Bart Peekstok
             (CrossFit Alkmaar). Onze eigen gyms draaien op het systeem en we ontwikkelen het
             dagelijks door op basis van wat in de praktijk werkt.
           </p>
-          <p className="text-gray-600 mt-4 leading-relaxed">
+          <p className="text-lg text-gray-600 max-w-3xl leading-relaxed mt-4">
             We bouwen GymOps voor coaching gyms zoals die van ons: in het Nederlands,
             afgestemd op hoe een gym écht werkt, en met support van mensen die hetzelfde
             pad hebben gelopen.
           </p>
+          <div className="flex flex-wrap gap-4 mt-8">
+            <Button variant="primary" href="/demo">
+              Plan een demo
+            </Button>
+          </div>
         </div>
       </section>
 
