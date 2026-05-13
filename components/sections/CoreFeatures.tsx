@@ -1,26 +1,13 @@
-import { Pen, Star, Mail, Zap, PartyPopper, CalendarCheck, Trophy, Heart } from "lucide-react";
+import { Pen, Mail, PartyPopper } from "lucide-react";
 import Button from "../ui/Button";
 import { GearIcon } from "../Logo";
 import { coreFeatureTabs } from "@/lib/data";
 
 const iconMap = {
   pen: Pen,
-  star: Star,
   mail: Mail,
   party: PartyPopper,
-  "calendar-check": CalendarCheck,
-  trophy: Trophy,
-  heart: Heart,
 } as const;
-
-const activityFeed = [
-  { Icon: Pen, text: "Handgeschreven kaart naar Lisa de B.", time: "2 min geleden", bg: "bg-primary" },
-  { Icon: Star, text: "Review-verzoek naar Mark P.", time: "12 min geleden", bg: "bg-accent" },
-  { Icon: Mail, text: "Welkomstmail naar lead Sander V.", time: "18 min geleden", bg: "bg-primary-dark" },
-  { Icon: CalendarCheck, text: "Afspraak met Jeroen K. – di 14:00", time: "27 min geleden", bg: "bg-primary" },
-  { Icon: PartyPopper, text: "Bring-a-Friend event aangemaakt", time: "1 uur geleden", bg: "bg-accent" },
-  { Icon: Zap, text: "Tariefswijziging live op website", time: "2 uur geleden", bg: "bg-primary-dark" },
-];
 
 export default function CoreFeatures() {
   return (
@@ -64,36 +51,14 @@ export default function CoreFeatures() {
             })}
           </div>
 
-          <div className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-br from-primary/5 to-accent/10 rounded-3xl -z-10" />
-            <div className="bg-white rounded-3xl border border-gray-200 shadow-xl p-6">
-              <div className="flex items-center gap-3 pb-4 border-b border-gray-100">
-                <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <GearIcon className="h-6 w-6" />
-                </div>
-                <div className="flex-1">
-                  <p className="font-bold text-dark">CrossFit Alkmaar</p>
-                  <p className="text-xs text-gray-500">Recente activiteit</p>
-                </div>
-                <span className="inline-flex h-2 w-2 rounded-full bg-green-500" />
-              </div>
-
-              <ul className="mt-4 space-y-3">
-                {activityFeed.map((item) => (
-                  <li
-                    key={item.text}
-                    className="flex items-start gap-3 rounded-2xl bg-gray-50 px-3 py-3"
-                  >
-                    <div className={`h-9 w-9 rounded-full ${item.bg} text-white flex items-center justify-center flex-shrink-0`}>
-                      <item.Icon className="h-4 w-4" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-dark truncate">{item.text}</p>
-                      <p className="text-xs text-gray-500 mt-0.5">{item.time}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+          <div className="relative flex justify-center lg:justify-end">
+            <div className="absolute -inset-4 bg-gradient-to-br from-amber-100/40 to-rose-100/30 rounded-3xl -z-10" />
+            <div className="bg-amber-50 rounded-2xl shadow-2xl p-10 border border-amber-200/60 rotate-2 max-w-md">
+              <p className="font-serif italic text-2xl text-amber-900">Lieve Lisa,</p>
+              <p className="font-serif italic text-amber-900/80 mt-5 leading-relaxed text-lg">
+                Gefeliciteerd met je verjaardag! Geniet van je dag, en tot dinsdag in de box.
+              </p>
+              <p className="font-serif italic text-amber-900 mt-8">— Daan &amp; team Zuidlaren</p>
             </div>
           </div>
         </div>
