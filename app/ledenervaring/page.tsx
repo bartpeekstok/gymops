@@ -21,7 +21,7 @@ export default function LedenervaringPage() {
           <div className="inline-flex items-center gap-3 justify-center mb-6">
             <GearIcon className="h-10 w-10" />
             <span className="text-3xl font-bold tracking-wider">
-              GymOps <span className="text-primary">Ledenervaring</span>
+              GymOps <span className="text-primary">Flow</span>
             </span>
           </div>
           <h1 className="text-4xl font-black text-dark">Alle ledenervaring functies</h1>
