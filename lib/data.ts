@@ -7,11 +7,11 @@ export const navLinks = [
 
 export const trustedLogos = [
   { name: "CrossFit Alkmaar", src: "/logo-cfa.png" },
-  { name: "CrossFit Naarden", src: "/logo-cfn.png", larger: true },
-  { name: "CrossFit Capelle", src: "/logo-cfc.png", larger: true },
-  { name: "CrossFit Leiden", src: "/logo-cfl.png", larger: true },
+  { name: "CrossFit Naarden", src: "/logo-cfn.png", scale: 150 },
+  { name: "CrossFit Capelle", src: "/logo-cfc.png", scale: 150 },
+  { name: "CrossFit Leiden", src: "/logo-cfl.png" },
   { name: "GymBox", src: "/logo-gymbox.png" },
-  { name: "Unscared CrossFit", src: "/logo-unscared.jpg", larger: true },
+  { name: "Unscared CrossFit", src: "/logo-unscared.jpg", scale: 150 },
 ];
 
 export const dashboardStats = [

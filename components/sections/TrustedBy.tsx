@@ -22,7 +22,11 @@ export default function TrustedBy() {
                 width={300}
                 height={120}
                 className={`max-h-20 w-auto object-contain ${
-                  "larger" in logo && logo.larger ? "scale-150" : ""
+                  "scale" in logo && logo.scale === 150
+                    ? "scale-150"
+                    : "scale" in logo && logo.scale === 125
+                    ? "scale-125"
+                    : ""
                 }`}
               />
             </div>
