@@ -64,11 +64,10 @@ export default function FlowScripts() {
           r.className = "odo-r";
           let html = "";
           for (let c = 0; c < 4; c++) for (let i = 0; i < 10; i++) html += "<span>" + i + "</span>";
-          html += "<span>" + ch + "</span>";
           r.innerHTML = html;
           d.appendChild(r);
           el.appendChild(d);
-          el._reels.push({ r, offset: 40 + parseInt(ch, 10) });
+          el._reels.push({ r, offset: 30 + parseInt(ch, 10) });
         }
       };
       const run = (el: HTMLElement & { _reels?: { r: HTMLElement; offset: number }[] }) => {
