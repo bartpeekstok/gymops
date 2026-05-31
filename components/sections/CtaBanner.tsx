@@ -1,33 +1,26 @@
-import Button from "../ui/Button";
-import { GearIcon } from "../Logo";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export default function CtaBanner() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-r from-navy to-primary">
-      <div className="container-page py-20 grid lg:grid-cols-2 gap-10 items-center relative z-10">
-        <div className="text-white">
-          <h2 className="text-4xl font-black">Klaar wanneer jij het bent</h2>
-          <p className="mt-4 text-off-white/90 max-w-md">
-            Geen verborgen kosten, binnen vier weken live met een platform dat werkt voor
-            jouw gym.
-          </p>
-          <div className="mt-6">
-            <Button
-              variant="primary"
-              href="/demo"
-              className="bg-accent hover:bg-accent/90 text-dark"
-            >
-              Plan een demo →
-            </Button>
-          </div>
-        </div>
-
-        <div className="hidden lg:flex justify-end">
-          <GearIcon className="h-72 w-72 opacity-20" />
-        </div>
+    <section className="relative overflow-hidden">
+      <div className="absolute inset-0 dotgrid opacity-60 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
+      <div className="max-w-[1220px] mx-auto px-6 lg:px-10 py-28 text-center relative">
+        <h2 className="text-[clamp(36px,5vw,68px)] font-extrabold tight leading-[1.04]">
+          Klaar om je gym op
+          <br />
+          de automaat te zetten?
+        </h2>
+        <p className="text-slate text-[18px] mt-6 max-w-xl mx-auto">
+          Plan een demo en zie binnen 30 minuten wat GymOps voor jouw box betekent.
+        </p>
+        <Link
+          href="/prijzen"
+          className="mt-9 inline-flex items-center gap-2 bg-primary text-white px-9 py-4 rounded-xl text-[17px] font-bold hover:bg-primary-dark transition-colors shadow-md"
+        >
+          Plan een demo <ArrowRight className="w-5 h-5" />
+        </Link>
       </div>
-
-      <GearIcon className="absolute -bottom-20 -right-20 h-96 w-96 opacity-10 pointer-events-none" />
     </section>
   );
 }

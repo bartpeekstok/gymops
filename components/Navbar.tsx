@@ -13,8 +13,8 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
-      <div className="container-page h-[72px] flex items-center justify-between">
+    <nav className="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-line">
+      <div className="max-w-[1220px] mx-auto px-6 lg:px-10 h-[72px] flex items-center justify-between">
         <Logo />
 
         <div className="hidden lg:flex items-center gap-8">

@@ -27,6 +27,111 @@ body {
   }
 }
 
+/* ===== GymOps "Flow" — shared custom styles ===== */
+.tight {
+  letter-spacing: -0.025em;
+}
+.grad-text {
+  background: linear-gradient(100deg, #3e788e, #5fb3a1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.card-shadow {
+  box-shadow: 0 1px 2px rgba(16, 36, 43, 0.04), 0 12px 32px -12px rgba(16, 36, 43, 0.12);
+}
+.glow-ring {
+  box-shadow: 0 0 0 1px rgba(62, 120, 142, 0.12), 0 30px 60px -24px rgba(62, 120, 142, 0.35);
+}
+.dotgrid {
+  background-image: radial-gradient(circle, rgba(62, 120, 142, 0.13) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.marquee {
+  animation: marquee 36s linear infinite;
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.logo-tint {
+  filter: grayscale(1);
+  opacity: 0.5;
+  transition: opacity 0.25s;
+}
+.logo-tint:hover {
+  opacity: 0.85;
+}
+
+/* Odometer rolling-number graphic */
+.odometer {
+  display: inline-flex;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.odo-d {
+  height: 1em;
+  width: 0.62em;
+  overflow: hidden;
+  display: inline-block;
+}
+.odo-r {
+  display: flex;
+  flex-direction: column;
+  transform: translateY(0);
+  transition: transform 2.1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.odo-r > span {
+  height: 1em;
+  width: 0.62em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.odo-sep {
+  padding: 0 0.04em;
+}
+
+/* Connected-network graphic */
+.net-line {
+  stroke-dasharray: 4 7;
+  animation: dashFlow 3.2s linear infinite;
+}
+@keyframes dashFlow {
+  to {
+    stroke-dashoffset: -22;
+  }
+}
+.net-pulse {
+  animation: netPulse 3s ease-in-out infinite;
+}
+@keyframes netPulse {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+/* Reveal on scroll */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
 @keyframes logoScroll {
   0% {
     transform: translateX(0);

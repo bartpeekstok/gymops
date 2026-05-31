@@ -1,35 +1,34 @@
 import Image from "next/image";
-import { trustedLogos } from "@/lib/data";
+
+const logos = [
+  { src: "/logo-cfa.png", h: "h-10" },
+  { src: "/logo-cfn.png", h: "h-12" },
+  { src: "/logo-cfc.png", h: "h-12" },
+  { src: "/logo-cfl.png", h: "h-10" },
+  { src: "/logo-gymbox.png", h: "h-9" },
+  { src: "/logo-unscared.jpg", h: "h-12" },
+];
 
 export default function TrustedBy() {
-  const doubled = [...trustedLogos, ...trustedLogos];
+  const doubled = [...logos, ...logos];
   return (
-    <section className="bg-gray-50 py-14 overflow-hidden">
-      <div className="container-page">
-        <h2 className="text-center font-bold text-lg text-gray-700 mb-10">Deze gyms draaien al op autopilot met GymOps</h2>
+    <section className="border-y border-line py-12 overflow-hidden">
+      <div className="max-w-[1220px] mx-auto px-6 lg:px-10">
+        <p className="text-center text-slate text-[14px] font-semibold mb-9">
+          Vertrouwd door coaching gyms in heel Nederland
+        </p>
       </div>
-      <div className="overflow-hidden">
-        <div className="flex logo-scroll w-max items-center gap-20">
+      <div className="relative">
+        <div className="flex w-max marquee gap-20 items-center">
           {doubled.map((logo, i) => (
-            <div
-              key={`${logo.name}-${i}`}
-              className="flex items-center justify-center h-20 w-40 flex-shrink-0"
-              title={logo.name}
-            >
-              <Image
-                src={logo.src}
-                alt={logo.name}
-                width={300}
-                height={120}
-                className={`max-h-20 w-auto object-contain ${
-                  "scale" in logo && logo.scale === 150
-                    ? "scale-150"
-                    : "scale" in logo && logo.scale === 125
-                    ? "scale-125"
-                    : ""
-                }`}
-              />
-            </div>
+            <Image
+              key={i}
+              src={logo.src}
+              alt=""
+              width={200}
+              height={80}
+              className={`${logo.h} w-auto logo-tint`}
+            />
           ))}
         </div>
       </div>
