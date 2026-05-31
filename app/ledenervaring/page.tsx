@@ -76,7 +76,7 @@ export default function LedenervaringPage() {
             <div className="grid grid-cols-3 gap-4 mt-9">
               <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 text-center"><div className="text-[34px] font-extrabold tight grad-text" data-count={96} data-suffix="%">0%</div><p className="text-white/55 text-[12px] mt-1.5 leading-snug">retentie</p></div>
               <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 text-center"><div className="text-[34px] font-extrabold tight" data-count={8} data-suffix=" mnd">0</div><p className="text-white/55 text-[12px] mt-1.5 leading-snug">gem. looptijd</p></div>
-              <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 text-center"><div className="text-[34px] font-extrabold tight" data-count={258} data-suffix="">0</div><p className="text-white/55 text-[12px] mt-1.5 leading-snug">reviews</p></div>
+              <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 text-center"><div className="text-[34px] font-extrabold tight" data-count={250} data-suffix="">0</div><p className="text-white/55 text-[12px] mt-1.5 leading-snug">reviews</p></div>
             </div>
           </div>
         </div>
@@ -238,7 +238,7 @@ export default function LedenervaringPage() {
               <div className="flex justify-center gap-1 text-amber-400 mb-3"><Star className="w-7 h-7 fill-amber-400" /><Star className="w-7 h-7 fill-amber-400" /><Star className="w-7 h-7 fill-amber-400" /><Star className="w-7 h-7 fill-amber-400" /><Star className="w-7 h-7 fill-amber-400" /></div>
               <p className="text-[15px] text-ink leading-relaxed">&quot;Beste box van de regio. Coaches die je écht kennen.&quot;</p>
               <div className="text-[12px] text-slate mt-3">— via Google, automatisch opgevraagd</div>
-              <div className="mt-5 pt-5 border-t border-line text-[40px] font-extrabold grad-text tight">258</div>
+              <div className="mt-5 pt-5 border-t border-line text-[40px] font-extrabold grad-text tight">250+</div>
               <p className="text-[12px] text-slate">reviews en tellend</p>
             </div>
           </div>

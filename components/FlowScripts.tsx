@@ -63,12 +63,12 @@ export default function FlowScripts() {
           const r = document.createElement("span");
           r.className = "odo-r";
           let html = "";
-          for (let c = 0; c < 3; c++) for (let i = 0; i < 10; i++) html += "<span>" + i + "</span>";
+          for (let c = 0; c < 4; c++) for (let i = 0; i < 10; i++) html += "<span>" + i + "</span>";
           html += "<span>" + ch + "</span>";
           r.innerHTML = html;
           d.appendChild(r);
           el.appendChild(d);
-          el._reels.push({ r, offset: 30 + parseInt(ch, 10) });
+          el._reels.push({ r, offset: 40 + parseInt(ch, 10) });
         }
       };
       const run = (el: HTMLElement & { _reels?: { r: HTMLElement; offset: number }[] }) => {
@@ -93,6 +93,33 @@ export default function FlowScripts() {
       odos.forEach((o) => oio!.observe(o));
     }
 
+    // Sticky scroll showcase: swap phone screen as feature steps enter view
+    const showcase = document.querySelector(".showcase");
+    let sio: IntersectionObserver | null = null;
+    if (showcase) {
+      const steps = showcase.querySelectorAll<HTMLElement>(".sc-step");
+      const screens = showcase.querySelectorAll<HTMLElement>(".sc-screen");
+      const activate = (idx: number) => {
+        steps.forEach((s, i) => {
+          s.classList.toggle("ring-2", i === idx);
+          s.classList.toggle("ring-primary", i === idx);
+          s.classList.toggle("bg-bg2", i === idx);
+          s.classList.toggle("shadow-lg", i === idx);
+        });
+        screens.forEach((sc, i) => sc.classList.toggle("hidden", i !== idx));
+      };
+      activate(0);
+      sio = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) activate(parseInt((e.target as HTMLElement).dataset.step || "0", 10));
+          });
+        },
+        { threshold: 0.6, rootMargin: "-20% 0px -20% 0px" }
+      );
+      steps.forEach((s) => sio!.observe(s));
+    }
+
     // Reveal-on-scroll for [data-reveal]
     const reveals = document.querySelectorAll("[data-reveal]");
     let rio: IntersectionObserver | null = null;
@@ -114,6 +141,7 @@ export default function FlowScripts() {
     return () => {
       cio?.disconnect();
       oio?.disconnect();
+      sio?.disconnect();
       rio?.disconnect();
     };
   }, []);

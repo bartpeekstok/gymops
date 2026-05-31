@@ -20,8 +20,11 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 dotgrid opacity-70 [mask-image:radial-gradient(ellipse_at_top,black,transparent_72%)]" />
-      <div className="absolute -top-24 -left-20 w-[440px] h-[440px] rounded-full bg-primary/15 blur-[120px] pointer-events-none" />
-      <div className="absolute top-10 -right-24 w-[460px] h-[460px] rounded-full bg-accent/15 blur-[130px] pointer-events-none" />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="blob blob-a w-[420px] h-[420px] bg-primary/20 -top-20 -left-10" />
+        <div className="blob blob-b w-[460px] h-[460px] bg-accent/20 top-0 right-0" />
+        <div className="blob blob-c w-[360px] h-[360px] bg-bright/15 top-40 left-1/3" />
+      </div>
       <div className="max-w-[1220px] mx-auto px-6 lg:px-10 pt-20 pb-24 relative">
         <div className="max-w-3xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-accent-light text-primary px-3.5 py-1.5 rounded-full text-[13px] font-semibold mb-7">

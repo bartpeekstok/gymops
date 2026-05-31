@@ -61,12 +61,139 @@ body {
 }
 
 .logo-tint {
-  filter: grayscale(1);
-  opacity: 0.5;
+  opacity: 0.85;
   transition: opacity 0.25s;
 }
 .logo-tint:hover {
-  opacity: 0.85;
+  opacity: 1;
+}
+
+/* Floating gradient blobs (hero background) */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  will-change: transform;
+}
+.blob-a {
+  animation: floatA 16s ease-in-out infinite;
+}
+.blob-b {
+  animation: floatB 19s ease-in-out infinite;
+}
+.blob-c {
+  animation: floatC 22s ease-in-out infinite;
+}
+@keyframes floatA {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(40px, -30px) scale(1.12);
+  }
+}
+@keyframes floatB {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-50px, 28px) scale(1.08);
+  }
+}
+@keyframes floatC {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(26px, 36px) scale(1.15);
+  }
+}
+
+/* Integration orbit */
+.orbit-wrap {
+  position: relative;
+}
+.orbit {
+  position: absolute;
+  inset: 0;
+  animation: spin 26s linear infinite;
+}
+.orbit.rev {
+  animation: spinRev 34s linear infinite;
+}
+.orbit-node {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+}
+.orbit-node > * {
+  animation: spinRev 26s linear infinite;
+}
+.orbit.rev .orbit-node > * {
+  animation: spin 34s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinRev {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* Floating phone bob */
+.bob {
+  animation: bob 6s ease-in-out infinite;
+}
+.bob-2 {
+  animation: bob 6s ease-in-out infinite;
+  animation-delay: -3s;
+}
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+/* Edge fade mask for testimonial wall */
+.edge-fade-y {
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+}
+
+/* Vertical marquees for testimonial wall */
+.vmarq {
+  animation: vmarqUp 26s linear infinite;
+}
+.vmarq-down {
+  animation: vmarqDown 30s linear infinite;
+}
+@keyframes vmarqUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+@keyframes vmarqDown {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 
 /* Odometer rolling-number graphic */
