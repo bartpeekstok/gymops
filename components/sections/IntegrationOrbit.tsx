@@ -64,7 +64,8 @@ export default function IntegrationOrbit() {
           werkt.
         </p>
 
-        <div className="orbit-wrap mx-auto mt-16 w-[300px] h-[300px] sm:w-[520px] sm:h-[520px]">
+        <div className="mt-12 sm:mt-16 flex justify-center items-start overflow-hidden h-[300px] sm:h-[540px]">
+        <div className="orbit-wrap relative shrink-0 w-[520px] h-[520px] origin-top scale-[0.55] sm:scale-100">
           {/* rings */}
           <div className="absolute inset-[9%] rounded-full border border-white/10" />
           <div className="absolute inset-[27%] rounded-full border border-white/10" />
@@ -85,6 +86,7 @@ export default function IntegrationOrbit() {
               <Node key={n.alt} {...n} radius={120} />
             ))}
           </div>
+        </div>
         </div>
 
         <Link
