@@ -7,6 +7,8 @@
    cross-references (<Phone>, <FeatureRow>, GO, ...) resolve unchanged. */
 import React from 'react';
 import { icons } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { GO, GOP } from '@/lib/site-data';
 
 const { useState, useEffect, useRef, useMemo, useCallback, useLayoutEffect } = React;
@@ -82,6 +84,97 @@ function useIsMobile(bp) {
 
 /* Internal link normaliser: prototype .html names -> clean Next routes. */
 const route = (h) => !h ? h : h === 'index.html' ? '/' : (h.charAt(0) === '#' || h.indexOf('http') === 0) ? h : '/' + h.replace('-v1', '').replace('.html', '');
+
+/* ScrollScene — pins a graphic in place and turns scroll into discrete steps.
+   While pinned, every bit of scroll advances `step` (0..steps-1); the graphic
+   renders that step. Once the last step is reached you scroll on normally.
+   children is a render function (step) => node. Reduced motion / no-JS: shows
+   the final step statically and never pins. */
+let gsapReady = false;
+function ScrollScene({ steps, children, scenePerStep = 0.85, label }) {
+  const triggerRef = useRef(null);
+  const pinRef = useRef(null);
+  const [step, setStep] = useState(0);
+  const [pinned, setPinned] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || steps <= 1) { setStep(steps - 1); return; }
+    if (!gsapReady) { gsap.registerPlugin(ScrollTrigger); gsapReady = true; }
+
+    const st = ScrollTrigger.create({
+      trigger: triggerRef.current,
+      start: 'center center',
+      end: () => '+=' + Math.round(window.innerHeight * scenePerStep * steps),
+      pin: pinRef.current,
+      pinSpacing: true,
+      scrub: true,
+      anticipatePin: 1,
+      onToggle: (self) => setPinned(self.isActive),
+      onUpdate: (self) => {
+        const s = Math.max(0, Math.min(steps - 1, Math.floor(self.progress * steps - 1e-6)));
+        setStep((prev) => (prev === s ? prev : s));
+      },
+    });
+    const onLoad = () => ScrollTrigger.refresh();
+    window.addEventListener('load', onLoad);
+    const t = setTimeout(() => ScrollTrigger.refresh(), 600);
+    return () => { st.kill(); window.removeEventListener('load', onLoad); clearTimeout(t); };
+  }, [steps, scenePerStep]);
+
+  return (
+    <div ref={triggerRef} className="scrollscene">
+      <div ref={pinRef} className={'scrollscene-pin' + (pinned ? ' is-pinned' : '')}>
+        {children(step)}
+        {steps > 1 && (
+          <div className="scrollscene-dots" aria-hidden="true">
+            {Array.from({ length: steps }).map((_, i) => (
+              <span key={i} className={'ssd' + (i <= step ? ' on' : '')} />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* PinnedFeature — home feature block: text on top, graphic below in a pinned
+   scroll-scene the visitor scrolls through step by step. */
+function PinnedFeature({ eyebrow, title, items, link, steps, renderGraphic, soft }) {
+  useReveal();
+  const m = useIsMobile();
+  const lnk = (h) => route(h);
+  return (
+    <section className={'section pinned-feature' + (soft ? ' section-soft' : '')} style={{ padding: m ? '52px 0 0' : '88px 0 0' }}>
+      <div className="wrap">
+        <div data-reveal style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
+          <div className="eyebrow" style={{ marginBottom: 16 }}>{eyebrow}</div>
+          <h2 style={{ fontSize: 'clamp(26px,3.2vw,40px)', fontWeight: 800, letterSpacing: '-.025em', color: 'var(--ink)' }}>{title}</h2>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: m ? 18 : 30, marginTop: 28 }}>
+            {items.map((it, i) => (
+              <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', flex: m ? '1 1 100%' : '1 1 260px', maxWidth: 320, textAlign: 'left' }}>
+                <div className="icon-chip" style={{ width: 40, height: 40, borderRadius: 12, flexShrink: 0 }}><Icon data-lucide={it.icon} style={{ width: 19, height: 19, color: 'var(--mint-deep)' }}></Icon></div>
+                <div>
+                  <h4 style={{ fontSize: 16, fontWeight: 700, color: 'var(--fg1)' }}>{it.title}</h4>
+                  <p style={{ fontSize: 14, lineHeight: 1.55, color: 'var(--fg3)', marginTop: 4 }}>{it.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          {link && <a href={lnk(link.href)} className="btn-ghost" style={{ marginTop: 26 }}>{link.label}<Icon data-lucide="arrow-right"></Icon></a>}
+        </div>
+      </div>
+      <ScrollScene steps={steps} label={eyebrow}>
+        {(step) => (
+          <div className="wrap" style={{ display: 'flex', justifyContent: 'center' }}>
+            {renderGraphic(step)}
+          </div>
+        )}
+      </ScrollScene>
+    </section>
+  );
+}
 
 
 /* ============================ PhoneScreens.jsx ============================ */
@@ -255,12 +348,14 @@ function DashboardScreen() {
 
 /* Mobile Task Manager — pending tasks with member name, assignee + status badge.
    Modelled on the real GymOps mobile task manager, rebranded to our flow. */
-function StaffScreen({ animate }) {
+function StaffScreen({ animate, step }) {
   const p = GO.product;
+  const controlled = step != null;
   const chips = [['Alles', false], ['Openstaand', true], ['Afgerond', false]];
-  const [n, setN] = React.useState(animate ? 0 : p.tasks.length);
+  const [n, setN] = React.useState(controlled ? 0 : (animate ? 0 : p.tasks.length));
   const rootRef = React.useRef(null);
   const [started, setStarted] = React.useState(false);
+  React.useEffect(() => { if (controlled) setN(Math.max(0, Math.min(p.tasks.length, step))); }, [controlled, step, p.tasks.length]);
   React.useEffect(() => {
     if (!animate) return;
     const el = rootRef.current; if (!el) return;
@@ -270,7 +365,7 @@ function StaffScreen({ animate }) {
   }, [animate]);
   React.useEffect(() => { if (window.lucide) window.lucide.createIcons(); }, [n]);
   React.useEffect(() => {
-    if (!animate) return;
+    if (!animate || controlled) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setN(p.tasks.length); return; }
     if (!started) return;
     let alive = true; const timers = [];
@@ -1284,7 +1379,8 @@ function LedenervaringHome() {
 
 const STAGE_W = 580, STAGE_H = 452;
 
-function LeadFlowStage() {
+function LeadFlowStage({ step }) {
+  const controlled = step != null;
   const reduce = (typeof window !== 'undefined') && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const [phase, setPhase] = React.useState('site');   // site | form | confirm | chat
   const [vals, setVals] = React.useState({ name: '', phone: '', email: '' });
@@ -1319,6 +1415,13 @@ function LeadFlowStage() {
 
   // timeline
   React.useEffect(() => {
+    if (controlled) {
+      const PH = ['site', 'form', 'confirm', 'chat', 'call'];
+      setPhase(PH[Math.max(0, Math.min(4, step))]);
+      setVals(step >= 1 ? { name: 'Mark Janssen', phone: '06 12 34 56 78', email: 'mark.janssen@email.nl' } : { name: '', phone: '', email: '' });
+      setActive(null); setTap(null); setWa(step >= 3 ? 3 : 0);
+      return;
+    }
     if (reduce) {
       setPhase('confirm');
       setVals({ name: 'Mark Janssen', phone: '06 12 34 56 78', email: 'mark.janssen@email.nl' });
@@ -1357,7 +1460,7 @@ function LeadFlowStage() {
     };
     run();
     return () => { alive = false; timers.forEach(clearTimeout); };
-  }, [started]);
+  }, [started, step]);
 
   const formOpen = phase === 'form' || phase === 'confirm';
 
@@ -1518,7 +1621,8 @@ function LeadFlowStage() {
 
 const EVT_W = 580, EVT_H = 452;
 
-function EventFlowStage() {
+function EventFlowStage({ step }) {
+  const controlled = step != null;
   const reduce = (typeof window !== 'undefined') && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const [phase, setPhase] = React.useState('site');   // site | form | confirm | chat
   const [vals, setVals] = React.useState({ name: '', buddy: '' });
@@ -1551,6 +1655,13 @@ function EventFlowStage() {
   React.useEffect(() => { if (window.lucide) window.lucide.createIcons(); }, [phase, wa, cursorOn, tap]);
 
   React.useEffect(() => {
+    if (controlled) {
+      const PH = ['site', 'form', 'confirm', 'chat', 'call'];
+      setPhase(PH[Math.max(0, Math.min(4, step))]);
+      setVals(step >= 1 ? { name: 'Tom de Groot', buddy: 'Mark Janssen' } : { name: '', buddy: '' });
+      setCursorOn(step >= 1); setActive(null); setTap(null); setWa(step >= 3 ? 3 : 0);
+      return;
+    }
     if (reduce) {
       setPhase('confirm'); setVals({ name: 'Tom de Groot', buddy: 'Mark Janssen' }); setWa(3);
       return;
@@ -1584,7 +1695,7 @@ function EventFlowStage() {
     };
     run();
     return () => { alive = false; timers.forEach(clearTimeout); };
-  }, [started]);
+  }, [started, step]);
 
   const formOpen = phase === 'form' || phase === 'confirm';
 
@@ -2239,30 +2350,33 @@ function Home() {
       <Nav />
       <Hero />
       <PromiseCards />
-      <HighlightRow eyebrow="GymOps Flow · Leadopvolging" title="Verander je leads in leden."
+      <PinnedFeature eyebrow="GymOps Flow · Leadopvolging" title="Verander je leads in leden."
         items={[
           { icon: 'zap', title: 'Binnen 1 minuut reactie', body: 'Elke nieuwe lead krijgt direct een WhatsApp én e-mail. Snelheid is de grootste factor in conversie.' },
           { icon: 'inbox', title: 'Elk kanaal automatisch binnen', body: 'Website, Meta Ads, QR-code of een DM: alles komt op één plek binnen, gekoppeld aan dezelfde lead.' },
           { icon: 'repeat', title: 'Opvolging tot er reactie is', body: 'Geen reactie? GymOps blijft opvolgen in een natuurlijk ritme, op het juiste moment van de dag.' },
         ]}
         link={{ label: 'meer over leadopvolging', href: 'leadopvolging.html' }}
-        visual={<LeadFlowStage />} />
+        steps={5}
+        renderGraphic={(step) => <LeadFlowStage step={step} />} />
       <LedenervaringHome />
-      <HighlightRow eyebrow="GymOps Flow · Team-aansturing" title="Je team draait, jij houdt de regie."
+      <PinnedFeature eyebrow="GymOps Flow · Team-aansturing" title="Je team draait, jij houdt de regie."
         items={[
           { icon: 'circle-check-big', title: 'Elke taak naar de juiste coach', body: 'GymOps maakt automatisch een taak aan en wijst die toe. Geen losse WhatsApp-groepjes meer.' },
           { icon: 'clock', title: 'Niet opgepakt blijft staan', body: 'Een taak verdwijnt niet. Hij komt morgen terug tot hij is afgehandeld.' },
           { icon: 'users', title: 'Uitval? Collega neemt over', body: 'Openstaande taken neem je in één klik over. Het werk loopt door, ook bij ziekte of vakantie.' },
         ]}
         link={{ label: 'meer over team-aansturing', href: 'team-aansturing.html' }}
-        visual={<Phone w={258} className="gfx-warm"><StaffScreen animate /></Phone>} />
-      <HighlightRow flip soft eyebrow="GymOps Flow · Jouw website" title="Een website die werkt voor jouw gym."
+        steps={(GO.product.tasks.length) + 1}
+        renderGraphic={(step) => <Phone w={258} className="gfx-warm"><StaffScreen step={step} /></Phone>} />
+      <PinnedFeature soft eyebrow="GymOps Flow · Jouw website" title="Een website die werkt voor jouw gym."
         items={[
           { icon: 'search', title: 'Gevonden in Google én AI', body: 'Technisch geoptimaliseerd voor zoekmachines en AI. Wie zoekt naar een gym in jouw plaats, vindt jou.' },
           { icon: 'palette', title: 'Op maat, in jouw merk', body: 'Geen standaard thema. Een site op maat in dezelfde techniek als grote merken: snel, strak en helemaal van jou.' },
           { icon: 'ticket', title: 'Op maat gemaakte eventpagina\'s', body: 'Voor Bring-a-Friend events, hyrox-simulaties of wedstrijden. Inclusief betaling en berichtenflows.' },
         ]}
-        visual={<EventFlowStage />} />
+        steps={5}
+        renderGraphic={(step) => <EventFlowStage step={step} />} />
       <Integrations />
       <Testimonials />
       <CtaFooter />
