@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+:root{
+  --mint:#3E788E; --mint-light:#7FB0C2; --mint-deep:#2E5C6E; --mint-tint:#E9F2F5;
+  --shadow-mint:0 12px 30px -12px rgba(62,120,142,.45);
+  --ink:#0C161B; --surface-dark:#0C161B; --surface-dark-2:#16252C;
+  --bg-soft:#F1F5F6; --bg-soft-2:#F8FAFB;
+  --font-sans:'Inter', system-ui, -apple-system, sans-serif;
+}
+.gfx-warm{ --mint:#3E788E; --mint-light:#7FB0C2; --mint-deep:#2E5C6E; --mint-tint:#E9F2F5; --shadow-mint:0 12px 30px -12px rgba(62,120,142,.45); }
