@@ -167,8 +167,10 @@ function PinnedFeature({ eyebrow, title, items, link, steps, renderGraphic, soft
       </div>
       <ScrollScene steps={steps} label={eyebrow}>
         {(step) => (
-          <div className="wrap" style={{ display: 'flex', justifyContent: 'center' }}>
-            {renderGraphic(step)}
+          <div className="wrap" style={{ overflow: 'hidden' }}>
+            <div style={{ width: '100%', maxWidth: 560, margin: '0 auto' }}>
+              {renderGraphic(step)}
+            </div>
           </div>
         )}
       </ScrollScene>
@@ -402,7 +404,7 @@ function StaffScreen({ animate, step }) {
       </div>
 
       <div style={{ flex: 1, padding: '0 12px', display: 'flex', flexDirection: 'column', gap: 9, overflow: 'hidden' }}>
-        {(animate ? p.tasks.slice(0, n) : p.tasks).map((tk, i) => (
+        {((animate || controlled) ? p.tasks.slice(0, n) : p.tasks).map((tk, i) => (
           <div key={i} style={{ background: 'var(--bg-soft-2)', border: '1px solid var(--border)', borderRadius: 12, padding: 11, animation: animate ? 'taskIn .5s cubic-bezier(.16,1,.3,1) both' : undefined }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
               <span style={{ fontSize: 9.5, fontWeight: 700, color: 'var(--mint-deep)' }}>{tk.who}</span>

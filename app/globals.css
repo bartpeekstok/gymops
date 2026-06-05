@@ -399,12 +399,16 @@ details[open] .faq-chev { transform: rotate(180deg); }
   min-height: 78vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;   /* full width so the graphic scales to the screen, not the reverse */
   justify-content: center;
   padding: 32px 0 24px;
+  overflow: hidden;
 }
+.scrollscene-dots { justify-content: center; }
 /* the graphic lifts + grows when the scene is active (pinned) */
 .scrollscene-pin > .wrap {
+  min-width: 0;            /* allow the graphic to shrink to the screen width */
+  max-width: 100%;
   transition: transform .55s cubic-bezier(.16,1,.3,1), filter .55s ease;
   transform: scale(.84) translateY(18px);
   filter: drop-shadow(0 18px 40px rgba(10,10,15,.10));
