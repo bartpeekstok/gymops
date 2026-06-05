@@ -19,28 +19,35 @@ function Icon({ 'data-lucide': dl, name, ...rest }) {
   return Cmp ? <Cmp {...rest} /> : null;
 }
 
-/* Scroll-reveal: adds .in when an element enters view. Respects reduced motion. */
+/* Scroll-reveal: adds .in when an element is in view OR has been scrolled past.
+   Re-queries the DOM each pass and never drops the listener, so a fast mobile
+   fling can't skip a block (the bug that left whole sections invisible).
+   Respects reduced motion. */
 function useReveal() {
   useEffect(() => {
+    const sel = '[data-reveal],[data-reveal-stagger],.split-line';
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let els = Array.from(document.querySelectorAll('[data-reveal],[data-reveal-stagger],.split-line'));
-    if (reduce) { els.forEach((e) => e.classList.add('in')); return; }
+    if (reduce) { document.querySelectorAll(sel).forEach((e) => e.classList.add('in')); return; }
     let raf = 0;
     const check = () => {
       const h = window.innerHeight;
-      els = els.filter((e) => {
-        const r = e.getBoundingClientRect();
-        if (r.top < h * 0.9 && r.bottom > 0) { e.classList.add('in'); return false; }
-        return true;
+      document.querySelectorAll(sel + ':not(.in)').forEach((e) => {
+        // reveal as soon as the top crosses 92% of the viewport, and keep it
+        // revealed once scrolled past (no bottom>0 gate that skips fast flings)
+        if (e.getBoundingClientRect().top < h * 0.92) e.classList.add('in');
       });
-      if (!els.length) window.removeEventListener('scroll', onScroll);
     };
     const onScroll = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(check); };
     window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
     check();
-    const t1 = setTimeout(check, 120);
-    const t2 = setTimeout(check, 500);
-    return () => { window.removeEventListener('scroll', onScroll); cancelAnimationFrame(raf); clearTimeout(t1); clearTimeout(t2); };
+    const timers = [60, 200, 500, 1200].map((ms) => setTimeout(check, ms));
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      cancelAnimationFrame(raf);
+      timers.forEach(clearTimeout);
+    };
   }, []);
 }
 
