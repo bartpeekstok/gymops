@@ -1,0 +1,391 @@
+/* fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap');
+
+/* === colors_and_type.css (V2 base tokens) === */
+/* ============================================================
+   GymOps Design System — Foundations (V2)
+   Colors + Type tokens. Import this into any GymOps artifact.
+
+   Brand direction (V2): LIGHT theme, white-dominant, with deep-black
+   contrast blocks and MINT used sparingly for CTAs / highlights only.
+   This intentionally departs from the V1 teal codebase palette.
+   ============================================================ */
+
+
+:root {
+  /* ---- Brand core ---- */
+  --ink: #0A0A0F;          /* deep black — hero, contrast blocks, footer */
+  --white: #FFFFFF;        /* dominant background */
+  --mint: #10B981;         /* mint accent (dark) — CTAs, icon highlights */
+  --mint-light: #34D399;   /* mint accent (light) — hover, on-dark accents */
+  --mint-deep: #059669;    /* mint pressed / active state */
+  --mint-tint: #ECFDF5;    /* faint mint wash for soft highlight chips */
+
+  /* ---- Neutral text ---- */
+  --fg1: #0A0A0F;          /* primary text on light */
+  --fg2: #1F2937;          /* body dark */
+  --fg3: #6B7280;          /* secondary grey / captions */
+  --fg-on-dark: #FFFFFF;   /* primary text on dark */
+  --fg-on-dark-2: #9CA3AF; /* muted text on dark */
+
+  /* ---- Surfaces ---- */
+  --bg: #FFFFFF;           /* page background */
+  --bg-soft: #F3F4F6;      /* light section / alternating band */
+  --bg-soft-2: #F9FAFB;    /* card-inset / table stripe */
+  --surface-dark: #0A0A0F; /* dark contrast block */
+  --surface-dark-2: #14141B;/* raised surface inside dark blocks */
+
+  /* ---- Lines & borders ---- */
+  --border: #E5E7EB;       /* default hairline border */
+  --border-strong: #D1D5DB;/* heavier divider */
+  --border-on-dark: rgba(255,255,255,0.10);
+
+  /* ---- Functional accents (use rarely) ---- */
+  --danger: #EF4444;       /* at-risk / overdue states */
+  --amber: #F59E0B;        /* warning / pending */
+
+  /* ---- Radii ---- */
+  --r-xs: 6px;
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --r-pill: 999px;
+
+  /* ---- Shadows (soft, cool-neutral — never harsh) ---- */
+  --shadow-sm: 0 1px 2px rgba(10,10,15,0.05);
+  --shadow-card: 0 1px 2px rgba(10,10,15,0.04), 0 12px 32px -12px rgba(10,10,15,0.12);
+  --shadow-lg: 0 24px 60px -24px rgba(10,10,15,0.28);
+  --shadow-mint: 0 12px 30px -12px rgba(16,185,129,0.45);
+
+  /* ---- Spacing scale (4px base) ---- */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+  --sp-9: 96px;
+  --sp-10: 128px;
+
+  /* ---- Type family ---- */
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* ---- Type tokens: size / line-height / weight / tracking ---- */
+  --display-size: clamp(44px, 6vw, 84px);
+  --display-lh: 1.02;
+  --display-weight: 800;
+  --display-tracking: -0.035em;
+
+  --h1-size: clamp(36px, 4.4vw, 60px);
+  --h1-lh: 1.06;
+  --h1-weight: 800;
+  --h1-tracking: -0.03em;
+
+  --h2-size: clamp(28px, 3.4vw, 44px);
+  --h2-lh: 1.1;
+  --h2-weight: 800;
+  --h2-tracking: -0.025em;
+
+  --h3-size: clamp(21px, 2vw, 28px);
+  --h3-lh: 1.2;
+  --h3-weight: 700;
+  --h3-tracking: -0.02em;
+
+  --h4-size: 18px;
+  --h4-lh: 1.35;
+  --h4-weight: 700;
+  --h4-tracking: -0.01em;
+
+  --body-lg-size: 19px;
+  --body-lg-lh: 1.6;
+
+  --body-size: 16px;
+  --body-lh: 1.65;
+
+  --small-size: 14px;
+  --small-lh: 1.55;
+
+  --eyebrow-size: 13px;
+  --eyebrow-lh: 1.4;
+  --eyebrow-weight: 700;
+  --eyebrow-tracking: 0.08em;  /* the ONLY uppercase usage — eyebrows/labels */
+}
+
+/* ============================================================
+   Semantic element defaults — apply by using these classes
+   or copy the rules into your own base layer.
+   ============================================================ */
+
+.go-display {
+  font-family: var(--font-sans);
+  font-size: var(--display-size);
+  line-height: var(--display-lh);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
+  color: var(--fg1);
+}
+
+h1, .go-h1 {
+  font-family: var(--font-sans);
+  font-size: var(--h1-size);
+  line-height: var(--h1-lh);
+  font-weight: var(--h1-weight);
+  letter-spacing: var(--h1-tracking);
+  color: var(--fg1);
+}
+
+h2, .go-h2 {
+  font-family: var(--font-sans);
+  font-size: var(--h2-size);
+  line-height: var(--h2-lh);
+  font-weight: var(--h2-weight);
+  letter-spacing: var(--h2-tracking);
+  color: var(--fg1);
+}
+
+h3, .go-h3 {
+  font-family: var(--font-sans);
+  font-size: var(--h3-size);
+  line-height: var(--h3-lh);
+  font-weight: var(--h3-weight);
+  letter-spacing: var(--h3-tracking);
+  color: var(--fg1);
+}
+
+h4, .go-h4 {
+  font-family: var(--font-sans);
+  font-size: var(--h4-size);
+  line-height: var(--h4-lh);
+  font-weight: var(--h4-weight);
+  letter-spacing: var(--h4-tracking);
+  color: var(--fg1);
+}
+
+.go-body-lg {
+  font-family: var(--font-sans);
+  font-size: var(--body-lg-size);
+  line-height: var(--body-lg-lh);
+  font-weight: 400;
+  color: var(--fg2);
+}
+
+p, .go-body {
+  font-family: var(--font-sans);
+  font-size: var(--body-size);
+  line-height: var(--body-lh);
+  font-weight: 400;
+  color: var(--fg2);
+}
+
+.go-small {
+  font-family: var(--font-sans);
+  font-size: var(--small-size);
+  line-height: var(--small-lh);
+  color: var(--fg3);
+}
+
+/* Eyebrow / kicker — the one place we go uppercase + tracked.
+   Often rendered in mint above a heading. */
+.go-eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--eyebrow-size);
+  line-height: var(--eyebrow-lh);
+  font-weight: var(--eyebrow-weight);
+  letter-spacing: var(--eyebrow-tracking);
+  text-transform: uppercase;
+  color: var(--mint);
+}
+
+/* Trifecta lead line — "Elke lead opgevolgd. Elk lid gezien." */
+.go-trifecta {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+/* === styles.css === */
+/* GymOps V2 marketing site — kit styles. Imports the design tokens. */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  color: var(--fg2);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-sans); font-weight: 700; font-size: 16px;
+  border-radius: 12px; padding: 14px 24px; cursor: pointer; border: none;
+  transition: background .2s, transform .15s, box-shadow .2s, border-color .2s;
+  white-space: nowrap;
+}
+.btn i { width: 18px; height: 18px; }
+.btn-primary { background: var(--mint); color: #fff; box-shadow: var(--shadow-mint); }
+.btn-primary:hover { background: var(--mint-deep); }
+.btn-primary:active { transform: translateY(1px); }
+.btn-dark { background: var(--ink); color: #fff; }
+.btn-dark:hover { background: #20202b; }
+.btn-outline { background: transparent; color: var(--ink); border: 1.5px solid var(--border-strong); }
+.btn-outline:hover { border-color: var(--ink); }
+.btn-outline-light { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.28); }
+.btn-outline-light:hover { border-color: #fff; background: rgba(255,255,255,.06); }
+.btn-ghost { background: none; color: var(--mint-deep); font-weight: 700; font-size: 17px; padding: 0; display: inline-flex; align-items: center; gap: 6px; }
+.btn-ghost i { transition: transform .2s; }
+.btn-ghost:hover i { transform: translateX(4px); }
+
+/* ---------- eyebrow ---------- */
+.eyebrow { font-size: 19px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--mint-deep); }
+.eyebrow-dark { color: var(--mint-light); }
+
+/* ---------- section rhythm ---------- */
+.section { padding: 104px 0; }
+.section-soft { background: var(--bg-soft); }
+.section-dark { background: var(--ink); color: #fff; }
+
+/* ---------- reveal animation ---------- */
+[data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+[data-reveal].in { opacity: 1; transform: none; }
+[data-reveal-stagger] > * { opacity: 0; transform: translateY(20px); transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1); }
+[data-reveal-stagger].in > * { opacity: 1; transform: none; }
+
+/* word-stagger headline */
+.split-word { display: inline-block; opacity: 0; transform: translateY(18px); transition: opacity .55s cubic-bezier(.16,1,.3,1), transform .55s cubic-bezier(.16,1,.3,1); }
+.split-line.in .split-word { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  [data-reveal], [data-reveal-stagger] > *, .split-word { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .marquee-track { animation: none !important; }
+}
+
+/* ---------- logo marquee ---------- */
+.marquee { overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent); }
+.marquee-track { display: flex; align-items: center; width: max-content; animation: marq 38s linear infinite; }
+.mq-item { width: 130px; height: 46px; margin-right: 56px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.mq-item img { max-height: 42px; max-width: 118px; object-fit: contain; filter: brightness(0) invert(1); opacity: .55; }
+@keyframes marq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ---------- cards ---------- */
+.card { background: #fff; border: 1px solid var(--border); border-radius: 20px; box-shadow: var(--shadow-card); }
+.icon-chip { width: 48px; height: 48px; border-radius: 14px; background: var(--mint-tint); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.icon-chip i { width: 22px; height: 22px; color: var(--mint-deep); }
+.icon-chip-dark { background: rgba(52,211,153,.12); }
+.icon-chip-dark i { color: var(--mint-light); }
+
+/* ---------- promise cards (home) ---------- */
+.promise-card { transition: transform .25s cubic-bezier(.16,1,.3,1), box-shadow .25s cubic-bezier(.16,1,.3,1), border-color .25s; }
+.promise-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--border-strong); }
+.promise-card .promise-link i { transition: transform .2s; }
+.promise-card:hover .promise-link i { transform: translateX(4px); }
+
+/* ---------- postcard / ansichtkaart ---------- */
+.handwriting { font-family: 'Caveat', 'Plus Jakarta Sans', cursive; }
+.postcard {
+  position: relative; width: 100%; max-width: 470px; aspect-ratio: 1.52 / 1;
+  background: #FBFAF7; border: 1px solid #E7E1D5; border-radius: 12px;
+  box-shadow: var(--shadow-lg); padding: 26px;
+  background-image: radial-gradient(rgba(10,10,15,.025) 1px, transparent 1px);
+  background-size: 5px 5px;
+}
+.postcard .stamp {
+  position: absolute; top: 18px; right: 20px; width: 56px; height: 66px;
+  background: var(--mint-tint); border: 3px solid #fff; border-radius: 3px;
+  box-shadow: 0 0 0 1px var(--border); transform: rotate(3deg);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+}
+.postcard .postmark {
+  position: absolute; top: 48px; right: 56px; width: 62px; height: 62px; border-radius: 50%;
+  border: 2px solid rgba(10,10,15,.26);
+  box-shadow: inset 0 0 0 4px #FBFAF7, inset 0 0 0 6px rgba(10,10,15,.15);
+  transform: rotate(-13deg); color: rgba(10,10,15,.42);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+/* handwriting "being written" reveal — left-to-right per line, on scroll-in */
+.postcard .write { clip-path: inset(0 100% 0 0); }
+.pc-wrap.in .postcard .write {
+  animation-name: handwrite; animation-timing-function: linear;
+  animation-fill-mode: both; animation-duration: .6s;
+}
+@keyframes handwrite { to { clip-path: inset(0 0 0 0); } }
+@media (prefers-reduced-motion: reduce) {
+  .postcard .write { clip-path: none !important; animation: none !important; }
+}
+
+/* lead-flow autoplay graphic */
+@keyframes lfTap { 0% { transform: translate(-50%,-50%) scale(.5); opacity: .5; } 100% { transform: translate(-50%,-50%) scale(1.7); opacity: 0; } }
+.lf-ripple { position: absolute; top: 50%; left: 50%; width: 56px; height: 56px; border-radius: 999px; background: rgba(255,255,255,.55); pointer-events: none; animation: lfTap .6s ease-out infinite; }
+@keyframes lfPulse { 0%,100% { transform: scale(1); box-shadow: 0 10px 26px -10px rgba(16,185,129,.55); } 50% { transform: scale(1.05); box-shadow: 0 14px 32px -8px rgba(16,185,129,.75); } }
+.lf-connector { animation: lfPulse 1.6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .lf-ripple, .lf-connector { animation: none !important; } }
+
+/* ringing phone shake (event graphic) */
+@keyframes phoneRing { 0%,100% { transform: translate(0,0) rotate(0); } 15% { transform: translate(-2px,0) rotate(-2deg); } 30% { transform: translate(2px,0) rotate(2deg); } 45% { transform: translate(-2px,0) rotate(-1.5deg); } 60% { transform: translate(2px,0) rotate(1.5deg); } 75% { transform: translate(-1px,0) rotate(-1deg); } }
+.evt-ring { animation: phoneRing .55s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .evt-ring { animation: none !important; } }
+
+/* warm-accent scope for device graphics (mockups stay warm, rest of base stays mint) */
+.gfx-warm {
+  --mint: #E5602B; --mint-light: #F6915E; --mint-deep: #C44A1C; --mint-tint: #FCEDE4;
+  --shadow-mint: 0 12px 30px -12px rgba(229,96,43,.45);
+}
+
+/* task feed entrance (home taken graphic) */
+@keyframes taskIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { [style*="taskIn"] { animation: none !important; } }
+
+/* ---------- faq accordion ---------- */
+summary { list-style: none; }
+summary::-webkit-details-marker { display: none; }
+.faq-chev { transition: transform .25s ease; }
+details[open] .faq-chev { transform: rotate(180deg); }
+
+/* ---------- mobile ---------- */
+@media (max-width: 820px) {
+  .section { padding: 68px 0; }
+  .marquee-track { animation-duration: 18s; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 0 20px; }
+  .section { padding: 56px 0; }
+  .marquee-track { animation-duration: 10s; }
+  .mq-item { width: 104px; height: 38px; margin-right: 36px; }
+  .mq-item img { max-height: 32px; max-width: 94px; }
+}
+
+/* mobile menu panel */
+.mobile-menu {
+  position: absolute; top: 74px; left: 0; right: 0;
+  background: #fff; border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  display: flex; flex-direction: column; padding: 14px 20px 22px;
+  gap: 4px;
+}
+.mobile-menu a {
+  font-size: 17px; font-weight: 600; color: var(--fg1);
+  padding: 13px 6px; border-bottom: 1px solid var(--border);
+}
+.hamburger { background: none; border: none; cursor: pointer; padding: 6px; display: flex; }
+.hamburger i { width: 26px; height: 26px; }
+
+/* === theme-v1.css (teal overrides — must win) === */
+:root{
+  --mint:#3E788E; --mint-light:#7FB0C2; --mint-deep:#2E5C6E; --mint-tint:#E9F2F5;
+  --shadow-mint:0 12px 30px -12px rgba(62,120,142,.45);
+  --ink:#0C161B; --surface-dark:#0C161B; --surface-dark-2:#16252C;
+  --bg-soft:#F1F5F6; --bg-soft-2:#F8FAFB;
+  --font-sans:'Inter', system-ui, -apple-system, sans-serif;
+}
+.gfx-warm{ --mint:#3E788E; --mint-light:#7FB0C2; --mint-deep:#2E5C6E; --mint-tint:#E9F2F5; --shadow-mint:0 12px 30px -12px rgba(62,120,142,.45); }
