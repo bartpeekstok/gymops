@@ -375,6 +375,71 @@ function DashboardScreen() {
   );
 }
 
+/* Mobile owner overview — open vs done task counts + per-coach progress.
+   Shows the owner what's open, what's done and where it stalls. */
+function TaskOverviewScreen() {
+  const p = GO.product;
+  const o = p.taskOverview;
+  const tiles = [
+    { label: 'Openstaand', value: o.open, icon: 'circle-dot', accent: false },
+    { label: 'Afgerond', value: o.done, icon: 'circle-check-big', accent: true },
+  ];
+  return (
+    <div style={{ position: 'absolute', inset: 0, background: 'var(--bg-soft)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <StatusBar />
+      <div style={{ padding: '4px 14px 11px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+            <span style={{ fontSize: 14, fontWeight: 800, color: 'var(--ink)', letterSpacing: '-.02em' }}>Taken</span>
+            <Icon data-lucide="chevron-down" style={{ width: 13, height: 13, color: 'var(--fg3)' }}></Icon>
+          </div>
+          <div style={{ fontSize: 9.5, color: 'var(--fg3)' }}>Deze week</div>
+        </div>
+        <div style={{ display: 'flex', gap: 9 }}>
+          <Icon data-lucide="sliders-horizontal" style={{ width: 15, height: 15, color: 'var(--fg2)' }}></Icon>
+          <Icon data-lucide="calendar" style={{ width: 15, height: 15, color: 'var(--fg2)' }}></Icon>
+        </div>
+      </div>
+
+      <div style={{ padding: '0 12px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+        {tiles.map(t => (
+          <div key={t.label} style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: 12, padding: '10px 11px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 8 }}>
+              <Icon data-lucide={t.icon} style={{ width: 12, height: 12, color: t.accent ? 'var(--mint-deep)' : 'var(--fg3)' }}></Icon>
+              <span style={{ fontSize: 9.5, fontWeight: 700, color: 'var(--ink)' }}>{t.label}</span>
+            </div>
+            <div style={{ fontSize: 24, fontWeight: 800, color: t.accent ? 'var(--mint-deep)' : 'var(--ink)', letterSpacing: '-.03em', lineHeight: 1 }}>{t.value}</div>
+            <div style={{ fontSize: 7.5, color: 'var(--fg3)', marginTop: 6 }}>Deze week</div>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ margin: '9px 12px 0', background: '#fff', border: '1px solid var(--border)', borderRadius: 12, padding: '10px 11px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 9 }}>
+          <span style={{ fontSize: 10.5, fontWeight: 800, color: 'var(--ink)' }}>Per coach</span>
+          <span style={{ fontSize: 8, fontWeight: 700, color: 'var(--mint-deep)', background: 'var(--mint-tint)', borderRadius: 5, padding: '2px 6px' }}>Afgerond</span>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+          {o.coaches.map(c => (
+            <div key={c.name}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
+                <span style={{ fontSize: 8.5, fontWeight: 600, color: 'var(--fg2)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.name}</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 5, flexShrink: 0 }}>
+                  {c.flag && <span style={{ fontSize: 7.5, fontWeight: 700, color: '#B45309', background: 'rgba(245,158,11,.14)', borderRadius: 999, padding: '2px 6px' }}>{c.flag}</span>}
+                  <span style={{ fontSize: 8, fontWeight: 700, color: 'var(--ink)' }}>{c.done}/{c.total}</span>
+                </div>
+              </div>
+              <div style={{ height: 6, background: 'var(--bg-soft)', borderRadius: 4, overflow: 'hidden' }}>
+                <div style={{ width: (c.done / c.total * 100) + '%', height: '100%', borderRadius: 4, background: c.flag ? 'linear-gradient(90deg, #F59E0B, #FBBF24)' : 'linear-gradient(90deg, var(--mint-deep), var(--mint-light))' }} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* Mobile Task Manager — pending tasks with member name, assignee + status badge.
    Modelled on the real GymOps mobile task manager, rebranded to our flow. */
 function StaffScreen({ animate, step, tasks: taskList }) {
@@ -2275,7 +2340,7 @@ function TeamAansturing() {
 
       <FeatureRow icon="layout-dashboard" flip soft title="Overzicht voor de eigenaar, zonder micromanagen"
         body={'Jij ziet in één oogopslag wat er speelt: welke taken open staan, wat er is afgerond en waar het stokt. Je team werkt voorspelbaar, en jij houdt de regie zonder er bovenop te hoeven zitten.'}
-        visual={<Phone w={258}><DashboardScreen /></Phone>} />
+        visual={<Phone w={258}><TaskOverviewScreen /></Phone>} />
 
       <MiniGrid eyebrow="En verder" title="Een team dat voorspelbaar draait." items={[
         { icon: 'message-circle', title: 'Geen losse WhatsApp-groepjes', body: 'Alle taken en ledencontact op één plek, in plaats van verspreid over chats die niemand terugleest.' },
