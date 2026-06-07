@@ -2209,7 +2209,7 @@ function Website() {
         { icon: 'link', title: 'Naadloos gekoppeld', body: 'Je website werkt samen met SportBit en de flows van GymOps. Inschrijven, betalen en opvolgen lopen automatisch door.' },
         { icon: 'credit-card', title: 'Online betalen en inschrijven', body: 'Bezoekers boeken een proefles of rekenen een event direct af via iDEAL. Minder mailtjes, meer inschrijvingen.' },
         { icon: 'shield-check', title: 'Veilig en onderhoudsvrij', body: 'Hosting, beveiliging en updates regelen wij. Jij hebt er geen omkijken naar en je site is altijd up-to-date.' },
-        { icon: 'bar-chart-3', title: 'Inzicht in wat werkt', body: 'Zie waar je leads vandaan komen, zodat je weet welke kanalen het meeste opleveren voor jouw gym.' },
+        { icon: 'chart-column', title: 'Inzicht in wat werkt', body: 'Zie waar je leads vandaan komen, zodat je weet welke kanalen het meeste opleveren voor jouw gym.' },
       ]} />
     </React.Fragment>
   );
