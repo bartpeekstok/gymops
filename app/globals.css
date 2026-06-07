@@ -246,15 +246,26 @@ img { display: block; max-width: 100%; }
 .btn-ghost i { transition: transform .2s; }
 .btn-ghost:hover i { transform: translateX(4px); }
 
-/* Prominent "meer over ..." link: tinted pill that pops on white sections. */
+/* Prominent "meer over ..." link: glowing mint pill that pops on white sections. */
 .btn-soft { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 16px;
-  color: var(--mint-deep); background: var(--mint-tint); border: 1.5px solid transparent;
-  border-radius: 999px; padding: 11px 20px;
-  transition: background .2s, color .2s, border-color .2s, box-shadow .2s, transform .15s; }
+  color: #fff; background: var(--mint); border: 1.5px solid transparent;
+  border-radius: 999px; padding: 12px 22px;
+  box-shadow: 0 0 0 0 rgba(16,185,129,.45), 0 6px 22px -4px rgba(16,185,129,.55);
+  transition: background .2s, color .2s, border-color .2s, box-shadow .2s, transform .15s;
+  animation: btnSoftPulse 2.4s ease-in-out infinite; }
 .btn-soft i { width: 18px; height: 18px; transition: transform .2s; }
-.btn-soft:hover { background: var(--mint); color: #fff; box-shadow: var(--shadow-mint); }
+.btn-soft:hover { background: var(--mint-deep); color: #fff; animation: none;
+  box-shadow: 0 0 0 5px rgba(16,185,129,.22), 0 10px 30px -4px rgba(16,185,129,.7); }
 .btn-soft:hover i { transform: translateX(4px); }
 .btn-soft:active { transform: translateY(1px); }
+
+@keyframes btnSoftPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,.45), 0 6px 22px -4px rgba(16,185,129,.5); }
+  50%      { box-shadow: 0 0 0 8px rgba(16,185,129,0), 0 8px 26px -2px rgba(16,185,129,.75); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-soft { animation: none; }
+}
 
 /* ---------- eyebrow ---------- */
 .eyebrow { font-size: 19px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--mint-deep); }
