@@ -269,7 +269,7 @@ function LeadScreen() {
         </div>
 
         <div style={{ alignSelf: 'flex-end', maxWidth: '88%', background: '#D9FDD3', borderRadius: '14px 14px 4px 14px', padding: '10px 12px', marginTop: 4 }}>
-          <p style={{ fontSize: 11.5, lineHeight: 1.45, color: '#0A0A0F' }}>Hi Mark! Bedankt voor je interesse in CrossFit Zuidlaren. Wanneer kom je langs voor een proefles?</p>
+          <p style={{ fontSize: 11.5, lineHeight: 1.45, color: '#0A0A0F' }}>Hi Mark! Bedankt voor je interesse in CrossFit Zuidlaren. Wanneer kom je langs voor een kennismaking?</p>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 3, marginTop: 4, fontSize: 9, color: '#557' }}>09:14 <Icon data-lucide="check-check" style={{ width: 12, height: 12, color: 'var(--mint-deep)' }}></Icon></div>
         </div>
         <div style={{ alignSelf: 'center', fontSize: 9, color: '#7A8691', background: 'rgba(255,255,255,.75)', padding: '4px 10px', borderRadius: 999, fontWeight: 600 }}>47 seconden na aanvraag</div>
@@ -541,7 +541,7 @@ function WebsiteBg() {
         </div>
         <div style={{ display: 'flex', gap: 16, color: 'rgba(255,255,255,.65)', fontSize: 11, fontWeight: 500 }}>
           <span>Lessen</span><span>Tarieven</span><span>Team</span>
-          <span style={{ color: 'var(--ink)', background: 'var(--mint)', padding: '5px 11px', borderRadius: 7, fontWeight: 700 }}>Proefles</span>
+          <span style={{ color: 'var(--ink)', background: 'var(--mint)', padding: '5px 11px', borderRadius: 7, fontWeight: 700 }}>Kennismaking</span>
         </div>
       </div>
       <div style={{ padding: '34px 28px' }}>
@@ -602,7 +602,7 @@ function GoogleSearchMock() {
           <Icon data-lucide="sparkles" style={{ width: 14, height: 14, color: 'var(--mint-deep)' }}></Icon>
           <span style={{ fontSize: 11.5, fontWeight: 800, color: 'var(--mint-deep)', letterSpacing: '.02em' }}>AI-overzicht</span>
         </div>
-        <p style={{ fontSize: 12.5, lineHeight: 1.55, color: 'var(--fg2)' }}>CrossFit Zuidlaren is een veelzijdige box met persoonlijke coaching voor alle niveaus. Nieuwe sporters kunnen vrijblijvend een gratis proefles plannen.</p>
+        <p style={{ fontSize: 12.5, lineHeight: 1.55, color: 'var(--fg2)' }}>CrossFit Zuidlaren is een veelzijdige box met persoonlijke coaching voor alle niveaus. Nieuwe sporters kunnen vrijblijvend een gratis kennismaking plannen.</p>
       </div>
 
       <div style={{ marginTop: 16 }}>
@@ -616,7 +616,7 @@ function GoogleSearchMock() {
           </div>
         </div>
         <div style={{ fontSize: 16, fontWeight: 600, color: '#1a3fb8', letterSpacing: '-.01em', lineHeight: 1.3 }}>CrossFit Zuidlaren , Samen sterker in Zuidlaren</div>
-        <p style={{ fontSize: 12.5, lineHeight: 1.5, color: 'var(--fg3)', marginTop: 4 }}>Word fitter en sterker met persoonlijke coaching. Plan vrijblijvend je gratis proefles, je hoeft niet te sporten.</p>
+        <p style={{ fontSize: 12.5, lineHeight: 1.5, color: 'var(--fg3)', marginTop: 4 }}>Word fitter en sterker met persoonlijke coaching. Plan vrijblijvend je gratis kennismaking, je hoeft niet te sporten.</p>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 9 }}>
           <div style={{ display: 'flex', gap: 1, color: 'var(--amber)' }}>
             {Array.from({ length: 5 }).map((_, i) => <Icon key={i} data-lucide="star" style={{ width: 12, height: 12, fill: 'currentColor' }}></Icon>)}
@@ -638,14 +638,14 @@ function SiteHomeDesktop() {
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, color: 'rgba(255,255,255,.65)', fontSize: 11, fontWeight: 500 }}>
           <span>Lessen</span><span>Tarieven</span><span>Team</span>
-          <span style={{ color: 'var(--ink)', background: 'var(--mint)', padding: '5px 11px', borderRadius: 7, fontWeight: 700 }}>Proefles</span>
+          <span style={{ color: 'var(--ink)', background: 'var(--mint)', padding: '5px 11px', borderRadius: 7, fontWeight: 700 }}>Kennismaking</span>
         </div>
       </div>
       <div style={{ flex: 1, background: 'linear-gradient(150deg, #0e1f19 0%, #0a0a0f 70%)', padding: '26px 28px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <div style={{ color: 'var(--mint-light)', fontSize: 11, fontWeight: 700, letterSpacing: '.1em', marginBottom: 10 }}>SAMEN STERKER IN ZUIDLAREN</div>
         <div style={{ color: '#fff', fontSize: 30, fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.05, maxWidth: 340 }}>Word fitter, sterker en onderdeel van de gym.</div>
         <div style={{ display: 'flex', gap: 10, marginTop: 18 }}>
-          <span style={{ background: 'var(--mint)', color: '#fff', fontSize: 12, fontWeight: 700, padding: '9px 16px', borderRadius: 9 }}>Plan je proefles</span>
+          <span style={{ background: 'var(--mint)', color: '#fff', fontSize: 12, fontWeight: 700, padding: '9px 16px', borderRadius: 9 }}>Plan je kennismaking</span>
           <span style={{ border: '1px solid rgba(255,255,255,.3)', color: '#fff', fontSize: 12, fontWeight: 600, padding: '9px 16px', borderRadius: 9 }}>Bekijk rooster</span>
         </div>
       </div>
@@ -675,7 +675,7 @@ function SiteHomeMobile() {
       <div style={{ background: 'linear-gradient(150deg, #0e1f19, #0a0a0f)', padding: '18px 16px 20px' }}>
         <div style={{ color: 'var(--mint-light)', fontSize: 9, fontWeight: 700, letterSpacing: '.1em', marginBottom: 6 }}>SAMEN STERKER IN ZUIDLAREN</div>
         <div style={{ color: '#fff', fontSize: 18, fontWeight: 800, letterSpacing: '-.02em', lineHeight: 1.1 }}>Word fitter en sterker in de gym.</div>
-        <div style={{ background: 'var(--mint)', color: '#fff', fontSize: 11, fontWeight: 700, padding: '9px 0', borderRadius: 8, textAlign: 'center', marginTop: 14 }}>Plan je proefles</div>
+        <div style={{ background: 'var(--mint)', color: '#fff', fontSize: 11, fontWeight: 700, padding: '9px 0', borderRadius: 8, textAlign: 'center', marginTop: 14 }}>Plan je kennismaking</div>
       </div>
       <div style={{ flex: 1, padding: '12px 13px', display: 'flex', flexDirection: 'column', gap: 8 }}>
         {[['infinity', 'Onbeperkt trainen'], ['user-round', 'Persoonlijke coaching'], ['users', 'Sterke community']].map(([ic, t]) => (
@@ -1038,7 +1038,7 @@ function ConversionBand() {
   const funnel = [
     { label: 'Leads binnen', val: '1.000', w: 100 },
     { label: 'Gereageerd', val: '920', w: 86 },
-    { label: 'Proefles geboekt', val: '740', w: 70 },
+    { label: 'Kennismaking geboekt', val: '740', w: 70 },
     { label: 'Nieuw lid', val: '610', w: 54, hot: true },
   ];
   return (
@@ -1108,7 +1108,7 @@ function SlotsMock() {
   const slots = [['ma 9:00', false], ['ma 18:00', false], ['di 10:30', true], ['wo 19:00', false]];
   return (
     <MockCard w={340}>
-      <div style={{ fontWeight: 800, fontSize: 16, color: 'var(--fg1)' }}>Plan je proefles</div>
+      <div style={{ fontWeight: 800, fontSize: 16, color: 'var(--fg1)' }}>Plan je kennismaking</div>
       <p style={{ fontSize: 13, color: 'var(--fg3)', margin: '4px 0 16px' }}>Alleen tijden die jou en je coach uitkomen</p>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
         {slots.map(([t, on]) => (
@@ -1533,7 +1533,7 @@ function LedenervaringHome() {
 /* ============================ LeadFlow.jsx ============================ */
 /* LeadFlowStage — autoplaying "van aanvraag tot eerste appje" graphic for the
    home lead block. A laptop shows the CrossFit Zuidlaren website; the visitor
-   taps "Gratis proefles", a form fills itself in and submits, then the phone
+   taps "Gratis kennismaking", a form fills itself in and submits, then the phone
    beside it lights up with the WhatsApp coming in. Loops. Self-contained:
    own timeline (no GSAP), scales to its container, respects reduced motion. */
 
@@ -1639,7 +1639,7 @@ function LeadFlowStage({ step }) {
         <div style={{ color: 'var(--mint-light)', fontSize: 11, fontWeight: 700, letterSpacing: '.12em', marginBottom: 10 }}>SAMEN STERKER IN ZUIDLAREN</div>
         <div style={{ color: '#fff', fontSize: 27, fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.06, maxWidth: 320 }}>Word fitter, sterker en onderdeel van de gym.</div>
         <div style={{ marginTop: 18, position: 'relative', alignSelf: 'flex-start' }} data-cta>
-          <div style={{ background: 'var(--mint)', color: '#fff', fontWeight: 700, fontSize: 14, padding: '11px 20px', borderRadius: 10, boxShadow: 'var(--shadow-mint)' }}>Gratis proefles</div>
+          <div style={{ background: 'var(--mint)', color: '#fff', fontWeight: 700, fontSize: 14, padding: '11px 20px', borderRadius: 10, boxShadow: 'var(--shadow-mint)' }}>Gratis kennismaking</div>
         </div>
       </div>
     </div>
@@ -1682,7 +1682,7 @@ function LeadFlowStage({ step }) {
           <div><div style={{ fontSize: 9, fontWeight: 700, color: 'var(--mint-light)', marginBottom: 2 }}>NIEUWE TAAK VOOR COACH SANNE</div><div style={{ fontSize: 10.5, color: '#fff', lineHeight: 1.3 }}>Bel Mark Janssen binnen 24u</div></div>
         </div>
         <div style={{ alignSelf: 'flex-end', maxWidth: '88%', background: '#D9FDD3', borderRadius: '13px 13px 4px 13px', padding: '9px 11px', opacity: wa >= 2 ? 1 : 0, transform: wa >= 2 ? 'translateY(0)' : 'translateY(10px)', transition: 'opacity .4s, transform .4s' }}>
-          <p style={{ fontSize: 11, lineHeight: 1.4, color: '#0A0A0F' }}>Hi Mark! Bedankt voor je interesse in CrossFit Zuidlaren. Wanneer kom je langs voor een proefles?</p>
+          <p style={{ fontSize: 11, lineHeight: 1.4, color: '#0A0A0F' }}>Hi Mark! Bedankt voor je interesse in CrossFit Zuidlaren. Wanneer kom je langs voor een kennismaking?</p>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 3, marginTop: 3, fontSize: 8.5, color: '#557' }}>09:14 <Icon data-lucide="check-check" style={{ width: 11, height: 11, color: 'var(--mint-deep)' }}></Icon></div>
         </div>
         <div style={{ alignSelf: 'center', fontSize: 8.5, color: '#7A8691', background: 'rgba(255,255,255,.8)', padding: '4px 10px', borderRadius: 999, fontWeight: 600, opacity: wa >= 3 ? 1 : 0, transition: 'opacity .4s' }}>binnen 1 minuut na aanvraag</div>
@@ -1936,7 +1936,7 @@ function EventFlowStage({ step }) {
       <div style={{ marginTop: 22, width: 70, height: 70, borderRadius: 999, background: 'var(--mint)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: 27, boxShadow: 'var(--shadow-mint)' }}>S</div>
       <div style={{ marginTop: 13, fontSize: 16, fontWeight: 800 }}>Coach Sanne</div>
       <div style={{ fontSize: 10.5, color: 'rgba(255,255,255,.6)', marginTop: 3, display: 'flex', alignItems: 'center', gap: 5 }}><Icon data-lucide="phone-call" style={{ width: 11, height: 11, color: 'var(--mint-light)' }}></Icon> belt je nu</div>
-      <div style={{ marginTop: 18, background: 'rgba(255,255,255,.07)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 13, padding: '11px 13px', fontSize: 11, lineHeight: 1.45, textAlign: 'center', color: 'rgba(255,255,255,.92)' }}>"Hey Tom! Wat vond je van het event? Zin om eens langs te komen voor een intake of proefles?"</div>
+      <div style={{ marginTop: 18, background: 'rgba(255,255,255,.07)', border: '1px solid rgba(255,255,255,.12)', borderRadius: 13, padding: '11px 13px', fontSize: 11, lineHeight: 1.45, textAlign: 'center', color: 'rgba(255,255,255,.92)' }}>"Hey Tom! Wat vond je van het event? Zin om eens langs te komen voor een kennismaking?"</div>
       <div style={{ marginTop: 'auto', marginBottom: 24, display: 'flex', gap: 28 }}>
         <div style={{ width: 44, height: 44, borderRadius: 999, background: '#EF4444', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon data-lucide="phone-off" style={{ width: 19, height: 19, color: '#fff' }}></Icon></div>
         <div style={{ width: 44, height: 44, borderRadius: 999, background: '#25D366', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Icon data-lucide="phone" style={{ width: 19, height: 19, color: '#fff' }}></Icon></div>
@@ -2085,7 +2085,7 @@ function PlatformStrip() {
 
 /* ============================ Integrations.jsx ============================ */
 /* Integrations — primary partners highlighted, secondary logo grid,
-   and the Leadcapture → Proefles → Welkomstflow → Reviews flow strip. */
+   and the Leadcapture → Kennismaking → Welkomstflow → Reviews flow strip. */
 function Integrations() {
   useLucide();
   const m = useIsMobile();
@@ -2179,14 +2179,14 @@ function Leadopvolging() {
         visual={<ChannelsMock />} />
 
       <FeatureRow icon="layout-dashboard" title="Een dashboard waar je elke lead in beeld hebt"
-        body={'Open GymOps en je ziet in één oogopslag wie er nieuw binnenkwam, wie wacht op een proefles en wie nog opvolging nodig heeft. Per lead het kanaal, de status en het laatste contactmoment.'}
+        body={'Open GymOps en je ziet in één oogopslag wie er nieuw binnenkwam, wie wacht op een kennismaking en wie nog opvolging nodig heeft. Per lead het kanaal, de status en het laatste contactmoment.'}
         visual={<Phone w={258}><DashboardScreen /></Phone>} />
 
       <FeatureRow icon="user-check" flip soft title="Persoonlijk contact blijft bij jouw coach"
         body={'Automatisering doet het werk, jouw coach maakt het persoonlijk. Bij elke nieuwe lead komt direct een taak binnen bij de juiste coach: bel of app deze persoon even op.'}
         visual={<Phone w={258}><StaffScreen /></Phone>} />
 
-      <FeatureRow icon="calendar-check" title="Direct een proefles boeken zonder heen-en-weer"
+      <FeatureRow icon="calendar-check" title="Direct een kennismaking boeken zonder heen-en-weer"
         body={'Leads krijgen een persoonlijke link naar de beschikbaarheid van jou en je coaches en kiezen zelf een slot. Geen mailtjes over en weer, geen dubbele afspraken, geen lege agenda\u2019s.'}
         visual={<SlotsMock />} />
 
@@ -2197,7 +2197,7 @@ function Leadopvolging() {
       <MiniGrid eyebrow="En verder" title="Alles wat opvolging compleet maakt." items={[
         { icon: 'bell', title: 'Show-rate omhoog met reminders', body: 'Reminders via WhatsApp en e-mail tot je lead daadwerkelijk in je gym staat. Minder no-shows.' },
         { icon: 'tag', title: 'Jouw branding, niet die van GymOps', body: 'Elke mail, WhatsApp en agenda-uitnodiging komt uit jouw gym. Met jouw logo, toon en kleuren.' },
-        { icon: 'trending-up', title: 'Na de intake gaat het door', body: 'GymOps begeleidt de lead na de proefles richting een besluit en start automatisch de welkomstflow.' },
+        { icon: 'trending-up', title: 'Na de kennismaking gaat het door', body: 'GymOps begeleidt de lead na de kennismaking richting een besluit en start automatisch de welkomstflow.' },
         { icon: 'rotate-ccw', title: 'Verloren leads opnieuw in beeld', body: 'Niet elke lead is meteen klaar. GymOps brengt ze later weer in beeld met een passend bericht.' },
         { icon: 'pen-line', title: 'Handgeschreven kaarten', body: 'Stuur met één klik een kaart met persoonlijke tekst naar een ex-lid of koude lead. Fysiek en onverwacht.' },
         { icon: 'message-circle', title: 'WhatsApp én e-mail', body: 'Mensen reageren niet altijd op een mail, maar wel op WhatsApp. Of andersom. GymOps stuurt beide.' },
@@ -2291,7 +2291,7 @@ function Website() {
   return (
     <React.Fragment>
       <PageHero eyebrow="GymOps Flow · Jouw website" title="Een website die werkt voor" accent="jouw gym"
-        sub="Geen standaard thema, maar een site op maat die bezoekers omzet in proeflessen. Gebouwd in dezelfde techniek als grote merken: snel, vindbaar en helemaal van jou."
+        sub="Geen standaard thema, maar een site op maat die bezoekers omzet in kennismakingen. Gebouwd in dezelfde techniek als grote merken: snel, vindbaar en helemaal van jou."
         cta={{ primary: 'Plan een demo' }} />
 
       <FeatureRow icon="search" title="Gevonden in Google én AI"
@@ -2314,7 +2314,7 @@ function Website() {
         { icon: 'gauge', title: 'Razendsnel, ook op mobiel', body: 'Gebouwd in moderne techniek (dezelfde als bedrijven als Netflix en Spotify). Geen trage laadtijden die bezoekers wegjagen.' },
         { icon: 'wrench', title: 'Aanpassingen binnen een werkweek', body: 'Nieuwe abonnementsvorm, tariefswijziging of een nieuwe coach? Wij passen het binnen een werkweek aan. Inbegrepen, geen offertes.' },
         { icon: 'link', title: 'Naadloos gekoppeld', body: 'Je website werkt samen met SportBit en de flows van GymOps. Inschrijven, betalen en opvolgen lopen automatisch door.' },
-        { icon: 'credit-card', title: 'Online betalen en inschrijven', body: 'Bezoekers boeken een proefles of rekenen een event direct af via iDEAL. Minder mailtjes, meer inschrijvingen.' },
+        { icon: 'credit-card', title: 'Online betalen en inschrijven', body: 'Bezoekers boeken een kennismaking of rekenen een event direct af via iDEAL. Minder mailtjes, meer inschrijvingen.' },
         { icon: 'shield-check', title: 'Veilig en onderhoudsvrij', body: 'Hosting, beveiliging en updates regelen wij. Jij hebt er geen omkijken naar en je site is altijd up-to-date.' },
         { icon: 'chart-column', title: 'Inzicht in wat werkt', body: 'Zie waar je leads vandaan komen, zodat je weet welke kanalen het meeste opleveren voor jouw gym.' },
       ]} />
@@ -2401,7 +2401,7 @@ function Prijzen() {
           <div style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : 'repeat(3, 1fr)', gap: 24, marginTop: 52 }} data-reveal-stagger>
             {[
               { icon: 'heart', title: 'Leden blijven langer', body: 'Eén lid dat een maand langer blijft, verdient al een groot deel van je abonnement terug. GymOps houdt leden betrokken en niemand valt stil uit beeld.' },
-              { icon: 'trending-up', title: 'Meer leads worden lid', body: 'Snellere, consistente opvolging levert meer proeflessen en inschrijvingen op. Een paar extra leden per maand dekt de kosten ruim.' },
+              { icon: 'trending-up', title: 'Meer leads worden lid', body: 'Snellere, consistente opvolging levert meer kennismakingen en inschrijvingen op. Een paar extra leden per maand dekt de kosten ruim.' },
               { icon: 'clock', title: 'Je team werkt efficiënter', body: 'Minder handwerk en losse appjes. De uren die je terugkrijgt steek je in coaching, niet in administratie.' },
             ].map((c, i) => (
               <div key={i} className="card" style={{ padding: 30, display: 'flex', flexDirection: 'column' }}>
