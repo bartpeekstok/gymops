@@ -1492,12 +1492,17 @@ function LedenervaringHome() {
 
   const card = <div className="gfx-warm" style={{ display: 'contents' }}><Postcard /></div>;
 
+  const head = (
+    <div data-reveal style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
+      <StepBadge num={2} />
+      <div className="eyebrow" style={{ marginBottom: 16 }}>{L.eyebrow}</div>
+      <h2 style={{ fontSize: 'clamp(26px,3.2vw,40px)', fontWeight: 800, letterSpacing: '-.025em', color: 'var(--ink)' }}>{L.title}</h2>
+    </div>
+  );
+
   const text = (
     <div data-reveal style={{ flex: 1 }}>
-      <StepBadge num={2} align="left" />
-      <div className="eyebrow" style={{ marginBottom: 16 }}>{L.eyebrow}</div>
-      <h2 style={{ fontSize: 'clamp(26px,3.2vw,40px)', fontWeight: 800, letterSpacing: '-.025em', color: 'var(--ink)', maxWidth: 460 }}>{L.title}</h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 22, marginTop: 32 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
         {L.items.map((it, i) => (
           <div key={i} style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
             <div className="icon-chip" style={{ width: 44, height: 44, borderRadius: 13, flexShrink: 0 }}><Icon data-lucide={it.icon} style={{ width: 20, height: 20, color: 'var(--mint-deep)' }}></Icon></div>
@@ -1514,8 +1519,11 @@ function LedenervaringHome() {
 
   return (
     <section className="section section-soft" style={{ padding: m ? '52px 0' : '88px 0' }}>
-      <div className="wrap" style={{ display: 'flex', flexDirection: m ? 'column' : 'row', gap: m ? 40 : 80, alignItems: m ? 'stretch' : 'center' }}>
-        {m ? <React.Fragment>{text}{card}</React.Fragment> : <React.Fragment>{card}{text}</React.Fragment>}
+      <div className="wrap">
+        {head}
+        <div style={{ display: 'flex', flexDirection: m ? 'column' : 'row', gap: m ? 40 : 80, alignItems: m ? 'stretch' : 'center', marginTop: m ? 40 : 56 }}>
+          {m ? <React.Fragment>{text}{card}</React.Fragment> : <React.Fragment>{card}{text}</React.Fragment>}
+        </div>
       </div>
     </section>
   );
