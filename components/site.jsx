@@ -1005,7 +1005,7 @@ function FeatureRow({ icon, title, body, flip, visual, soft }) {
   );
   return (
     <section className={'section' + (soft ? ' section-soft' : '')} style={{ padding: m ? '44px 0' : '72px 0' }}>
-      <div className="wrap" style={{ display: 'flex', flexDirection: m ? 'column-reverse' : 'row', gap: m ? 36 : 72, alignItems: 'center' }}>
+      <div className="wrap" style={{ display: 'flex', flexDirection: m ? 'column' : 'row', gap: m ? 36 : 72, alignItems: 'center' }}>
         {(!m && flip) ? <React.Fragment>{vis}{text}</React.Fragment> : <React.Fragment>{text}{vis}</React.Fragment>}
       </div>
     </section>
