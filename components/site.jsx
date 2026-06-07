@@ -876,13 +876,19 @@ function DashDonut({ segments, total, size = 124, stroke = 17, center, sub }) {
   );
 }
 
-function Dashboard({ scale = 1 }) {
+function Dashboard({ scale = 1, variant = 'leads' }) {
   useLucide();
   const p = GO.product;
+  const o = p.taskOverview;
+  const tasksView = variant === 'tasks';
   const card = { background: '#fff', border: '1px solid var(--border)', borderRadius: 14, padding: 14 };
   const cardTitle = { fontSize: 11.5, fontWeight: 800, color: 'var(--ink)', letterSpacing: '-.01em', marginBottom: 12 };
 
-  const nav = [
+  const nav = tasksView ? [
+    ['layout-dashboard', 'Dashboard'], ['message-circle', 'Gesprekken'], ['calendar', 'Kalenders'],
+    ['users', 'Contacten'], ['list-checks', 'Taken', true], ['__div', ''],
+    ['megaphone', 'Marketing'], ['globe', 'Sites'], ['star', 'Reputatie'],
+  ] : [
     ['layout-dashboard', 'Dashboard', true], ['message-circle', 'Gesprekken'], ['calendar', 'Kalenders'],
     ['users', 'Contacten'], ['shuffle', 'Leads'], ['__div', ''],
     ['megaphone', 'Marketing'], ['globe', 'Sites'], ['star', 'Reputatie'],
@@ -932,12 +938,60 @@ function Dashboard({ scale = 1 }) {
       {/* Content */}
       <div style={{ background: 'var(--bg-soft)', flex: 1, padding: 14, minWidth: 0 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-          <h4 style={{ fontSize: 15, fontWeight: 800, color: 'var(--ink)', letterSpacing: '-.02em' }}>Dashboard</h4>
+          <h4 style={{ fontSize: 15, fontWeight: 800, color: 'var(--ink)', letterSpacing: '-.02em' }}>{tasksView ? 'Taken' : 'Dashboard'}</h4>
           <span style={{ fontSize: 10, fontWeight: 600, color: 'var(--fg2)', background: '#fff', border: '1px solid var(--border)', borderRadius: 8, padding: '5px 9px', display: 'inline-flex', alignItems: 'center', gap: 5 }}>
-            <Icon data-lucide="calendar" style={{ width: 11, height: 11, color: 'var(--fg3)' }}></Icon> Laatste 30 dagen
+            <Icon data-lucide="calendar" style={{ width: 11, height: 11, color: 'var(--fg3)' }}></Icon> {tasksView ? 'Deze week' : 'Laatste 30 dagen'}
           </span>
         </div>
 
+        {tasksView ? (
+        <React.Fragment>
+          {/* stat cards */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 9, marginBottom: 9 }}>
+            {[
+              { label: 'Openstaand', value: o.open, icon: 'circle-dot', tone: 'plain' },
+              { label: 'Afgerond', value: o.done, icon: 'circle-check-big', tone: 'mint' },
+              { label: 'Verlopen', value: 2, icon: 'alert-triangle', tone: 'warn' },
+            ].map(t => {
+              const col = t.tone === 'warn' ? '#B45309' : t.tone === 'mint' ? 'var(--mint-deep)' : 'var(--ink)';
+              return (
+                <div key={t.label} style={card}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 9 }}>
+                    <Icon data-lucide={t.icon} style={{ width: 13, height: 13, color: t.tone === 'plain' ? 'var(--fg3)' : col }}></Icon>
+                    <span style={{ fontSize: 10, fontWeight: 700, color: 'var(--fg2)', whiteSpace: 'nowrap' }}>{t.label}</span>
+                  </div>
+                  <div style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1, color: col }}>{t.value}</div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* per coach */}
+          <div style={{ ...card, marginBottom: 9 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+              <div style={{ fontSize: 11.5, fontWeight: 800, color: 'var(--ink)' }}>Per coach</div>
+              <span style={{ fontSize: 9, fontWeight: 700, color: 'var(--mint-deep)', background: 'var(--mint-tint)', borderRadius: 6, padding: '3px 7px' }}>Afgerond</span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
+              {o.coaches.map(c => (
+                <div key={c.name}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 5 }}>
+                    <span style={{ fontSize: 10, color: 'var(--fg2)' }}>{c.name}</span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+                      {c.flag && <span style={{ fontSize: 8.5, fontWeight: 700, color: '#B45309', background: 'rgba(245,158,11,.14)', borderRadius: 999, padding: '2px 7px' }}>{c.flag}</span>}
+                      <span style={{ fontSize: 10, fontWeight: 700, color: 'var(--ink)' }}>{c.done}/{c.total}</span>
+                    </div>
+                  </div>
+                  <div style={{ height: 8, background: 'var(--bg-soft)', borderRadius: 5, overflow: 'hidden' }}>
+                    <div style={{ width: (c.done / c.total * 100) + '%', height: '100%', borderRadius: 5, background: c.flag ? 'linear-gradient(90deg, #F59E0B, #FBBF24)' : 'linear-gradient(90deg, var(--mint-deep), var(--mint-light))' }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </React.Fragment>
+        ) : (
+        <React.Fragment>
         <div style={{ display: 'grid', gridTemplateColumns: '1.35fr 1fr', gap: 9, marginBottom: 9 }}>
           {/* Opportunity status */}
           <div style={card}>
@@ -989,6 +1043,8 @@ function Dashboard({ scale = 1 }) {
             ))}
           </div>
         </div>
+        </React.Fragment>
+        )}
       </div>
     </div>
   );
@@ -1486,8 +1542,9 @@ function PromiseCards() {
           <p style={{ fontSize: m ? 17 : 19, lineHeight: 1.6, color: 'var(--fg3)', maxWidth: 600, margin: '20px auto 0' }}>De drie processen waar het in jouw gym om draait, op één plek en volledig geautomatiseerd. Elke lead opgevolgd, elk lid gezien en elke taak voor je team geregeld. Naadloos gekoppeld aan SportBit. Hieronder leggen we elk van de drie uit.</p>
         </div>
         {/* connector: leidt het oog van de intro naar het eerste genummerde blok */}
-        <div data-reveal style={{ display: 'flex', justifyContent: 'center', marginTop: m ? 40 : 60 }}>
-          <div style={{ width: 1, height: m ? 40 : 60, background: 'linear-gradient(to bottom, transparent, var(--border-strong))' }} />
+        <div data-reveal style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: m ? 38 : 56 }}>
+          <div style={{ width: 2, height: m ? 44 : 64, borderRadius: 2, background: 'linear-gradient(to bottom, var(--border), var(--mint))' }} />
+          <div style={{ width: 9, height: 9, borderRadius: 999, background: 'var(--mint)', boxShadow: '0 0 0 4px var(--mint-tint)' }} />
         </div>
       </div>
     </section>
@@ -2102,14 +2159,14 @@ function DeviceCluster() {
           <div style={{ position: 'absolute', left: 0, top: 8, width: 540, zIndex: 1 }}>
             <div style={{ background: '#0A0A0F', borderRadius: '14px 14px 5px 5px', padding: 10, boxShadow: '0 40px 80px -34px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.06)' }}>
               <div style={{ width: '100%', height: 332, borderRadius: 5, overflow: 'hidden', background: 'var(--bg-soft)' }}>
-                <Dashboard scale={0.928} />
+                <Dashboard scale={0.928} variant="tasks" />
               </div>
             </div>
             <div style={{ height: 7, background: 'linear-gradient(#1a1a1f,#0A0A0F)', borderRadius: '0 0 9px 9px', margin: '0 auto', width: '64%' }}></div>
           </div>
           {/* phone */}
           <div style={{ position: 'absolute', right: 0, bottom: 0, zIndex: 2 }}>
-            <Phone w={196}><StaffScreen /></Phone>
+            <Phone w={196}><StaffScreen tasks={GO.product.memberTasks} /></Phone>
           </div>
         </div>
       </div>
