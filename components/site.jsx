@@ -377,14 +377,15 @@ function DashboardScreen() {
 
 /* Mobile Task Manager — pending tasks with member name, assignee + status badge.
    Modelled on the real GymOps mobile task manager, rebranded to our flow. */
-function StaffScreen({ animate, step }) {
+function StaffScreen({ animate, step, tasks: taskList }) {
   const p = GO.product;
+  const tasks = taskList || p.tasks;
   const controlled = step != null;
   const chips = [['Alles', false], ['Openstaand', true], ['Afgerond', false]];
-  const [n, setN] = React.useState(controlled ? 0 : (animate ? 0 : p.tasks.length));
+  const [n, setN] = React.useState(controlled ? 0 : (animate ? 0 : tasks.length));
   const rootRef = React.useRef(null);
   const [started, setStarted] = React.useState(false);
-  React.useEffect(() => { if (controlled) setN(Math.max(0, Math.min(p.tasks.length, step))); }, [controlled, step, p.tasks.length]);
+  React.useEffect(() => { if (controlled) setN(Math.max(0, Math.min(tasks.length, step))); }, [controlled, step, tasks.length]);
   React.useEffect(() => {
     if (!animate) return;
     const el = rootRef.current; if (!el) return;
@@ -395,14 +396,14 @@ function StaffScreen({ animate, step }) {
   React.useEffect(() => { if (window.lucide) window.lucide.createIcons(); }, [n]);
   React.useEffect(() => {
     if (!animate || controlled) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setN(p.tasks.length); return; }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setN(tasks.length); return; }
     if (!started) return;
     let alive = true; const timers = [];
     const wait = (ms) => new Promise(r => timers.push(setTimeout(r, ms)));
     const run = async () => {
       while (alive) {
         setN(0); await wait(650);
-        for (let k = 1; k <= p.tasks.length && alive; k++) { setN(k); await wait(950); }
+        for (let k = 1; k <= tasks.length && alive; k++) { setN(k); await wait(950); }
         await wait(3000);
       }
     };
@@ -431,7 +432,7 @@ function StaffScreen({ animate, step }) {
       </div>
 
       <div style={{ flex: 1, padding: '0 12px', display: 'flex', flexDirection: 'column', gap: 9, overflow: 'hidden' }}>
-        {((animate || controlled) ? p.tasks.slice(0, n) : p.tasks).map((tk, i) => (
+        {((animate || controlled) ? tasks.slice(0, n) : tasks).map((tk, i) => (
           <div key={i} style={{ background: 'var(--bg-soft-2)', border: '1px solid var(--border)', borderRadius: 12, padding: 11, animation: animate ? 'taskIn .5s cubic-bezier(.16,1,.3,1) both' : undefined }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
               <span style={{ fontSize: 9.5, fontWeight: 700, color: 'var(--mint-deep)' }}>{tk.who}</span>
@@ -2234,6 +2235,10 @@ function Ledenervaring() {
       <FeatureRow icon="heart" flip soft title="Houd je trouwe leden in beeld"
         body={'Via de SportBit-koppeling weet GymOps wie er wanneer traint. Het systeem signaleert wanneer een lid even niet geweest is en zet een taak klaar bij de juiste coach. Geen massamailtje, maar een berichtje van iemand die ze kennen.'}
         visual={<Phone w={258}><ContactScreen /></Phone>} />
+
+      <FeatureRow icon="list-checks" title="Elk ledenmoment wordt een taak voor je coach"
+        body={'Een nieuw lid dat twee weken meedraait, de 100ste les, of iemand die interesse toont in personal training. GymOps signaleert het moment en zet automatisch een taak klaar bij de juiste coach. Niets blijft liggen, niemand voelt zich vergeten.'}
+        visual={<Phone w={258}><StaffScreen tasks={GO.product.memberTasks} /></Phone>} />
 
       <MiniGrid eyebrow="En verder" title="De hele ledenervaring, geregeld." items={[
         { icon: 'sparkles', title: 'Welkomstflow voor nieuwe leden', body: 'De eerste weken zijn cruciaal. GymOps stuurt berichten op de juiste momenten en zet taken klaar voor je coach.' },
