@@ -2051,6 +2051,47 @@ function TeamAansturing() {
   );
 }
 
+/* ============================ Website.jsx ============================ */
+/* Website — feature detail page voor het "Jouw website" blok op home.
+   Hero, alternerende feature-rows met de laptop/telefoon/event mockups en
+   een "en verder" grid. */
+function Website() {
+  useReveal();
+  useLucide();
+  return (
+    <React.Fragment>
+      <PageHero eyebrow="GymOps Flow · Jouw website" title="Een website die werkt voor" accent="jouw gym"
+        sub="Geen standaard thema, maar een site op maat die bezoekers omzet in proeflessen. Gebouwd in dezelfde techniek als grote merken: snel, vindbaar en helemaal van jou."
+        cta={{ primary: 'Plan een demo' }} />
+
+      <FeatureRow icon="search" title="Gevonden in Google én AI"
+        body={'Je site is technisch geoptimaliseerd voor zoekmachines en AI-assistenten. Wie zoekt naar een gym in jouw plaats, komt bij jou uit, niet bij de concurrent een dorp verderop.'}
+        visual={<Laptop />} />
+
+      <FeatureRow icon="palette" flip soft title="Op maat, in jouw merk"
+        body={'Geen page builder of WordPress-thema dat eruitziet als dat van honderd andere gyms. Een ontwerp op maat in jouw kleuren en toon, dat er op elk scherm strak uitziet.'}
+        visual={<Phone w={258}><WebPhone /></Phone>} />
+
+      <FeatureRow icon="zap" title="Elke bezoeker wordt een lead"
+        body={'Een slim formulier vangt bezoekers op het juiste moment. Wie zich aanmeldt, komt direct in GymOps binnen en wordt automatisch opgevolgd. Geen aanvraag blijft liggen.'}
+        visual={<Laptop filled />} />
+
+      <FeatureRow icon="ticket" flip soft title="Eventpagina's in vijf minuten live"
+        body={'Bring-a-Friend events, hyrox-simulaties of een open dag: zet een complete eventpagina live, inclusief online betaling, bevestiging en de berichtenflows eromheen.'}
+        visual={<EventFlowStage />} />
+
+      <MiniGrid eyebrow="En verder" title="Alles rond je website, geregeld." items={[
+        { icon: 'gauge', title: 'Razendsnel, ook op mobiel', body: 'Gebouwd in moderne techniek (dezelfde als bedrijven als Netflix en Spotify). Geen trage laadtijden die bezoekers wegjagen.' },
+        { icon: 'wrench', title: 'Aanpassingen binnen een werkweek', body: 'Nieuwe abonnementsvorm, tariefswijziging of een nieuwe coach? Wij passen het binnen een werkweek aan. Inbegrepen, geen offertes.' },
+        { icon: 'link', title: 'Naadloos gekoppeld', body: 'Je website werkt samen met SportBit en de flows van GymOps. Inschrijven, betalen en opvolgen lopen automatisch door.' },
+        { icon: 'credit-card', title: 'Online betalen en inschrijven', body: 'Bezoekers boeken een proefles of rekenen een event direct af via iDEAL. Minder mailtjes, meer inschrijvingen.' },
+        { icon: 'shield-check', title: 'Veilig en onderhoudsvrij', body: 'Hosting, beveiliging en updates regelen wij. Jij hebt er geen omkijken naar en je site is altijd up-to-date.' },
+        { icon: 'bar-chart-3', title: 'Inzicht in wat werkt', body: 'Zie waar je leads vandaan komen, zodat je weet welke kanalen het meeste opleveren voor jouw gym.' },
+      ]} />
+    </React.Fragment>
+  );
+}
+
 /* ============================ Prijzen.jsx ============================ */
 /* Prijzen page — two plan cards (Flow highlighted, Flow+Pulse coming soon),
    G2 rating, four-week onboarding timeline, and an FAQ accordion. */
@@ -2334,6 +2375,7 @@ function Home() {
           { icon: 'palette', title: 'Op maat, in jouw merk', body: 'Geen standaard thema. Een site op maat in dezelfde techniek als grote merken: snel, strak en helemaal van jou.' },
           { icon: 'ticket', title: 'Op maat gemaakte eventpagina\'s', body: 'Voor Bring-a-Friend events, hyrox-simulaties of wedstrijden. Inclusief betaling en berichtenflows.' },
         ]}
+        link={{ label: 'meer over je website', href: 'website.html' }}
         steps={5}
         renderGraphic={(step) => <EventFlowStage step={step} />} />
       <Integrations />
@@ -2346,8 +2388,9 @@ function Home() {
 function LeadopvolgingPage() { return (<React.Fragment><Nav current="leadopvolging.html" /><Leadopvolging /><CtaFooter /></React.Fragment>); }
 function LedenervaringPage() { return (<React.Fragment><Nav current="ledenervaring.html" /><Ledenervaring /><CtaFooter /></React.Fragment>); }
 function TeamAansturingPage() { return (<React.Fragment><Nav current="team-aansturing.html" /><TeamAansturing /><CtaFooter /></React.Fragment>); }
+function WebsitePage() { return (<React.Fragment><Nav current="website.html" /><Website /><CtaFooter /></React.Fragment>); }
 function PrijzenPage() { return (<React.Fragment><Nav current="prijzen.html" /><Prijzen /><CtaFooter /></React.Fragment>); }
 function KlantenPage() { return (<React.Fragment><Nav current="klanten.html" /><Klanten /><CtaFooter /></React.Fragment>); }
 function OverOnsPage() { return (<React.Fragment><Nav current="over-ons.html" /><OverOns /><CtaFooter /></React.Fragment>); }
 
-export { Home, LeadopvolgingPage, LedenervaringPage, TeamAansturingPage, PrijzenPage, KlantenPage, OverOnsPage };
+export { Home, LeadopvolgingPage, LedenervaringPage, TeamAansturingPage, WebsitePage, PrijzenPage, KlantenPage, OverOnsPage };
