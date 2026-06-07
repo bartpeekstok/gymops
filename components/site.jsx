@@ -144,7 +144,7 @@ function ScrollScene({ steps, children, scenePerStep = 0.85, label }) {
 
 /* PinnedFeature — home feature block: text on top, graphic below in a pinned
    scroll-scene the visitor scrolls through step by step. */
-function PinnedFeature({ eyebrow, title, items, link, steps, renderGraphic, soft }) {
+function PinnedFeature({ eyebrow, title, items, link, steps, renderGraphic, soft, staticStep }) {
   useReveal();
   const m = useIsMobile();
   const lnk = (h) => route(h);
@@ -170,15 +170,23 @@ function PinnedFeature({ eyebrow, title, items, link, steps, renderGraphic, soft
           {link && <a href={lnk(link.href)} className="btn-soft" style={{ marginTop: 26 }}>{link.label}<Icon data-lucide="arrow-right"></Icon></a>}
         </div>
       </div>
-      <ScrollScene steps={steps} label={eyebrow}>
-        {(step) => (
-          <div className="wrap" style={{ overflow: 'hidden' }}>
-            <div style={{ width: '100%', maxWidth: 560, margin: '0 auto' }}>
-              {renderGraphic(step)}
-            </div>
+      {staticStep != null ? (
+        <div className="wrap" style={{ overflow: 'hidden', paddingTop: m ? 40 : 64 }}>
+          <div style={{ width: '100%', maxWidth: 560, margin: '0 auto' }}>
+            {renderGraphic(staticStep)}
           </div>
-        )}
-      </ScrollScene>
+        </div>
+      ) : (
+        <ScrollScene steps={steps} label={eyebrow}>
+          {(step) => (
+            <div className="wrap" style={{ overflow: 'hidden' }}>
+              <div style={{ width: '100%', maxWidth: 560, margin: '0 auto' }}>
+                {renderGraphic(step)}
+              </div>
+            </div>
+          )}
+        </ScrollScene>
+      )}
     </section>
   );
 }
@@ -2499,7 +2507,7 @@ function Home() {
           { icon: 'ticket', title: 'Op maat gemaakte eventpagina\'s', body: 'Voor Bring-a-Friend events, hyrox-simulaties of wedstrijden. Inclusief betaling en berichtenflows.' },
         ]}
         link={{ label: 'meer over je website', href: 'website.html' }}
-        steps={5}
+        staticStep={0}
         renderGraphic={(step) => <EventFlowStage step={step} />} />
       <Integrations />
       <Testimonials />
