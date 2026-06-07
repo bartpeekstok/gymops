@@ -246,6 +246,16 @@ img { display: block; max-width: 100%; }
 .btn-ghost i { transition: transform .2s; }
 .btn-ghost:hover i { transform: translateX(4px); }
 
+/* Prominent "meer over ..." link: tinted pill that pops on white sections. */
+.btn-soft { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 16px;
+  color: var(--mint-deep); background: var(--mint-tint); border: 1.5px solid transparent;
+  border-radius: 999px; padding: 11px 20px;
+  transition: background .2s, color .2s, border-color .2s, box-shadow .2s, transform .15s; }
+.btn-soft i { width: 18px; height: 18px; transition: transform .2s; }
+.btn-soft:hover { background: var(--mint); color: #fff; box-shadow: var(--shadow-mint); }
+.btn-soft:hover i { transform: translateX(4px); }
+.btn-soft:active { transform: translateY(1px); }
+
 /* ---------- eyebrow ---------- */
 .eyebrow { font-size: 19px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--mint-deep); }
 .eyebrow-dark { color: var(--mint-light); }

@@ -167,7 +167,7 @@ function PinnedFeature({ eyebrow, title, items, link, steps, renderGraphic, soft
               </div>
             ))}
           </div>
-          {link && <a href={lnk(link.href)} className="btn-ghost" style={{ marginTop: 26 }}>{link.label}<Icon data-lucide="arrow-right"></Icon></a>}
+          {link && <a href={lnk(link.href)} className="btn-soft" style={{ marginTop: 26 }}>{link.label}<Icon data-lucide="arrow-right"></Icon></a>}
         </div>
       </div>
       <ScrollScene steps={steps} label={eyebrow}>
@@ -1362,7 +1362,7 @@ function LedenervaringHome() {
           </div>
         ))}
       </div>
-      <a href={lnk('ledenervaring.html')} className="btn-ghost" style={{ marginTop: 28 }}>meer over ledenervaring<Icon data-lucide="arrow-right"></Icon></a>
+      <a href={lnk('ledenervaring.html')} className="btn-soft" style={{ marginTop: 28 }}>meer over ledenervaring<Icon data-lucide="arrow-right"></Icon></a>
     </div>
   );
 
