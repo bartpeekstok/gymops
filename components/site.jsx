@@ -2131,7 +2131,7 @@ function Ledenervaring() {
       <MiniGrid eyebrow="En verder" title="De hele ledenervaring, geregeld." items={[
         { icon: 'sparkles', title: 'Welkomstflow voor nieuwe leden', body: 'De eerste weken zijn cruciaal. GymOps stuurt berichten op de juiste momenten en zet taken klaar voor je coach.' },
         { icon: 'mail', title: 'Branded, geen leverancier-template', body: 'Mails, kaarten en agenda-uitnodigingen komen uit jouw gym, niet uit een GymOps-template.' },
-        { icon: 'party-popper', title: 'Events in 5 minuten live', body: 'Bring-a-Friend, Hyrox-simulaties of een open dag: eventpagina, betaling, bevestiging en team-taak in één.' },
+        { icon: 'message-circle-heart', title: 'Tevredenheid op het juiste moment peilen', body: 'Vraag automatisch om feedback na een les of mijlpaal. Zo weet je hoe leden het ervaren en kun je op tijd bijsturen.' },
         { icon: 'calendar-check', title: 'Slim afspraken plannen', body: 'Leden zien alleen tijden die jullie het best uitkomen. Scheelt uren per week aan mailtjes.' },
         { icon: 'bell', title: 'Show-rate omhoog met reminders', body: 'Reminders via WhatsApp en e-mail tot iemand in je gym staat. Niet te veel, net genoeg.' },
         { icon: 'rotate-ccw', title: 'Ex-leden terughalen', body: 'Kant-en-klare reactivatie-flows op een toon die past bij jouw gym. Een uitnodiging, geen spam.' },
