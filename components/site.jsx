@@ -1270,8 +1270,8 @@ function PromiseCards() {
       <div className="wrap">
         <div data-reveal style={{ textAlign: 'center', maxWidth: 820, margin: '0 auto' }}>
           <div className="eyebrow" style={{ marginBottom: 18 }}>Alles op één plek</div>
-          <h2 style={{ fontSize: 'clamp(32px,4.6vw,56px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.04, color: 'var(--ink)' }}>Niks valt nog tussen wal en schip</h2>
-          <p style={{ fontSize: m ? 17 : 19, lineHeight: 1.6, color: 'var(--fg3)', maxWidth: 560, margin: '20px auto 0' }}>GymOps koppelt naadloos met SportBit en alle tools die je al gebruikt. Drie beloftes, volledig geautomatiseerd.</p>
+          <h2 style={{ fontSize: 'clamp(32px,4.6vw,56px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.04, color: 'var(--ink)' }}>Leadopvolging, ledenervaring en team-aansturing</h2>
+          <p style={{ fontSize: m ? 17 : 19, lineHeight: 1.6, color: 'var(--fg3)', maxWidth: 600, margin: '20px auto 0' }}>De drie processen waar het in jouw gym om draait, op één plek en volledig geautomatiseerd. Elke lead opgevolgd, elk lid gezien en elke taak voor je team geregeld. Naadloos gekoppeld aan SportBit. Hieronder leggen we elk van de drie uit.</p>
         </div>
       </div>
     </section>
