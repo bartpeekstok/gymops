@@ -1984,6 +1984,81 @@ function EventFlowStage({ step }) {
 }
 
 
+/* ============================ PlatformStrip.jsx ============================ */
+/* PlatformStrip — dark emphasis band on home: GymOps draait op je laptop
+   (volledig dashboard) én als app op de telefoon van je team. Reuses the
+   Dashboard + Phone/StaffScreen mockups in one scaled device cluster. */
+const PLAT_W = 640, PLAT_H = 420;
+
+function DeviceCluster() {
+  const wrapRef = React.useRef(null);
+  const [scale, setScale] = React.useState(1);
+  React.useEffect(() => {
+    const el = wrapRef.current; if (!el) return;
+    const fit = () => setScale(Math.min(1, el.clientWidth / PLAT_W));
+    fit();
+    const ro = new ResizeObserver(fit); ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  return (
+    <div ref={wrapRef} className="gfx-warm" style={{ width: '100%', position: 'relative' }}>
+      <div style={{ width: PLAT_W * scale, height: PLAT_H * scale, margin: '0 auto', position: 'relative' }}>
+        <div style={{ width: PLAT_W, height: PLAT_H, position: 'absolute', top: 0, left: 0, transformOrigin: 'top left', transform: `scale(${scale})` }}>
+          {/* laptop */}
+          <div style={{ position: 'absolute', left: 0, top: 8, width: 540, zIndex: 1 }}>
+            <div style={{ background: '#0A0A0F', borderRadius: '14px 14px 5px 5px', padding: 10, boxShadow: '0 40px 80px -34px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.06)' }}>
+              <div style={{ width: '100%', height: 332, borderRadius: 5, overflow: 'hidden', background: 'var(--bg-soft)' }}>
+                <Dashboard scale={0.928} />
+              </div>
+            </div>
+            <div style={{ height: 7, background: 'linear-gradient(#1a1a1f,#0A0A0F)', borderRadius: '0 0 9px 9px', margin: '0 auto', width: '64%' }}></div>
+          </div>
+          {/* phone */}
+          <div style={{ position: 'absolute', right: 0, bottom: 0, zIndex: 2 }}>
+            <Phone w={196}><StaffScreen /></Phone>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PlatformStrip() {
+  useLucide();
+  const m = useIsMobile();
+  const points = [
+    { icon: 'monitor', title: 'Beheer alles op je laptop', body: 'Het volledige GymOps-dashboard in je browser. Leads, gesprekken, kalenders en cijfers, op elk scherm. Niets om te installeren.' },
+    { icon: 'smartphone', title: 'Je team werkt in de app', body: 'Coaches pakken hun taken op via de GymOps-app op de telefoon. Een melding binnen, in één tik afgehandeld, waar ze ook zijn.' },
+  ];
+  return (
+    <section className="section section-dark" style={{ padding: m ? '56px 0' : '92px 0' }}>
+      <div className="wrap" style={{ display: 'flex', flexDirection: m ? 'column' : 'row', gap: m ? 40 : 64, alignItems: 'center' }}>
+        <div data-reveal style={{ flex: 1, minWidth: 0 }}>
+          <div className="eyebrow" style={{ marginBottom: 16 }}>Overal bij de hand</div>
+          <h2 style={{ fontSize: 'clamp(26px,3.4vw,42px)', fontWeight: 800, letterSpacing: '-.025em', color: '#fff', lineHeight: 1.06 }}>Op je laptop én in je broekzak.</h2>
+          <p style={{ fontSize: m ? 16 : 18, lineHeight: 1.6, color: 'rgba(255,255,255,.65)', marginTop: 16, maxWidth: 460 }}>GymOps draait volledig in je browser op de pc, en als eigen app op de telefoon van je team. Eén systeem, overal bij de hand.</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 22, marginTop: 30 }}>
+            {points.map((p, i) => (
+              <div key={i} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
+                <div style={{ width: 42, height: 42, borderRadius: 12, background: 'rgba(52,211,153,.14)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <Icon data-lucide={p.icon} style={{ width: 20, height: 20, color: 'var(--mint-light)' }}></Icon>
+                </div>
+                <div>
+                  <h4 style={{ fontSize: 17, fontWeight: 700, color: '#fff' }}>{p.title}</h4>
+                  <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'rgba(255,255,255,.6)', marginTop: 5 }}>{p.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div data-reveal style={{ flex: 1, minWidth: 0, width: '100%' }}>
+          <DeviceCluster />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ============================ Integrations.jsx ============================ */
 /* Integrations — primary partners highlighted, secondary logo grid,
    and the Leadcapture → Proefles → Welkomstflow → Reviews flow strip. */
@@ -2509,6 +2584,7 @@ function Home() {
         link={{ label: 'meer over je website', href: 'website.html' }}
         staticStep={0}
         renderGraphic={(step) => <EventFlowStage step={step} />} />
+      <PlatformStrip />
       <Integrations />
       <Testimonials />
       <CtaFooter />
