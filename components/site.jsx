@@ -85,6 +85,9 @@ function useIsMobile(bp) {
 /* Internal link normaliser: prototype .html names -> clean Next routes. */
 const route = (h) => !h ? h : h === 'index.html' ? '/' : (h.charAt(0) === '#' || h.indexOf('http') === 0) ? h : '/' + h.replace('-v1', '').replace('.html', '');
 
+/* Externe booking-link: alle CTA-buttons sturen hierheen. */
+const BOOKING_URL = 'https://links.gymops.nl/widget/booking/9peD9aOwQ1sN9F4gOhev';
+
 /* ScrollScene — pins a graphic in place and turns scroll into discrete steps.
    While pinned, every bit of scroll advances `step` (0..steps-1); the graphic
    renders that step. Once the last step is reached you scroll on normally.
@@ -151,9 +154,11 @@ function PinnedFeature({ eyebrow, title, items, link, steps, renderGraphic, soft
         <div data-reveal style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
           <div className="eyebrow" style={{ marginBottom: 16 }}>{eyebrow}</div>
           <h2 style={{ fontSize: 'clamp(26px,3.2vw,40px)', fontWeight: 800, letterSpacing: '-.025em', color: 'var(--ink)' }}>{title}</h2>
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: m ? 18 : 30, marginTop: 28 }}>
+        </div>
+        <div data-reveal style={{ maxWidth: 1040, margin: '0 auto', textAlign: 'center' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : 'repeat(' + items.length + ', 1fr)', gap: m ? 18 : 30, marginTop: 28 }}>
             {items.map((it, i) => (
-              <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', flex: m ? '1 1 100%' : '1 1 260px', maxWidth: 320, textAlign: 'left' }}>
+              <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', textAlign: 'left' }}>
                 <div className="icon-chip" style={{ width: 40, height: 40, borderRadius: 12, flexShrink: 0 }}><Icon data-lucide={it.icon} style={{ width: 19, height: 19, color: 'var(--mint-deep)' }}></Icon></div>
                 <div>
                   <h4 style={{ fontSize: 16, fontWeight: 700, color: 'var(--fg1)' }}>{it.title}</h4>
@@ -1073,8 +1078,8 @@ function PageHero({ eyebrow, title, accent, sub, cta }) {
         {sub && <p data-reveal style={{ fontSize: 19, lineHeight: 1.6, color: 'rgba(255,255,255,.72)', maxWidth: 620, margin: '24px auto 0' }}>{sub}</p>}
         {cta && (
           <div data-reveal style={{ display: 'flex', flexWrap: 'wrap', gap: 14, justifyContent: 'center', marginTop: 36 }}>
-            <button className="btn btn-primary">{cta.primary}<Icon data-lucide="arrow-right"></Icon></button>
-            {cta.secondary && <button className="btn btn-outline-light">{cta.secondary}</button>}
+            <a href={BOOKING_URL} className="btn btn-primary">{cta.primary}<Icon data-lucide="arrow-right"></Icon></a>
+            {cta.secondary && <a href={BOOKING_URL} className="btn btn-outline-light">{cta.secondary}</a>}
           </div>
         )}
       </div>
@@ -1141,8 +1146,7 @@ function Nav({ current }) {
               })}
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
-              <a href="#" style={{ fontSize: 15, fontWeight: 600, color: light ? 'var(--fg2)' : 'rgba(255,255,255,.9)' }}>Inloggen</a>
-              <button className="btn btn-primary" style={{ padding: '11px 20px', fontSize: 15 }}>Plan een demo</button>
+              <a href={BOOKING_URL} className="btn btn-primary" style={{ padding: '11px 20px', fontSize: 15 }}>Plan een demo</a>
             </div>
           </React.Fragment>
         )}
@@ -1157,8 +1161,7 @@ function Nav({ current }) {
       {m && open && (
         <div className="mobile-menu">
           {GO.nav.map(l => <a key={l.label} href={lnk(l.href)} onClick={() => setOpen(false)} style={l.href === current ? { color: 'var(--mint-deep)' } : undefined}>{l.label}</a>)}
-          <a href="#" onClick={() => setOpen(false)} style={{ color: 'var(--mint-deep)' }}>Inloggen</a>
-          <button className="btn btn-primary" style={{ marginTop: 14, justifyContent: 'center' }}>Plan een demo</button>
+          <a href={BOOKING_URL} className="btn btn-primary" style={{ marginTop: 14, justifyContent: 'center' }}>Plan een demo</a>
         </div>
       )}
     </nav>
@@ -1183,8 +1186,8 @@ function CtaFooter() {
             <h2 style={{ position: 'relative', fontSize: 'clamp(30px,3.6vw,48px)', fontWeight: 800, letterSpacing: '-.03em', color: '#fff', maxWidth: 680, margin: '0 auto' }}>{C.title}</h2>
             <p style={{ position: 'relative', fontSize: 18, color: 'rgba(255,255,255,.7)', marginTop: 18, maxWidth: 520, margin: '18px auto 0' }}>{C.sub}</p>
             <div style={{ position: 'relative', display: 'flex', flexWrap: 'wrap', gap: 14, justifyContent: 'center', marginTop: 34 }}>
-              <button className="btn btn-primary">{C.primary}<Icon data-lucide="arrow-right"></Icon></button>
-              {C.secondary && <button className="btn btn-outline-light">{C.secondary}</button>}
+              <a href={BOOKING_URL} className="btn btn-primary">{C.primary}<Icon data-lucide="arrow-right"></Icon></a>
+              {C.secondary && <a href={BOOKING_URL} className="btn btn-outline-light">{C.secondary}</a>}
             </div>
           </div>
         </div>
@@ -1235,8 +1238,8 @@ function Hero() {
         <SplitHeadline lines={h.headline} style={{ fontSize: 'clamp(36px, 8vw, 74px)', fontWeight: 800, letterSpacing: '-.035em', lineHeight: 1.03, color: '#fff', maxWidth: 940, margin: '0 auto' }} />
         <p data-reveal style={{ fontSize: m ? 17 : 20, lineHeight: 1.6, whiteSpace: 'pre-line', color: 'rgba(255,255,255,.72)', maxWidth: 600, margin: (m ? 20 : 28) + 'px auto 0', transitionDelay: '.15s' }}>{h.sub}</p>
         <div data-reveal style={{ display: 'flex', flexWrap: 'wrap', gap: 14, marginTop: m ? 28 : 38, justifyContent: 'center', transitionDelay: '.25s' }}>
-          <button className="btn btn-primary">{h.primary}<Icon data-lucide="arrow-right"></Icon></button>
-          {h.secondary && <button className="btn btn-outline-light">{h.secondary}</button>}
+          <a href={BOOKING_URL} className="btn btn-primary">{h.primary}<Icon data-lucide="arrow-right"></Icon></a>
+          {h.secondary && <a href={BOOKING_URL} className="btn btn-outline-light">{h.secondary}</a>}
         </div>
       </div>
 
@@ -2076,9 +2079,9 @@ function PlanCard({ p, m }) {
       </div>
       <p style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--fg3)', marginTop: 16 }}>{p.disclaimer}</p>
       {p.yearly && <p style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--fg3)', marginTop: 8 }}>{p.yearly}</p>}
-      <button className={'btn ' + (soon ? 'btn-outline' : 'btn-primary')} style={{ marginTop: 22, justifyContent: 'center', width: '100%' }}>
+      <a href={BOOKING_URL} className={'btn ' + (soon ? 'btn-outline' : 'btn-primary')} style={{ marginTop: 22, justifyContent: 'center', width: '100%' }}>
         {p.cta}<Icon data-lucide={p.ctaIcon}></Icon>
-      </button>
+      </a>
       <ul style={{ listStyle: 'none', margin: '28px 0 0', padding: '24px 0 0', borderTop: '1px solid var(--border)', display: 'flex', flexDirection: 'column', gap: 12 }}>
         {p.features.map((f, i) => (
           <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 14, lineHeight: 1.5, color: soon ? 'var(--fg3)' : 'var(--fg2)' }}>
@@ -2116,12 +2119,6 @@ function Prijzen() {
         <div className="wrap" style={{ maxWidth: 1000 }}>
           <div style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : '520px', justifyContent: 'center', gap: 24, alignItems: 'start' }}>
             {D.plans.map((p, i) => <PlanCard key={i} p={p} m={m} />)}
-          </div>
-          <div data-reveal style={{ textAlign: 'center', marginTop: 44 }}>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: 4, color: 'var(--amber)' }}>
-              {Array.from({ length: 5 }).map((_, i) => <Icon key={i} data-lucide="star" style={{ width: 20, height: 20, fill: 'currentColor' }}></Icon>)}
-            </div>
-            <p style={{ fontSize: 15, fontWeight: 600, color: 'var(--fg2)', marginTop: 12 }}>{D.rating}</p>
           </div>
         </div>
       </section>
