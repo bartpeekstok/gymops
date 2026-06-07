@@ -564,6 +564,129 @@ function ConfirmCard() {
   );
 }
 
+/* Google-zoekresultaat voor de gym , gebruikt op de website-pagina bij
+   "Gevonden in Google én AI". */
+function GoogleSearchMock() {
+  return (
+    <MockCard w={380}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 11, border: '1px solid var(--border)', borderRadius: 999, padding: '11px 16px', boxShadow: 'var(--shadow-sm)' }}>
+        <Icon data-lucide="search" style={{ width: 16, height: 16, color: 'var(--fg3)' }}></Icon>
+        <span style={{ fontSize: 14, color: 'var(--fg1)', fontWeight: 600 }}>crossfit zuidlaren</span>
+        <Icon data-lucide="mic" style={{ width: 15, height: 15, color: 'var(--mint-deep)', marginLeft: 'auto' }}></Icon>
+      </div>
+
+      <div style={{ marginTop: 16, background: 'var(--mint-tint)', borderRadius: 14, padding: 14 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 8 }}>
+          <Icon data-lucide="sparkles" style={{ width: 14, height: 14, color: 'var(--mint-deep)' }}></Icon>
+          <span style={{ fontSize: 11.5, fontWeight: 800, color: 'var(--mint-deep)', letterSpacing: '.02em' }}>AI-overzicht</span>
+        </div>
+        <p style={{ fontSize: 12.5, lineHeight: 1.55, color: 'var(--fg2)' }}>CrossFit Zuidlaren is een veelzijdige box met persoonlijke coaching voor alle niveaus. Nieuwe sporters kunnen vrijblijvend een gratis proefles plannen.</p>
+      </div>
+
+      <div style={{ marginTop: 16 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 9, marginBottom: 7 }}>
+          <div style={{ width: 26, height: 26, borderRadius: 999, background: 'var(--ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <Icon data-lucide="dumbbell" style={{ width: 13, height: 13, color: 'var(--mint-light)' }}></Icon>
+          </div>
+          <div>
+            <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--fg1)', lineHeight: 1.2 }}>CrossFit Zuidlaren</div>
+            <div style={{ fontSize: 11, color: '#4a7a3f' }}>crossfitzuidlaren.nl</div>
+          </div>
+        </div>
+        <div style={{ fontSize: 16, fontWeight: 600, color: '#1a3fb8', letterSpacing: '-.01em', lineHeight: 1.3 }}>CrossFit Zuidlaren , Samen sterker in Zuidlaren</div>
+        <p style={{ fontSize: 12.5, lineHeight: 1.5, color: 'var(--fg3)', marginTop: 4 }}>Word fitter en sterker met persoonlijke coaching. Plan vrijblijvend je gratis proefles, je hoeft niet te sporten.</p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 9 }}>
+          <div style={{ display: 'flex', gap: 1, color: 'var(--amber)' }}>
+            {Array.from({ length: 5 }).map((_, i) => <Icon key={i} data-lucide="star" style={{ width: 12, height: 12, fill: 'currentColor' }}></Icon>)}
+          </div>
+          <span style={{ fontSize: 11.5, color: 'var(--fg3)' }}>· Sportschool · Open nu</span>
+        </div>
+      </div>
+    </MockCard>
+  );
+}
+
+/* Desktop-homepage die in de laptop van <HomeShowcase> wordt getoond. */
+function SiteHomeDesktop() {
+  return (
+    <div style={{ position: 'absolute', inset: 0, background: '#fff', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 18px', background: 'var(--ink)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 7, color: '#fff', fontWeight: 800, fontSize: 13, letterSpacing: '-.01em' }}>
+          <Icon data-lucide="dumbbell" style={{ width: 15, height: 15, color: 'var(--mint-light)' }}></Icon> CrossFit Zuidlaren
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, color: 'rgba(255,255,255,.65)', fontSize: 11, fontWeight: 500 }}>
+          <span>Lessen</span><span>Tarieven</span><span>Team</span>
+          <span style={{ color: 'var(--ink)', background: 'var(--mint)', padding: '5px 11px', borderRadius: 7, fontWeight: 700 }}>Proefles</span>
+        </div>
+      </div>
+      <div style={{ flex: 1, background: 'linear-gradient(150deg, #0e1f19 0%, #0a0a0f 70%)', padding: '26px 28px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <div style={{ color: 'var(--mint-light)', fontSize: 11, fontWeight: 700, letterSpacing: '.1em', marginBottom: 10 }}>SAMEN STERKER IN ZUIDLAREN</div>
+        <div style={{ color: '#fff', fontSize: 30, fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.05, maxWidth: 340 }}>Word fitter, sterker en onderdeel van de gym.</div>
+        <div style={{ display: 'flex', gap: 10, marginTop: 18 }}>
+          <span style={{ background: 'var(--mint)', color: '#fff', fontSize: 12, fontWeight: 700, padding: '9px 16px', borderRadius: 9 }}>Plan je proefles</span>
+          <span style={{ border: '1px solid rgba(255,255,255,.3)', color: '#fff', fontSize: 12, fontWeight: 600, padding: '9px 16px', borderRadius: 9 }}>Bekijk rooster</span>
+        </div>
+      </div>
+      <div style={{ background: '#fff', padding: '13px 18px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>
+        {[['infinity', 'Onbeperkt trainen'], ['user-round', 'Persoonlijke coaching'], ['users', 'Sterke community']].map(([ic, t]) => (
+          <div key={t} style={{ background: 'var(--bg-soft)', borderRadius: 10, padding: '10px 11px', display: 'flex', alignItems: 'center', gap: 8 }}>
+            <Icon data-lucide={ic} style={{ width: 14, height: 14, color: 'var(--mint-deep)', flexShrink: 0 }}></Icon>
+            <span style={{ fontSize: 10.5, fontWeight: 700, color: 'var(--fg1)', lineHeight: 1.15 }}>{t}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* Mobiele homepage voor de telefoon in <HomeShowcase>. */
+function SiteHomeMobile() {
+  return (
+    <div style={{ position: 'absolute', inset: 0, background: '#fff', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <StatusBar />
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '6px 14px 10px' }}>
+        <div style={{ display: 'flex', gap: 5, alignItems: 'center', fontWeight: 800, fontSize: 11, letterSpacing: '-.01em', color: 'var(--ink)' }}>
+          <Icon data-lucide="dumbbell" style={{ width: 13, height: 13, color: 'var(--mint-deep)' }}></Icon> CrossFit Zuidlaren
+        </div>
+        <Icon data-lucide="menu" style={{ width: 16, height: 16, color: 'var(--fg2)' }}></Icon>
+      </div>
+      <div style={{ background: 'linear-gradient(150deg, #0e1f19, #0a0a0f)', padding: '18px 16px 20px' }}>
+        <div style={{ color: 'var(--mint-light)', fontSize: 9, fontWeight: 700, letterSpacing: '.1em', marginBottom: 6 }}>SAMEN STERKER IN ZUIDLAREN</div>
+        <div style={{ color: '#fff', fontSize: 18, fontWeight: 800, letterSpacing: '-.02em', lineHeight: 1.1 }}>Word fitter en sterker in de gym.</div>
+        <div style={{ background: 'var(--mint)', color: '#fff', fontSize: 11, fontWeight: 700, padding: '9px 0', borderRadius: 8, textAlign: 'center', marginTop: 14 }}>Plan je proefles</div>
+      </div>
+      <div style={{ flex: 1, padding: '12px 13px', display: 'flex', flexDirection: 'column', gap: 8 }}>
+        {[['infinity', 'Onbeperkt trainen'], ['user-round', 'Persoonlijke coaching'], ['users', 'Sterke community']].map(([ic, t]) => (
+          <div key={t} style={{ background: 'var(--bg-soft)', borderRadius: 10, padding: '9px 11px', display: 'flex', alignItems: 'center', gap: 9 }}>
+            <Icon data-lucide={ic} style={{ width: 13, height: 13, color: 'var(--mint-deep)', flexShrink: 0 }}></Icon>
+            <span style={{ fontSize: 10, fontWeight: 700, color: 'var(--fg1)' }}>{t}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* Laptop + telefoon die dezelfde homepage tonen , voor "Op maat, in jouw merk". */
+function HomeShowcase() {
+  const Lw = 520;
+  return (
+    <div style={{ position: 'relative', width: '100%', maxWidth: Lw, paddingBottom: 30 }}>
+      <div style={{ background: '#0A0A0F', borderRadius: '16px 16px 5px 5px', padding: 11, boxShadow: '0 40px 80px -30px rgba(10,10,15,.55), 0 0 0 1px rgba(255,255,255,.05)' }}>
+        <div style={{ position: 'relative', width: '100%', paddingTop: '60%', borderRadius: 6, overflow: 'hidden', background: '#0a0a0f' }}>
+          <SiteHomeDesktop />
+        </div>
+      </div>
+      <div style={{ width: 'calc(100% + 44px)', marginLeft: -22, height: 13, background: 'linear-gradient(#d4d7dd, #a9adb6)', borderRadius: '0 0 12px 12px', position: 'relative', boxShadow: '0 14px 22px -12px rgba(10,10,15,.5)' }}>
+        <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 100, height: 6, background: '#9498a1', borderRadius: '0 0 7px 7px' }}></div>
+      </div>
+      <div style={{ position: 'absolute', right: -6, bottom: -10 }}>
+        <Phone w={146}><SiteHomeMobile /></Phone>
+      </div>
+    </div>
+  );
+}
+
 function Laptop({ w = 580, filled = false, className = '' }) {
   const screenH = Math.round(w * 0.6);
   return (
@@ -2066,11 +2189,11 @@ function Website() {
 
       <FeatureRow icon="search" title="Gevonden in Google én AI"
         body={'Je site is technisch geoptimaliseerd voor zoekmachines en AI-assistenten. Wie zoekt naar een gym in jouw plaats, komt bij jou uit, niet bij de concurrent een dorp verderop.'}
-        visual={<Laptop />} />
+        visual={<GoogleSearchMock />} />
 
       <FeatureRow icon="palette" flip soft title="Op maat, in jouw merk"
         body={'Geen page builder of WordPress-thema dat eruitziet als dat van honderd andere gyms. Een ontwerp op maat in jouw kleuren en toon, dat er op elk scherm strak uitziet.'}
-        visual={<Phone w={258}><WebPhone /></Phone>} />
+        visual={<HomeShowcase />} />
 
       <FeatureRow icon="zap" title="Elke bezoeker wordt een lead"
         body={'Een slim formulier vangt bezoekers op het juiste moment. Wie zich aanmeldt, komt direct in GymOps binnen en wordt automatisch opgevolgd. Geen aanvraag blijft liggen.'}
