@@ -2423,13 +2423,35 @@ function PlanCard({ p, m }) {
       <a href={BOOKING_URL} className={'btn ' + (soon ? 'btn-outline' : 'btn-primary')} style={{ marginTop: 22, justifyContent: 'center', width: '100%' }}>
         {p.cta}<Icon data-lucide={p.ctaIcon}></Icon>
       </a>
-      <ul style={{ listStyle: 'none', margin: '28px 0 0', padding: '24px 0 0', borderTop: '1px solid var(--border)', display: 'flex', flexDirection: 'column', gap: 12 }}>
-        {p.features.map((f, i) => (
-          <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 14, lineHeight: 1.5, color: soon ? 'var(--fg3)' : 'var(--fg2)' }}>
-            <Icon data-lucide="check" style={{ width: 18, height: 18, color: soon ? 'var(--border-strong)' : 'var(--mint)', flexShrink: 0, marginTop: 2 }}></Icon>{f}
-          </li>
-        ))}
-      </ul>
+      {p.featureGroups ? (
+        <div style={{ margin: '28px 0 0', padding: '24px 0 0', borderTop: '1px solid var(--border)', display: 'flex', flexDirection: 'column', gap: 22 }}>
+          {p.featureGroups.map((g, gi) => (
+            <div key={gi}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 13 }}>
+                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 26, height: 26, borderRadius: 8, background: soon ? '#F3F4F6' : 'var(--mint-tint)', flexShrink: 0 }}>
+                  <Icon data-lucide={g.icon} style={{ width: 14, height: 14, color: soon ? 'var(--fg3)' : 'var(--mint-deep)' }}></Icon>
+                </span>
+                <span style={{ fontSize: 11.5, fontWeight: 800, letterSpacing: '.06em', textTransform: 'uppercase', color: soon ? 'var(--fg3)' : 'var(--ink)' }}>{g.title}</span>
+              </div>
+              <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 11 }}>
+                {g.items.map((it, ii) => (
+                  <li key={ii} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 14, lineHeight: 1.5, color: soon ? 'var(--fg3)' : 'var(--fg2)' }}>
+                    <Icon data-lucide={it.icon} style={{ width: 16, height: 16, color: soon ? 'var(--border-strong)' : 'var(--mint-deep)', flexShrink: 0, marginTop: 2 }}></Icon>{it.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <ul style={{ listStyle: 'none', margin: '28px 0 0', padding: '24px 0 0', borderTop: '1px solid var(--border)', display: 'flex', flexDirection: 'column', gap: 12 }}>
+          {p.features.map((f, i) => (
+            <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 14, lineHeight: 1.5, color: soon ? 'var(--fg3)' : 'var(--fg2)' }}>
+              <Icon data-lucide="check" style={{ width: 18, height: 18, color: soon ? 'var(--border-strong)' : 'var(--mint)', flexShrink: 0, marginTop: 2 }}></Icon>{f}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
