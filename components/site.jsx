@@ -2174,7 +2174,6 @@ function Klanten() {
   useLucide();
   const m = useIsMobile();
   const D = GOP.klanten;
-  const shorts = D.shorts.concat(D.shorts);
   const logos = D.trusted.concat(D.trusted);
   return (
     <React.Fragment>
@@ -2196,41 +2195,6 @@ function Klanten() {
               </div>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* Testimonial wall */}
-      <section className="section section-soft">
-        <div className="wrap">
-          <SectionHead eyebrow="Wat ze zeggen" title="Gym owners door heel Nederland." />
-          <div style={{ columnCount: m ? 1 : 3, columnGap: 24, marginTop: 52 }} data-reveal>
-            {D.wall.map((t, i) => (
-              <div key={i} className="card" style={{ padding: 26, breakInside: 'avoid', marginBottom: 24 }}>
-                {t.metric && <div style={{ display: 'inline-block', fontSize: 13, fontWeight: 700, color: 'var(--mint-deep)', background: 'var(--mint-tint)', padding: '4px 10px', borderRadius: 999, marginBottom: 14 }}>{t.metric}</div>}
-                <p style={{ fontSize: 15.5, lineHeight: 1.6, color: 'var(--fg2)' }}>{t.quote}</p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 11, marginTop: 18 }}>
-                  <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'var(--ink)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>{t.initials}</div>
-                  <div>
-                    <div style={{ fontWeight: 700, fontSize: 14.5, color: 'var(--fg1)' }}>{t.name}</div>
-                    <div style={{ fontSize: 13, color: 'var(--fg3)' }}>{t.company}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Short-quote marquee */}
-      <section style={{ padding: m ? '40px 0' : '56px 0', overflow: 'hidden' }}>
-        <div className="marquee">
-          <div className="marquee-track" style={{ gap: 18 }}>
-            {shorts.map((q, i) => (
-              <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 20px', borderRadius: 999, border: '1px solid var(--border)', background: '#fff', fontSize: 15, fontWeight: 600, color: 'var(--fg2)', whiteSpace: 'nowrap', boxShadow: 'var(--shadow-sm)' }}>
-                <Icon data-lucide="star" style={{ width: 15, height: 15, color: 'var(--amber)', fill: 'currentColor' }}></Icon>{q}
-              </span>
-            ))}
-          </div>
         </div>
       </section>
 
