@@ -691,6 +691,7 @@ function SiteHomeMobile() {
 
 /* Laptop + telefoon die dezelfde homepage tonen , voor "Op maat, in jouw merk". */
 function HomeShowcase() {
+  const m = useIsMobile();
   const Lw = 520;
   return (
     <div style={{ position: 'relative', width: '100%', maxWidth: Lw, paddingBottom: 30 }}>
@@ -702,8 +703,8 @@ function HomeShowcase() {
       <div style={{ width: 'calc(100% + 44px)', marginLeft: -22, height: 13, background: 'linear-gradient(#d4d7dd, #a9adb6)', borderRadius: '0 0 12px 12px', position: 'relative', boxShadow: '0 14px 22px -12px rgba(10,10,15,.5)' }}>
         <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 100, height: 6, background: '#9498a1', borderRadius: '0 0 7px 7px' }}></div>
       </div>
-      <div style={{ position: 'absolute', right: -6, bottom: -10 }}>
-        <Phone w={146}><SiteHomeMobile /></Phone>
+      <div style={{ position: 'absolute', right: m ? -2 : -6, bottom: -10 }}>
+        <Phone w={m ? 116 : 146}><SiteHomeMobile /></Phone>
       </div>
     </div>
   );
@@ -1000,7 +1001,7 @@ function FeatureRow({ icon, title, body, flip, visual, soft }) {
     </div>
   );
   const vis = (
-    <div data-reveal className="gfx-warm" style={{ flex: 1, display: 'flex', justifyContent: 'center', minWidth: 0 }}>{visual}</div>
+    <div data-reveal className="gfx-warm" style={{ flex: 1, display: 'flex', justifyContent: 'center', minWidth: 0, width: m ? '100%' : undefined }}>{visual}</div>
   );
   return (
     <section className={'section' + (soft ? ' section-soft' : '')} style={{ padding: m ? '44px 0' : '72px 0' }}>
