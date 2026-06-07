@@ -144,7 +144,20 @@ function ScrollScene({ steps, children, scenePerStep = 0.85, label }) {
 
 /* PinnedFeature — home feature block: text on top, graphic below in a pinned
    scroll-scene the visitor scrolls through step by step. */
-function PinnedFeature({ eyebrow, title, items, link, steps, renderGraphic, soft, staticStep }) {
+/* StepBadge — grote genummerde badge (1/2/3) boven de eyebrow van de drie
+   home-uitlegblokken, zodat ze aansluiten op "hieronder leggen we elk van de
+   drie uit". align bepaalt of de badge gecentreerd of links uitlijnt. */
+function StepBadge({ num, align = 'center' }) {
+  return (
+    <div style={{ display: 'flex', justifyContent: align === 'center' ? 'center' : 'flex-start', marginBottom: 18 }}>
+      <div style={{ width: 56, height: 56, borderRadius: 999, background: 'var(--ink)', color: 'var(--mint-light)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, fontWeight: 800, letterSpacing: '-.02em',
+        boxShadow: '0 12px 28px -12px rgba(10,10,15,.45)' }}>{num}</div>
+    </div>
+  );
+}
+
+function PinnedFeature({ eyebrow, title, items, link, steps, renderGraphic, soft, staticStep, num }) {
   useReveal();
   const m = useIsMobile();
   const lnk = (h) => route(h);
@@ -152,6 +165,7 @@ function PinnedFeature({ eyebrow, title, items, link, steps, renderGraphic, soft
     <section className={'section pinned-feature' + (soft ? ' section-soft' : '')} style={{ padding: m ? '52px 0 0' : '88px 0 0' }}>
       <div className="wrap">
         <div data-reveal style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
+          {num != null && <StepBadge num={num} />}
           <div className="eyebrow" style={{ marginBottom: 16 }}>{eyebrow}</div>
           <h2 style={{ fontSize: 'clamp(26px,3.2vw,40px)', fontWeight: 800, letterSpacing: '-.025em', color: 'var(--ink)' }}>{title}</h2>
         </div>
@@ -1480,6 +1494,7 @@ function LedenervaringHome() {
 
   const text = (
     <div data-reveal style={{ flex: 1 }}>
+      <StepBadge num={2} align="left" />
       <div className="eyebrow" style={{ marginBottom: 16 }}>{L.eyebrow}</div>
       <h2 style={{ fontSize: 'clamp(26px,3.2vw,40px)', fontWeight: 800, letterSpacing: '-.025em', color: 'var(--ink)', maxWidth: 460 }}>{L.title}</h2>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 22, marginTop: 32 }}>
@@ -2556,7 +2571,7 @@ function Home() {
       <Nav />
       <Hero />
       <PromiseCards />
-      <PinnedFeature eyebrow="GymOps Flow · Leadopvolging" title="Verander je leads in leden."
+      <PinnedFeature num={1} eyebrow="GymOps Flow · Leadopvolging" title="Verander je leads in leden."
         items={[
           { icon: 'zap', title: 'Binnen 1 minuut reactie', body: 'Elke nieuwe lead krijgt direct een WhatsApp én e-mail. Snelheid is de grootste factor in conversie.' },
           { icon: 'inbox', title: 'Elk kanaal automatisch binnen', body: 'Website, Meta Ads, QR-code of een DM: alles komt op één plek binnen, gekoppeld aan dezelfde lead.' },
@@ -2566,7 +2581,7 @@ function Home() {
         steps={5}
         renderGraphic={(step) => <LeadFlowStage step={step} />} />
       <LedenervaringHome />
-      <PinnedFeature eyebrow="GymOps Flow · Team-aansturing" title="Je team draait, jij houdt de regie."
+      <PinnedFeature num={3} eyebrow="GymOps Flow · Team-aansturing" title="Je team draait, jij houdt de regie."
         items={[
           { icon: 'circle-check-big', title: 'Elke taak naar de juiste coach', body: 'GymOps maakt automatisch een taak aan en wijst die toe. Geen losse WhatsApp-groepjes meer.' },
           { icon: 'clock', title: 'Niet opgepakt blijft staan', body: 'Een taak verdwijnt niet. Hij komt morgen terug tot hij is afgehandeld.' },
