@@ -1485,6 +1485,10 @@ function PromiseCards() {
           <h2 style={{ fontSize: 'clamp(32px,4.6vw,56px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.04, color: 'var(--ink)' }}>Leadopvolging, ledenervaring en team-aansturing</h2>
           <p style={{ fontSize: m ? 17 : 19, lineHeight: 1.6, color: 'var(--fg3)', maxWidth: 600, margin: '20px auto 0' }}>De drie processen waar het in jouw gym om draait, op één plek en volledig geautomatiseerd. Elke lead opgevolgd, elk lid gezien en elke taak voor je team geregeld. Naadloos gekoppeld aan SportBit. Hieronder leggen we elk van de drie uit.</p>
         </div>
+        {/* connector: leidt het oog van de intro naar het eerste genummerde blok */}
+        <div data-reveal style={{ display: 'flex', justifyContent: 'center', marginTop: m ? 40 : 60 }}>
+          <div style={{ width: 1, height: m ? 40 : 60, background: 'linear-gradient(to bottom, transparent, var(--border-strong))' }} />
+        </div>
       </div>
     </section>
   );
