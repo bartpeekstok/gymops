@@ -1348,7 +1348,7 @@ function CtaFooter() {
             <p style={{ fontSize: 14, lineHeight: 1.6, color: 'rgba(255,255,255,.55)', maxWidth: 280 }}>Het CRM voor leadopvolging, ledenbehoud en team-aansturing. Gebouwd voor en door gym-owners.</p>
             <p style={{ fontSize: 13, color: 'rgba(255,255,255,.4)', marginTop: 18 }}>Operationeel door Curly BV</p>
           </div>
-          {[['Product', ['Leadopvolging', 'Ledenervaring', 'Website', 'Integraties', 'Prijzen']], ['Bedrijf', ['Over ons', 'Klanten', 'Demo plannen', 'Contact']], ['Volg ons', ['Instagram', 'Facebook', 'LinkedIn']]].map(([h, items]) => (
+          {[['Product', ['Leadopvolging', 'Ledenervaring', 'Website', 'Prijzen']], ['Bedrijf', ['Over ons', 'Klanten', 'Demo plannen', 'Contact']], ['Volg ons', ['Instagram', 'Facebook', 'LinkedIn']]].map(([h, items]) => (
             <div key={h}>
               <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '.05em', textTransform: 'uppercase', color: 'rgba(255,255,255,.45)', marginBottom: 16 }}>{h}</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
