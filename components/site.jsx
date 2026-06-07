@@ -2193,7 +2193,6 @@ function Klanten() {
                   <div style={{ fontWeight: 700, fontSize: 16, color: 'var(--fg1)' }}>{f.name}</div>
                   <div style={{ fontSize: 14, color: 'var(--fg3)' }}>{f.role}</div>
                 </div>
-                <img src={GO.A + f.logo} alt="" style={{ height: 34, width: 'auto', opacity: .8 }} />
               </div>
             </div>
           ))}
@@ -2262,9 +2261,6 @@ function FounderRow({ f, flip, m }) {
     <div style={{ flex: m ? 'none' : '0 0 340px' }}>
       <div data-reveal style={{ position: 'relative', borderRadius: 20, overflow: 'hidden', boxShadow: 'var(--shadow-card)', background: 'var(--bg-soft)' }}>
         <img src={GO.A + f.photo} alt={f.name} style={{ width: '100%', height: m ? 320 : 420, objectFit: 'cover', display: 'block' }} />
-        <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, padding: '40px 22px 18px', background: 'linear-gradient(to top, rgba(10,10,15,.85), transparent)' }}>
-          <img src={GO.A + f.gym} alt="" style={{ height: 30, width: 'auto', filter: 'brightness(0) invert(1)', opacity: .9 }} />
-        </div>
       </div>
     </div>
   );
