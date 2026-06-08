@@ -1467,7 +1467,6 @@ function CtaFooter() {
           <div style={{ gridColumn: m ? '1 / -1' : 'auto' }}>
             <img src={GO.A + 'logo-wit.png'} alt="GymOps" style={{ height: 32, width: 'auto', marginBottom: 18 }} />
             <p style={{ fontSize: 14, lineHeight: 1.6, color: 'rgba(255,255,255,.55)', maxWidth: 280 }}>Het alles-in-één systeem voor leadopvolging, ledenbehoud en team-aansturing. Gebouwd voor en door gym-owners.</p>
-            <p style={{ fontSize: 13, color: 'rgba(255,255,255,.4)', marginTop: 18 }}>Operationeel door GymOps BV</p>
           </div>
           {[['Product', ['Leadopvolging', 'Ledenervaring', 'Website', 'Prijzen']], ['Bedrijf', ['Over ons', 'Klanten', 'Demo plannen', 'Contact']], ['Volg ons', ['Instagram', 'Facebook', 'LinkedIn']]].map(([h, items]) => (
             <div key={h}>
