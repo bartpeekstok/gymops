@@ -1328,9 +1328,28 @@ function ReassignMock() {
    the home hero's treatment (dot-grid + faint mint glow), plus a small
    section-heading helper. Exposes to window. */
 
+/* Shared header photo background with a brand-colour haze ("waas"). The gym
+   photo sits at the very back via a CSS background-image (not render-blocking,
+   so it never slows first paint); an ink->mint gradient washes over it in the
+   GymOps brand colours so white headline text stays readable. Rendered as the
+   first child of the position:relative hero containers (Hero + PageHero), with
+   the existing mint glow + dot-grid layering on top. */
+function HeaderBg({ position = 'center 30%' }) {
+  return (
+    <>
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0,
+        backgroundImage: 'url(' + GO.A + 'gym-header.jpg)', backgroundSize: 'cover',
+        backgroundPosition: position, backgroundRepeat: 'no-repeat', pointerEvents: 'none' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none',
+        background: 'linear-gradient(152deg, rgba(10,10,15,.93) 0%, rgba(10,10,15,.82) 46%, rgba(11,16,15,.66) 72%, rgba(16,185,129,.40) 100%)' }} />
+    </>
+  );
+}
+
 function PageHero({ eyebrow, title, accent, sub, cta }) {
   return (
     <section style={{ position: 'relative', overflow: 'hidden', background: 'var(--ink)', color: '#fff' }}>
+      <HeaderBg />
       {/* faint mint radial glow */}
       <div style={{ position: 'absolute', top: -180, right: -120, width: 640, height: 640, borderRadius: '50%',
         background: 'radial-gradient(circle, rgba(16,185,129,.20), transparent 62%)', filter: 'blur(20px)', pointerEvents: 'none' }} />
@@ -1495,6 +1514,7 @@ function Hero() {
   const h = GO.hero;
   return (
     <header style={{ position: 'relative', background: 'var(--ink)', color: '#fff', overflow: 'hidden', paddingTop: 74 }}>
+      <HeaderBg />
       {/* faint mint radial glow */}
       <div style={{ position: 'absolute', top: -160, right: -120, width: 620, height: 620, borderRadius: '50%',
         background: 'radial-gradient(circle, rgba(16,185,129,.22), transparent 62%)', filter: 'blur(20px)', pointerEvents: 'none' }} />
