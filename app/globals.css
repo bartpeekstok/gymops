@@ -284,6 +284,7 @@ img { display: block; max-width: 100%; }
 .lead-modal-body { padding: 22px 28px 26px; }
 .lead-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px 14px; }
 @media (max-width: 460px) { .lead-grid { grid-template-columns: 1fr; gap: 12px; } }
+.lead-eyebrow { font-size: 13px; }
 .lead-glow {
   position: absolute; top: -120px; right: -90px; width: 360px; height: 360px; border-radius: 50%;
   background: radial-gradient(circle, rgba(16,185,129,.28), transparent 62%); filter: blur(18px); pointer-events: none;
@@ -317,9 +318,12 @@ img { display: block; max-width: 100%; }
 @media (max-width: 520px) {
   .lead-overlay { padding: 14px; align-items: flex-start; }
   .lead-modal { max-height: calc(100dvh - 28px); }
-  .lead-modal-head { padding: 22px 22px 20px; }
-  .lead-modal-body { padding: 20px 22px 24px; }
-  .lead-chip { width: 42px; height: 42px; margin-bottom: 13px; }
+  .lead-modal-head { padding: 16px 20px 15px; }
+  .lead-modal-body { padding: 18px 20px 20px; }
+  .lead-chip { width: 36px; height: 36px; border-radius: 11px; margin-bottom: 10px; }
+  .lead-chip i { width: 18px; height: 18px; }
+  .lead-eyebrow { font-size: 11px; margin-bottom: 7px; }
+  .lead-foot { margin-top: 10px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .lead-overlay, .lead-modal { animation: none; }

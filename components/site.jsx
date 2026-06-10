@@ -1460,8 +1460,8 @@ function LeadFormModal() {
             <Icon data-lucide="x" style={{ width: 17, height: 17 }}></Icon>
           </button>
           <div className="lead-chip"><Icon data-lucide="calendar-check" style={{ width: 22, height: 22, color: 'var(--mint-light)' }}></Icon></div>
-          <div className="eyebrow eyebrow-dark" style={{ fontSize: 13, marginBottom: 10 }}>Gratis demo</div>
-          <div style={{ position: 'relative', fontSize: 24, fontWeight: 800, color: '#fff', letterSpacing: '-.025em', lineHeight: 1.1, paddingRight: 24 }}>Plan een demo van 30 minuten</div>
+          <div className="eyebrow eyebrow-dark lead-eyebrow" style={{ marginBottom: 10 }}>Gratis demo</div>
+          <div style={{ position: 'relative', fontSize: 'clamp(20px,5.2vw,24px)', fontWeight: 800, color: '#fff', letterSpacing: '-.025em', lineHeight: 1.12, paddingRight: 24 }}>Plan een demo van 30 minuten</div>
         </div>
         <div className="lead-modal-body">
           <p style={{ fontSize: 14, lineHeight: 1.5, color: 'var(--fg3)', margin: '0 0 18px' }}>We laten je zien hoe het systeem kan werken voor jouw gym. Vul je gegevens in, daarna kies je direct zelf een moment dat jou uitkomt.</p>
@@ -1487,7 +1487,7 @@ function LeadFormModal() {
             <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: 18 }} disabled={sending}>
               {sending ? 'Versturen…' : <React.Fragment>Aanvragen<Icon data-lucide="arrow-right"></Icon></React.Fragment>}
             </button>
-            <p style={{ fontSize: 12, lineHeight: 1.5, color: 'var(--fg3)', textAlign: 'center', margin: '12px 0 0' }}>We nemen persoonlijk contact met je op. Geen spam.</p>
+            <p className="lead-foot" style={{ fontSize: 12, lineHeight: 1.5, color: 'var(--fg3)', textAlign: 'center', margin: '12px 0 0' }}>We nemen persoonlijk contact met je op. Geen spam.</p>
           </form>
         </div>
       </div>
