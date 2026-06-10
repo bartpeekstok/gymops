@@ -1440,7 +1440,8 @@ function LeadFormModal() {
         body: JSON.stringify({
           first_name: firstName, last_name: lastName, full_name: name, name,
           email: form.email.trim(), phone: form.phone.trim(),
-          source: 'GymOps website', page: typeof window !== 'undefined' ? window.location.pathname : '',
+          source: 'GymOps website', tags: 'website lead', tag: 'website lead',
+          page: typeof window !== 'undefined' ? window.location.pathname : '',
         }),
       });
     } catch (_) { /* fire-and-forget: bezoeker mag niet vastlopen */ }
