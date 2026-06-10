@@ -318,11 +318,11 @@ img { display: block; max-width: 100%; }
 @media (max-width: 520px) {
   .lead-overlay { padding: 14px; align-items: flex-start; }
   .lead-modal { max-height: calc(100dvh - 28px); }
-  .lead-modal-head { padding: 16px 20px 15px; }
+  .lead-modal-head { padding: 13px 18px 15px; }
   .lead-modal-body { padding: 18px 20px 20px; }
-  .lead-chip { width: 36px; height: 36px; border-radius: 11px; margin-bottom: 10px; }
-  .lead-chip i { width: 18px; height: 18px; }
-  .lead-eyebrow { font-size: 11px; margin-bottom: 7px; }
+  .lead-chip { display: none; }
+  .lead-close { top: 11px; right: 13px; width: 28px; height: 28px; }
+  .lead-eyebrow { font-size: 11px; margin-bottom: 6px; }
   .lead-foot { margin-top: 10px; }
 }
 @media (prefers-reduced-motion: reduce) {
