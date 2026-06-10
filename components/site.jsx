@@ -1451,28 +1451,38 @@ function LeadFormModal() {
   return (
     <div className="lead-overlay" onMouseDown={(e) => { if (e.target === e.currentTarget) setOpen(false); }}>
       <div className="lead-modal" role="dialog" aria-modal="true" aria-label="Plan je gratis kennismaking">
-        <button type="button" className="lead-close" aria-label="Sluiten" onClick={() => setOpen(false)}>
-          <Icon data-lucide="x" style={{ width: 18, height: 18 }}></Icon>
-        </button>
-        <div style={{ fontSize: 23, fontWeight: 800, color: 'var(--ink)', letterSpacing: '-.02em', paddingRight: 30 }}>Plan je gratis kennismaking</div>
-        <p style={{ fontSize: 14.5, lineHeight: 1.55, color: 'var(--fg3)', margin: '9px 0 22px' }}>Vrijblijvend en in 20 minuten, je hoeft niet te sporten. Vul je gegevens in, daarna kies je direct zelf een moment dat jou uitkomt.</p>
-        <form onSubmit={submit}>
-          <div style={{ marginBottom: 14 }}>
-            <label className="lead-label" htmlFor="lf-name">Naam *</label>
-            <input id="lf-name" className="lead-input" type="text" required placeholder="Voornaam Achternaam" value={form.name} onChange={set('name')} autoComplete="name" />
-          </div>
-          <div style={{ marginBottom: 14 }}>
-            <label className="lead-label" htmlFor="lf-email">E-mailadres *</label>
-            <input id="lf-email" className="lead-input" type="email" required placeholder="naam@email.nl" value={form.email} onChange={set('email')} autoComplete="email" />
-          </div>
-          <div style={{ marginBottom: 22 }}>
-            <label className="lead-label" htmlFor="lf-phone">Telefoonnummer *</label>
-            <input id="lf-phone" className="lead-input" type="tel" required placeholder="06 12 34 56 78" value={form.phone} onChange={set('phone')} autoComplete="tel" />
-          </div>
-          <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }} disabled={sending}>
-            {sending ? 'Versturen…' : <React.Fragment>Aanvragen<Icon data-lucide="arrow-right"></Icon></React.Fragment>}
+        <div className="lead-modal-head">
+          {/* mint-gloed + dot-grid, identiek aan de hero */}
+          <div className="lead-glow" />
+          <div className="lead-dots" />
+          <button type="button" className="lead-close" aria-label="Sluiten" onClick={() => setOpen(false)}>
+            <Icon data-lucide="x" style={{ width: 17, height: 17 }}></Icon>
           </button>
-        </form>
+          <div className="lead-chip"><Icon data-lucide="calendar-check" style={{ width: 22, height: 22, color: 'var(--mint-light)' }}></Icon></div>
+          <div className="eyebrow eyebrow-dark" style={{ fontSize: 13, marginBottom: 10 }}>Gratis demo</div>
+          <div style={{ position: 'relative', fontSize: 24, fontWeight: 800, color: '#fff', letterSpacing: '-.025em', lineHeight: 1.1, paddingRight: 24 }}>Plan een demo van 30 minuten</div>
+        </div>
+        <div className="lead-modal-body">
+          <p style={{ fontSize: 14.5, lineHeight: 1.55, color: 'var(--fg3)', margin: '0 0 22px' }}>We laten je zien hoe het systeem kan werken voor jouw gym. Vul je gegevens in, daarna kies je direct zelf een moment dat jou uitkomt.</p>
+          <form onSubmit={submit}>
+            <div style={{ marginBottom: 14 }}>
+              <label className="lead-label" htmlFor="lf-name">Naam *</label>
+              <input id="lf-name" className="lead-input" type="text" required placeholder="Voornaam Achternaam" value={form.name} onChange={set('name')} autoComplete="name" />
+            </div>
+            <div style={{ marginBottom: 14 }}>
+              <label className="lead-label" htmlFor="lf-email">E-mailadres *</label>
+              <input id="lf-email" className="lead-input" type="email" required placeholder="naam@email.nl" value={form.email} onChange={set('email')} autoComplete="email" />
+            </div>
+            <div style={{ marginBottom: 22 }}>
+              <label className="lead-label" htmlFor="lf-phone">Telefoonnummer *</label>
+              <input id="lf-phone" className="lead-input" type="tel" required placeholder="06 12 34 56 78" value={form.phone} onChange={set('phone')} autoComplete="tel" />
+            </div>
+            <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }} disabled={sending}>
+              {sending ? 'Versturen…' : <React.Fragment>Aanvragen<Icon data-lucide="arrow-right"></Icon></React.Fragment>}
+            </button>
+            <p style={{ fontSize: 12, lineHeight: 1.5, color: 'var(--fg3)', textAlign: 'center', margin: '14px 0 0' }}>We nemen persoonlijk contact met je op. Geen spam.</p>
+          </form>
+        </div>
       </div>
     </div>
   );
