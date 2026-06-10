@@ -85,8 +85,19 @@ function useIsMobile(bp) {
 /* Internal link normaliser: prototype .html names -> clean Next routes. */
 const route = (h) => !h ? h : h === 'index.html' ? '/' : (h.charAt(0) === '#' || h.indexOf('http') === 0) ? h : '/' + h.replace('-v1', '').replace('.html', '');
 
-/* Externe booking-link: alle CTA-buttons sturen hierheen. */
+/* Externe booking-link: na het invullen van het lead-formulier sturen we de
+   bezoeker hierheen om direct een tijd te kiezen. */
 const BOOKING_URL = 'https://links.gymops.nl/widget/booking/9peD9aOwQ1sN9F4gOhev';
+
+/* GoHighLevel inbound webhook: het lead-formulier duwt de gegevens hierheen. */
+const GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/5o3lAbdsLNLtkKEcTJYU/webhook-trigger/d9ad720a-0193-4424-9471-4ac4894d9734';
+
+/* Alle CTA-knoppen openen het lead-formulier i.p.v. direct door te linken.
+   We gebruiken een window-event zodat elke knop de centrale modal kan openen
+   zonder dat we door alle componenten heen state hoeven te rijgen. */
+const LEAD_EVENT = 'gymops:open-lead-form';
+const openLeadForm = () => { if (typeof window !== 'undefined') window.dispatchEvent(new Event(LEAD_EVENT)); };
+const openLeadFormClick = (e) => { e.preventDefault(); openLeadForm(); };
 
 /* ScrollScene — pins a graphic in place and turns scroll into discrete steps.
    While pinned, every bit of scroll advances `step` (0..steps-1); the graphic
@@ -1365,8 +1376,8 @@ function PageHero({ eyebrow, title, accent, sub, cta }) {
         {sub && <p data-reveal style={{ fontSize: 19, lineHeight: 1.6, color: 'rgba(255,255,255,.72)', maxWidth: 620, margin: '24px auto 0' }}>{sub}</p>}
         {cta && (
           <div data-reveal style={{ display: 'flex', flexWrap: 'wrap', gap: 14, justifyContent: 'center', marginTop: 36 }}>
-            <a href={BOOKING_URL} className="btn btn-primary">{cta.primary}<Icon data-lucide="arrow-right"></Icon></a>
-            {cta.secondary && <a href={BOOKING_URL} className="btn btn-outline-light">{cta.secondary}</a>}
+            <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-primary">{cta.primary}<Icon data-lucide="arrow-right"></Icon></a>
+            {cta.secondary && <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-outline-light">{cta.secondary}</a>}
           </div>
         )}
       </div>
@@ -1384,6 +1395,87 @@ function SectionHead({ eyebrow, title, sub, align = 'center', dark = false, max 
   );
 }
 
+
+/* ============================ LeadFormModal.jsx ============================ */
+/* Lead-popup in GymOps-stijl. Opent via het window-event (openLeadForm), vraagt
+   naam/e-mail/telefoon (alle verplicht), duwt de lead naar GoHighLevel en stuurt
+   de bezoeker daarna door naar de booking-agenda om een tijd te kiezen. */
+function LeadFormModal() {
+  const [open, setOpen] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [form, setForm] = useState({ name: '', email: '', phone: '' });
+  const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
+
+  useEffect(() => {
+    const on = () => { setForm({ name: '', email: '', phone: '' }); setSending(false); setOpen(true); };
+    window.addEventListener(LEAD_EVENT, on);
+    return () => window.removeEventListener(LEAD_EVENT, on);
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => { if (e.key === 'Escape') setOpen(false); };
+    window.addEventListener('keydown', onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { window.removeEventListener('keydown', onKey); document.body.style.overflow = prev; };
+  }, [open]);
+
+  if (!open) return null;
+
+  const submit = async (e) => {
+    e.preventDefault();
+    if (sending) return;
+    setSending(true);
+    const name = form.name.trim();
+    const parts = name.split(/\s+/);
+    const firstName = parts.shift() || '';
+    const lastName = parts.join(' ');
+    /* Simple request (geen custom headers) zodat er geen CORS-preflight nodig is
+       en de lead altijd bij GoHighLevel aankomt; reactie hoeven we niet te lezen. */
+    try {
+      await fetch(GHL_WEBHOOK_URL, {
+        method: 'POST',
+        keepalive: true,
+        body: JSON.stringify({
+          first_name: firstName, last_name: lastName, full_name: name, name,
+          email: form.email.trim(), phone: form.phone.trim(),
+          source: 'GymOps website', page: typeof window !== 'undefined' ? window.location.pathname : '',
+        }),
+      });
+    } catch (_) { /* fire-and-forget: bezoeker mag niet vastlopen */ }
+    window.location.href = BOOKING_URL;
+  };
+
+  return (
+    <div className="lead-overlay" onMouseDown={(e) => { if (e.target === e.currentTarget) setOpen(false); }}>
+      <div className="lead-modal" role="dialog" aria-modal="true" aria-label="Plan je gratis kennismaking">
+        <button type="button" className="lead-close" aria-label="Sluiten" onClick={() => setOpen(false)}>
+          <Icon data-lucide="x" style={{ width: 18, height: 18 }}></Icon>
+        </button>
+        <div style={{ fontSize: 23, fontWeight: 800, color: 'var(--ink)', letterSpacing: '-.02em', paddingRight: 30 }}>Plan je gratis kennismaking</div>
+        <p style={{ fontSize: 14.5, lineHeight: 1.55, color: 'var(--fg3)', margin: '9px 0 22px' }}>Vrijblijvend en in 20 minuten, je hoeft niet te sporten. Vul je gegevens in, daarna kies je direct zelf een moment dat jou uitkomt.</p>
+        <form onSubmit={submit}>
+          <div style={{ marginBottom: 14 }}>
+            <label className="lead-label" htmlFor="lf-name">Naam *</label>
+            <input id="lf-name" className="lead-input" type="text" required placeholder="Voornaam Achternaam" value={form.name} onChange={set('name')} autoComplete="name" />
+          </div>
+          <div style={{ marginBottom: 14 }}>
+            <label className="lead-label" htmlFor="lf-email">E-mailadres *</label>
+            <input id="lf-email" className="lead-input" type="email" required placeholder="naam@email.nl" value={form.email} onChange={set('email')} autoComplete="email" />
+          </div>
+          <div style={{ marginBottom: 22 }}>
+            <label className="lead-label" htmlFor="lf-phone">Telefoonnummer *</label>
+            <input id="lf-phone" className="lead-input" type="tel" required placeholder="06 12 34 56 78" value={form.phone} onChange={set('phone')} autoComplete="tel" />
+          </div>
+          <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }} disabled={sending}>
+            {sending ? 'Versturen…' : <React.Fragment>Aanvragen<Icon data-lucide="arrow-right"></Icon></React.Fragment>}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
 
 /* ============================ Nav.jsx ============================ */
 /* Sticky navbar — transparent over the dark hero, white+blur after scroll.
@@ -1408,6 +1500,8 @@ function Nav({ current }) {
 
   const light = scrolled || open; // light bg = dark text/icons
   return (
+    <React.Fragment>
+    <LeadFormModal />
     <nav style={{
       position: 'fixed', top: 0, left: 0, right: 0, zIndex: 60,
       transition: 'background .3s, box-shadow .3s, border-color .3s',
@@ -1433,7 +1527,7 @@ function Nav({ current }) {
               })}
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
-              <a href={BOOKING_URL} className="btn btn-primary" style={{ padding: '11px 20px', fontSize: 15 }}>Plan een demo</a>
+              <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-primary" style={{ padding: '11px 20px', fontSize: 15 }}>Plan een demo</a>
             </div>
           </React.Fragment>
         )}
@@ -1448,10 +1542,11 @@ function Nav({ current }) {
       {m && open && (
         <div className="mobile-menu">
           {GO.nav.map(l => <a key={l.label} href={lnk(l.href)} onClick={() => setOpen(false)} style={l.href === current ? { color: 'var(--mint-deep)' } : undefined}>{l.label}</a>)}
-          <a href={BOOKING_URL} className="btn btn-primary" style={{ marginTop: 14, justifyContent: 'center' }}>Plan een demo</a>
+          <a href={BOOKING_URL} onClick={(e) => { e.preventDefault(); setOpen(false); openLeadForm(); }} className="btn btn-primary" style={{ marginTop: 14, justifyContent: 'center' }}>Plan een demo</a>
         </div>
       )}
     </nav>
+    </React.Fragment>
   );
 }
 
@@ -1473,8 +1568,8 @@ function CtaFooter() {
             <h2 style={{ position: 'relative', fontSize: 'clamp(30px,3.6vw,48px)', fontWeight: 800, letterSpacing: '-.03em', color: '#fff', maxWidth: 680, margin: '0 auto' }}>{C.title}</h2>
             <p style={{ position: 'relative', fontSize: 18, color: 'rgba(255,255,255,.7)', marginTop: 18, maxWidth: 520, margin: '18px auto 0' }}>{C.sub}</p>
             <div style={{ position: 'relative', display: 'flex', flexWrap: 'wrap', gap: 14, justifyContent: 'center', marginTop: 34 }}>
-              <a href={BOOKING_URL} className="btn btn-primary">{C.primary}<Icon data-lucide="arrow-right"></Icon></a>
-              {C.secondary && <a href={BOOKING_URL} className="btn btn-outline-light">{C.secondary}</a>}
+              <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-primary">{C.primary}<Icon data-lucide="arrow-right"></Icon></a>
+              {C.secondary && <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-outline-light">{C.secondary}</a>}
             </div>
           </div>
         </div>
@@ -1525,8 +1620,8 @@ function Hero() {
         <SplitHeadline lines={h.headline} style={{ fontSize: 'clamp(36px, 8vw, 74px)', fontWeight: 800, letterSpacing: '-.035em', lineHeight: 1.03, color: '#fff', maxWidth: 940, margin: '0 auto' }} />
         <p data-reveal style={{ fontSize: m ? 17 : 20, lineHeight: 1.6, whiteSpace: 'pre-line', color: 'rgba(255,255,255,.72)', maxWidth: 600, margin: (m ? 20 : 28) + 'px auto 0', transitionDelay: '.15s' }}>{h.sub}</p>
         <div data-reveal style={{ display: 'flex', flexWrap: 'wrap', gap: 14, marginTop: m ? 28 : 38, justifyContent: 'center', transitionDelay: '.25s' }}>
-          <a href={BOOKING_URL} className="btn btn-primary">{h.primary}<Icon data-lucide="arrow-right"></Icon></a>
-          {h.secondary && <a href={BOOKING_URL} className="btn btn-outline-light">{h.secondary}</a>}
+          <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-primary">{h.primary}<Icon data-lucide="arrow-right"></Icon></a>
+          {h.secondary && <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-outline-light">{h.secondary}</a>}
         </div>
       </div>
 
@@ -2500,7 +2595,7 @@ function PlanCard({ p, m }) {
       </div>
       <p style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--fg3)', marginTop: 16 }}>{p.disclaimer}</p>
       {p.yearly && <p style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--fg3)', marginTop: 8 }}>{p.yearly}</p>}
-      <a href={BOOKING_URL} className={'btn ' + (soon ? 'btn-outline' : 'btn-primary')} style={{ marginTop: 22, justifyContent: 'center', width: '100%' }}>
+      <a href={BOOKING_URL} onClick={openLeadFormClick} className={'btn ' + (soon ? 'btn-outline' : 'btn-primary')} style={{ marginTop: 22, justifyContent: 'center', width: '100%' }}>
         {p.cta}<Icon data-lucide={p.ctaIcon}></Icon>
       </a>
       {p.featureGroups ? (
