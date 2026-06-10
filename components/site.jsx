@@ -1464,28 +1464,30 @@ function LeadFormModal() {
           <div style={{ position: 'relative', fontSize: 24, fontWeight: 800, color: '#fff', letterSpacing: '-.025em', lineHeight: 1.1, paddingRight: 24 }}>Plan een demo van 30 minuten</div>
         </div>
         <div className="lead-modal-body">
-          <p style={{ fontSize: 14.5, lineHeight: 1.55, color: 'var(--fg3)', margin: '0 0 22px' }}>We laten je zien hoe het systeem kan werken voor jouw gym. Vul je gegevens in, daarna kies je direct zelf een moment dat jou uitkomt.</p>
+          <p style={{ fontSize: 14, lineHeight: 1.5, color: 'var(--fg3)', margin: '0 0 18px' }}>We laten je zien hoe het systeem kan werken voor jouw gym. Vul je gegevens in, daarna kies je direct zelf een moment dat jou uitkomt.</p>
           <form onSubmit={submit}>
-            <div style={{ marginBottom: 14 }}>
-              <label className="lead-label" htmlFor="lf-name">Naam *</label>
-              <input id="lf-name" className="lead-input" type="text" required placeholder="Voornaam Achternaam" value={form.name} onChange={set('name')} autoComplete="name" />
+            <div className="lead-grid">
+              <div>
+                <label className="lead-label" htmlFor="lf-name">Naam *</label>
+                <input id="lf-name" className="lead-input" type="text" required placeholder="Voornaam Achternaam" value={form.name} onChange={set('name')} autoComplete="name" />
+              </div>
+              <div>
+                <label className="lead-label" htmlFor="lf-gym">Naam van je gym *</label>
+                <input id="lf-gym" className="lead-input" type="text" required placeholder="CrossFit Zuidlaren" value={form.gym} onChange={set('gym')} autoComplete="organization" />
+              </div>
+              <div>
+                <label className="lead-label" htmlFor="lf-email">E-mailadres *</label>
+                <input id="lf-email" className="lead-input" type="email" required placeholder="naam@email.nl" value={form.email} onChange={set('email')} autoComplete="email" />
+              </div>
+              <div>
+                <label className="lead-label" htmlFor="lf-phone">Telefoonnummer *</label>
+                <input id="lf-phone" className="lead-input" type="tel" required placeholder="06 12 34 56 78" value={form.phone} onChange={set('phone')} autoComplete="tel" />
+              </div>
             </div>
-            <div style={{ marginBottom: 14 }}>
-              <label className="lead-label" htmlFor="lf-gym">Naam van je gym *</label>
-              <input id="lf-gym" className="lead-input" type="text" required placeholder="CrossFit Zuidlaren" value={form.gym} onChange={set('gym')} autoComplete="organization" />
-            </div>
-            <div style={{ marginBottom: 14 }}>
-              <label className="lead-label" htmlFor="lf-email">E-mailadres *</label>
-              <input id="lf-email" className="lead-input" type="email" required placeholder="naam@email.nl" value={form.email} onChange={set('email')} autoComplete="email" />
-            </div>
-            <div style={{ marginBottom: 22 }}>
-              <label className="lead-label" htmlFor="lf-phone">Telefoonnummer *</label>
-              <input id="lf-phone" className="lead-input" type="tel" required placeholder="06 12 34 56 78" value={form.phone} onChange={set('phone')} autoComplete="tel" />
-            </div>
-            <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }} disabled={sending}>
+            <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: 18 }} disabled={sending}>
               {sending ? 'Versturen…' : <React.Fragment>Aanvragen<Icon data-lucide="arrow-right"></Icon></React.Fragment>}
             </button>
-            <p style={{ fontSize: 12, lineHeight: 1.5, color: 'var(--fg3)', textAlign: 'center', margin: '14px 0 0' }}>We nemen persoonlijk contact met je op. Geen spam.</p>
+            <p style={{ fontSize: 12, lineHeight: 1.5, color: 'var(--fg3)', textAlign: 'center', margin: '12px 0 0' }}>We nemen persoonlijk contact met je op. Geen spam.</p>
           </form>
         </div>
       </div>
