@@ -90,7 +90,7 @@ const route = (h) => !h ? h : h === 'index.html' ? '/' : (h.charAt(0) === '#' ||
 const BOOKING_URL = 'https://links.gymops.nl/widget/booking/9peD9aOwQ1sN9F4gOhev';
 
 /* GoHighLevel inbound webhook: het lead-formulier duwt de gegevens hierheen. */
-const GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/5o3lAbdsLNLtkKEcTJYU/webhook-trigger/d9ad720a-0193-4424-9471-4ac4894d9734';
+const GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/5o3lAbdsLNLtkKEcTJYU/webhook-trigger/f7dc4dc8-1440-4c19-a9a4-e2faddd1c902';
 
 /* Alle CTA-knoppen openen het lead-formulier i.p.v. direct door te linken.
    We gebruiken een window-event zodat elke knop de centrale modal kan openen
