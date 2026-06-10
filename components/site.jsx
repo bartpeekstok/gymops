@@ -1431,12 +1431,14 @@ function LeadFormModal() {
     const parts = name.split(/\s+/);
     const firstName = parts.shift() || '';
     const lastName = parts.join(' ');
-    /* Simple request (geen custom headers) zodat er geen CORS-preflight nodig is
-       en de lead altijd bij GoHighLevel aankomt; reactie hoeven we niet te lezen. */
+    /* GoHighLevel weigert een text/plain body, dus sturen we expliciet JSON.
+       GHL beantwoordt de CORS-preflight (Allow-Origin *), dus dit komt netjes aan.
+       De reactie hoeven we niet te lezen; we sturen daarna door naar de agenda. */
     try {
       await fetch(GHL_WEBHOOK_URL, {
         method: 'POST',
         keepalive: true,
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           first_name: firstName, last_name: lastName, full_name: name, name,
           email: form.email.trim(), phone: form.phone.trim(),
