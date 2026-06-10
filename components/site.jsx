@@ -1403,11 +1403,11 @@ function SectionHead({ eyebrow, title, sub, align = 'center', dark = false, max 
 function LeadFormModal() {
   const [open, setOpen] = useState(false);
   const [sending, setSending] = useState(false);
-  const [form, setForm] = useState({ name: '', email: '', phone: '' });
+  const [form, setForm] = useState({ name: '', gym: '', email: '', phone: '' });
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
   useEffect(() => {
-    const on = () => { setForm({ name: '', email: '', phone: '' }); setSending(false); setOpen(true); };
+    const on = () => { setForm({ name: '', gym: '', email: '', phone: '' }); setSending(false); setOpen(true); };
     window.addEventListener(LEAD_EVENT, on);
     return () => window.removeEventListener(LEAD_EVENT, on);
   }, []);
@@ -1440,6 +1440,7 @@ function LeadFormModal() {
         body: JSON.stringify({
           first_name: firstName, last_name: lastName, full_name: name, name,
           email: form.email.trim(), phone: form.phone.trim(),
+          gym_name: form.gym.trim(), company_name: form.gym.trim(),
           source: 'GymOps website', tags: 'website lead', tag: 'website lead',
           page: typeof window !== 'undefined' ? window.location.pathname : '',
         }),
@@ -1468,6 +1469,10 @@ function LeadFormModal() {
             <div style={{ marginBottom: 14 }}>
               <label className="lead-label" htmlFor="lf-name">Naam *</label>
               <input id="lf-name" className="lead-input" type="text" required placeholder="Voornaam Achternaam" value={form.name} onChange={set('name')} autoComplete="name" />
+            </div>
+            <div style={{ marginBottom: 14 }}>
+              <label className="lead-label" htmlFor="lf-gym">Naam van je gym *</label>
+              <input id="lf-gym" className="lead-input" type="text" required placeholder="CrossFit Zuidlaren" value={form.gym} onChange={set('gym')} autoComplete="organization" />
             </div>
             <div style={{ marginBottom: 14 }}>
               <label className="lead-label" htmlFor="lf-email">E-mailadres *</label>
