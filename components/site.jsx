@@ -728,11 +728,10 @@ function HomeShowcase() {
 }
 
 function Laptop({ w = 580, filled = false, className = '' }) {
-  const screenH = Math.round(w * 0.5625);
   return (
-    <div className={className} style={{ width: w }}>
+    <div className={className} style={{ width: '100%', maxWidth: w, margin: '0 auto' }}>
       <div style={{ background: '#0A0A0F', borderRadius: '16px 16px 5px 5px', padding: 11, boxShadow: '0 40px 80px -30px rgba(10,10,15,.55), 0 0 0 1px rgba(255,255,255,.05)' }}>
-        <div style={{ position: 'relative', width: '100%', height: screenH, borderRadius: 6, overflow: 'hidden', background: '#0a0a0f' }}>
+        <div style={{ position: 'relative', width: '100%', paddingTop: '56.25%', borderRadius: 6, overflow: 'hidden', background: '#191919' }}>
           <WebsiteBg />
           <div className="s1-dim" style={{ position: 'absolute', inset: 0, background: 'rgba(10,10,15,.5)' }}></div>
           <PopupForm filled={filled} />
@@ -740,7 +739,7 @@ function Laptop({ w = 580, filled = false, className = '' }) {
         </div>
       </div>
       {/* base / hinge */}
-      <div style={{ width: w + 44, marginLeft: -22, height: 13, background: 'linear-gradient(#d4d7dd, #a9adb6)', borderRadius: '0 0 12px 12px', position: 'relative', boxShadow: '0 14px 22px -12px rgba(10,10,15,.5)' }}>
+      <div style={{ width: 'calc(100% + 44px)', marginLeft: -22, height: 13, background: 'linear-gradient(#d4d7dd, #a9adb6)', borderRadius: '0 0 12px 12px', position: 'relative', boxShadow: '0 14px 22px -12px rgba(10,10,15,.5)' }}>
         <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 100, height: 6, background: '#9498a1', borderRadius: '0 0 7px 7px' }}></div>
       </div>
     </div>
