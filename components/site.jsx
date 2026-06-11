@@ -608,25 +608,10 @@ function ContactScreen() {
 }
 
 /* SCENE 1 — laptop with a gym website + pop-up lead form (HTML overlay so the
-   form fields can "type" via scroll progress). `filled` pre-fills for static use. */
+   form fields can "type" via scroll progress). `filled` pre-fills for static use.
+   De site-achtergrond is de gedeelde CrossFit Zuidlaren-look. */
 function WebsiteBg() {
-  return (
-    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(150deg, #0e1f19 0%, #0a0a0f 70%)' }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '13px 20px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 7, color: '#fff', fontWeight: 800, fontSize: 13, letterSpacing: '-.01em' }}>
-          <Icon data-lucide="dumbbell" style={{ width: 15, height: 15, color: 'var(--mint-light)' }}></Icon> CrossFit Zuidlaren
-        </div>
-        <div style={{ display: 'flex', gap: 16, color: 'rgba(255,255,255,.65)', fontSize: 11, fontWeight: 500 }}>
-          <span>Lessen</span><span>Tarieven</span><span>Team</span>
-          <span style={{ color: 'var(--ink)', background: 'var(--mint)', padding: '5px 11px', borderRadius: 7, fontWeight: 700 }}>Kennismaking</span>
-        </div>
-      </div>
-      <div style={{ padding: '34px 28px' }}>
-        <div style={{ color: 'var(--mint-light)', fontSize: 11, fontWeight: 700, letterSpacing: '.1em', marginBottom: 10 }}>SAMEN STERKER IN ZUIDLAREN</div>
-        <div style={{ color: '#fff', fontSize: 30, fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.05, maxWidth: 320 }}>Word fitter, sterker en onderdeel van de gym.</div>
-      </div>
-    </div>
-  );
+  return <GymSiteDesktop />;
 }
 
 function PopupForm({ filled }) {
@@ -705,62 +690,87 @@ function GoogleSearchMock() {
   );
 }
 
-/* Desktop-homepage die in de laptop van <HomeShowcase> wordt getoond. */
-function SiteHomeDesktop() {
+/* CrossFit Zuidlaren website-look (donker met goud-accent + foto), gebruikt als
+   scherm op alle laptop-graphics. `cta` toont een hero-knop (voor de flow-stages
+   die er met een cursor op tikken); zonder cta de volledige hero met checklist. */
+function GymSiteDesktop({ cta }) {
+  const gold = '#C8A24A', off = '#F4F1EA', dark = '#181613';
+  const navItems = ['Home', 'Aanbod', 'Rooster', 'Over ons', 'Tarieven', 'Leden', 'Blog', 'Contact'];
   return (
-    <div style={{ position: 'absolute', inset: 0, background: '#fff', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 18px', background: 'var(--ink)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 7, color: '#fff', fontWeight: 800, fontSize: 13, letterSpacing: '-.01em' }}>
-          <Icon data-lucide="dumbbell" style={{ width: 15, height: 15, color: 'var(--mint-light)' }}></Icon> CrossFit Zuidlaren
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16, color: 'rgba(255,255,255,.65)', fontSize: 11, fontWeight: 500 }}>
-          <span>Lessen</span><span>Tarieven</span><span>Team</span>
-          <span style={{ color: 'var(--ink)', background: 'var(--mint)', padding: '5px 11px', borderRadius: 7, fontWeight: 700 }}>Kennismaking</span>
-        </div>
-      </div>
-      <div style={{ flex: 1, background: 'linear-gradient(150deg, #0e1f19 0%, #0a0a0f 70%)', padding: '26px 28px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <div style={{ color: 'var(--mint-light)', fontSize: 11, fontWeight: 700, letterSpacing: '.1em', marginBottom: 10 }}>SAMEN STERKER IN ZUIDLAREN</div>
-        <div style={{ color: '#fff', fontSize: 30, fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.05, maxWidth: 340 }}>Word fitter, sterker en onderdeel van de gym.</div>
-        <div style={{ display: 'flex', gap: 10, marginTop: 18 }}>
-          <span style={{ background: 'var(--mint)', color: '#fff', fontSize: 12, fontWeight: 700, padding: '9px 16px', borderRadius: 9 }}>Plan je kennismaking</span>
-          <span style={{ border: '1px solid rgba(255,255,255,.3)', color: '#fff', fontSize: 12, fontWeight: 600, padding: '9px 16px', borderRadius: 9 }}>Bekijk rooster</span>
+    <div style={{ position: 'absolute', inset: 0, background: dark, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '11px 18px', position: 'relative', zIndex: 3 }}>
+        <div style={{ color: off, fontWeight: 800, fontSize: 13, letterSpacing: '.02em' }}>CROSSFIT <span style={{ color: gold }}>ZUIDLAREN</span></div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, color: 'rgba(244,241,234,.82)', fontSize: 8.5, fontWeight: 600 }}>
+          {navItems.map(n => <span key={n}>{n}</span>)}
+          <span style={{ color: 'rgba(244,241,234,.45)' }}><b style={{ color: off }}>NL</b> GB</span>
+          <span style={{ background: gold, color: dark, fontWeight: 800, fontSize: 8.5, letterSpacing: '.04em', padding: '6px 10px', borderRadius: 3 }}>GRATIS INTAKE</span>
         </div>
       </div>
-      <div style={{ background: '#fff', padding: '13px 18px', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>
-        {[['infinity', 'Onbeperkt trainen'], ['user-round', 'Persoonlijke coaching'], ['users', 'Sterke community']].map(([ic, t]) => (
-          <div key={t} style={{ background: 'var(--bg-soft)', borderRadius: 10, padding: '10px 11px', display: 'flex', alignItems: 'center', gap: 8 }}>
-            <Icon data-lucide={ic} style={{ width: 14, height: 14, color: 'var(--mint-deep)', flexShrink: 0 }}></Icon>
-            <span style={{ fontSize: 10.5, fontWeight: 700, color: 'var(--fg1)', lineHeight: 1.15 }}>{t}</span>
-          </div>
-        ))}
+      <div style={{ flex: 1, display: 'flex', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ flex: '0 0 56%', padding: '0 22px', display: 'flex', flexDirection: 'column', justifyContent: 'center', zIndex: 2 }}>
+          <div style={{ color: gold, fontSize: 8.5, fontWeight: 700, letterSpacing: '.16em', marginBottom: 9 }}>— DE BESTE GYM IN ZUIDLAREN</div>
+          <div style={{ color: off, fontWeight: 800, fontSize: 32, lineHeight: .92, letterSpacing: '-.01em' }}>FRIENDS,<br />FITNESS,<br />FUN.</div>
+          <div style={{ color: gold, fontSize: 10.5, fontWeight: 800, letterSpacing: '.03em', marginTop: 13 }}>WEER ZIN OM TE SPORTEN?</div>
+          {cta ? (
+            <div style={{ alignSelf: 'flex-start', marginTop: 14, position: 'relative' }} data-cta>
+              <div style={{ background: gold, color: dark, fontWeight: 800, fontSize: 11, letterSpacing: '.03em', padding: '9px 16px', borderRadius: 4 }}>{cta}</div>
+            </div>
+          ) : (
+            <React.Fragment>
+              <p style={{ color: 'rgba(244,241,234,.6)', fontSize: 9, lineHeight: 1.5, marginTop: 7, maxWidth: 224 }}>Wij helpen drukke mensen in Zuidlaren zich fitter te voelen, af te vallen en meer te bewegen.</p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 5, marginTop: 10 }}>
+                {['Professionele coaching voor ieder niveau', 'Persoonlijke begeleiding voor jouw doelen', 'Een hechte community die je motiveert'].map(t => (
+                  <div key={t} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                    <Icon data-lucide="check" style={{ width: 11, height: 11, color: gold, flexShrink: 0 }}></Icon>
+                    <span style={{ color: 'rgba(244,241,234,.82)', fontSize: 8.5 }}>{t}</span>
+                  </div>
+                ))}
+              </div>
+            </React.Fragment>
+          )}
+        </div>
+        <div style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: '52%', backgroundImage: 'url(' + GO.A + 'gym-bg.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, ' + dark + ' 0%, rgba(24,22,19,.4) 40%, transparent 72%)' }} />
+        </div>
+      </div>
+      <div style={{ position: 'absolute', right: 12, bottom: 12, width: 26, height: 26, borderRadius: 999, background: '#25D366', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 6px 16px -6px rgba(0,0,0,.5)', zIndex: 3 }}>
+        <Icon data-lucide="message-circle" style={{ width: 14, height: 14, color: '#fff' }}></Icon>
       </div>
     </div>
   );
 }
 
-/* Mobiele homepage voor de telefoon in <HomeShowcase>. */
+/* Desktop-homepage die in de laptop van <HomeShowcase> wordt getoond. */
+function SiteHomeDesktop() {
+  return <GymSiteDesktop />;
+}
+
+/* Mobiele homepage voor de telefoon in <HomeShowcase>, zelfde donker/goud-look. */
 function SiteHomeMobile() {
+  const gold = '#C8A24A', off = '#F4F1EA', dark = '#181613';
   return (
-    <div style={{ position: 'absolute', inset: 0, background: '#fff', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-      <StatusBar />
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '6px 14px 10px' }}>
-        <div style={{ display: 'flex', gap: 5, alignItems: 'center', fontWeight: 800, fontSize: 11, letterSpacing: '-.01em', color: 'var(--ink)' }}>
-          <Icon data-lucide="dumbbell" style={{ width: 13, height: 13, color: 'var(--mint-deep)' }}></Icon> CrossFit Zuidlaren
-        </div>
-        <Icon data-lucide="menu" style={{ width: 16, height: 16, color: 'var(--fg2)' }}></Icon>
+    <div style={{ position: 'absolute', inset: 0, background: dark, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <StatusBar dark />
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '4px 12px 8px' }}>
+        <div style={{ fontWeight: 800, fontSize: 9.5, letterSpacing: '.02em', color: off }}>CROSSFIT <span style={{ color: gold }}>ZUIDLAREN</span></div>
+        <Icon data-lucide="menu" style={{ width: 15, height: 15, color: off }}></Icon>
       </div>
-      <div style={{ background: 'linear-gradient(150deg, #0e1f19, #0a0a0f)', padding: '18px 16px 20px' }}>
-        <div style={{ color: 'var(--mint-light)', fontSize: 9, fontWeight: 700, letterSpacing: '.1em', marginBottom: 6 }}>SAMEN STERKER IN ZUIDLAREN</div>
-        <div style={{ color: '#fff', fontSize: 18, fontWeight: 800, letterSpacing: '-.02em', lineHeight: 1.1 }}>Word fitter en sterker in de gym.</div>
-        <div style={{ background: 'var(--mint)', color: '#fff', fontSize: 11, fontWeight: 700, padding: '9px 0', borderRadius: 8, textAlign: 'center', marginTop: 14 }}>Plan je kennismaking</div>
+      <div style={{ position: 'relative', padding: '16px 14px', backgroundImage: 'linear-gradient(rgba(24,22,19,.72), rgba(24,22,19,.92)), url(' + GO.A + 'gym-bg.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div style={{ color: gold, fontSize: 7.5, fontWeight: 700, letterSpacing: '.14em', marginBottom: 7 }}>— DE BESTE GYM IN ZUIDLAREN</div>
+        <div style={{ color: off, fontWeight: 800, fontSize: 21, lineHeight: .94 }}>FRIENDS,<br />FITNESS,<br />FUN.</div>
+        <div style={{ color: gold, fontSize: 8.5, fontWeight: 800, letterSpacing: '.03em', marginTop: 10 }}>WEER ZIN OM TE SPORTEN?</div>
+        <div style={{ background: gold, color: dark, fontSize: 9.5, fontWeight: 800, letterSpacing: '.03em', padding: '8px 0', borderRadius: 4, textAlign: 'center', marginTop: 12 }}>GRATIS INTAKE</div>
       </div>
-      <div style={{ flex: 1, padding: '12px 13px', display: 'flex', flexDirection: 'column', gap: 8 }}>
-        {[['infinity', 'Onbeperkt trainen'], ['user-round', 'Persoonlijke coaching'], ['users', 'Sterke community']].map(([ic, t]) => (
-          <div key={t} style={{ background: 'var(--bg-soft)', borderRadius: 10, padding: '9px 11px', display: 'flex', alignItems: 'center', gap: 9 }}>
-            <Icon data-lucide={ic} style={{ width: 13, height: 13, color: 'var(--mint-deep)', flexShrink: 0 }}></Icon>
-            <span style={{ fontSize: 10, fontWeight: 700, color: 'var(--fg1)' }}>{t}</span>
+      <div style={{ flex: 1, padding: '11px 13px', display: 'flex', flexDirection: 'column', gap: 8, justifyContent: 'center' }}>
+        {['Professionele coaching', 'Persoonlijke begeleiding', 'Een hechte community'].map(t => (
+          <div key={t} style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+            <Icon data-lucide="check" style={{ width: 11, height: 11, color: gold, flexShrink: 0 }}></Icon>
+            <span style={{ fontSize: 9, fontWeight: 600, color: 'rgba(244,241,234,.82)' }}>{t}</span>
           </div>
         ))}
+      </div>
+      <div style={{ position: 'absolute', right: 9, bottom: 9, width: 24, height: 24, borderRadius: 999, background: '#25D366', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Icon data-lucide="message-circle" style={{ width: 13, height: 13, color: '#fff' }}></Icon>
       </div>
     </div>
   );
@@ -818,18 +828,18 @@ function WebPhone() {
       </div>
     </div>
   );
+  const gold = '#C8A24A', off = '#F4F1EA', dark = '#181613';
   return (
-    <div style={{ position: 'absolute', inset: 0, background: '#fff', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-      <StatusBar />
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '6px 14px 10px' }}>
-        <div style={{ display: 'flex', gap: 5, alignItems: 'center', fontWeight: 800, fontSize: 11, letterSpacing: '-.01em', color: 'var(--ink)' }}>
-          <Icon data-lucide="dumbbell" style={{ width: 13, height: 13, color: 'var(--mint-deep)' }}></Icon> CrossFit Zuidlaren
-        </div>
-        <Icon data-lucide="menu" style={{ width: 16, height: 16, color: 'var(--fg2)' }}></Icon>
+    <div style={{ position: 'absolute', inset: 0, background: dark, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <StatusBar dark />
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '4px 12px 8px' }}>
+        <div style={{ fontWeight: 800, fontSize: 9.5, letterSpacing: '.02em', color: off }}>CROSSFIT <span style={{ color: gold }}>ZUIDLAREN</span></div>
+        <Icon data-lucide="menu" style={{ width: 15, height: 15, color: off }}></Icon>
       </div>
-      <div style={{ background: 'linear-gradient(150deg, #0e1f19, #0a0a0f)', padding: '16px 16px 18px' }}>
-        <div style={{ color: 'var(--mint-light)', fontSize: 9, fontWeight: 700, letterSpacing: '.1em', marginBottom: 6 }}>SAMEN STERKER IN ZUIDLAREN</div>
-        <div style={{ color: '#fff', fontSize: 18, fontWeight: 800, letterSpacing: '-.02em', lineHeight: 1.1 }}>Word fitter en sterker in de gym.</div>
+      <div style={{ position: 'relative', padding: '14px 14px', backgroundImage: 'linear-gradient(rgba(24,22,19,.72), rgba(24,22,19,.92)), url(' + GO.A + 'gym-bg.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div style={{ color: gold, fontSize: 7.5, fontWeight: 700, letterSpacing: '.14em', marginBottom: 6 }}>— DE BESTE GYM IN ZUIDLAREN</div>
+        <div style={{ color: off, fontWeight: 800, fontSize: 19, lineHeight: .94 }}>FRIENDS,<br />FITNESS,<br />FUN.</div>
+        <div style={{ color: gold, fontSize: 8, fontWeight: 800, letterSpacing: '.03em', marginTop: 9 }}>WEER ZIN OM TE SPORTEN?</div>
       </div>
       <div style={{ position: 'relative', flex: 1, padding: '12px 13px' }}>
         <div className="s1-popup" style={{ background: '#fff', borderRadius: 14, padding: 14, boxShadow: '0 18px 40px -16px rgba(10,10,15,.3)', border: '1px solid var(--border)' }}>
@@ -1886,25 +1896,7 @@ function LeadFlowStage({ step }) {
   const formOpen = phase === 'form' || phase === 'confirm';
 
   /* ---- static website (memoised so typing re-renders don't touch it) ---- */
-  const website = React.useMemo(() => (
-    <div style={{ position: 'absolute', inset: 0, background: '#fff', display: 'flex', flexDirection: 'column' }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '13px 20px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 7, color: 'var(--ink)', fontWeight: 800, fontSize: 14, letterSpacing: '-.01em' }}>
-          <Icon data-lucide="dumbbell" style={{ width: 15, height: 15, color: 'var(--mint-deep)' }}></Icon> CrossFit Zuidlaren
-        </div>
-        <div style={{ display: 'flex', gap: 15, color: 'var(--fg3)', fontSize: 11.5, fontWeight: 600, alignItems: 'center' }}>
-          <span>Lessen</span><span>Tarieven</span><span>Team</span>
-        </div>
-      </div>
-      <div style={{ flex: 1, background: 'linear-gradient(105deg, rgba(8,11,10,.93) 0%, rgba(8,11,10,.72) 52%, rgba(8,11,10,.42) 100%), url(' + GO.A + 'gym-bg.jpg) center/cover', padding: '26px 30px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <div style={{ color: 'var(--mint-light)', fontSize: 11, fontWeight: 700, letterSpacing: '.12em', marginBottom: 10 }}>SAMEN STERKER IN ZUIDLAREN</div>
-        <div style={{ color: '#fff', fontSize: 27, fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.06, maxWidth: 320 }}>Word fitter, sterker en onderdeel van de gym.</div>
-        <div style={{ marginTop: 18, position: 'relative', alignSelf: 'flex-start' }} data-cta>
-          <div style={{ background: 'var(--mint)', color: '#fff', fontWeight: 700, fontSize: 14, padding: '11px 20px', borderRadius: 10, boxShadow: 'var(--shadow-mint)' }}>Gratis kennismaking</div>
-        </div>
-      </div>
-    </div>
-  ), []);
+  const website = React.useMemo(() => <GymSiteDesktop cta="Gratis intake" />, []);
 
   const field = (label, key, req) => (
     <div style={{ marginBottom: 8 }}>
@@ -2120,26 +2112,41 @@ function EventFlowStage({ step }) {
 
   const formOpen = phase === 'form' || phase === 'confirm';
 
-  const website = React.useMemo(() => (
-    <div style={{ position: 'absolute', inset: 0, background: '#fff', display: 'flex', flexDirection: 'column' }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '13px 20px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 7, color: 'var(--ink)', fontWeight: 800, fontSize: 14, letterSpacing: '-.01em' }}>
-          <Icon data-lucide="dumbbell" style={{ width: 15, height: 15, color: 'var(--mint-deep)' }}></Icon> CrossFit Zuidlaren
+  const website = React.useMemo(() => {
+    const gold = '#C8A24A', off = '#F4F1EA', dark = '#181613';
+    const navItems = ['Home', 'Aanbod', 'Rooster', 'Over ons', 'Tarieven', 'Leden', 'Blog', 'Contact'];
+    return (
+      <div style={{ position: 'absolute', inset: 0, background: dark, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '11px 18px', position: 'relative', zIndex: 3 }}>
+          <div style={{ color: off, fontWeight: 800, fontSize: 13, letterSpacing: '.02em' }}>CROSSFIT <span style={{ color: gold }}>ZUIDLAREN</span></div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, color: 'rgba(244,241,234,.82)', fontSize: 8.5, fontWeight: 600 }}>
+            {navItems.map(n => <span key={n}>{n}</span>)}
+            <span style={{ color: 'rgba(244,241,234,.45)' }}><b style={{ color: off }}>NL</b> GB</span>
+            <span style={{ background: gold, color: dark, fontWeight: 800, fontSize: 8.5, letterSpacing: '.04em', padding: '6px 10px', borderRadius: 3 }}>GRATIS INTAKE</span>
+          </div>
         </div>
-        <div style={{ display: 'flex', gap: 15, color: 'var(--fg3)', fontSize: 11.5, fontWeight: 600, alignItems: 'center' }}>
-          <span>Lessen</span><span>Events</span><span>Team</span>
+        <div style={{ flex: 1, position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 30px', backgroundImage: 'url(' + GO.A + 'gym-bg.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(20,18,15,.86) 0%, rgba(20,18,15,.6) 48%, rgba(20,18,15,.3) 100%)' }} />
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, border: '1px solid ' + gold, borderRadius: 999, padding: '4px 11px', marginBottom: 13 }}>
+              <span style={{ width: 5, height: 5, borderRadius: 999, background: gold }} />
+              <span style={{ color: gold, fontSize: 8, fontWeight: 800, letterSpacing: '.16em' }}>SPECIAAL EVENT</span>
+            </div>
+            <div style={{ fontWeight: 800, fontSize: 37, lineHeight: .9, letterSpacing: '-.01em', color: 'transparent', WebkitTextStroke: '1px rgba(244,241,234,.85)' }}>BRING A</div>
+            <div style={{ fontWeight: 800, fontSize: 37, lineHeight: .96, letterSpacing: '-.01em', color: gold }}>FRIEND DAY</div>
+            <div style={{ width: 150, height: 3, background: gold, marginTop: 9, borderRadius: 2 }} />
+            <p style={{ color: 'rgba(244,241,234,.78)', fontSize: 10, lineHeight: 1.5, marginTop: 11, maxWidth: 260 }}>Neem je vriend, vriendin, collega of buurman mee voor een gratis training.</p>
+            <div style={{ marginTop: 14, position: 'relative', display: 'inline-block' }} data-cta>
+              <div style={{ background: gold, color: dark, fontWeight: 800, fontSize: 11, letterSpacing: '.03em', padding: '9px 16px', borderRadius: 4 }}>Meld je aan</div>
+            </div>
+          </div>
+        </div>
+        <div style={{ position: 'absolute', right: 12, bottom: 12, width: 26, height: 26, borderRadius: 999, background: '#25D366', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 6px 16px -6px rgba(0,0,0,.5)', zIndex: 3 }}>
+          <Icon data-lucide="message-circle" style={{ width: 14, height: 14, color: '#fff' }}></Icon>
         </div>
       </div>
-      <div style={{ flex: 1, background: 'linear-gradient(105deg, rgba(8,11,10,.93) 0%, rgba(8,11,10,.72) 52%, rgba(8,11,10,.42) 100%), url(' + GO.A + 'gym-bg.jpg) center/cover', padding: '24px 30px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <div style={{ color: 'var(--mint-light)', fontSize: 11, fontWeight: 700, letterSpacing: '.12em', marginBottom: 10 }}>BRING-A-FRIEND EVENT · 14 JUNI</div>
-        <div style={{ color: '#fff', fontSize: 26, fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.05, maxWidth: 330 }}>Neem je buddy mee naar de gym.</div>
-        <p style={{ color: 'rgba(255,255,255,.6)', fontSize: 12.5, marginTop: 8, maxWidth: 300 }}>Eén training, twee buddies. Gratis en zonder ervaring.</p>
-        <div style={{ marginTop: 16, position: 'relative', alignSelf: 'flex-start' }} data-cta>
-          <div style={{ background: 'var(--mint)', color: '#fff', fontWeight: 700, fontSize: 14, padding: '11px 20px', borderRadius: 10, boxShadow: 'var(--shadow-mint)' }}>Meld je aan</div>
-        </div>
-      </div>
-    </div>
-  ), []);
+    );
+  }, []);
 
   const field = (label, key) => (
     <div style={{ marginBottom: 10 }}>
