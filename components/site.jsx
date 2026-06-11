@@ -693,7 +693,7 @@ function GoogleSearchMock() {
 /* CrossFit Zuidlaren website-screenshot, gebruikt als scherm op alle
    laptop-graphics. De `cta`-prop wordt genegeerd (was voor de oude HTML-versie). */
 function GymSiteDesktop() {
-  return <img src={GO.A + 'site-home.png'} alt="CrossFit Zuidlaren website" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />;
+  return <img src={GO.A + 'site-home.png'} alt="CrossFit Zuidlaren website" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', background: '#191919', display: 'block' }} />;
 }
 
 /* Desktop-homepage die in de laptop van <HomeShowcase> wordt getoond. */
@@ -703,7 +703,7 @@ function SiteHomeDesktop() {
 
 /* Mobiele homepage-screenshot voor de telefoon in <HomeShowcase>. */
 function SiteHomeMobile() {
-  return <img src={GO.A + 'site-home-mobile.png'} alt="CrossFit Zuidlaren website (mobiel)" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />;
+  return <img src={GO.A + 'site-home-mobile.png'} alt="CrossFit Zuidlaren website (mobiel)" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', background: '#191919', display: 'block' }} />;
 }
 
 /* Laptop + telefoon die dezelfde homepage tonen , voor "Op maat, in jouw merk". */
@@ -713,7 +713,7 @@ function HomeShowcase() {
   return (
     <div style={{ position: 'relative', width: '100%', maxWidth: Lw, paddingBottom: 30 }}>
       <div style={{ background: '#0A0A0F', borderRadius: '16px 16px 5px 5px', padding: 11, boxShadow: '0 40px 80px -30px rgba(10,10,15,.55), 0 0 0 1px rgba(255,255,255,.05)' }}>
-        <div style={{ position: 'relative', width: '100%', paddingTop: '60%', borderRadius: 6, overflow: 'hidden', background: '#0a0a0f' }}>
+        <div style={{ position: 'relative', width: '100%', paddingTop: '56.25%', borderRadius: 6, overflow: 'hidden', background: '#191919' }}>
           <SiteHomeDesktop />
         </div>
       </div>
@@ -728,7 +728,7 @@ function HomeShowcase() {
 }
 
 function Laptop({ w = 580, filled = false, className = '' }) {
-  const screenH = Math.round(w * 0.6);
+  const screenH = Math.round(w * 0.5625);
   return (
     <div className={className} style={{ width: w }}>
       <div style={{ background: '#0A0A0F', borderRadius: '16px 16px 5px 5px', padding: 11, boxShadow: '0 40px 80px -30px rgba(10,10,15,.55), 0 0 0 1px rgba(255,255,255,.05)' }}>
@@ -749,7 +749,7 @@ function Laptop({ w = 580, filled = false, className = '' }) {
 
 /* SCENE 1 (mobile) — phone die de mobiele website-screenshot toont. */
 function WebPhone() {
-  return <img src={GO.A + 'site-home-mobile.png'} alt="CrossFit Zuidlaren website (mobiel)" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />;
+  return <img src={GO.A + 'site-home-mobile.png'} alt="CrossFit Zuidlaren website (mobiel)" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', background: '#191919', display: 'block' }} />;
 }
 
 
@@ -1832,7 +1832,7 @@ function LeadFlowStage({ step }) {
     </div>
   );
 
-  const screenH = Math.round(500 * 0.64);
+  const screenH = Math.round(500 * 0.5625);
 
   const call = (
     <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(160deg, #0e1f19, #0a0a0f)', display: 'flex', flexDirection: 'column', alignItems: 'center', color: '#fff', padding: '0 16px' }}>
@@ -2002,7 +2002,7 @@ function EventFlowStage({ step }) {
   const formOpen = phase === 'form' || phase === 'confirm';
 
   const website = React.useMemo(() => (
-    <img src={GO.A + 'site-event.png'} alt="CrossFit Zuidlaren event-pagina" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />
+    <img src={GO.A + 'site-event.png'} alt="CrossFit Zuidlaren event-pagina" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', background: '#191919', display: 'block' }} />
   ), []);
 
   const field = (label, key) => (
@@ -2049,7 +2049,7 @@ function EventFlowStage({ step }) {
     </div>
   );
 
-  const screenH = Math.round(500 * 0.64);
+  const screenH = Math.round(500 * 0.5625);
 
   const call = (
     <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(160deg, #0e1f19, #0a0a0f)', display: 'flex', flexDirection: 'column', alignItems: 'center', color: '#fff', padding: '0 16px' }}>
