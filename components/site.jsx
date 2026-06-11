@@ -616,22 +616,21 @@ function WebsiteBg() {
 
 function PopupForm({ filled }) {
   const field = (label, cls, val, req) => (
-    <div style={{ marginBottom: 9 }}>
-      <div style={{ fontSize: 9.5, fontWeight: 600, color: 'var(--fg3)', marginBottom: 4 }}>{label}{req && ' *'}</div>
-      <div style={{ border: '1px solid var(--border-strong)', borderRadius: 8, padding: '8px 10px', minHeight: 30, fontSize: 11.5, color: 'var(--fg1)', background: '#fff', display: 'flex', alignItems: 'center', whiteSpace: 'nowrap', overflow: 'hidden' }}>
+    <div style={{ marginBottom: 6 }}>
+      <div style={{ fontSize: 9, fontWeight: 600, color: 'var(--fg3)', marginBottom: 3 }}>{label}{req && ' *'}</div>
+      <div style={{ border: '1px solid var(--border-strong)', borderRadius: 7, padding: '5px 9px', minHeight: 22, fontSize: 11, color: 'var(--fg1)', background: '#fff', display: 'flex', alignItems: 'center', whiteSpace: 'nowrap', overflow: 'hidden' }}>
         <span className={cls}>{filled ? val : ''}</span>
       </div>
     </div>
   );
   return (
-    <div className="s1-popup" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: '62%', maxWidth: 320, background: '#fff', borderRadius: 16, padding: 18, boxShadow: '0 30px 70px -20px rgba(0,0,0,.6)' }}>
-      <div style={{ fontSize: 16, fontWeight: 800, color: 'var(--ink)', letterSpacing: '-.02em' }}>Plan je gratis kennismaking</div>
-      <p style={{ fontSize: 10.5, lineHeight: 1.5, color: 'var(--fg3)', margin: '7px 0' }}>Het is vrijblijvend, duurt 20 minuten en je hoeft niet te sporten. Na het invullen kies je direct zelf een tijd die jou past.</p>
-      <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--mint-deep)', marginBottom: 13 }}>Gewoon kennismaken met een kop koffie.</p>
+    <div className="s1-popup" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: '64%', maxWidth: 300, background: '#fff', borderRadius: 14, padding: 14, boxShadow: '0 30px 70px -20px rgba(0,0,0,.6)' }}>
+      <div style={{ fontSize: 13.5, fontWeight: 800, color: 'var(--ink)', letterSpacing: '-.02em' }}>Plan je gratis kennismaking</div>
+      <p style={{ fontSize: 9.5, lineHeight: 1.45, color: 'var(--fg3)', margin: '5px 0 9px' }}>Vrijblijvend, 20 minuten en je hoeft niet te sporten.</p>
       {field('Volledige naam', 's1-val-name', 'Mark Janssen')}
       {field('Telefoonnummer', 's1-val-phone', '06 12 34 56 78', true)}
       {field('E-mailadres', 's1-val-email', 'mark.janssen@email.nl', true)}
-      <div className="s1-btn" style={{ background: 'var(--ink)', color: '#fff', fontSize: 12.5, fontWeight: 700, padding: '11px 0', borderRadius: 9, textAlign: 'center', marginTop: 4 }}>Aanvragen</div>
+      <div className="s1-btn" style={{ background: 'var(--ink)', color: '#fff', fontSize: 11.5, fontWeight: 700, padding: '9px 0', borderRadius: 8, textAlign: 'center', marginTop: 5 }}>Aanvragen</div>
     </div>
   );
 }
@@ -727,20 +726,39 @@ function HomeShowcase() {
   );
 }
 
+/* Laptop met het lead-formulier. De hele laptop (incl. formulier) wordt op een
+   vaste design-breedte getekend en als geheel geschaald naar de containerbreedte,
+   zodat het formulier op elk scherm netjes meeschaalt en past. */
 function Laptop({ w = 580, filled = false, className = '' }) {
+  const DESIGN = 580;
+  const screenH = Math.round(DESIGN * 0.5625);        // 16:9, gelijk aan de andere laptops
+  const LAPTOP_H = 11 + screenH + 11 + 13;            // bezel-padding + scherm + scharnier
+  const ref = React.useRef(null);
+  const [scale, setScale] = React.useState(1);
+  React.useEffect(() => {
+    const el = ref.current; if (!el) return;
+    const fit = () => setScale(Math.min(1, el.clientWidth / DESIGN));
+    fit();
+    const ro = new ResizeObserver(fit); ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
   return (
-    <div className={className} style={{ width: '100%', maxWidth: w, margin: '0 auto' }}>
-      <div style={{ background: '#0A0A0F', borderRadius: '16px 16px 5px 5px', padding: 11, boxShadow: '0 40px 80px -30px rgba(10,10,15,.55), 0 0 0 1px rgba(255,255,255,.05)' }}>
-        <div style={{ position: 'relative', width: '100%', paddingTop: '56.25%', borderRadius: 6, overflow: 'hidden', background: '#191919' }}>
-          <WebsiteBg />
-          <div className="s1-dim" style={{ position: 'absolute', inset: 0, background: 'rgba(10,10,15,.5)' }}></div>
-          <PopupForm filled={filled} />
-          {!filled && <ConfirmCard />}
+    <div className={className} ref={ref} style={{ width: '100%', maxWidth: w, margin: '0 auto' }}>
+      <div style={{ width: DESIGN * scale, height: LAPTOP_H * scale, position: 'relative', margin: '0 auto' }}>
+        <div style={{ width: DESIGN, position: 'absolute', top: 0, left: 0, transformOrigin: 'top left', transform: `scale(${scale})` }}>
+          <div style={{ background: '#0A0A0F', borderRadius: '16px 16px 5px 5px', padding: 11, boxShadow: '0 40px 80px -30px rgba(10,10,15,.55), 0 0 0 1px rgba(255,255,255,.05)' }}>
+            <div style={{ position: 'relative', width: '100%', height: screenH, borderRadius: 6, overflow: 'hidden', background: '#191919' }}>
+              <WebsiteBg />
+              <div className="s1-dim" style={{ position: 'absolute', inset: 0, background: 'rgba(10,10,15,.5)' }}></div>
+              <PopupForm filled={filled} />
+              {!filled && <ConfirmCard />}
+            </div>
+          </div>
+          {/* base / hinge */}
+          <div style={{ width: DESIGN + 44, marginLeft: -22, height: 13, background: 'linear-gradient(#d4d7dd, #a9adb6)', borderRadius: '0 0 12px 12px', position: 'relative', boxShadow: '0 14px 22px -12px rgba(10,10,15,.5)' }}>
+            <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 100, height: 6, background: '#9498a1', borderRadius: '0 0 7px 7px' }}></div>
+          </div>
         </div>
-      </div>
-      {/* base / hinge */}
-      <div style={{ width: 'calc(100% + 44px)', marginLeft: -22, height: 13, background: 'linear-gradient(#d4d7dd, #a9adb6)', borderRadius: '0 0 12px 12px', position: 'relative', boxShadow: '0 14px 22px -12px rgba(10,10,15,.5)' }}>
-        <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: 100, height: 6, background: '#9498a1', borderRadius: '0 0 7px 7px' }}></div>
       </div>
     </div>
   );
