@@ -1487,8 +1487,8 @@ function Nav({ current }) {
 }
 
 /* ============================ CtaFooter.jsx ============================ */
-/* Closing CTA banner + footer. */
-function CtaFooter() {
+/* Closing CTA banner + footer. noCta laat de banner weg (legal-pagina's). */
+function CtaFooter({ noCta }) {
   useLucide();
   const m = useIsMobile();
   const C = GO.cta;
@@ -1497,7 +1497,7 @@ function CtaFooter() {
   return (
     <React.Fragment>
       {/* CTA banner */}
-      <section style={{ background: '#fff', padding: '0 0 96px' }}>
+      {!noCta && <section style={{ background: '#fff', padding: '0 0 96px' }}>
         <div className="wrap">
           <div data-reveal style={{ position: 'relative', overflow: 'hidden', background: 'var(--ink)', borderRadius: 28, padding: m ? '48px 24px' : '72px 48px', textAlign: 'center' }}>
             <div style={{ position: 'absolute', bottom: -160, left: '50%', transform: 'translateX(-50%)', width: 640, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(16,185,129,.28), transparent 60%)', filter: 'blur(20px)', pointerEvents: 'none' }} />
@@ -1509,7 +1509,7 @@ function CtaFooter() {
             </div>
           </div>
         </div>
-      </section>
+      </section>}
 
       {/* Footer */}
       <footer style={{ background: 'var(--ink)', color: '#fff', padding: '64px 0 40px' }}>
@@ -1517,11 +1517,6 @@ function CtaFooter() {
           <div style={{ gridColumn: m ? '1 / -1' : 'auto' }}>
             <img src={GO.A + 'logo-wit.png'} alt="GymOps" style={{ height: 32, width: 'auto', marginBottom: 18 }} />
             <p style={{ fontSize: 14, lineHeight: 1.6, color: 'rgba(255,255,255,.55)', maxWidth: 280 }}>Het alles-in-één systeem voor leadopvolging, ledenbehoud en team-aansturing. Gebouwd voor en door gym-owners.</p>
-            <div style={{ marginTop: 18, fontSize: 14, lineHeight: 1.8, color: 'rgba(255,255,255,.55)' }}>
-              <div>GymOps BV</div>
-              <div>KVK-nummer 42079442</div>
-              <div><a href="mailto:contact@gymops.nl" style={{ color: 'rgba(255,255,255,.75)' }}>contact@gymops.nl</a></div>
-            </div>
           </div>
           {[['Product', ['Leadopvolging', 'Ledenervaring', 'Website', 'Prijzen']], ['Bedrijf', ['Over ons', 'Klanten', 'Demo plannen', 'Contact']], ['Volg ons', ['Instagram', 'Facebook', 'LinkedIn']]].map(([h, items]) => (
             <div key={h}>
@@ -1532,9 +1527,14 @@ function CtaFooter() {
             </div>
           ))}
         </div>
-        <div className="wrap" style={{ marginTop: 48, paddingTop: 24, borderTop: '1px solid rgba(255,255,255,.1)', display: 'flex', flexWrap: 'wrap', gap: 12, justifyContent: 'space-between', fontSize: 13, color: 'rgba(255,255,255,.4)' }}>
+        <div className="wrap" style={{ marginTop: 48, paddingTop: 24, borderTop: '1px solid rgba(255,255,255,.1)', display: 'flex', flexWrap: 'wrap', gap: '6px 12px', justifyContent: 'center', alignItems: 'center', textAlign: 'center', fontSize: 13, color: 'rgba(255,255,255,.4)' }}>
           <span>© 2026 GymOps BV</span>
-          <span style={{ display: 'flex', gap: 22 }}><a href="#" style={{ color: 'inherit' }}>Privacy</a><a href="#" style={{ color: 'inherit' }}>Voorwaarden</a></span>
+          <span aria-hidden="true">·</span>
+          <span>KVK-nummer 42079442</span>
+          <span aria-hidden="true">·</span>
+          <a href="mailto:contact@gymops.nl" style={{ color: 'inherit' }}>contact@gymops.nl</a>
+          <span aria-hidden="true">·</span>
+          <a href={lnk('privacy.html')} style={{ color: 'inherit' }}>Privacy</a>
         </div>
       </footer>
     </React.Fragment>
@@ -2745,6 +2745,96 @@ function OverOns() {
   );
 }
 
+/* ============================ Privacy.jsx ============================ */
+/* Privacyverklaring: statische tekstpagina in huisstijl. */
+const legalH2 = { fontSize: 24, fontWeight: 800, letterSpacing: '-.02em', color: 'var(--fg1)', marginTop: 48, marginBottom: 14 };
+const legalH3 = { fontSize: 18, fontWeight: 700, color: 'var(--fg1)', marginTop: 28, marginBottom: 8 };
+const legalP = { fontSize: 16, lineHeight: 1.7, color: 'var(--fg3)', marginTop: 12 };
+const legalUl = { margin: '12px 0 0', paddingLeft: 22, display: 'flex', flexDirection: 'column', gap: 6, fontSize: 16, lineHeight: 1.7, color: 'var(--fg3)' };
+const legalMail = <a href="mailto:contact@gymops.nl" style={{ color: 'var(--mint-deep)', fontWeight: 600 }}>contact@gymops.nl</a>;
+
+function Privacy() {
+  useReveal();
+  return (
+    <React.Fragment>
+      <PageHero eyebrow="GymOps · Privacy" title="Privacyverklaring" sub="Laatst bijgewerkt: 12 juni 2026" />
+      <section className="section" style={{ background: '#fff' }}>
+        <div className="wrap" style={{ maxWidth: 760 }}>
+          <p style={legalP}>GymOps is een product van GymOps BV, gevestigd te Alkmaar, ingeschreven bij de Kamer van Koophandel onder nummer 42079442. In deze privacyverklaring leggen wij uit welke persoonsgegevens wij verzamelen via onze website gymops.nl en in het kader van onze dienstverlening, waarom wij dat doen en welke rechten je hebt.</p>
+          <p style={legalP}>Vragen over deze privacyverklaring of over de verwerking van je gegevens kun je stellen via {legalMail}.</p>
+
+          <h2 style={legalH2}>1. Wie is verantwoordelijk voor je gegevens?</h2>
+          <p style={legalP}>GymOps BV is de verwerkingsverantwoordelijke voor de persoonsgegevens die wij verzamelen via onze website en bij het aangaan en uitvoeren van overeenkomsten met onze klanten.</p>
+          <p style={legalP}><strong style={{ color: 'var(--fg1)' }}>Let op:</strong> ben jij lid van een sportschool of CrossFit box die gebruikmaakt van GymOps? Dan is die sportschool de verwerkingsverantwoordelijke voor jouw gegevens. Wij verwerken die gegevens uitsluitend in opdracht van de sportschool, als verwerker. Voor vragen over jouw gegevens kun je in dat geval terecht bij je eigen sportschool.</p>
+
+          <h2 style={legalH2}>2. Welke gegevens verzamelen wij en waarom?</h2>
+          <h3 style={legalH3}>Website en contact</h3>
+          <p style={legalP}>Wanneer je contact met ons opneemt via de website, een demo aanvraagt of informatie opvraagt, verwerken wij:</p>
+          <ul style={legalUl}>
+            <li>Naam</li>
+            <li>E-mailadres</li>
+            <li>Telefoonnummer</li>
+            <li>Naam van je sportschool of bedrijf</li>
+            <li>De inhoud van je bericht</li>
+          </ul>
+          <p style={legalP}><strong style={{ color: 'var(--fg1)' }}>Doel:</strong> het beantwoorden van je vraag, het inplannen van een demo en het opvolgen van je aanvraag.<br />
+            <strong style={{ color: 'var(--fg1)' }}>Grondslag:</strong> gerechtvaardigd belang (het kunnen reageren op jouw verzoek) en, waar van toepassing, het nemen van stappen voorafgaand aan het sluiten van een overeenkomst.<br />
+            <strong style={{ color: 'var(--fg1)' }}>Bewaartermijn:</strong> 12 maanden na laatste contact, tenzij je klant wordt.</p>
+          <h3 style={legalH3}>Klantgegevens</h3>
+          <p style={legalP}>Word je klant van GymOps, dan verwerken wij aanvullend:</p>
+          <ul style={legalUl}>
+            <li>Bedrijfsgegevens (bedrijfsnaam, KvK-nummer, btw-nummer, adres)</li>
+            <li>Contactgegevens van contactpersonen</li>
+            <li>Betaalgegevens (afgehandeld via onze betaaldienstverlener Stripe; wij slaan zelf geen volledige betaalgegevens op)</li>
+            <li>Accountgegevens voor toegang tot het platform</li>
+          </ul>
+          <p style={legalP}><strong style={{ color: 'var(--fg1)' }}>Doel:</strong> het uitvoeren van de overeenkomst, facturatie, support en accountbeheer.<br />
+            <strong style={{ color: 'var(--fg1)' }}>Grondslag:</strong> uitvoering van de overeenkomst en wettelijke verplichtingen (zoals de fiscale bewaarplicht).<br />
+            <strong style={{ color: 'var(--fg1)' }}>Bewaartermijn:</strong> gedurende de looptijd van de overeenkomst. Administratieve gegevens bewaren wij 7 jaar conform de fiscale bewaarplicht.</p>
+          <h3 style={legalH3}>Marketing</h3>
+          <p style={legalP}>Wij kunnen je e-mailadres gebruiken om je te informeren over GymOps, bijvoorbeeld via een nieuwsbrief of productupdates.</p>
+          <p style={legalP}><strong style={{ color: 'var(--fg1)' }}>Grondslag:</strong> toestemming, of gerechtvaardigd belang wanneer je al klant bent. Je kunt je bij elk bericht afmelden via de afmeldlink.</p>
+          <h3 style={legalH3}>Cookies en tracking</h3>
+          <p style={legalP}>Onze website gebruikt uitsluitend functionele cookies die noodzakelijk zijn voor het goed functioneren van de website.</p>
+
+          <h2 style={legalH2}>3. Met wie delen wij je gegevens?</h2>
+          <p style={legalP}>Wij verkopen je gegevens nooit aan derden. Wij delen gegevens alleen met partijen die ons helpen onze dienst te leveren (subverwerkers), waaronder:</p>
+          <ul style={legalUl}>
+            <li><strong style={{ color: 'var(--fg1)' }}>HighLevel Inc. (LeadConnector):</strong> het platform waarop de GymOps omgeving draait, inclusief e-mail, sms en telefonie</li>
+            <li><strong style={{ color: 'var(--fg1)' }}>Sportbit:</strong> ledenadministratiesysteem waarmee GymOps koppelt</li>
+            <li><strong style={{ color: 'var(--fg1)' }}>Stripe:</strong> betalingsverwerking</li>
+            <li><strong style={{ color: 'var(--fg1)' }}>Meta Platforms:</strong> WhatsApp Business berichten</li>
+          </ul>
+          <p style={legalP}>Met deze partijen hebben wij afspraken gemaakt over de beveiliging en verwerking van persoonsgegevens.</p>
+
+          <h2 style={legalH2}>4. Hoe beveiligen wij je gegevens?</h2>
+          <p style={legalP}>Wij nemen passende technische en organisatorische maatregelen om je gegevens te beschermen tegen verlies, misbruik en ongeautoriseerde toegang. Denk aan versleutelde verbindingen (TLS), toegangsbeheer en het beperken van toegang tot gegevens tot medewerkers die deze nodig hebben voor hun werk.</p>
+
+          <h2 style={legalH2}>5. Jouw rechten</h2>
+          <p style={legalP}>Op grond van de AVG heb je de volgende rechten:</p>
+          <ul style={legalUl}>
+            <li><strong style={{ color: 'var(--fg1)' }}>Inzage:</strong> opvragen welke gegevens wij van je hebben</li>
+            <li><strong style={{ color: 'var(--fg1)' }}>Rectificatie:</strong> onjuiste gegevens laten corrigeren</li>
+            <li><strong style={{ color: 'var(--fg1)' }}>Verwijdering:</strong> je gegevens laten wissen, voor zover er geen wettelijke bewaarplicht geldt</li>
+            <li><strong style={{ color: 'var(--fg1)' }}>Beperking:</strong> de verwerking van je gegevens laten beperken</li>
+            <li><strong style={{ color: 'var(--fg1)' }}>Bezwaar:</strong> bezwaar maken tegen verwerking op grond van gerechtvaardigd belang, waaronder direct marketing</li>
+            <li><strong style={{ color: 'var(--fg1)' }}>Overdraagbaarheid:</strong> je gegevens in een gangbaar formaat ontvangen</li>
+            <li><strong style={{ color: 'var(--fg1)' }}>Toestemming intrekken:</strong> gegeven toestemming op elk moment intrekken</li>
+          </ul>
+          <p style={legalP}>Je kunt een verzoek indienen via {legalMail}. Wij reageren binnen één maand. Om je identiteit te verifiëren kunnen wij om aanvullende informatie vragen.</p>
+          <p style={legalP}>Ben je het niet eens met hoe wij met je gegevens omgaan? Dan kun je een klacht indienen bij de Autoriteit Persoonsgegevens via <a href="https://autoriteitpersoonsgegevens.nl" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--mint-deep)', fontWeight: 600 }}>autoriteitpersoonsgegevens.nl</a>.</p>
+
+          <h2 style={legalH2}>6. Wijzigingen</h2>
+          <p style={legalP}>Wij kunnen deze privacyverklaring aanpassen. De meest actuele versie staat altijd op gymops.nl. Bij ingrijpende wijzigingen informeren wij onze klanten actief.</p>
+
+          <h2 style={legalH2}>Contact</h2>
+          <p style={legalP}>GymOps BV<br />Alkmaar<br />KvK: 42079442<br />E-mail: {legalMail}</p>
+        </div>
+      </section>
+    </React.Fragment>
+  );
+}
+
 /* ---- Page assemblies (Nav + content + CtaFooter), faithful to the prototype html ---- */
 function Home() {
   useReveal();
@@ -2796,5 +2886,6 @@ function WebsitePage() { return (<React.Fragment><Nav current="website.html" /><
 function PrijzenPage() { return (<React.Fragment><Nav current="prijzen.html" /><Prijzen /><CtaFooter /></React.Fragment>); }
 function KlantenPage() { return (<React.Fragment><Nav current="klanten.html" /><Klanten /><CtaFooter /></React.Fragment>); }
 function OverOnsPage() { return (<React.Fragment><Nav current="over-ons.html" /><OverOns /><CtaFooter /></React.Fragment>); }
+function PrivacyPage() { return (<React.Fragment><Nav /><Privacy /><CtaFooter noCta /></React.Fragment>); }
 
-export { Home, LeadopvolgingPage, LedenervaringPage, TeamAansturingPage, WebsitePage, PrijzenPage, KlantenPage, OverOnsPage };
+export { Home, LeadopvolgingPage, LedenervaringPage, TeamAansturingPage, WebsitePage, PrijzenPage, KlantenPage, OverOnsPage, PrivacyPage };
