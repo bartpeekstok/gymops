@@ -1347,31 +1347,44 @@ function AgendasMock() {
   );
 }
 
-/* MemberInsightMock — inzicht in actieve vs wegzakkende leden (ledenbehoud). */
+/* MemberInsightMock — pijplijn die laat zien wie hoelang niet geweest is
+   (ledenbehoud). Gemodelleerd op de echte "afwezigheid"-pipeline in GymOps. */
 function MemberInsightMock() {
-  const risk = [
-    { name: 'Mark Janssen', last: '3 weken niet geweest' },
-    { name: 'Eva de Groot', last: '12 dagen niet geweest' },
+  const cols = [
+    { label: '14 dagen', count: 10, c: 'var(--mint-deep)', bg: 'var(--mint-tint)',
+      cards: [{ n: 'Lisa Bakker', d: '14d' }, { n: 'Tom Visser', d: '15d' }] },
+    { label: '21 dagen', count: 7, c: '#B45309', bg: 'rgba(245,158,11,.16)',
+      cards: [{ n: 'Eva Smit', d: '23d' }, { n: 'Joris Peters', d: '21d' }] },
+    { label: 'Lang afwezig', count: 40, c: '#B91C1C', bg: 'rgba(220,38,38,.10)',
+      cards: [{ n: 'Femke Jansen', d: '60d+' }, { n: 'Ruben Koster', d: '48d' }] },
   ];
+  const initials = (n) => n.split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase();
   return (
-    <MockCard w={360}>
-      <div style={{ fontWeight: 800, fontSize: 16, color: 'var(--fg1)', marginBottom: 14 }}>Ledeninzicht</div>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 16 }}>
-        <div style={{ background: 'var(--mint-tint)', borderRadius: 12, padding: '12px 13px' }}>
-          <div style={{ fontSize: 26, fontWeight: 800, color: 'var(--mint-deep)', letterSpacing: '-.03em', lineHeight: 1 }}>142</div>
-          <div style={{ fontSize: 11.5, color: 'var(--fg3)', marginTop: 6 }}>Actieve leden</div>
-        </div>
-        <div style={{ background: 'var(--bg-soft)', border: '1px solid var(--border)', borderRadius: 12, padding: '12px 13px' }}>
-          <div style={{ fontSize: 26, fontWeight: 800, color: '#B45309', letterSpacing: '-.03em', lineHeight: 1 }}>9</div>
-          <div style={{ fontSize: 11.5, color: 'var(--fg3)', marginTop: 6 }}>Zakken weg</div>
-        </div>
+    <MockCard w={400}>
+      <div style={{ fontWeight: 800, fontSize: 16, color: 'var(--fg1)', marginBottom: 12 }}>Wie is er hoelang niet geweest?</div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '9px 12px', borderRadius: 10, background: 'rgba(22,163,74,.10)', marginBottom: 14 }}>
+        <Icon data-lucide="circle-check-big" style={{ width: 16, height: 16, color: '#16A34A' }}></Icon>
+        <span style={{ fontSize: 12.5, fontWeight: 700, color: 'var(--fg1)' }}>Recent geweest</span>
+        <span style={{ marginLeft: 'auto', fontSize: 12.5, fontWeight: 800, color: '#16A34A' }}>207</span>
       </div>
-      <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.05em', textTransform: 'uppercase', color: 'var(--fg3)', marginBottom: 8 }}>Aandacht nodig</div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-        {risk.map((r) => (
-          <div key={r.name} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '9px 11px', borderRadius: 10, background: 'var(--bg-soft)', border: '1px solid var(--border)' }}>
-            <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--fg1)' }}>{r.name}</span>
-            <span style={{ fontSize: 11, color: '#B45309', fontWeight: 600 }}>{r.last}</span>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
+        {cols.map((col) => (
+          <div key={col.label}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 4, padding: '6px 8px', borderRadius: 8, background: col.bg, marginBottom: 8 }}>
+              <span style={{ fontSize: 9.5, fontWeight: 800, color: col.c, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{col.label}</span>
+              <span style={{ fontSize: 10, fontWeight: 800, color: col.c, flexShrink: 0 }}>{col.count}</span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
+              {col.cards.map((cd) => (
+                <div key={cd.n} style={{ background: 'var(--bg-soft)', border: '1px solid var(--border)', borderRadius: 9, padding: '8px 7px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 5 }}>
+                    <div style={{ width: 18, height: 18, borderRadius: 999, background: 'var(--ink)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 7.5, fontWeight: 700, flexShrink: 0 }}>{initials(cd.n)}</div>
+                    <span style={{ fontSize: 9, fontWeight: 700, color: 'var(--fg1)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{cd.n}</span>
+                  </div>
+                  <span style={{ fontSize: 8, fontWeight: 700, color: col.c, background: col.bg, borderRadius: 999, padding: '2px 6px' }}>{cd.d}</span>
+                </div>
+              ))}
+            </div>
           </div>
         ))}
       </div>
@@ -2548,7 +2561,7 @@ function Ledenervaring() {
         visual={<MemberInsightMock />} />
 
       <FeatureRow icon="pen-line" flip soft title="Handgeschreven kaarten in 15 seconden"
-        body={'Via ons systeem stuur je een handgeschreven kaart met persoonlijke tekst binnen 15 seconden, via de mobiele app of vanachter je laptop.\n\nHeeft iemand al lang geen kaartje gehad? Dan herinnert GymOps je daaraan.'}
+        body={'Via ons systeem stuur je een handgeschreven kaart met persoonlijke tekst binnen 15 seconden, via de mobiele app of vanachter je laptop.\n\nLeden waarderen zo’n onverwachte kaart enorm en delen hem vaak trots op social media, gratis zichtbaarheid voor je gym.\n\nHeeft iemand al lang geen kaartje gehad? Dan herinnert GymOps je daaraan.'}
         visual={<Postcard />} />
 
       <FeatureRow icon="star" title="Google reviews op het juiste moment"
