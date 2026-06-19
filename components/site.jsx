@@ -1350,53 +1350,61 @@ function AgendasMock() {
 /* AbsenceBoard — scherpe nabouw van de GymOps afwezigheids-pijplijn. Vijf fases
    van 'recent geweest' tot 'lang afwezig', verzonnen namen, swipebaar op mobiel. */
 function AbsenceBoard() {
+  const m = useIsMobile();
   const cols = [
     { title: 'Recent geweest', count: 207, accent: '#15803D', head: 'rgba(22,163,74,.12)',
-      cards: [{ n: 'Sven Maas', bron: 'Migration', badge: 3 }, { n: 'Iris Bos', bron: 'Website Form', badge: 4 }] },
+      cards: [{ n: 'Sven Maas', bron: 'Website formulier', waarde: '€350,00', badge: 3 }, { n: 'Iris Bos', bron: 'Referral', waarde: '€275,00', badge: 4 }] },
     { title: '14 dagen niet geweest', count: 10, accent: 'var(--mint-deep)', head: 'var(--mint-tint)',
-      cards: [{ n: 'Lisa Bakker', bron: 'Migration', badge: 2 }, { n: 'Tom Visser', bron: 'Migration', badge: 4 }] },
+      cards: [{ n: 'Lisa Bakker', bron: 'Meta Ads', waarde: '€450,00', badge: 2 }, { n: 'Tom Visser', bron: 'Migration', waarde: '€200,00', badge: 4 }] },
     { title: '21 dagen niet geweest', count: 7, accent: '#B45309', head: 'rgba(245,158,11,.14)',
-      cards: [{ n: 'Eva Smit', bron: 'pricing form', badge: 2 }, { n: 'Joris Peters', bron: 'Migration', badge: 1 }] },
+      cards: [{ n: 'Eva Smit', bron: 'Pricing form', waarde: '€500,00', badge: 2 }, { n: 'Joris Peters', bron: 'QR-code', waarde: '€325,00', badge: 1 }] },
     { title: '28 dagen niet geweest', count: 4, accent: '#BE185D', head: 'rgba(236,72,153,.12)',
-      cards: [{ n: 'Noor van Dijk', bron: 'Migration', badge: 5 }, { n: 'Bram de Wit', bron: 'crossfit form', badge: 2 }] },
+      cards: [{ n: 'Noor van Dijk', bron: 'Instagram DM', waarde: '€400,00', badge: 5 }, { n: 'Bram de Wit', bron: 'Referral', waarde: '€250,00', badge: 2 }] },
     { title: 'Lang afwezig', count: 40, accent: '#B91C1C', head: 'rgba(220,38,38,.10)',
-      cards: [{ n: 'Femke Jansen', bron: 'Migration', badge: 4 }, { n: 'Ruben Koster', bron: 'Migration', badge: 5 }] },
+      cards: [{ n: 'Femke Jansen', bron: 'Website formulier', waarde: '€475,00', badge: 4 }, { n: 'Ruben Koster', bron: 'Meta Ads', waarde: '€300,00', badge: 5 }] },
   ];
   const initials = (n) => n.split(' ').filter((w) => w[0] === w[0].toUpperCase()).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
   const cardIcons = ['phone', 'message-circle', 'tag', 'file-text', 'calendar'];
   return (
-    <div className="card" style={{ padding: 0, overflow: 'hidden', width: 'fit-content', maxWidth: '100%', margin: '0 auto' }}>
-      <div style={{ display: 'flex', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
-        {cols.map((col, ci) => (
-          <div key={col.title} style={{ flex: '0 0 auto', width: 200, borderRight: ci < cols.length - 1 ? '1px solid var(--border)' : 'none' }}>
-            <div style={{ background: col.head, padding: '12px 14px', borderBottom: '1px solid var(--border)' }}>
-              <div style={{ fontSize: 13, fontWeight: 800, color: col.accent, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{col.title}</div>
-              <div style={{ fontSize: 10.5, color: 'var(--fg3)', marginTop: 3 }}>{col.count} gelegenheden · €0,00</div>
-            </div>
-            <div style={{ padding: 10, display: 'flex', flexDirection: 'column', gap: 10, background: 'var(--bg-soft)', minHeight: 220 }}>
-              {col.cards.map((cd) => (
-                <div key={cd.n} style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: 10, padding: '10px 11px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, marginBottom: 8 }}>
-                    <span style={{ fontSize: 12.5, fontWeight: 700, color: 'var(--fg1)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{cd.n}</span>
-                    <div style={{ width: 22, height: 22, borderRadius: 999, background: 'var(--ink)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 8.5, fontWeight: 700, flexShrink: 0 }}>{initials(cd.n)}</div>
+    <React.Fragment>
+      <div className="card" style={{ padding: 0, overflow: 'hidden', width: 'fit-content', maxWidth: '100%', margin: '0 auto' }}>
+        <div style={{ display: 'flex', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+          {cols.map((col, ci) => (
+            <div key={col.title} style={{ flex: '0 0 auto', width: 200, borderRight: ci < cols.length - 1 ? '1px solid var(--border)' : 'none' }}>
+              <div style={{ background: col.head, padding: '12px 14px', borderBottom: '1px solid var(--border)' }}>
+                <div style={{ fontSize: 13, fontWeight: 800, color: col.accent, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{col.title}</div>
+                <div style={{ fontSize: 10.5, color: 'var(--fg3)', marginTop: 3 }}>{col.count} leden</div>
+              </div>
+              <div style={{ padding: 10, display: 'flex', flexDirection: 'column', gap: 10, background: 'var(--bg-soft)', minHeight: 220 }}>
+                {col.cards.map((cd) => (
+                  <div key={cd.n} style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: 10, padding: '10px 11px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, marginBottom: 8 }}>
+                      <span style={{ fontSize: 12.5, fontWeight: 700, color: 'var(--fg1)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{cd.n}</span>
+                      <div style={{ width: 22, height: 22, borderRadius: 999, background: 'var(--ink)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 8.5, fontWeight: 700, flexShrink: 0 }}>{initials(cd.n)}</div>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: 'var(--fg3)', marginBottom: 3 }}><span>Bron:</span><span style={{ color: 'var(--fg2)' }}>{cd.bron}</span></div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: 'var(--fg3)', marginBottom: 9 }}><span>Waarde:</span><span style={{ color: 'var(--fg2)' }}>{cd.waarde}</span></div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 9, color: 'var(--fg3)' }}>
+                      {cardIcons.map((ic, k) => (
+                        <span key={ic} style={{ position: 'relative', display: 'inline-flex' }}>
+                          <Icon data-lucide={ic} style={{ width: 13, height: 13 }}></Icon>
+                          {k === 3 && <span style={{ position: 'absolute', top: -6, right: -7, fontSize: 7, fontWeight: 700, color: '#fff', background: 'var(--mint)', borderRadius: 999, minWidth: 12, height: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 2px' }}>{cd.badge}</span>}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: 'var(--fg3)', marginBottom: 3 }}><span>Bron:</span><span style={{ color: 'var(--fg2)' }}>{cd.bron}</span></div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: 'var(--fg3)', marginBottom: 9 }}><span>Waarde:</span><span style={{ color: 'var(--fg2)' }}>€0,00</span></div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 9, color: 'var(--fg3)' }}>
-                    {cardIcons.map((ic, k) => (
-                      <span key={ic} style={{ position: 'relative', display: 'inline-flex' }}>
-                        <Icon data-lucide={ic} style={{ width: 13, height: 13 }}></Icon>
-                        {k === 3 && <span style={{ position: 'absolute', top: -6, right: -7, fontSize: 7, fontWeight: 700, color: '#fff', background: 'var(--mint)', borderRadius: 999, minWidth: 12, height: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 2px' }}>{cd.badge}</span>}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+      {m && (
+        <div className="scrollscene-dots" style={{ marginTop: 16 }} aria-hidden="true">
+          {[0, 1, 2].map((i) => <span key={i} className={'ssd' + (i === 0 ? ' on' : '')} />)}
+        </div>
+      )}
+    </React.Fragment>
   );
 }
 
