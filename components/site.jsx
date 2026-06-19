@@ -1353,15 +1353,15 @@ function AbsenceBoard() {
   const m = useIsMobile();
   const cols = [
     { title: 'Recent geweest', count: 207, accent: '#15803D', head: 'rgba(22,163,74,.12)',
-      cards: [{ n: 'Sven Maas', bron: 'Website formulier', waarde: '€350,00', badge: 3 }, { n: 'Iris Bos', bron: 'Referral', waarde: '€275,00', badge: 4 }] },
+      cards: [{ n: 'Sven Maas', abo: 'Onbeperkt', les: '17 jun', badge: 3 }, { n: 'Iris Bos', abo: '3x per week', les: '16 jun', badge: 4 }] },
     { title: '14 dagen niet geweest', count: 10, accent: 'var(--mint-deep)', head: 'var(--mint-tint)',
-      cards: [{ n: 'Lisa Bakker', bron: 'Meta Ads', waarde: '€450,00', badge: 2 }, { n: 'Tom Visser', bron: 'Migration', waarde: '€200,00', badge: 4 }] },
+      cards: [{ n: 'Lisa Bakker', abo: '2x per week', les: '5 jun', badge: 2 }, { n: 'Tom Visser', abo: 'Onbeperkt', les: '4 jun', badge: 4 }] },
     { title: '21 dagen niet geweest', count: 7, accent: '#B45309', head: 'rgba(245,158,11,.14)',
-      cards: [{ n: 'Eva Smit', bron: 'Pricing form', waarde: '€500,00', badge: 2 }, { n: 'Joris Peters', bron: 'QR-code', waarde: '€325,00', badge: 1 }] },
+      cards: [{ n: 'Eva Smit', abo: '3x per week', les: '29 mei', badge: 2 }, { n: 'Joris Peters', abo: '2x per week', les: '28 mei', badge: 1 }] },
     { title: '28 dagen niet geweest', count: 4, accent: '#BE185D', head: 'rgba(236,72,153,.12)',
-      cards: [{ n: 'Noor van Dijk', bron: 'Instagram DM', waarde: '€400,00', badge: 5 }, { n: 'Bram de Wit', bron: 'Referral', waarde: '€250,00', badge: 2 }] },
+      cards: [{ n: 'Noor van Dijk', abo: 'Onbeperkt', les: '22 mei', badge: 5 }, { n: 'Bram de Wit', abo: '3x per week', les: '20 mei', badge: 2 }] },
     { title: 'Lang afwezig', count: 40, accent: '#B91C1C', head: 'rgba(220,38,38,.10)',
-      cards: [{ n: 'Femke Jansen', bron: 'Website formulier', waarde: '€475,00', badge: 4 }, { n: 'Ruben Koster', bron: 'Meta Ads', waarde: '€300,00', badge: 5 }] },
+      cards: [{ n: 'Femke Jansen', abo: '2x per week', les: '14 apr', badge: 4 }, { n: 'Ruben Koster', abo: 'Onbeperkt', les: '2 mrt', badge: 5 }] },
   ];
   const initials = (n) => n.split(' ').filter((w) => w[0] === w[0].toUpperCase()).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
   const cardIcons = ['phone', 'message-circle', 'tag', 'file-text', 'calendar'];
@@ -1382,8 +1382,8 @@ function AbsenceBoard() {
                       <span style={{ fontSize: 12.5, fontWeight: 700, color: 'var(--fg1)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{cd.n}</span>
                       <div style={{ width: 22, height: 22, borderRadius: 999, background: 'var(--ink)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 8.5, fontWeight: 700, flexShrink: 0 }}>{initials(cd.n)}</div>
                     </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: 'var(--fg3)', marginBottom: 3 }}><span>Bron:</span><span style={{ color: 'var(--fg2)' }}>{cd.bron}</span></div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: 'var(--fg3)', marginBottom: 9 }}><span>Waarde:</span><span style={{ color: 'var(--fg2)' }}>{cd.waarde}</span></div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: 'var(--fg3)', marginBottom: 3 }}><span>Abonnement:</span><span style={{ color: 'var(--fg2)' }}>{cd.abo}</span></div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: 'var(--fg3)', marginBottom: 9 }}><span>Laatste les:</span><span style={{ color: 'var(--fg2)' }}>{cd.les}</span></div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 9, color: 'var(--fg3)' }}>
                       {cardIcons.map((ic, k) => (
                         <span key={ic} style={{ position: 'relative', display: 'inline-flex' }}>
