@@ -1347,6 +1347,59 @@ function AgendasMock() {
   );
 }
 
+/* AbsenceBoard — scherpe nabouw van de GymOps afwezigheids-pijplijn. Vijf fases
+   van 'recent geweest' tot 'lang afwezig', verzonnen namen, swipebaar op mobiel. */
+function AbsenceBoard() {
+  const cols = [
+    { title: 'Recent geweest', count: 207, accent: '#15803D', head: 'rgba(22,163,74,.12)',
+      cards: [{ n: 'Sven Maas', bron: 'Migration', badge: 3 }, { n: 'Iris Bos', bron: 'Website Form', badge: 4 }] },
+    { title: '14 dagen niet geweest', count: 10, accent: 'var(--mint-deep)', head: 'var(--mint-tint)',
+      cards: [{ n: 'Lisa Bakker', bron: 'Migration', badge: 2 }, { n: 'Tom Visser', bron: 'Migration', badge: 4 }] },
+    { title: '21 dagen niet geweest', count: 7, accent: '#B45309', head: 'rgba(245,158,11,.14)',
+      cards: [{ n: 'Eva Smit', bron: 'pricing form', badge: 2 }, { n: 'Joris Peters', bron: 'Migration', badge: 1 }] },
+    { title: '28 dagen niet geweest', count: 4, accent: '#BE185D', head: 'rgba(236,72,153,.12)',
+      cards: [{ n: 'Noor van Dijk', bron: 'Migration', badge: 5 }, { n: 'Bram de Wit', bron: 'crossfit form', badge: 2 }] },
+    { title: 'Lang afwezig', count: 40, accent: '#B91C1C', head: 'rgba(220,38,38,.10)',
+      cards: [{ n: 'Femke Jansen', bron: 'Migration', badge: 4 }, { n: 'Ruben Koster', bron: 'Migration', badge: 5 }] },
+  ];
+  const initials = (n) => n.split(' ').filter((w) => w[0] === w[0].toUpperCase()).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
+  const cardIcons = ['phone', 'message-circle', 'tag', 'file-text', 'calendar'];
+  return (
+    <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
+      <div style={{ display: 'flex', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+        {cols.map((col, ci) => (
+          <div key={col.title} style={{ flex: '0 0 auto', width: 200, borderRight: ci < cols.length - 1 ? '1px solid var(--border)' : 'none' }}>
+            <div style={{ background: col.head, padding: '12px 14px', borderBottom: '1px solid var(--border)' }}>
+              <div style={{ fontSize: 13, fontWeight: 800, color: col.accent, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{col.title}</div>
+              <div style={{ fontSize: 10.5, color: 'var(--fg3)', marginTop: 3 }}>{col.count} gelegenheden · €0,00</div>
+            </div>
+            <div style={{ padding: 10, display: 'flex', flexDirection: 'column', gap: 10, background: 'var(--bg-soft)', minHeight: 220 }}>
+              {col.cards.map((cd) => (
+                <div key={cd.n} style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: 10, padding: '10px 11px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, marginBottom: 8 }}>
+                    <span style={{ fontSize: 12.5, fontWeight: 700, color: 'var(--fg1)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{cd.n}</span>
+                    <div style={{ width: 22, height: 22, borderRadius: 999, background: 'var(--ink)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 8.5, fontWeight: 700, flexShrink: 0 }}>{initials(cd.n)}</div>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: 'var(--fg3)', marginBottom: 3 }}><span>Bron:</span><span style={{ color: 'var(--fg2)' }}>{cd.bron}</span></div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: 'var(--fg3)', marginBottom: 9 }}><span>Waarde:</span><span style={{ color: 'var(--fg2)' }}>€0,00</span></div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 9, color: 'var(--fg3)' }}>
+                    {cardIcons.map((ic, k) => (
+                      <span key={ic} style={{ position: 'relative', display: 'inline-flex' }}>
+                        <Icon data-lucide={ic} style={{ width: 13, height: 13 }}></Icon>
+                        {k === 3 && <span style={{ position: 'absolute', top: -6, right: -7, fontSize: 7, fontWeight: 700, color: '#fff', background: 'var(--mint)', borderRadius: 999, minWidth: 12, height: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 2px' }}>{cd.badge}</span>}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function NoteMock() {
   return (
     <div data-reveal style={{ position: 'relative' }}>
@@ -2511,11 +2564,15 @@ function Ledenervaring() {
         body={'GymOps houdt via SportBit bij wie er traint en wie wegblijft. Komt een vast lid ineens twee weken niet? Dan krijg je een seintje en staat er meteen een taak klaar bij de juiste coach.\n\nGeen massamail, maar een persoonlijk berichtje van iemand die ze kennen, precies op het moment dat het nog uitmaakt.'}
         visual={<Phone w={258}><ContactScreen /></Phone>} />
 
-      <FeatureRow icon="bar-chart-3" title="Grip op wie actief is en wie wegzakt"
-        body={'In één pijplijn zie je precies wie er hoelang niet geweest is, van net afwezig tot lang weg. Geen onderbuikgevoel meer, maar een helder beeld van je ledenbestand.\n\nZo grijp je in vóórdat iemand opzegt, in plaats van erachter te komen als het al te laat is.'}
-        visual={<div className="card" style={{ padding: 0, overflow: 'hidden', width: '100%', maxWidth: 560, borderRadius: 16 }}>
-          <img src={GO.A + 'afwezige-leden-pipeline.png'} alt="Pijplijn: zie precies wie hoelang niet geweest is" style={{ display: 'block', width: '100%', height: 'auto' }} />
-        </div>} />
+      <section className="section">
+        <div className="wrap">
+          <SectionHead eyebrow="Ledeninzicht" title="Grip op wie actief is en wie wegzakt" sub="In één pijplijn zie je precies wie er hoelang niet geweest is, van net afwezig tot lang weg. Zo grijp je in vóórdat iemand opzegt, in plaats van erachter te komen als het al te laat is." max={680} />
+          <div data-reveal style={{ marginTop: 48 }}>
+            <AbsenceBoard />
+          </div>
+        </div>
+      </section>
+
 
       <FeatureRow icon="pen-line" flip soft title="Handgeschreven kaarten in 15 seconden"
         body={'Via ons systeem stuur je een handgeschreven kaart met persoonlijke tekst binnen 15 seconden, via de mobiele app of vanachter je laptop.\n\nLeden waarderen zo’n onverwachte kaart enorm en delen hem vaak trots op social media, gratis zichtbaarheid voor je gym.\n\nHeeft iemand al lang geen kaartje gehad? Dan herinnert GymOps je daaraan.'}
