@@ -97,6 +97,15 @@ const LEAD_EVENT = 'gymops:open-lead-form';
 const openLeadForm = () => { if (typeof window !== 'undefined') window.dispatchEvent(new Event(LEAD_EVENT)); };
 const openLeadFormClick = (e) => { e.preventDefault(); openLeadForm(); };
 
+/* SceneBoundary — vangt een eventuele render-fout in een graphic op, zodat
+   nooit de hele pagina crasht (toont dan simpelweg niets i.p.v. de site-crash). */
+class SceneBoundary extends React.Component {
+  constructor(props) { super(props); this.state = { failed: false }; }
+  static getDerivedStateFromError() { return { failed: true }; }
+  componentDidCatch() { /* stil opvangen */ }
+  render() { return this.state.failed ? (this.props.fallback || null) : this.props.children; }
+}
+
 /* LockScene — pint de sectie vast en laat je er HORIZONTAAL doorheen vegen
    i.p.v. verticaal te scrollen. Zodra de sectie het scherm vult wordt de
    verticale scroll geblokkeerd; een horizontale veeg (touch) of zijwaartse
@@ -118,6 +127,13 @@ function LockScene({ steps, children }) {
     if (reduce || steps <= 1) { R.current.step = steps - 1; setStep(steps - 1); return; }
     const el = sectionRef.current; if (!el) return;
     const docEl = document.documentElement;
+
+    let dead = false;                              // veiligheidsklep: bij een fout schakelen we de lock uit
+    const clearLock = () => {
+      try { docEl.style.overflow = ''; document.body.style.overflow = ''; } catch (_) {}
+      R.current.locked = false;
+      setPinned(false);
+    };
 
     const setStepSafe = (s) => {
       s = Math.max(0, Math.min(steps - 1, s));
@@ -141,19 +157,32 @@ function LockScene({ steps, children }) {
 
     const release = (dir) => {
       if (!R.current.locked) return;
-      R.current.locked = false;
-      docEl.style.overflow = '';
-      document.body.style.overflow = '';
-      setPinned(false);
+      clearLock();
       const r = el.getBoundingClientRect();
       const absTop = window.scrollY + r.top;
       const vh = window.innerHeight;
-      window.scrollTo(0, dir > 0 ? absTop + r.height + 2 : absTop - vh - 2);
+      let target;
+      if (dir > 0) {
+        // lijn de volgende sectie strak bovenaan uit i.p.v. tot de bodem van de graphic te zakken
+        const feat = el.closest('.pinned-feature');
+        const next = feat && feat.nextElementSibling;
+        target = next ? window.scrollY + next.getBoundingClientRect().top : absTop + r.height + 2;
+      } else {
+        target = absTop - vh - 2;
+      }
+      window.scrollTo(0, Math.max(0, target));
       R.current.cooldownUntil = now() + 650;
     };
 
+    // elke handler wordt afgeschermd: gaat er iets mis, dan unlocken we en
+    // schakelen de lock voorgoed uit zodat de pagina nooit crasht of vastloopt.
+    const guard = (fn) => (e) => {
+      if (dead) return;
+      try { fn(e); } catch (_) { dead = true; clearLock(); }
+    };
+
     // vastklikken zodra de sectie het scherm (bijna) vult
-    const onScroll = () => {
+    const onScroll = guard(() => {
       if (R.current.locked || now() < R.current.cooldownUntil) { R.current.lastY = window.scrollY; return; }
       const y = window.scrollY;
       const down = y >= R.current.lastY;
@@ -161,7 +190,7 @@ function LockScene({ steps, children }) {
       const r = el.getBoundingClientRect();
       const vh = window.innerHeight;
       if (r.top <= vh * 0.28 && r.bottom >= vh * 0.72) lock(!down);
-    };
+    });
 
     const STEP_PX = 80;
     const advance = (dir) => {
@@ -173,25 +202,27 @@ function LockScene({ steps, children }) {
       else { if (cur <= 0) release(-1); else setStepSafe(cur - 1); }
     };
 
-    const onWheel = (e) => {
+    const onWheel = guard((e) => {
       if (!R.current.locked) return;
       e.preventDefault();
       const d = Math.abs(e.deltaX) >= Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
       R.current.acc += d;
-      while (R.current.acc >= STEP_PX) { R.current.acc -= STEP_PX; advance(1); if (!R.current.locked) { R.current.acc = 0; break; } }
-      while (R.current.acc <= -STEP_PX) { R.current.acc += STEP_PX; advance(-1); if (!R.current.locked) { R.current.acc = 0; break; } }
-    };
+      let safety = 0;
+      while (R.current.acc >= STEP_PX && safety++ < 20) { R.current.acc -= STEP_PX; advance(1); if (!R.current.locked) { R.current.acc = 0; break; } }
+      while (R.current.acc <= -STEP_PX && safety++ < 40) { R.current.acc += STEP_PX; advance(-1); if (!R.current.locked) { R.current.acc = 0; break; } }
+    });
 
     let tx = 0;
-    const onTouchStart = (e) => { tx = e.touches[0].clientX; };
-    const onTouchMove = (e) => {
+    const onTouchStart = guard((e) => { if (e.touches && e.touches[0]) tx = e.touches[0].clientX; });
+    const onTouchMove = guard((e) => {
       if (!R.current.locked) return;
+      if (!e.touches || !e.touches[0]) return;
       e.preventDefault();
       const dx = e.touches[0].clientX - tx;
       const SW = 46;
       if (dx <= -SW) { tx = e.touches[0].clientX; advance(1); }   // naar links vegen = volgende
       else if (dx >= SW) { tx = e.touches[0].clientX; advance(-1); }
-    };
+    });
 
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('wheel', onWheel, { passive: false });
@@ -204,15 +235,14 @@ function LockScene({ steps, children }) {
       window.removeEventListener('wheel', onWheel);
       window.removeEventListener('touchstart', onTouchStart);
       window.removeEventListener('touchmove', onTouchMove);
-      docEl.style.overflow = '';
-      document.body.style.overflow = '';
+      clearLock();
     };
   }, [steps]);
 
   return (
     <div ref={sectionRef} className={'lockscene' + (pinned ? ' is-pinned' : '')}>
       <div className="lockscene-inner">
-        {children(step)}
+        <SceneBoundary>{children(step)}</SceneBoundary>
         {steps > 1 && (
           <React.Fragment>
             <div className="scrollscene-dots" aria-hidden="true">
