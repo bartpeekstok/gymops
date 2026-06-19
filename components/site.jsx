@@ -1279,9 +1279,9 @@ function ReassignMock() {
         <Icon data-lucide="arrow-down" style={{ width: 16, height: 16 }}></Icon> overgenomen door
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: 12, background: 'var(--mint-tint)', border: '1px solid rgba(16,185,129,.25)', borderRadius: 12 }}>
-        <div style={{ width: 38, height: 38, borderRadius: 999, background: 'var(--mint)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: 14 }}>SB</div>
+        <div style={{ width: 38, height: 38, borderRadius: 999, background: 'var(--mint)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: 14 }}>DH</div>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--fg1)' }}>Stefan Bakker</div>
+          <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--fg1)' }}>Daan Hofman</div>
           <div style={{ fontSize: 12, color: 'var(--mint-deep)', fontWeight: 600 }}>In één klik overgenomen</div>
         </div>
         <Icon data-lucide="check-check" style={{ width: 18, height: 18, color: 'var(--mint-deep)' }}></Icon>
