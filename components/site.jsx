@@ -1353,13 +1353,13 @@ function AbsenceBoard() {
   const m = useIsMobile();
   const cols = [
     { title: 'Recent geweest', count: 207, accent: '#15803D', head: 'rgba(22,163,74,.12)',
-      cards: [{ n: 'Sven Maas', abo: 'Onbeperkt', les: '18 jun', badge: 3 }, { n: 'Iris Bos', abo: '3x per week', les: '17 jun', badge: 4 }, { n: 'Daan Mulder', abo: '2x per week', les: '18 jun', badge: 1 }, { n: 'Anouk Vos', abo: 'Onbeperkt', les: '16 jun', badge: 2 }, { n: 'Pim Dekker', abo: '3x per week', les: '17 jun', badge: 5 }] },
+      cards: [{ n: 'Sven Maas', abo: 'Onbeperkt', les: '18 jun', badge: 3 }, { n: 'Iris Bos', abo: '3x per week', les: '17 jun', badge: 4 }, { n: 'Daan Mulder', abo: '2x per week', les: '18 jun', badge: 1 }] },
     { title: '14 dagen niet geweest', count: 16, accent: 'var(--mint-deep)', head: 'var(--mint-tint)',
-      cards: [{ n: 'Lisa Bakker', abo: '2x per week', les: '5 jun', badge: 2 }, { n: 'Tom Visser', abo: 'Onbeperkt', les: '4 jun', badge: 4 }, { n: 'Sanne Kuipers', abo: '3x per week', les: '6 jun', badge: 1 }, { n: 'Bram de Wit', abo: '2x per week', les: '3 jun', badge: 3 }] },
+      cards: [{ n: 'Lisa Bakker', abo: '2x per week', les: '5 jun', badge: 2 }, { n: 'Tom Visser', abo: 'Onbeperkt', les: '4 jun', badge: 4 }] },
     { title: '21 dagen niet geweest', count: 9, accent: '#B45309', head: 'rgba(245,158,11,.14)',
       cards: [{ n: 'Eva Smit', abo: '3x per week', les: '29 mei', badge: 2 }, { n: 'Joris Peters', abo: '2x per week', les: '28 mei', badge: 1 }] },
     { title: '28 dagen niet geweest', count: 5, accent: '#BE185D', head: 'rgba(236,72,153,.12)',
-      cards: [{ n: 'Noor van Dijk', abo: 'Onbeperkt', les: '22 mei', badge: 5 }, { n: 'Lars Hendriks', abo: '3x per week', les: '20 mei', badge: 2 }] },
+      cards: [{ n: 'Noor van Dijk', abo: 'Onbeperkt', les: '22 mei', badge: 5 }] },
     { title: 'Lang afwezig', count: 3, accent: '#B91C1C', head: 'rgba(220,38,38,.10)',
       cards: [{ n: 'Femke Jansen', abo: '2x per week', les: '14 apr', badge: 4 }] },
   ];
