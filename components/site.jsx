@@ -770,7 +770,7 @@ function GoogleSearchMock() {
           <Icon data-lucide="sparkles" style={{ width: 14, height: 14, color: 'var(--mint-deep)' }}></Icon>
           <span style={{ fontSize: 11.5, fontWeight: 800, color: 'var(--mint-deep)', letterSpacing: '.02em' }}>AI-overzicht</span>
         </div>
-        <p style={{ fontSize: 12.5, lineHeight: 1.55, color: 'var(--fg2)' }}>CrossFit Zuidlaren is een veelzijdige box met persoonlijke coaching voor alle niveaus. Nieuwe sporters kunnen vrijblijvend een gratis kennismaking plannen.</p>
+        <p style={{ fontSize: 12.5, lineHeight: 1.55, color: 'var(--fg2)' }}>CrossFit Zuidlaren is een veelzijdige gym met persoonlijke coaching voor alle niveaus. Nieuwe sporters kunnen vrijblijvend een gratis kennismaking plannen.</p>
       </div>
 
       <div style={{ marginTop: 16 }}>
@@ -2536,7 +2536,7 @@ function Ledenervaring() {
         cta={{ primary: 'Plan een demo' }} />
 
       <FeatureRow icon="party-popper" title="Vier elke mijlpaal, samen met je leden"
-        body={'De 100ste les, een verjaardag, een nieuwe PR. GymOps signaleert het moment via de SportBit-koppeling, zodat jij het kunt vieren waar iedereen bij is.\n\nDie kleine vieringen bepalen de sfeer in je box. Ze maken je community zichtbaar en geven je gym een eigen identiteit waar leden bij willen horen.'}
+        body={'De 100ste les, een verjaardag, een nieuwe PR. GymOps signaleert het moment via de SportBit-koppeling, zodat jij het kunt vieren waar iedereen bij is.\n\nDie kleine vieringen bepalen de sfeer in je gym. Ze maken je community zichtbaar en geven je gym een eigen identiteit waar leden bij willen horen.'}
         visual={<Phone w={258}><MilestoneScreen /></Phone>} />
 
       <FeatureRow icon="heart-pulse" flip soft title="Zie direct wie dreigt af te haken"
@@ -2974,7 +2974,7 @@ function Privacy() {
 
           <h2 style={legalH2}>1. Wie is verantwoordelijk voor je gegevens?</h2>
           <p style={legalP}>GymOps BV is de verwerkingsverantwoordelijke voor de persoonsgegevens die wij verzamelen via onze website en bij het aangaan en uitvoeren van overeenkomsten met onze klanten.</p>
-          <p style={legalP}><strong style={{ color: 'var(--fg1)' }}>Let op:</strong> ben jij lid van een sportschool of CrossFit box die gebruikmaakt van GymOps? Dan is die sportschool de verwerkingsverantwoordelijke voor jouw gegevens. Wij verwerken die gegevens uitsluitend in opdracht van de sportschool, als verwerker. Voor vragen over jouw gegevens kun je in dat geval terecht bij je eigen sportschool.</p>
+          <p style={legalP}><strong style={{ color: 'var(--fg1)' }}>Let op:</strong> ben jij lid van een sportschool of CrossFit gym die gebruikmaakt van GymOps? Dan is die sportschool de verwerkingsverantwoordelijke voor jouw gegevens. Wij verwerken die gegevens uitsluitend in opdracht van de sportschool, als verwerker. Voor vragen over jouw gegevens kun je in dat geval terecht bij je eigen sportschool.</p>
 
           <h2 style={legalH2}>2. Welke gegevens verzamelen wij en waarom?</h2>
           <h3 style={legalH3}>Website en contact</h3>
