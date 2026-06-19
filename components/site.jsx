@@ -1604,7 +1604,7 @@ function CtaFooter({ noCta }) {
   return (
     <React.Fragment>
       {/* CTA banner */}
-      {!noCta && <section style={{ background: '#fff', padding: '0 0 96px' }}>
+      {!noCta && <section style={{ background: '#fff', padding: m ? '44px 0 96px' : '80px 0 96px' }}>
         <div className="wrap">
           <div data-reveal style={{ position: 'relative', overflow: 'hidden', background: 'var(--ink)', borderRadius: 28, padding: m ? '48px 24px' : '72px 48px', textAlign: 'center' }}>
             <div style={{ position: 'absolute', bottom: -160, left: '50%', transform: 'translateX(-50%)', width: 640, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(16,185,129,.28), transparent 60%)', filter: 'blur(20px)', pointerEvents: 'none' }} />
@@ -2592,10 +2592,6 @@ function PlanCard({ p, m }) {
       border: soon ? '1.5px dashed var(--border-strong)' : '2px solid var(--mint)',
       boxShadow: soon ? 'none' : 'var(--shadow-card)',
     }}>
-      {p.highlighted && (
-        <div style={{ position: 'absolute', top: -13, left: 32, background: 'var(--mint)', color: '#fff',
-          fontSize: 11, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', padding: '5px 12px', borderRadius: 999 }}>Meest gekozen</div>
-      )}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 12 }}>
         <span style={{ fontSize: 14, fontWeight: 700, color: soon ? 'var(--fg3)' : 'var(--mint-deep)' }}>{p.productLabel}</span>
         <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', padding: '4px 9px', borderRadius: 999,
@@ -2692,7 +2688,7 @@ function Prijzen() {
             ))}
           </div>
           <div data-reveal style={{ marginTop: 32, textAlign: 'center', background: 'var(--mint-tint)', border: '1px solid var(--border)', borderRadius: 18, padding: m ? '24px 22px' : '30px 32px' }}>
-            <p style={{ fontSize: m ? 17 : 21, fontWeight: 700, letterSpacing: '-.01em', color: 'var(--ink)' }}>De meeste gyms verdienen GymOps al terug met <span style={{ color: 'var(--mint-deep)' }}>1 à 2 extra leden</span> per maand.</p>
+            <p style={{ fontSize: m ? 17 : 21, fontWeight: 700, letterSpacing: '-.01em', color: 'var(--ink)' }}>Stel je voor dat al je leden gemiddeld <span style={{ color: 'var(--mint-deep)' }}>één maand langer</span> blijven. Dan verdient GymOps zichzelf al meerdere keren terug.</p>
           </div>
         </div>
       </section>
