@@ -153,6 +153,37 @@ function ScrollScene({ steps, children, scenePerStep = 0.85, label }) {
   );
 }
 
+/* SwipeScene — mobiel alternatief voor ScrollScene. In plaats van de graphic
+   verticaal vast te pinnen en stap voor stap door te scrollen, worden de
+   stappen een horizontale swipe-carousel: je veegt zijwaarts door de graphic
+   heen en scrollt daarna gewoon verder de pagina af. */
+function SwipeScene({ steps, children }) {
+  const trackRef = useRef(null);
+  const [step, setStep] = useState(0);
+  const onScroll = () => {
+    const el = trackRef.current; if (!el) return;
+    const i = Math.round(el.scrollLeft / el.clientWidth);
+    const clamped = Math.max(0, Math.min(steps - 1, i));
+    setStep((prev) => (prev === clamped ? prev : clamped));
+  };
+  return (
+    <div className="swipescene">
+      <div ref={trackRef} className="swipescene-track" onScroll={onScroll}>
+        {Array.from({ length: steps }).map((_, i) => (
+          <div key={i} className="swipescene-slide">{children(i)}</div>
+        ))}
+      </div>
+      {steps > 1 && (
+        <div className="scrollscene-dots" aria-hidden="true">
+          {Array.from({ length: steps }).map((_, i) => (
+            <span key={i} className={'ssd' + (i <= step ? ' on' : '')} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 /* PinnedFeature — home feature block: text on top, graphic below in a pinned
    scroll-scene the visitor scrolls through step by step. */
 /* StepBadge — grote genummerde badge (1/2/3) boven de eyebrow van de drie
@@ -201,6 +232,16 @@ function PinnedFeature({ eyebrow, title, items, link, steps, renderGraphic, soft
             {renderGraphic(staticStep)}
           </div>
         </div>
+      ) : m ? (
+        <SwipeScene steps={steps}>
+          {(step) => (
+            <div className="wrap" style={{ overflow: 'hidden' }}>
+              <div style={{ width: '100%', maxWidth: 560, margin: '0 auto' }}>
+                {renderGraphic(step)}
+              </div>
+            </div>
+          )}
+        </SwipeScene>
       ) : (
         <ScrollScene steps={steps} label={eyebrow}>
           {(step) => (
@@ -2616,31 +2657,11 @@ function Prijzen() {
 function Klanten() {
   useReveal();
   useLucide();
-  const m = useIsMobile();
   const D = GOP.klanten;
   const logos = D.trusted.concat(D.trusted);
   return (
     <React.Fragment>
       <PageHero eyebrow={D.hero.eyebrow} title={D.hero.title} sub={D.hero.sub} />
-
-      {/* Featured quotes */}
-      <section className="section">
-        <div className="wrap" style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : '1fr 1fr', gap: 24 }}>
-          {D.featured.map((f, i) => (
-            <div key={i} className="card" data-reveal style={{ padding: m ? 28 : 40, display: 'flex', flexDirection: 'column' }}>
-              <Icon data-lucide="quote" style={{ width: 30, height: 30, color: 'var(--mint)' }}></Icon>
-              <p style={{ fontSize: m ? 19 : 22, lineHeight: 1.5, fontWeight: 600, letterSpacing: '-.01em', color: 'var(--fg1)', marginTop: 18 }}>{f.quote}</p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginTop: 26, paddingTop: 24, borderTop: '1px solid var(--border)' }}>
-                <img src={GO.A + f.photo} alt={f.name} style={{ width: 52, height: 52, borderRadius: '50%', objectFit: 'cover' }} />
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontWeight: 700, fontSize: 16, color: 'var(--fg1)' }}>{f.name}</div>
-                  <div style={{ fontSize: 14, color: 'var(--fg3)' }}>{f.role}</div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* Trusted logos */}
       <section style={{ padding: '0 0 96px' }}>
@@ -2873,7 +2894,6 @@ function Home() {
         renderGraphic={(step) => <EventFlowStage step={step} />} />
       <PlatformStrip />
       <Integrations />
-      <Testimonials />
       <CtaFooter />
     </React.Fragment>
   );

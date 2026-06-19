@@ -506,6 +506,25 @@ details[open] .faq-chev { transform: rotate(180deg); }
   .scrollscene-pin > .wrap { transform: scale(.92) translateY(12px); }
   .scrollscene-pin.is-pinned > .wrap { transform: scale(1.02) translateY(0); }
 }
+/* mobile swipe carousel — replaces the pinned scroll-scene on touch screens.
+   each step is a full-width slide; you swipe sideways and then scroll on. */
+.swipescene { position: relative; }
+.swipescene-track {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.swipescene-track::-webkit-scrollbar { display: none; }
+.swipescene-slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  scroll-snap-align: center;
+  padding: 16px 0 6px;
+}
 /* step progress dots */
 .scrollscene-dots { display: flex; gap: 7px; margin-top: 26px; }
 .scrollscene-dots .ssd {
