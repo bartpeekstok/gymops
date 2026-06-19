@@ -1353,29 +1353,29 @@ function AbsenceBoard() {
   const m = useIsMobile();
   const cols = [
     { title: 'Recent geweest', count: 207, accent: '#15803D', head: 'rgba(22,163,74,.12)',
-      cards: [{ n: 'Sven Maas', abo: 'Onbeperkt', les: '17 jun', badge: 3 }, { n: 'Iris Bos', abo: '3x per week', les: '16 jun', badge: 4 }] },
-    { title: '14 dagen niet geweest', count: 10, accent: 'var(--mint-deep)', head: 'var(--mint-tint)',
-      cards: [{ n: 'Lisa Bakker', abo: '2x per week', les: '5 jun', badge: 2 }, { n: 'Tom Visser', abo: 'Onbeperkt', les: '4 jun', badge: 4 }] },
-    { title: '21 dagen niet geweest', count: 7, accent: '#B45309', head: 'rgba(245,158,11,.14)',
+      cards: [{ n: 'Sven Maas', abo: 'Onbeperkt', les: '18 jun', badge: 3 }, { n: 'Iris Bos', abo: '3x per week', les: '17 jun', badge: 4 }, { n: 'Daan Mulder', abo: '2x per week', les: '18 jun', badge: 1 }, { n: 'Anouk Vos', abo: 'Onbeperkt', les: '16 jun', badge: 2 }, { n: 'Pim Dekker', abo: '3x per week', les: '17 jun', badge: 5 }] },
+    { title: '14 dagen niet geweest', count: 16, accent: 'var(--mint-deep)', head: 'var(--mint-tint)',
+      cards: [{ n: 'Lisa Bakker', abo: '2x per week', les: '5 jun', badge: 2 }, { n: 'Tom Visser', abo: 'Onbeperkt', les: '4 jun', badge: 4 }, { n: 'Sanne Kuipers', abo: '3x per week', les: '6 jun', badge: 1 }, { n: 'Bram de Wit', abo: '2x per week', les: '3 jun', badge: 3 }] },
+    { title: '21 dagen niet geweest', count: 9, accent: '#B45309', head: 'rgba(245,158,11,.14)',
       cards: [{ n: 'Eva Smit', abo: '3x per week', les: '29 mei', badge: 2 }, { n: 'Joris Peters', abo: '2x per week', les: '28 mei', badge: 1 }] },
-    { title: '28 dagen niet geweest', count: 4, accent: '#BE185D', head: 'rgba(236,72,153,.12)',
-      cards: [{ n: 'Noor van Dijk', abo: 'Onbeperkt', les: '22 mei', badge: 5 }, { n: 'Bram de Wit', abo: '3x per week', les: '20 mei', badge: 2 }] },
-    { title: 'Lang afwezig', count: 40, accent: '#B91C1C', head: 'rgba(220,38,38,.10)',
-      cards: [{ n: 'Femke Jansen', abo: '2x per week', les: '14 apr', badge: 4 }, { n: 'Ruben Koster', abo: 'Onbeperkt', les: '2 mrt', badge: 5 }] },
+    { title: '28 dagen niet geweest', count: 5, accent: '#BE185D', head: 'rgba(236,72,153,.12)',
+      cards: [{ n: 'Noor van Dijk', abo: 'Onbeperkt', les: '22 mei', badge: 5 }, { n: 'Lars Hendriks', abo: '3x per week', les: '20 mei', badge: 2 }] },
+    { title: 'Lang afwezig', count: 3, accent: '#B91C1C', head: 'rgba(220,38,38,.10)',
+      cards: [{ n: 'Femke Jansen', abo: '2x per week', les: '14 apr', badge: 4 }] },
   ];
   const initials = (n) => n.split(' ').filter((w) => w[0] === w[0].toUpperCase()).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
   const cardIcons = ['phone', 'message-circle', 'tag', 'file-text', 'calendar'];
   return (
     <React.Fragment>
       <div className="card" style={{ padding: 0, overflow: 'hidden', width: 'fit-content', maxWidth: '100%', margin: '0 auto' }}>
-        <div style={{ display: 'flex', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+        <div style={{ display: 'flex', alignItems: 'flex-start', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
           {cols.map((col, ci) => (
             <div key={col.title} style={{ flex: '0 0 auto', width: 200, borderRight: ci < cols.length - 1 ? '1px solid var(--border)' : 'none' }}>
               <div style={{ background: col.head, padding: '12px 14px', borderBottom: '1px solid var(--border)' }}>
                 <div style={{ fontSize: 13, fontWeight: 800, color: col.accent, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{col.title}</div>
                 <div style={{ fontSize: 10.5, color: 'var(--fg3)', marginTop: 3 }}>{col.count} leden</div>
               </div>
-              <div style={{ padding: 10, display: 'flex', flexDirection: 'column', gap: 10, background: 'var(--bg-soft)', minHeight: 220 }}>
+              <div style={{ padding: 10, display: 'flex', flexDirection: 'column', gap: 10, background: 'var(--bg-soft)' }}>
                 {col.cards.map((cd) => (
                   <div key={cd.n} style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: 10, padding: '10px 11px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, marginBottom: 8 }}>
