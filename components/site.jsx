@@ -2749,20 +2749,20 @@ function Prijzen() {
         </div>
       </section>
 
-      {/* Value stack — wat het los zou kosten */}
+      {/* Prijsoverzicht — value stack + merk-bonus + de prijs */}
       <section className="section">
         <div className="wrap" style={{ maxWidth: 720 }}>
           <SectionHead eyebrow="Wat je krijgt" title="Reken maar uit wat dit los zou kosten." sub="Een websitebureau, een marketeer, een planner én een retentiesysteem. Bij GymOps zit het in één abonnement." max={620} />
           <div data-reveal className="card" style={{ marginTop: 44, padding: m ? '24px 20px' : '36px 40px' }}>
             {[
-              { label: 'Website op maat + doorlopend onderhoud', sub: 'Gebouwd en binnen een week aangepast, inbegrepen', value: '€600' },
-              { label: 'Leadopvolging 24/7', sub: 'WhatsApp en e-mail, automatisch tot er reactie is', value: '€750' },
-              { label: 'Ledenbehoud', sub: 'Mijlpalen, handgeschreven kaarten, reactivatie', value: '€650' },
-              { label: 'Team-aansturing & takensysteem', sub: 'Elke taak bij de juiste coach, niets blijft liggen', value: '€350' },
-              { label: 'Slim plannen met meerdere agenda’s', sub: 'PT, intakes, kennismakingen, eigen beschikbaarheid', value: '€250' },
-              { label: 'Reviews & merk-marketing', sub: 'Google reviews, social posts, deelbare mijlpalen', value: '€600' },
-              { label: 'SportBit-koppeling & ledeninzicht', sub: 'Actief vs wegzakkend, alles in één beeld', value: '€300' },
-              { label: 'Onboarding & support van gym owners', sub: '4 begeleide calls, inrichting en de GymOps Academy', value: '€500' },
+              { label: 'Website op maat + doorlopend onderhoud', sub: 'Gebouwd en binnen een week aangepast, inbegrepen', value: '€300' },
+              { label: 'Leadopvolging 24/7', sub: 'WhatsApp en e-mail, automatisch tot er reactie is', value: '€375' },
+              { label: 'Ledenbehoud', sub: 'Mijlpalen, handgeschreven kaarten, reactivatie', value: '€325' },
+              { label: 'Team-aansturing & takensysteem', sub: 'Elke taak bij de juiste coach, niets blijft liggen', value: '€175' },
+              { label: 'Slim plannen met meerdere agenda’s', sub: 'PT, intakes, kennismakingen, eigen beschikbaarheid', value: '€125' },
+              { label: 'Reviews & merk-marketing', sub: 'Google reviews, social posts, deelbare mijlpalen', value: '€300' },
+              { label: 'SportBit-koppeling & ledeninzicht', sub: 'Actief vs wegzakkend, alles in één beeld', value: '€150' },
+              { label: 'Onboarding & support van gym owners', sub: '4 begeleide calls, inrichting en de GymOps Academy', value: '€250' },
             ].map((r, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 14, padding: '14px 0', borderTop: i === 0 ? 'none' : '1px solid var(--border)' }}>
                 <Icon data-lucide="check" style={{ width: 18, height: 18, color: 'var(--mint-deep)', flexShrink: 0, marginTop: 3 }}></Icon>
@@ -2775,36 +2775,37 @@ function Prijzen() {
             ))}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 18, paddingTop: 18, borderTop: '2px solid var(--ink)' }}>
               <span style={{ fontSize: m ? 15 : 17, fontWeight: 700, color: 'var(--fg2)' }}>Totale waarde</span>
-              <span style={{ fontSize: m ? 20 : 24, fontWeight: 800, color: 'var(--ink)', letterSpacing: '-.02em' }}>€4.000<span style={{ fontSize: 12, color: 'var(--fg3)', fontWeight: 600 }}>/mnd</span></span>
+              <span style={{ fontSize: m ? 20 : 24, fontWeight: 800, color: 'var(--ink)', letterSpacing: '-.02em' }}>€2.000<span style={{ fontSize: 12, color: 'var(--fg3)', fontWeight: 600 }}>/mnd</span></span>
             </div>
           </div>
-          <div data-reveal style={{ marginTop: 20, textAlign: 'center', background: 'var(--ink)', borderRadius: 18, padding: m ? '26px 22px' : '32px 32px' }}>
+
+          {/* Merk-bonus: hoort logisch bij het prijsoverzicht */}
+          <div data-reveal style={{ marginTop: 22, background: 'var(--mint-tint)', border: '1px solid var(--border)', borderRadius: 18, padding: m ? '24px 20px' : '28px 32px' }}>
+            <div style={{ fontSize: 12, fontWeight: 800, letterSpacing: '.06em', textTransform: 'uppercase', color: 'var(--mint-deep)', marginBottom: 6 }}>Plus, gratis bovenop</div>
+            <h4 style={{ fontSize: m ? 19 : 22, fontWeight: 800, letterSpacing: '-.02em', color: 'var(--ink)' }}>Je leden bouwen mee aan je merk</h4>
+            <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--fg2)', marginTop: 8 }}>Veel van wat GymOps doet, groeit je gym ook nog eens zichtbaar. Zonder dat het je extra tijd of geld kost.</p>
+            <div style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : 'repeat(2, 1fr)', gap: m ? 12 : 16, marginTop: 20 }}>
+              {[
+                { icon: 'star', title: 'Reviews komen vanzelf binnen', body: 'GymOps vraagt leden automatisch om een Google review op piekmomenten. Beter vindbaar én betrouwbaarder.' },
+                { icon: 'share-2', title: 'Mijlpalen die leden zelf delen', body: 'Een 100ste les of PR wordt trots op social gedeeld. Echte mensen, krachtiger dan elke advertentie.' },
+                { icon: 'mail', title: 'Ansichtkaarten die rondgaan', body: 'Een onverwachte handgeschreven kaart wordt gefotografeerd en gedeeld, met jouw gym in beeld.' },
+                { icon: 'megaphone', title: 'Automatisch zichtbaar op social', body: 'Consistent zichtbaar blijven met posts vanuit je eigen gym, in jouw merk en toon.' },
+              ].map((c, i) => (
+                <div key={i} style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: 14, padding: m ? 16 : 18, display: 'flex', gap: 13, alignItems: 'flex-start' }}>
+                  <div className="icon-chip" style={{ width: 38, height: 38, borderRadius: 11, flexShrink: 0 }}><Icon data-lucide={c.icon} style={{ width: 18, height: 18, color: 'var(--mint-deep)' }}></Icon></div>
+                  <div>
+                    <h5 style={{ fontSize: 15, fontWeight: 700, color: 'var(--fg1)' }}>{c.title}</h5>
+                    <p style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--fg3)', marginTop: 5 }}>{c.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div data-reveal style={{ marginTop: 22, textAlign: 'center', background: 'var(--ink)', borderRadius: 18, padding: m ? '26px 22px' : '32px 32px' }}>
             <p style={{ fontSize: 15, fontWeight: 600, color: 'rgba(255,255,255,.7)' }}>Bij GymOps betaal je</p>
             <p style={{ fontSize: m ? 36 : 46, fontWeight: 800, letterSpacing: '-.03em', color: '#fff', marginTop: 4 }}>€450<span style={{ fontSize: 18, color: 'rgba(255,255,255,.6)', fontWeight: 600 }}> / maand</span></p>
-            <p style={{ fontSize: m ? 15 : 17, fontWeight: 700, color: 'var(--mint-light)', marginTop: 10 }}>Meer dan 8× de waarde, in één systeem.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Merk & marketing — gratis groei */}
-      <section className="section section-soft">
-        <div className="wrap">
-          <SectionHead eyebrow="Product & merk" title="Je leden bouwen mee aan je merk." sub="Veel van wat GymOps doet, groeit je gym ook nog eens zichtbaar. Zonder dat het je extra tijd of geld kost." max={640} />
-          <div style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : 'repeat(2, 1fr)', gap: 24, marginTop: 48 }} data-reveal-stagger>
-            {[
-              { icon: 'star', title: 'Google reviews die vanzelf binnenkomen', body: 'GymOps vraagt leden automatisch om een review op piekmomenten. Meer en betere reviews maken je beter vindbaar én betrouwbaarder voor wie je zoekt.' },
-              { icon: 'share-2', title: 'Mijlpalen die leden zelf delen', body: 'Een 100ste les of PR die gevierd wordt, wordt trots gedeeld op social. Gratis zichtbaarheid van echte mensen, krachtiger dan elke advertentie.' },
-              { icon: 'mail', title: 'Ansichtkaarten die de deur uit gaan', body: 'Een onverwachte handgeschreven kaart valt op. Leden fotograferen ze en delen ze, met jouw gym in beeld.' },
-              { icon: 'megaphone', title: 'Automatisch zichtbaar op social', body: 'GymOps helpt je consistent zichtbaar te blijven met posts vanuit je eigen gym, in jouw merk en toon.' },
-            ].map((c, i) => (
-              <div key={i} className="card" style={{ padding: m ? 26 : 32, display: 'flex', gap: 18, alignItems: 'flex-start' }}>
-                <div className="icon-chip" style={{ marginTop: 2 }}><Icon data-lucide={c.icon}></Icon></div>
-                <div>
-                  <h4 style={{ fontSize: 18 }}>{c.title}</h4>
-                  <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--fg3)', marginTop: 8 }}>{c.body}</p>
-                </div>
-              </div>
-            ))}
+            <p style={{ fontSize: m ? 15 : 17, fontWeight: 700, color: 'var(--mint-light)', marginTop: 10 }}>Ruim 4× de waarde, plus gratis merkgroei, in één systeem.</p>
           </div>
         </div>
       </section>
