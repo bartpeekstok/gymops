@@ -1625,11 +1625,11 @@ function CtaFooter({ noCta }) {
             <img src={GO.A + 'logo-wit.png'} alt="GymOps" style={{ height: 32, width: 'auto', marginBottom: 18 }} />
             <p style={{ fontSize: 14, lineHeight: 1.6, color: 'rgba(255,255,255,.55)', maxWidth: 280 }}>Het alles-in-één systeem voor leadopvolging, ledenbehoud en team-aansturing. Gebouwd voor en door gym-owners.</p>
           </div>
-          {[['Product', ['Leadopvolging', 'Ledenervaring', 'Website', 'Prijzen']], ['Bedrijf', ['Over ons', 'Klanten', 'Demo plannen', 'Contact']], ['Volg ons', ['Instagram', 'Facebook', 'LinkedIn']]].map(([h, items]) => (
+          {[['Product', ['Leadopvolging', 'Ledenbehoud', 'Website', 'Prijzen']], ['Bedrijf', ['Over ons', 'Klanten', 'Demo plannen', 'Contact']], ['Volg ons', ['Instagram', 'Facebook', 'LinkedIn']]].map(([h, items]) => (
             <div key={h}>
               <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '.05em', textTransform: 'uppercase', color: 'rgba(255,255,255,.45)', marginBottom: 16 }}>{h}</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
-                {items.map(it => { const h = lnk(({ 'Prijzen': 'prijzen.html', 'Over ons': 'over-ons.html', 'Klanten': 'klanten.html', 'Leadopvolging': 'leadopvolging.html', 'Ledenervaring': 'ledenervaring.html', 'Website': 'website.html', 'Instagram': 'https://www.instagram.com/gymops.nl/', 'Facebook': 'https://www.facebook.com/profile.php?id=61577473601721' })[it] || '#'); const ext = h.indexOf('http') === 0; return <a key={it} href={h} {...(ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} style={{ fontSize: 14.5, color: 'rgba(255,255,255,.75)' }}>{it}</a>; })}
+                {items.map(it => { const h = lnk(({ 'Prijzen': 'prijzen.html', 'Over ons': 'over-ons.html', 'Klanten': 'klanten.html', 'Leadopvolging': 'leadopvolging.html', 'Ledenbehoud': 'ledenbehoud.html', 'Website': 'website.html', 'Instagram': 'https://www.instagram.com/gymops.nl/', 'Facebook': 'https://www.facebook.com/profile.php?id=61577473601721' })[it] || '#'); const ext = h.indexOf('http') === 0; return <a key={it} href={h} {...(ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} style={{ fontSize: 14.5, color: 'rgba(255,255,255,.75)' }}>{it}</a>; })}
               </div>
             </div>
           ))}
@@ -1700,7 +1700,7 @@ function PromiseCards() {
       <div className="wrap">
         <div data-reveal style={{ textAlign: 'center', maxWidth: 820, margin: '0 auto' }}>
           <div className="eyebrow" style={{ marginBottom: 18 }}>Alles op één plek</div>
-          <h2 style={{ fontSize: 'clamp(32px,4.6vw,56px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.04, color: 'var(--ink)' }}>Leadopvolging, ledenervaring en team-aansturing</h2>
+          <h2 style={{ fontSize: 'clamp(32px,4.6vw,56px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.04, color: 'var(--ink)' }}>Leadopvolging, ledenbehoud en team-aansturing</h2>
           <p style={{ fontSize: m ? 17 : 19, lineHeight: 1.6, color: 'var(--fg3)', maxWidth: 600, margin: '20px auto 0' }}>De drie processen waar het in jouw gym om draait, op één plek en volledig geautomatiseerd. Elke lead opgevolgd, elk lid gezien en elke taak voor je team geregeld. Naadloos gekoppeld aan SportBit. Hieronder leggen we elk van de drie uit.</p>
         </div>
         {/* connector: leidt het oog van de intro naar het eerste genummerde blok */}
@@ -1803,7 +1803,7 @@ function LedenervaringHome() {
           </div>
         ))}
       </div>
-      <a href={lnk('ledenervaring.html')} className="btn-soft" style={{ marginTop: 28 }}>meer over ledenervaring<Icon data-lucide="arrow-right"></Icon></a>
+      <a href={lnk('ledenbehoud.html')} className="btn-soft" style={{ marginTop: 28 }}>meer over ledenbehoud<Icon data-lucide="arrow-right"></Icon></a>
     </div>
   );
 
@@ -2469,8 +2469,8 @@ function Ledenervaring() {
   useLucide();
   return (
     <React.Fragment>
-      <PageHero eyebrow="GymOps Flow · Ledenervaring" title="Elk lid voelt zich" accent="gezien"
-        sub="Automatisering doet het werk, jij maakt het persoonlijk. GymOps signaleert het juiste moment en zorgt dat niemand zich vergeten voelt."
+      <PageHero eyebrow="GymOps Flow · Ledenbehoud" title="Leden die zich gezien voelen," accent="blijven langer"
+        sub="Automatisering doet het werk, jij maakt het persoonlijk. GymOps signaleert het juiste moment en zorgt dat niemand zich vergeten voelt, zodat leden langer bij je blijven."
         cta={{ primary: 'Plan een demo' }} />
 
       <FeatureRow icon="trophy" title="Vergeet geen mijlpaal meer"
@@ -2493,7 +2493,7 @@ function Ledenervaring() {
         body={'Een nieuw lid dat twee weken meedraait, de 100ste les, of iemand die interesse toont in personal training. GymOps signaleert het moment en zet automatisch een taak klaar bij de juiste coach. Niets blijft liggen, niemand voelt zich vergeten.'}
         visual={<Phone w={258}><StaffScreen tasks={GO.product.memberTasks} /></Phone>} />
 
-      <MiniGrid eyebrow="En verder" title="De hele ledenervaring, geregeld." items={[
+      <MiniGrid eyebrow="En verder" title="Alles voor ledenbehoud, geregeld." items={[
         { icon: 'sparkles', title: 'Welkomstflow voor nieuwe leden', body: 'De eerste weken zijn cruciaal. GymOps stuurt berichten op de juiste momenten en zet taken klaar voor je coach.' },
         { icon: 'mail', title: 'Branded, geen leverancier-template', body: 'Mails, kaarten en agenda-uitnodigingen komen uit jouw gym, niet uit een GymOps-template.' },
         { icon: 'message-circle-heart', title: 'Tevredenheid op het juiste moment peilen', body: 'Vraag automatisch om feedback na een les of mijlpaal. Zo weet je hoe leden het ervaren en kun je op tijd bijsturen.' },
@@ -2962,7 +2962,7 @@ function Home() {
 }
 
 function LeadopvolgingPage() { return (<React.Fragment><Nav current="leadopvolging.html" /><Leadopvolging /><CtaFooter /></React.Fragment>); }
-function LedenervaringPage() { return (<React.Fragment><Nav current="ledenervaring.html" /><Ledenervaring /><CtaFooter /></React.Fragment>); }
+function LedenervaringPage() { return (<React.Fragment><Nav current="ledenbehoud.html" /><Ledenervaring /><CtaFooter /></React.Fragment>); }
 function TeamAansturingPage() { return (<React.Fragment><Nav current="team-aansturing.html" /><TeamAansturing /><CtaFooter /></React.Fragment>); }
 function WebsitePage() { return (<React.Fragment><Nav current="website.html" /><Website /><CtaFooter /></React.Fragment>); }
 function PrijzenPage() { return (<React.Fragment><Nav current="prijzen.html" /><Prijzen /><CtaFooter /></React.Fragment>); }
