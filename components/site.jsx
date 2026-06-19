@@ -1365,7 +1365,7 @@ function AbsenceBoard() {
   const initials = (n) => n.split(' ').filter((w) => w[0] === w[0].toUpperCase()).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
   const cardIcons = ['phone', 'message-circle', 'tag', 'file-text', 'calendar'];
   return (
-    <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
+    <div className="card" style={{ padding: 0, overflow: 'hidden', width: 'fit-content', maxWidth: '100%', margin: '0 auto' }}>
       <div style={{ display: 'flex', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
         {cols.map((col, ci) => (
           <div key={col.title} style={{ flex: '0 0 auto', width: 200, borderRight: ci < cols.length - 1 ? '1px solid var(--border)' : 'none' }}>
@@ -2750,18 +2750,10 @@ function Prijzen() {
   useLucide();
   const m = useIsMobile();
   const D = GOP.prijzen;
+  const plan = D.plans.find((p) => !p.comingSoon) || D.plans[0];
   return (
     <React.Fragment>
       <PageHero eyebrow={D.hero.eyebrow} title={D.hero.title} />
-
-      {/* Plans */}
-      <section className="section section-soft" style={{ borderBottom: '1px solid var(--border)' }}>
-        <div className="wrap" style={{ maxWidth: 1000 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : '520px', justifyContent: 'center', gap: 24, alignItems: 'start' }}>
-            {D.plans.map((p, i) => <PlanCard key={i} p={p} m={m} />)}
-          </div>
-        </div>
-      </section>
 
       {/* Prijsoverzicht — value stack + merk-bonus + de prijs */}
       <section className="section">
@@ -2816,10 +2808,12 @@ function Prijzen() {
             </div>
           </div>
 
-          <div data-reveal style={{ marginTop: 22, textAlign: 'center', background: 'var(--ink)', borderRadius: 18, padding: m ? '26px 22px' : '32px 32px' }}>
+          <div data-reveal style={{ marginTop: 22, textAlign: 'center', background: 'var(--ink)', borderRadius: 18, padding: m ? '28px 22px' : '36px 32px' }}>
             <p style={{ fontSize: 15, fontWeight: 600, color: 'rgba(255,255,255,.7)' }}>Bij GymOps betaal je</p>
-            <p style={{ fontSize: m ? 36 : 46, fontWeight: 800, letterSpacing: '-.03em', color: '#fff', marginTop: 4 }}>€450<span style={{ fontSize: 18, color: 'rgba(255,255,255,.6)', fontWeight: 600 }}> / maand</span></p>
+            <p style={{ fontSize: m ? 38 : 48, fontWeight: 800, letterSpacing: '-.03em', color: '#fff', marginTop: 4 }}>{plan.price}<span style={{ fontSize: 18, color: 'rgba(255,255,255,.6)', fontWeight: 600 }}> {plan.period}</span></p>
             <p style={{ fontSize: m ? 15 : 17, fontWeight: 700, color: 'var(--mint-light)', marginTop: 10 }}>Ruim 4× de waarde, plus gratis merkgroei, in één systeem.</p>
+            <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-primary" style={{ marginTop: 24 }}>{plan.cta}<Icon data-lucide={plan.ctaIcon || 'arrow-right'}></Icon></a>
+            <p style={{ fontSize: 12.5, lineHeight: 1.6, color: 'rgba(255,255,255,.5)', marginTop: 18, maxWidth: 420, margin: '18px auto 0' }}>{plan.disclaimer}{plan.yearly ? ' ' + plan.yearly : ''}</p>
           </div>
         </div>
       </section>
