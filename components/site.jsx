@@ -102,45 +102,34 @@ const openLeadFormClick = (e) => { e.preventDefault(); openLeadForm(); };
 /* gsapReady — registreer de ScrollTrigger-plugin maar één keer over alle scenes. */
 let gsapReady = false;
 
-/* HScrollScene — pint een graphic vast en laat de stappen horizontaal voorbij
-   schuiven. Zodra je de sectie bereikt blijft die staan; terwijl je verticaal
-   scrollt beweegt de track zijwaarts door de stappen (dots lopen mee). Pas als
-   je er doorheen bent, scrollt de pagina verder. Gebruikt op alle schermen.
-   children is een render-functie (step) => node. Reduced motion / no-JS: toont
-   de laatste stap statisch en pint niet. */
-function HScrollScene({ steps, children }) {
+/* ScrollScene — pins a graphic in place and turns scroll into discrete steps.
+   While pinned, every bit of scroll advances `step` (0..steps-1); the graphic
+   renders that step and animates between them. Once the last step is reached
+   you scroll on normally. children is a render function (step) => node.
+   Reduced motion / no-JS: shows the final step statically and never pins. */
+function ScrollScene({ steps, children, scenePerStep = 0.85, label }) {
   const triggerRef = useRef(null);
   const pinRef = useRef(null);
-  const trackRef = useRef(null);
   const [step, setStep] = useState(0);
   const [pinned, setPinned] = useState(false);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce || steps <= 1) {
-      setStep(steps - 1);
-      requestAnimationFrame(() => {
-        const w = pinRef.current ? pinRef.current.clientWidth : 0;
-        if (trackRef.current) trackRef.current.style.transform = 'translateX(' + (-(steps - 1) * w) + 'px)';
-      });
-      return;
-    }
+    if (reduce || steps <= 1) { setStep(steps - 1); return; }
     if (!gsapReady) { gsap.registerPlugin(ScrollTrigger); gsapReady = true; }
 
     const st = ScrollTrigger.create({
       trigger: triggerRef.current,
       start: 'center center',
-      end: () => '+=' + Math.round(window.innerHeight * 0.85 * steps),
+      end: () => '+=' + Math.round(window.innerHeight * scenePerStep * steps),
       pin: pinRef.current,
       pinSpacing: true,
       scrub: true,
       anticipatePin: 1,
       onToggle: (self) => setPinned(self.isActive),
       onUpdate: (self) => {
-        const w = pinRef.current ? pinRef.current.clientWidth : 0;
-        if (trackRef.current) gsap.set(trackRef.current, { x: -self.progress * (steps - 1) * w });
-        const s = Math.max(0, Math.min(steps - 1, Math.round(self.progress * (steps - 1))));
+        const s = Math.max(0, Math.min(steps - 1, Math.floor(self.progress * steps - 1e-6)));
         setStep((prev) => (prev === s ? prev : s));
       },
     });
@@ -148,16 +137,12 @@ function HScrollScene({ steps, children }) {
     window.addEventListener('load', onLoad);
     const t = setTimeout(() => ScrollTrigger.refresh(), 600);
     return () => { st.kill(); window.removeEventListener('load', onLoad); clearTimeout(t); };
-  }, [steps]);
+  }, [steps, scenePerStep]);
 
   return (
     <div ref={triggerRef} className="scrollscene">
-      <div ref={pinRef} className={'hscene-pin' + (pinned ? ' is-pinned' : '')}>
-        <div ref={trackRef} className="hscene-track">
-          {Array.from({ length: steps }).map((_, i) => (
-            <div key={i} className="hscene-slide">{children(i)}</div>
-          ))}
-        </div>
+      <div ref={pinRef} className={'scrollscene-pin' + (pinned ? ' is-pinned' : '')}>
+        {children(step)}
         {steps > 1 && (
           <div className="scrollscene-dots" aria-hidden="true">
             {Array.from({ length: steps }).map((_, i) => (
@@ -219,7 +204,7 @@ function PinnedFeature({ eyebrow, title, items, link, steps, renderGraphic, soft
           </div>
         </div>
       ) : (
-        <HScrollScene steps={steps}>
+        <ScrollScene steps={steps} label={eyebrow}>
           {(step) => (
             <div className="wrap" style={{ overflow: 'hidden' }}>
               <div style={{ width: '100%', maxWidth: 560, margin: '0 auto' }}>
@@ -227,7 +212,7 @@ function PinnedFeature({ eyebrow, title, items, link, steps, renderGraphic, soft
               </div>
             </div>
           )}
-        </HScrollScene>
+        </ScrollScene>
       )}
     </section>
   );
