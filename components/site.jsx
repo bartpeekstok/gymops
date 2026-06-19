@@ -1347,51 +1347,6 @@ function AgendasMock() {
   );
 }
 
-/* MemberInsightMock — pijplijn die laat zien wie hoelang niet geweest is
-   (ledenbehoud). Gemodelleerd op de echte "afwezigheid"-pipeline in GymOps. */
-function MemberInsightMock() {
-  const cols = [
-    { label: '14 dagen', count: 10, c: 'var(--mint-deep)', bg: 'var(--mint-tint)',
-      cards: [{ n: 'Lisa Bakker', d: '14d' }, { n: 'Tom Visser', d: '15d' }] },
-    { label: '21 dagen', count: 7, c: '#B45309', bg: 'rgba(245,158,11,.16)',
-      cards: [{ n: 'Eva Smit', d: '23d' }, { n: 'Joris Peters', d: '21d' }] },
-    { label: 'Lang afwezig', count: 40, c: '#B91C1C', bg: 'rgba(220,38,38,.10)',
-      cards: [{ n: 'Femke Jansen', d: '60d+' }, { n: 'Ruben Koster', d: '48d' }] },
-  ];
-  const initials = (n) => n.split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase();
-  return (
-    <MockCard w={400}>
-      <div style={{ fontWeight: 800, fontSize: 16, color: 'var(--fg1)', marginBottom: 12 }}>Wie is er hoelang niet geweest?</div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '9px 12px', borderRadius: 10, background: 'rgba(22,163,74,.10)', marginBottom: 14 }}>
-        <Icon data-lucide="circle-check-big" style={{ width: 16, height: 16, color: '#16A34A' }}></Icon>
-        <span style={{ fontSize: 12.5, fontWeight: 700, color: 'var(--fg1)' }}>Recent geweest</span>
-        <span style={{ marginLeft: 'auto', fontSize: 12.5, fontWeight: 800, color: '#16A34A' }}>207</span>
-      </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
-        {cols.map((col) => (
-          <div key={col.label}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 4, padding: '6px 8px', borderRadius: 8, background: col.bg, marginBottom: 8 }}>
-              <span style={{ fontSize: 9.5, fontWeight: 800, color: col.c, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{col.label}</span>
-              <span style={{ fontSize: 10, fontWeight: 800, color: col.c, flexShrink: 0 }}>{col.count}</span>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
-              {col.cards.map((cd) => (
-                <div key={cd.n} style={{ background: 'var(--bg-soft)', border: '1px solid var(--border)', borderRadius: 9, padding: '8px 7px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 5 }}>
-                    <div style={{ width: 18, height: 18, borderRadius: 999, background: 'var(--ink)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 7.5, fontWeight: 700, flexShrink: 0 }}>{initials(cd.n)}</div>
-                    <span style={{ fontSize: 9, fontWeight: 700, color: 'var(--fg1)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{cd.n}</span>
-                  </div>
-                  <span style={{ fontSize: 8, fontWeight: 700, color: col.c, background: col.bg, borderRadius: 999, padding: '2px 6px' }}>{cd.d}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </MockCard>
-  );
-}
-
 function NoteMock() {
   return (
     <div data-reveal style={{ position: 'relative' }}>
@@ -2557,8 +2512,10 @@ function Ledenervaring() {
         visual={<Phone w={258}><ContactScreen /></Phone>} />
 
       <FeatureRow icon="bar-chart-3" title="Grip op wie actief is en wie wegzakt"
-        body={'In één overzicht zie je hoeveel leden actief zijn, wie er minder vaak komt en wie er stilletjes afhaakt. Geen onderbuikgevoel meer, maar een helder beeld van je ledenbestand.\n\nZo grijp je in vóórdat iemand opzegt, in plaats van erachter te komen als het al te laat is.'}
-        visual={<MemberInsightMock />} />
+        body={'In één pijplijn zie je precies wie er hoelang niet geweest is, van net afwezig tot lang weg. Geen onderbuikgevoel meer, maar een helder beeld van je ledenbestand.\n\nZo grijp je in vóórdat iemand opzegt, in plaats van erachter te komen als het al te laat is.'}
+        visual={<div className="card" style={{ padding: 0, overflow: 'hidden', width: '100%', maxWidth: 560, borderRadius: 16 }}>
+          <img src={GO.A + 'afwezige-leden-pipeline.png'} alt="Pijplijn: zie precies wie hoelang niet geweest is" style={{ display: 'block', width: '100%', height: 'auto' }} />
+        </div>} />
 
       <FeatureRow icon="pen-line" flip soft title="Handgeschreven kaarten in 15 seconden"
         body={'Via ons systeem stuur je een handgeschreven kaart met persoonlijke tekst binnen 15 seconden, via de mobiele app of vanachter je laptop.\n\nLeden waarderen zo’n onverwachte kaart enorm en delen hem vaak trots op social media, gratis zichtbaarheid voor je gym.\n\nHeeft iemand al lang geen kaartje gehad? Dan herinnert GymOps je daaraan.'}
