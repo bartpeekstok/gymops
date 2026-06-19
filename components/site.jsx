@@ -1317,6 +1317,68 @@ function ReviewMock() {
   );
 }
 
+/* AgendasMock — meerdere agenda's per afspraaktype met beschikbaarheid (team). */
+function AgendasMock() {
+  const lanes = [
+    { name: 'Personal training', coach: 'Coach Sanne', free: 6, icon: 'dumbbell' },
+    { name: 'Intake nieuwe leden', coach: 'Coach Tim', free: 4, icon: 'clipboard-list' },
+    { name: 'Voedingsintake', coach: 'Coach Noa', free: 3, icon: 'apple' },
+    { name: 'Kennismaking', coach: 'Heel het team', free: 9, icon: 'handshake' },
+  ];
+  return (
+    <MockCard w={360}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+        <span style={{ fontWeight: 800, fontSize: 16, color: 'var(--fg1)' }}>Agenda's & beschikbaarheid</span>
+        <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--mint-deep)', background: 'var(--mint-tint)', borderRadius: 999, padding: '4px 10px' }}>deze week</span>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+        {lanes.map((l) => (
+          <div key={l.name} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '11px 12px', borderRadius: 12, background: 'var(--bg-soft)', border: '1px solid var(--border)' }}>
+            <div className="icon-chip" style={{ width: 36, height: 36, borderRadius: 10, flexShrink: 0 }}><Icon data-lucide={l.icon} style={{ width: 17, height: 17, color: 'var(--mint-deep)' }}></Icon></div>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontSize: 13.5, fontWeight: 700, color: 'var(--fg1)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{l.name}</div>
+              <div style={{ fontSize: 11.5, color: 'var(--fg3)' }}>{l.coach}</div>
+            </div>
+            <span style={{ fontSize: 11.5, fontWeight: 700, color: 'var(--mint-deep)', background: 'var(--mint-tint)', borderRadius: 999, padding: '4px 10px', flexShrink: 0 }}>{l.free} vrij</span>
+          </div>
+        ))}
+      </div>
+    </MockCard>
+  );
+}
+
+/* MemberInsightMock — inzicht in actieve vs wegzakkende leden (ledenbehoud). */
+function MemberInsightMock() {
+  const risk = [
+    { name: 'Mark Janssen', last: '3 weken niet geweest' },
+    { name: 'Eva de Groot', last: '12 dagen niet geweest' },
+  ];
+  return (
+    <MockCard w={360}>
+      <div style={{ fontWeight: 800, fontSize: 16, color: 'var(--fg1)', marginBottom: 14 }}>Ledeninzicht</div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 16 }}>
+        <div style={{ background: 'var(--mint-tint)', borderRadius: 12, padding: '12px 13px' }}>
+          <div style={{ fontSize: 26, fontWeight: 800, color: 'var(--mint-deep)', letterSpacing: '-.03em', lineHeight: 1 }}>142</div>
+          <div style={{ fontSize: 11.5, color: 'var(--fg3)', marginTop: 6 }}>Actieve leden</div>
+        </div>
+        <div style={{ background: 'var(--bg-soft)', border: '1px solid var(--border)', borderRadius: 12, padding: '12px 13px' }}>
+          <div style={{ fontSize: 26, fontWeight: 800, color: '#B45309', letterSpacing: '-.03em', lineHeight: 1 }}>9</div>
+          <div style={{ fontSize: 11.5, color: 'var(--fg3)', marginTop: 6 }}>Zakken weg</div>
+        </div>
+      </div>
+      <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.05em', textTransform: 'uppercase', color: 'var(--fg3)', marginBottom: 8 }}>Aandacht nodig</div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        {risk.map((r) => (
+          <div key={r.name} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '9px 11px', borderRadius: 10, background: 'var(--bg-soft)', border: '1px solid var(--border)' }}>
+            <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--fg1)' }}>{r.name}</span>
+            <span style={{ fontSize: 11, color: '#B45309', fontWeight: 600 }}>{r.last}</span>
+          </div>
+        ))}
+      </div>
+    </MockCard>
+  );
+}
+
 function NoteMock() {
   return (
     <div data-reveal style={{ position: 'relative' }}>
@@ -2473,9 +2535,17 @@ function Ledenervaring() {
         sub="Automatisering doet het werk, jij maakt het persoonlijk. GymOps signaleert het juiste moment en zorgt dat niemand zich vergeten voelt, zodat leden langer bij je blijven."
         cta={{ primary: 'Plan een demo' }} />
 
-      <FeatureRow icon="trophy" title="Vergeet geen mijlpaal meer"
-        body={'GymOps zorgt dat je belangrijke momenten nooit vergeet. De 100ste les, verjaardagen, persoonlijke records en andere speciale momenten worden via de SportBit-koppeling gesignaleerd en nooit meer overgeslagen.'}
+      <FeatureRow icon="party-popper" title="Vier elke mijlpaal, samen met je leden"
+        body={'De 100ste les, een verjaardag, een nieuwe PR. GymOps signaleert het moment via de SportBit-koppeling, zodat jij het kunt vieren waar iedereen bij is.\n\nDie kleine vieringen bepalen de sfeer in je box. Ze maken je community zichtbaar en geven je gym een eigen identiteit waar leden bij willen horen.'}
         visual={<Phone w={258}><MilestoneScreen /></Phone>} />
+
+      <FeatureRow icon="heart-pulse" flip soft title="Zie direct wie dreigt af te haken"
+        body={'GymOps houdt via SportBit bij wie er traint en wie wegblijft. Komt een vast lid ineens twee weken niet? Dan krijg je een seintje en staat er meteen een taak klaar bij de juiste coach.\n\nGeen massamail, maar een persoonlijk berichtje van iemand die ze kennen, precies op het moment dat het nog uitmaakt.'}
+        visual={<Phone w={258}><ContactScreen /></Phone>} />
+
+      <FeatureRow icon="bar-chart-3" title="Grip op wie actief is en wie wegzakt"
+        body={'In één overzicht zie je hoeveel leden actief zijn, wie er minder vaak komt en wie er stilletjes afhaakt. Geen onderbuikgevoel meer, maar een helder beeld van je ledenbestand.\n\nZo grijp je in vóórdat iemand opzegt, in plaats van erachter te komen als het al te laat is.'}
+        visual={<MemberInsightMock />} />
 
       <FeatureRow icon="pen-line" flip soft title="Handgeschreven kaarten in 15 seconden"
         body={'Via ons systeem stuur je een handgeschreven kaart met persoonlijke tekst binnen 15 seconden, via de mobiele app of vanachter je laptop.\n\nHeeft iemand al lang geen kaartje gehad? Dan herinnert GymOps je daaraan.'}
@@ -2484,14 +2554,6 @@ function Ledenervaring() {
       <FeatureRow icon="star" title="Google reviews op het juiste moment"
         body={'Tevreden leden willen vaak best een review achterlaten, maar denken er zelf niet aan. GymOps vraagt het automatisch op piekmomenten: na een mijlpaal, na een PR, na een goede les. De meeste GymOps gyms staan al op 250+ reviews.'}
         visual={<ReviewMock />} />
-
-      <FeatureRow icon="heart" flip soft title="Houd je trouwe leden in beeld"
-        body={'Via de SportBit-koppeling weet GymOps wie er wanneer traint. Het systeem signaleert wanneer een lid even niet geweest is en zet een taak klaar bij de juiste coach. Geen massamailtje, maar een berichtje van iemand die ze kennen.'}
-        visual={<Phone w={258}><ContactScreen /></Phone>} />
-
-      <FeatureRow icon="list-checks" title="Elk ledenmoment wordt een taak voor je coach"
-        body={'Een nieuw lid dat twee weken meedraait, de 100ste les, of iemand die interesse toont in personal training. GymOps signaleert het moment en zet automatisch een taak klaar bij de juiste coach. Niets blijft liggen, niemand voelt zich vergeten.'}
-        visual={<Phone w={258}><StaffScreen tasks={GO.product.memberTasks} /></Phone>} />
 
       <MiniGrid eyebrow="En verder" title="Alles voor ledenbehoud, geregeld." items={[
         { icon: 'sparkles', title: 'Welkomstflow voor nieuwe leden', body: 'De eerste weken zijn cruciaal. GymOps stuurt berichten op de juiste momenten en zet taken klaar voor je coach.' },
@@ -2529,6 +2591,10 @@ function TeamAansturing() {
       <FeatureRow icon="layout-dashboard" flip soft title="Overzicht voor de eigenaar, zonder micromanagen"
         body={'Jij ziet in één oogopslag wat er speelt: welke taken open staan, wat er is afgerond en waar het stokt. Je team werkt voorspelbaar, en jij houdt de regie zonder er bovenop te hoeven zitten.'}
         visual={<Phone w={258}><TaskOverviewScreen /></Phone>} />
+
+      <FeatureRow icon="calendar-days" title="Plan slim met een agenda voor elk soort afspraak"
+        body={'Een gym draait op meer dan alleen lessen. Maak aparte agenda’s aan voor personal training, intakes, voedingsintakes, kennismakingen of evaluatiegesprekken, elk met hun eigen beschikbaarheid en coaches.\n\nZo zie je in één oogopslag wie waarvoor beschikbaar is en kunnen leden zichzelf inboeken voor precies het juiste type afspraak. Geen dubbele boekingen, geen heen-en-weer.'}
+        visual={<AgendasMock />} />
 
       <MiniGrid eyebrow="En verder" title="Een team dat voorspelbaar draait." items={[
         { icon: 'message-circle', title: 'Geen losse WhatsApp-groepjes', body: 'Alle taken en ledencontact op één plek, in plaats van verspreid over chats die niemand terugleest.' },
@@ -2666,6 +2732,66 @@ function Prijzen() {
         <div className="wrap" style={{ maxWidth: 1000 }}>
           <div style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : '520px', justifyContent: 'center', gap: 24, alignItems: 'start' }}>
             {D.plans.map((p, i) => <PlanCard key={i} p={p} m={m} />)}
+          </div>
+        </div>
+      </section>
+
+      {/* Value stack — wat het los zou kosten */}
+      <section className="section">
+        <div className="wrap" style={{ maxWidth: 720 }}>
+          <SectionHead eyebrow="Wat je krijgt" title="Reken maar uit wat dit los zou kosten." sub="Een websitebureau, een marketeer, een planner én een retentiesysteem. Bij GymOps zit het in één abonnement." max={620} />
+          <div data-reveal className="card" style={{ marginTop: 44, padding: m ? '24px 20px' : '36px 40px' }}>
+            {[
+              { label: 'Website op maat + doorlopend onderhoud', sub: 'Gebouwd en binnen een week aangepast, inbegrepen', value: '€600' },
+              { label: 'Leadopvolging 24/7', sub: 'WhatsApp en e-mail, automatisch tot er reactie is', value: '€750' },
+              { label: 'Ledenbehoud', sub: 'Mijlpalen, handgeschreven kaarten, reactivatie', value: '€650' },
+              { label: 'Team-aansturing & takensysteem', sub: 'Elke taak bij de juiste coach, niets blijft liggen', value: '€350' },
+              { label: 'Slim plannen met meerdere agenda’s', sub: 'PT, intakes, kennismakingen, eigen beschikbaarheid', value: '€250' },
+              { label: 'Reviews & merk-marketing', sub: 'Google reviews, social posts, deelbare mijlpalen', value: '€600' },
+              { label: 'SportBit-koppeling & ledeninzicht', sub: 'Actief vs wegzakkend, alles in één beeld', value: '€300' },
+              { label: 'Onboarding & support van gym owners', sub: '4 begeleide calls, inrichting en de GymOps Academy', value: '€500' },
+            ].map((r, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 14, padding: '14px 0', borderTop: i === 0 ? 'none' : '1px solid var(--border)' }}>
+                <Icon data-lucide="check" style={{ width: 18, height: 18, color: 'var(--mint-deep)', flexShrink: 0, marginTop: 3 }}></Icon>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: m ? 15 : 16, fontWeight: 700, color: 'var(--ink)' }}>{r.label}</div>
+                  <div style={{ fontSize: 13, color: 'var(--fg3)', marginTop: 2 }}>{r.sub}</div>
+                </div>
+                <div style={{ fontSize: m ? 15 : 16, fontWeight: 700, color: 'var(--fg2)', whiteSpace: 'nowrap' }}>{r.value}<span style={{ fontSize: 11, color: 'var(--fg3)', fontWeight: 600 }}>/mnd</span></div>
+              </div>
+            ))}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 18, paddingTop: 18, borderTop: '2px solid var(--ink)' }}>
+              <span style={{ fontSize: m ? 15 : 17, fontWeight: 700, color: 'var(--fg2)' }}>Totale waarde</span>
+              <span style={{ fontSize: m ? 20 : 24, fontWeight: 800, color: 'var(--ink)', letterSpacing: '-.02em' }}>€4.000<span style={{ fontSize: 12, color: 'var(--fg3)', fontWeight: 600 }}>/mnd</span></span>
+            </div>
+          </div>
+          <div data-reveal style={{ marginTop: 20, textAlign: 'center', background: 'var(--ink)', borderRadius: 18, padding: m ? '26px 22px' : '32px 32px' }}>
+            <p style={{ fontSize: 15, fontWeight: 600, color: 'rgba(255,255,255,.7)' }}>Bij GymOps betaal je</p>
+            <p style={{ fontSize: m ? 36 : 46, fontWeight: 800, letterSpacing: '-.03em', color: '#fff', marginTop: 4 }}>€450<span style={{ fontSize: 18, color: 'rgba(255,255,255,.6)', fontWeight: 600 }}> / maand</span></p>
+            <p style={{ fontSize: m ? 15 : 17, fontWeight: 700, color: 'var(--mint-light)', marginTop: 10 }}>Meer dan 8× de waarde, in één systeem.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Merk & marketing — gratis groei */}
+      <section className="section section-soft">
+        <div className="wrap">
+          <SectionHead eyebrow="Product & merk" title="Je leden bouwen mee aan je merk." sub="Veel van wat GymOps doet, groeit je gym ook nog eens zichtbaar. Zonder dat het je extra tijd of geld kost." max={640} />
+          <div style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : 'repeat(2, 1fr)', gap: 24, marginTop: 48 }} data-reveal-stagger>
+            {[
+              { icon: 'star', title: 'Google reviews die vanzelf binnenkomen', body: 'GymOps vraagt leden automatisch om een review op piekmomenten. Meer en betere reviews maken je beter vindbaar én betrouwbaarder voor wie je zoekt.' },
+              { icon: 'share-2', title: 'Mijlpalen die leden zelf delen', body: 'Een 100ste les of PR die gevierd wordt, wordt trots gedeeld op social. Gratis zichtbaarheid van echte mensen, krachtiger dan elke advertentie.' },
+              { icon: 'mail', title: 'Ansichtkaarten die de deur uit gaan', body: 'Een onverwachte handgeschreven kaart valt op. Leden fotograferen ze en delen ze, met jouw gym in beeld.' },
+              { icon: 'megaphone', title: 'Automatisch zichtbaar op social', body: 'GymOps helpt je consistent zichtbaar te blijven met posts vanuit je eigen gym, in jouw merk en toon.' },
+            ].map((c, i) => (
+              <div key={i} className="card" style={{ padding: m ? 26 : 32, display: 'flex', gap: 18, alignItems: 'flex-start' }}>
+                <div className="icon-chip" style={{ marginTop: 2 }}><Icon data-lucide={c.icon}></Icon></div>
+                <div>
+                  <h4 style={{ fontSize: 18 }}>{c.title}</h4>
+                  <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--fg3)', marginTop: 8 }}>{c.body}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
