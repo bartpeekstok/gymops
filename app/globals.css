@@ -524,6 +524,12 @@ details[open] .faq-chev { transform: rotate(180deg); }
   transition: background .3s ease, transform .3s ease;
 }
 .scrollscene-dots .ssd.on { background: var(--mint); transform: scale(1.25); }
+/* desktop: geen puntjes/veeg-hint (verwarrend) en wat lucht onder de menubalk */
+@media (min-width: 821px) {
+  .lockscene .scrollscene-dots,
+  .lockscene-hint { display: none; }
+  .lockscene-inner { padding: 104px 0 40px; }
+}
 @media (prefers-reduced-motion: reduce) {
   .lockscene-inner > .wrap { transform: none !important; }
 }
