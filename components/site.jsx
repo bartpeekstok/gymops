@@ -2881,8 +2881,8 @@ function Home() {
           { icon: 'users', title: 'Uitval? Collega neemt over', body: 'Openstaande taken neem je in één klik over. Het werk loopt door, ook bij ziekte of vakantie.' },
         ]}
         link={{ label: 'meer over team-aansturing', href: 'team-aansturing.html' }}
-        steps={(GO.product.memberTasks.length) + 1}
-        renderGraphic={(step) => <Phone w={258} className="gfx-warm"><StaffScreen step={step} tasks={GO.product.memberTasks} /></Phone>} />
+        staticStep={0}
+        renderGraphic={() => <Phone w={258} className="gfx-warm"><TaskOverviewScreen /></Phone>} />
       <PinnedFeature soft eyebrow="GymOps Flow · Jouw website" title="Een website die werkt voor jouw gym."
         items={[
           { icon: 'search', title: 'Gevonden in Google én AI', body: 'Technisch geoptimaliseerd voor zoekmachines en AI. Wie zoekt naar een gym in jouw plaats, vindt jou.' },
