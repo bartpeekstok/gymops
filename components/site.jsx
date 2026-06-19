@@ -7,8 +7,6 @@
    cross-references (<Phone>, <FeatureRow>, GO, ...) resolve unchanged. */
 import React from 'react';
 import { icons } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { GO, GOP } from '@/lib/site-data';
 
 const { useState, useEffect, useRef, useMemo, useCallback, useLayoutEffect } = React;
@@ -99,56 +97,133 @@ const LEAD_EVENT = 'gymops:open-lead-form';
 const openLeadForm = () => { if (typeof window !== 'undefined') window.dispatchEvent(new Event(LEAD_EVENT)); };
 const openLeadFormClick = (e) => { e.preventDefault(); openLeadForm(); };
 
-/* gsapReady — registreer de ScrollTrigger-plugin maar één keer over alle scenes. */
-let gsapReady = false;
-
-/* ScrollScene — pins a graphic in place and turns scroll into discrete steps.
-   While pinned, every bit of scroll advances `step` (0..steps-1); the graphic
-   renders that step and animates between them. Once the last step is reached
-   you scroll on normally. children is a render function (step) => node.
-   Reduced motion / no-JS: shows the final step statically and never pins. */
-function ScrollScene({ steps, children, scenePerStep = 0.85, label }) {
-  const triggerRef = useRef(null);
-  const pinRef = useRef(null);
+/* LockScene — pint de sectie vast en laat je er HORIZONTAAL doorheen vegen
+   i.p.v. verticaal te scrollen. Zodra de sectie het scherm vult wordt de
+   verticale scroll geblokkeerd; een horizontale veeg (touch) of zijwaartse
+   trackpad/wheel laat dezelfde bewegende graphic stap voor stap doorlopen.
+   Pas na de laatste stap laat de lock los en scrollt de pagina verder.
+   De graphic blijft één doorlopende instantie (children(step)) zodat hij
+   meeanimeert net als voorheen. Reduced motion / no-JS: toont de laatste stap
+   statisch en lockt nooit. */
+function LockScene({ steps, children }) {
+  useLucide();
+  const sectionRef = useRef(null);
   const [step, setStep] = useState(0);
   const [pinned, setPinned] = useState(false);
+  const R = useRef({ step: 0, locked: false, acc: 0, lastY: 0, lastStepT: 0, cooldownUntil: 0 });
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce || steps <= 1) { setStep(steps - 1); return; }
-    if (!gsapReady) { gsap.registerPlugin(ScrollTrigger); gsapReady = true; }
+    if (reduce || steps <= 1) { R.current.step = steps - 1; setStep(steps - 1); return; }
+    const el = sectionRef.current; if (!el) return;
+    const docEl = document.documentElement;
 
-    const st = ScrollTrigger.create({
-      trigger: triggerRef.current,
-      start: 'center center',
-      end: () => '+=' + Math.round(window.innerHeight * scenePerStep * steps),
-      pin: pinRef.current,
-      pinSpacing: true,
-      scrub: true,
-      anticipatePin: 1,
-      onToggle: (self) => setPinned(self.isActive),
-      onUpdate: (self) => {
-        const s = Math.max(0, Math.min(steps - 1, Math.floor(self.progress * steps - 1e-6)));
-        setStep((prev) => (prev === s ? prev : s));
-      },
-    });
-    const onLoad = () => ScrollTrigger.refresh();
-    window.addEventListener('load', onLoad);
-    const t = setTimeout(() => ScrollTrigger.refresh(), 600);
-    return () => { st.kill(); window.removeEventListener('load', onLoad); clearTimeout(t); };
-  }, [steps, scenePerStep]);
+    const setStepSafe = (s) => {
+      s = Math.max(0, Math.min(steps - 1, s));
+      R.current.step = s;
+      setStep((prev) => (prev === s ? prev : s));
+    };
+    const now = () => (window.performance ? performance.now() : Date.now());
+
+    const lock = (fromBelow) => {
+      if (R.current.locked) return;
+      const r = el.getBoundingClientRect();
+      const absTop = window.scrollY + r.top;
+      window.scrollTo(0, absTop);                 // snap de sectie strak in beeld
+      R.current.locked = true;
+      R.current.acc = 0;
+      docEl.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+      setPinned(true);
+      setStepSafe(fromBelow ? steps - 1 : 0);
+    };
+
+    const release = (dir) => {
+      if (!R.current.locked) return;
+      R.current.locked = false;
+      docEl.style.overflow = '';
+      document.body.style.overflow = '';
+      setPinned(false);
+      const r = el.getBoundingClientRect();
+      const absTop = window.scrollY + r.top;
+      const vh = window.innerHeight;
+      window.scrollTo(0, dir > 0 ? absTop + r.height + 2 : absTop - vh - 2);
+      R.current.cooldownUntil = now() + 650;
+    };
+
+    // vastklikken zodra de sectie het scherm (bijna) vult
+    const onScroll = () => {
+      if (R.current.locked || now() < R.current.cooldownUntil) { R.current.lastY = window.scrollY; return; }
+      const y = window.scrollY;
+      const down = y >= R.current.lastY;
+      R.current.lastY = y;
+      const r = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      if (r.top <= vh * 0.28 && r.bottom >= vh * 0.72) lock(!down);
+    };
+
+    const STEP_PX = 80;
+    const advance = (dir) => {
+      const t = now();
+      if (t - R.current.lastStepT < 110) return;   // niet door de stappen heen flitsen
+      R.current.lastStepT = t;
+      const cur = R.current.step;
+      if (dir > 0) { if (cur >= steps - 1) release(1); else setStepSafe(cur + 1); }
+      else { if (cur <= 0) release(-1); else setStepSafe(cur - 1); }
+    };
+
+    const onWheel = (e) => {
+      if (!R.current.locked) return;
+      e.preventDefault();
+      const d = Math.abs(e.deltaX) >= Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      R.current.acc += d;
+      while (R.current.acc >= STEP_PX) { R.current.acc -= STEP_PX; advance(1); if (!R.current.locked) { R.current.acc = 0; break; } }
+      while (R.current.acc <= -STEP_PX) { R.current.acc += STEP_PX; advance(-1); if (!R.current.locked) { R.current.acc = 0; break; } }
+    };
+
+    let tx = 0;
+    const onTouchStart = (e) => { tx = e.touches[0].clientX; };
+    const onTouchMove = (e) => {
+      if (!R.current.locked) return;
+      e.preventDefault();
+      const dx = e.touches[0].clientX - tx;
+      const SW = 46;
+      if (dx <= -SW) { tx = e.touches[0].clientX; advance(1); }   // naar links vegen = volgende
+      else if (dx >= SW) { tx = e.touches[0].clientX; advance(-1); }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('wheel', onWheel, { passive: false });
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: false });
+    R.current.lastY = window.scrollY;
+    onScroll();
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('wheel', onWheel);
+      window.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchmove', onTouchMove);
+      docEl.style.overflow = '';
+      document.body.style.overflow = '';
+    };
+  }, [steps]);
 
   return (
-    <div ref={triggerRef} className="scrollscene">
-      <div ref={pinRef} className={'scrollscene-pin' + (pinned ? ' is-pinned' : '')}>
+    <div ref={sectionRef} className={'lockscene' + (pinned ? ' is-pinned' : '')}>
+      <div className="lockscene-inner">
         {children(step)}
         {steps > 1 && (
-          <div className="scrollscene-dots" aria-hidden="true">
-            {Array.from({ length: steps }).map((_, i) => (
-              <span key={i} className={'ssd' + (i <= step ? ' on' : '')} />
-            ))}
-          </div>
+          <React.Fragment>
+            <div className="scrollscene-dots" aria-hidden="true">
+              {Array.from({ length: steps }).map((_, i) => (
+                <span key={i} className={'ssd' + (i <= step ? ' on' : '')} />
+              ))}
+            </div>
+            <div className={'lockscene-hint' + (pinned && step < steps - 1 ? ' show' : '')} aria-hidden="true">
+              <Icon data-lucide="chevrons-right" style={{ width: 16, height: 16 }}></Icon> veeg
+            </div>
+          </React.Fragment>
         )}
       </div>
     </div>
@@ -204,7 +279,7 @@ function PinnedFeature({ eyebrow, title, items, link, steps, renderGraphic, soft
           </div>
         </div>
       ) : (
-        <ScrollScene steps={steps} label={eyebrow}>
+        <LockScene steps={steps}>
           {(step) => (
             <div className="wrap" style={{ overflow: 'hidden' }}>
               <div style={{ width: '100%', maxWidth: 560, margin: '0 auto' }}>
@@ -212,7 +287,7 @@ function PinnedFeature({ eyebrow, title, items, link, steps, renderGraphic, soft
               </div>
             </div>
           )}
-        </ScrollScene>
+        </LockScene>
       )}
     </section>
   );
