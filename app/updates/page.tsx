@@ -16,13 +16,10 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false, nocache: true },
 };
 
-/* Ruimte (px) die logo + kop + tekst + padding samen innemen; de video
-   krijgt de rest van de viewport-hoogte zodat er nooit een scrollbar komt. */
-const CHROME_H = 248;
-
 export default function UpdatesPage() {
   return (
     <main
+      className="upd-main"
       style={{
         fontFamily: "var(--font-sans)",
         position: "relative",
@@ -55,67 +52,46 @@ export default function UpdatesPage() {
         }}
       />
 
-      {/* Inhoud */}
-      <div
-        style={{
-          position: "relative",
-          zIndex: 1,
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "20px 16px",
-        }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/logo-wit.png"
-          alt="GymOps"
-          style={{ height: 34, width: "auto", marginBottom: 12 }}
-        />
-        <h1
-          style={{
-            margin: "0 0 18px",
-            fontSize: "clamp(24px, 3.6vw, 34px)",
-            fontWeight: 800,
-            letterSpacing: "-0.03em",
-            textAlign: "center",
-            color: "var(--fg-on-dark, #FFFFFF)",
-          }}
-        >
-          {KOP}
-        </h1>
+      <style>{`
+        .upd-grid { position: relative; z-index: 1; height: 100%; display: flex; align-items: center; justify-content: center; gap: 40px; padding: 24px 32px; }
+        .upd-left { flex: 0 1 360px; min-width: 250px; }
+        .upd-right { flex: 1 1 auto; display: flex; justify-content: center; min-width: 0; }
+        .upd-video { width: min(100%, calc((100vh - 96px) * 1.7778)); }
+        @media (max-width: 720px) {
+          .upd-main { height: auto; min-height: 100vh; overflow: auto; }
+          .upd-grid { flex-direction: column; gap: 20px; padding: 24px 16px; }
+          .upd-left { flex: none; width: 100%; max-width: 560px; }
+          .upd-right { width: 100%; }
+          .upd-video { width: 100%; }
+        }
+      `}</style>
 
-        {/* Video + tekst, breedte begrensd door zowel viewportbreedte als -hoogte */}
-        <div
-          style={{
-            width: `min(100%, 860px, calc((100vh - ${CHROME_H}px) * 1.7778))`,
-          }}
-        >
-          <div
+      <div className="upd-grid">
+        {/* Links: logo, kop, tekst */}
+        <div className="upd-left">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/assets/logo-wit.png"
+            alt="GymOps"
+            style={{ height: 42, width: "auto", marginBottom: 20, display: "block" }}
+          />
+          <h1
             style={{
-              borderRadius: "var(--r-lg, 20px)",
-              border: "1px solid var(--border-on-dark, rgba(255,255,255,0.10))",
-              boxShadow: "var(--shadow-lg, 0 24px 60px -24px rgba(10,10,15,0.28))",
-              overflow: "hidden",
-              background: "#000",
+              margin: "0 0 20px",
+              fontSize: "clamp(30px, 3.4vw, 46px)",
+              lineHeight: 1.06,
+              fontWeight: 800,
+              letterSpacing: "-0.03em",
+              color: "var(--fg-on-dark, #FFFFFF)",
             }}
           >
-            <VideoEmbed videoId={VIDEO_ID} title={TITEL} />
-          </div>
-
-          <div
-            style={{
-              marginTop: 16,
-              paddingLeft: 14,
-              borderLeft: "3px solid var(--mint, #10B981)",
-            }}
-          >
+            {KOP}
+          </h1>
+          <div style={{ paddingLeft: 14, borderLeft: "3px solid var(--mint, #10B981)" }}>
             <h2
               style={{
-                margin: "0 0 4px",
-                fontSize: 19,
+                margin: "0 0 6px",
+                fontSize: 20,
                 fontWeight: 700,
                 letterSpacing: "-0.02em",
                 color: "var(--fg-on-dark, #FFFFFF)",
@@ -127,12 +103,29 @@ export default function UpdatesPage() {
               style={{
                 margin: 0,
                 fontSize: 15,
-                lineHeight: 1.55,
+                lineHeight: 1.6,
                 color: "var(--fg-on-dark-2, #9CA3AF)",
               }}
             >
               {TEKST}
             </p>
+          </div>
+        </div>
+
+        {/* Rechts: de video, zo groot als de widget toelaat */}
+        <div className="upd-right">
+          <div className="upd-video">
+            <div
+              style={{
+                borderRadius: "var(--r-lg, 20px)",
+                border: "1px solid var(--border-on-dark, rgba(255,255,255,0.10))",
+                boxShadow: "var(--shadow-lg, 0 24px 60px -24px rgba(10,10,15,0.28))",
+                overflow: "hidden",
+                background: "#000",
+              }}
+            >
+              <VideoEmbed videoId={VIDEO_ID} title={TITEL} />
+            </div>
           </div>
         </div>
       </div>
