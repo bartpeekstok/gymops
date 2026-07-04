@@ -5,6 +5,7 @@ import type { Metadata } from "next";
    VIDEO_ID = het stuk achter "watch?v=" in de YouTube-URL.
    ============================================================ */
 const VIDEO_ID = "asKZDjdjiG0";
+const KOP = "GymOps nieuws";
 const TITEL = "Ex leden campagne";
 const TEKST = "Let op! Check de leden die de ex-leden campagne in gaan!";
 /* ============================================================ */
@@ -27,6 +28,17 @@ export default function UpdatesPage() {
       }}
     >
       <div style={{ width: "100%", maxWidth: 860 }}>
+        <h1
+          style={{
+            margin: "0 0 20px",
+            fontSize: 38,
+            fontWeight: 800,
+            textAlign: "center",
+            color: "var(--fg2, #1F2937)",
+          }}
+        >
+          {KOP}
+        </h1>
         <div
           style={{
             position: "relative",
@@ -51,7 +63,7 @@ export default function UpdatesPage() {
             }}
           />
         </div>
-        <h1
+        <h2
           style={{
             margin: "20px 0 8px",
             fontSize: 22,
@@ -60,7 +72,7 @@ export default function UpdatesPage() {
           }}
         >
           {TITEL}
-        </h1>
+        </h2>
         <p
           style={{
             margin: 0,
