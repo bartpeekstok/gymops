@@ -36,7 +36,7 @@ export default function UpdatesPage() {
           inset: 0,
           backgroundImage: "url(/assets/gym-header.jpg)",
           backgroundSize: "cover",
-          backgroundPosition: "center 22%",
+          backgroundPosition: "center 38%",
           backgroundRepeat: "no-repeat",
           pointerEvents: "none",
         }}
