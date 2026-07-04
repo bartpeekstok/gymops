@@ -13,6 +13,7 @@ const TITEL = "Ex leden campagne";
 const TEKST = `Zodra een lid geen lidmaatschap meer heeft, schuift hij of zij de ex-leden campagne in. Alle tags die aangeven dat iemand lid is worden verwijderd en er start een reactivatie campagne met mail, WhatsApp en automatische ansichtkaarten om diegene terug te laten keren als lid.
 
 Dit gaat nagenoeg altijd goed. Maar omdat het extra pijnlijk is als leden benaderd worden alsof ze geen lid meer zijn, hebben we een extra stap toegevoegd. Bekijk de video hiernaast.`;
+const VOETER = "Deze en alle andere video's over jouw GymOps-systeem vind je in de GymOps Academy.";
 /* ============================================================ */
 
 export const metadata: Metadata = {
@@ -119,6 +120,17 @@ export default function UpdatesPage() {
               {TEKST}
             </p>
           </div>
+          <p
+            style={{
+              margin: "auto 0 0 28px",
+              paddingTop: 20,
+              fontSize: 14,
+              lineHeight: 1.5,
+              color: "var(--fg-on-dark-2, #9CA3AF)",
+            }}
+          >
+            {VOETER}
+          </p>
         </div>
 
         {/* Rechts: de video, zo groot als de widget toelaat */}
