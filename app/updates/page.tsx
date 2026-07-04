@@ -4,7 +4,9 @@ import VideoEmbed from "./VideoEmbed";
 /* ============================================================
    BEWERK ALLEEN DIT BLOK om de dashboard-update aan te passen.
    VIDEO_ID = het stuk achter "watch?v=" in de YouTube-URL.
+   FOTO_ACHTERGROND: true = gym-foto met overlay, false = egaal zwart.
    ============================================================ */
+const FOTO_ACHTERGROND = false;
 const VIDEO_ID = "asKZDjdjiG0";
 const KOP = "GymOps Academy";
 const TITEL = "Ex leden campagne";
@@ -31,28 +33,32 @@ export default function UpdatesPage() {
       }}
     >
       {/* Hero-foto + merkkleur-overlay, zelfde als de site-header */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage: "url(/assets/gym-header.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center 38%",
-          backgroundRepeat: "no-repeat",
-          pointerEvents: "none",
-        }}
-      />
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          inset: 0,
-          pointerEvents: "none",
-          background:
-            "linear-gradient(152deg, rgba(10,10,15,.93) 0%, rgba(10,10,15,.82) 46%, rgba(11,16,15,.66) 72%, rgba(16,185,129,.40) 100%)",
-        }}
-      />
+      {FOTO_ACHTERGROND && (
+        <>
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundImage: "url(/assets/gym-header.jpg)",
+              backgroundSize: "cover",
+              backgroundPosition: "center 38%",
+              backgroundRepeat: "no-repeat",
+              pointerEvents: "none",
+            }}
+          />
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              inset: 0,
+              pointerEvents: "none",
+              background:
+                "linear-gradient(152deg, rgba(10,10,15,.93) 0%, rgba(10,10,15,.82) 46%, rgba(11,16,15,.66) 72%, rgba(16,185,129,.40) 100%)",
+            }}
+          />
+        </>
+      )}
 
       <style>{`
         .upd-grid { position: relative; z-index: 1; height: 100%; display: flex; align-items: stretch; gap: 44px; padding: 24px 24px 24px 32px; }
