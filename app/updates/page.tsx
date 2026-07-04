@@ -73,11 +73,11 @@ export default function UpdatesPage() {
           <img
             src="/assets/logo-wit.png"
             alt="GymOps"
-            style={{ height: 64, width: "auto", alignSelf: "flex-start", marginBottom: 20, display: "block" }}
+            style={{ height: 88, width: "auto", alignSelf: "flex-start", marginBottom: 20, display: "block" }}
           />
           <h1
             style={{
-              margin: "0 0 20px",
+              margin: "0 0 20px 28px",
               fontSize: "clamp(30px, 3.4vw, 46px)",
               lineHeight: 1.06,
               fontWeight: 800,
@@ -87,7 +87,7 @@ export default function UpdatesPage() {
           >
             {KOP}
           </h1>
-          <div style={{ paddingLeft: 14, borderLeft: "3px solid var(--mint, #10B981)" }}>
+          <div style={{ marginLeft: 28, paddingLeft: 14, borderLeft: "3px solid var(--mint, #10B981)" }}>
             <h2
               style={{
                 margin: "0 0 6px",
