@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import VideoEmbed from "./VideoEmbed";
 
 /* ============================================================
    BEWERK ALLEEN DIT BLOK om de dashboard-update aan te passen.
@@ -39,30 +40,7 @@ export default function UpdatesPage() {
         >
           {KOP}
         </h1>
-        <div
-          style={{
-            position: "relative",
-            width: "100%",
-            aspectRatio: "16 / 9",
-            borderRadius: 12,
-            overflow: "hidden",
-            background: "#000",
-          }}
-        >
-          <iframe
-            src={`https://www.youtube-nocookie.com/embed/${VIDEO_ID}?rel=0&vq=hd1080`}
-            title={TITEL}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-            style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
-              border: 0,
-            }}
-          />
-        </div>
+        <VideoEmbed videoId={VIDEO_ID} title={TITEL} />
         <div style={{ textAlign: "right", marginTop: 10 }}>
           <a
             href={`https://www.youtube.com/watch?v=${VIDEO_ID}`}
