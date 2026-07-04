@@ -81,7 +81,7 @@ export default function UpdatesPage() {
           <img
             src="/assets/logo-wit.png"
             alt="GymOps"
-            style={{ height: 88, width: "auto", alignSelf: "flex-start", marginBottom: 20, display: "block" }}
+            style={{ height: 112, width: "auto", alignSelf: "flex-start", marginBottom: 20, display: "block" }}
           />
           <h1
             style={{
