@@ -8,7 +8,9 @@ import VideoEmbed from "./VideoEmbed";
 const VIDEO_ID = "asKZDjdjiG0";
 const KOP = "GymOps nieuws";
 const TITEL = "Ex leden campagne";
-const TEKST = "Let op! Check de leden die de ex-leden campagne in gaan!";
+const TEKST = `Zodra een lid geen lidmaatschap meer heeft, schuift hij of zij de ex-leden campagne in. Alle tags die aangeven dat iemand lid is worden verwijderd en er start een reactivatie campagne met mail, WhatsApp en automatische ansichtkaarten om diegene terug te laten keren als lid.
+
+Dit gaat nagenoeg altijd goed. Maar omdat het extra pijnlijk is als leden benaderd worden alsof ze geen lid meer zijn, hebben we een extra stap toegevoegd. Bekijk de video hiernaast.`;
 /* ============================================================ */
 
 export const metadata: Metadata = {
@@ -104,6 +106,7 @@ export default function UpdatesPage() {
                 margin: 0,
                 fontSize: 15,
                 lineHeight: 1.6,
+                whiteSpace: "pre-line",
                 color: "var(--fg-on-dark-2, #9CA3AF)",
               }}
             >
