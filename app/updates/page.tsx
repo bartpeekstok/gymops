@@ -50,7 +50,7 @@ export default function UpdatesPage() {
           }}
         >
           <iframe
-            src={`https://www.youtube-nocookie.com/embed/${VIDEO_ID}?rel=0`}
+            src={`https://www.youtube-nocookie.com/embed/${VIDEO_ID}?rel=0&vq=hd1080`}
             title={TITEL}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
