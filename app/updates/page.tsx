@@ -53,10 +53,10 @@ export default function UpdatesPage() {
       />
 
       <style>{`
-        .upd-grid { position: relative; z-index: 1; height: 100%; display: flex; align-items: center; justify-content: center; gap: 40px; padding: 24px 32px; }
-        .upd-left { flex: 0 1 360px; min-width: 250px; }
-        .upd-right { flex: 1 1 auto; display: flex; justify-content: center; min-width: 0; }
-        .upd-video { width: min(100%, calc((100vh - 96px) * 1.7778)); }
+        .upd-grid { position: relative; z-index: 1; height: 100%; display: flex; align-items: stretch; gap: 44px; padding: 24px 24px 24px 32px; }
+        .upd-left { flex: 1 1 auto; min-width: 0; max-width: 640px; display: flex; flex-direction: column; justify-content: flex-start; }
+        .upd-right { flex: 0 0 auto; display: flex; align-items: center; }
+        .upd-video { width: min(calc((100vh - 48px) * 1.7778), 66vw); }
         @media (max-width: 720px) {
           .upd-main { height: auto; min-height: 100vh; overflow: auto; }
           .upd-grid { flex-direction: column; gap: 20px; padding: 24px 16px; }
@@ -73,7 +73,7 @@ export default function UpdatesPage() {
           <img
             src="/assets/logo-wit.png"
             alt="GymOps"
-            style={{ height: 42, width: "auto", marginBottom: 20, display: "block" }}
+            style={{ height: 64, width: "auto", marginBottom: 20, display: "block" }}
           />
           <h1
             style={{
