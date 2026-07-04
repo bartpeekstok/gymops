@@ -63,7 +63,7 @@ export default function UpdatesPage() {
 
       <style>{`
         .upd-grid { position: relative; z-index: 1; height: 100%; display: flex; align-items: stretch; gap: 44px; padding: 24px 24px 24px 32px; }
-        .upd-left { flex: 1 1 auto; min-width: 0; max-width: 640px; display: flex; flex-direction: column; justify-content: flex-start; }
+        .upd-left { flex: 1 1 auto; min-width: 0; max-width: 640px; display: flex; flex-direction: column; justify-content: flex-start; overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.25) transparent; }
         .upd-right { flex: 0 0 auto; display: flex; align-items: center; margin-left: auto; }
         .upd-video { width: min(calc((100vh - 72px) * 1.7778), 63vw); }
         @media (max-width: 720px) {
