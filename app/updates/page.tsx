@@ -4,10 +4,9 @@ import type { Metadata } from "next";
    BEWERK ALLEEN DIT BLOK om de dashboard-update aan te passen.
    VIDEO_ID = het stuk achter "watch?v=" in de YouTube-URL.
    ============================================================ */
-const VIDEO_ID = "dQw4w9WgXcQ";
+const VIDEO_ID = "asKZDjdjiG0";
 const TITEL = "Update van deze week";
-const TEKST =
-  "Korte toelichting bij de video. Pas deze tekst en de video-ID aan in app/updates/page.tsx, alle sub-account dashboards tonen daarna automatisch de nieuwe versie.";
+const TEKST = "Let op! Check de leden die de ex-leden campagne in gaan!";
 /* ============================================================ */
 
 export const metadata: Metadata = {
