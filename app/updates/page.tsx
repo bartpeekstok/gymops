@@ -14,10 +14,8 @@ const TEKST = `Zodra een lid geen lidmaatschap meer heeft, schuift hij of zij de
 
 Dit gaat nagenoeg altijd goed. Maar omdat het extra pijnlijk is als leden benaderd worden alsof ze geen lid meer zijn, hebben we een extra stap toegevoegd. Bekijk de video hiernaast.`;
 const VOETER_VOOR = "Deze en alle andere video's over jouw GymOps-systeem vind je in de ";
-const VOETER_LINKTEKST = "GymOps Academy";
+const VOETER_ACCENT = "GymOps Academy";
 const VOETER_NA = ".";
-const ACADEMY_URL =
-  "https://app.gymops.nl/v2/location/adUbRq7OtYvdBylJLHtH/custom-menu-link/6167e721-d1a1-48bc-96ab-f744f5246a69";
 /* ============================================================ */
 
 export const metadata: Metadata = {
@@ -134,14 +132,9 @@ export default function UpdatesPage() {
             }}
           >
             {VOETER_VOOR}
-            <a
-              href={ACADEMY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: "var(--mint-light, #34D399)", fontWeight: 600, textDecoration: "underline" }}
-            >
-              {VOETER_LINKTEKST}
-            </a>
+            <strong style={{ color: "var(--fg-on-dark, #FFFFFF)", fontWeight: 700 }}>
+              {VOETER_ACCENT}
+            </strong>
             {VOETER_NA}
           </p>
         </div>
