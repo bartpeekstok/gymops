@@ -89,7 +89,7 @@ export default function UpdatesPage() {
           >
             {KOP}
           </h1>
-          <div style={{ marginLeft: 28, paddingLeft: 14, borderLeft: "3px solid var(--mint, #10B981)" }}>
+          <div style={{ marginTop: 28, marginLeft: 28, paddingLeft: 14, borderLeft: "3px solid var(--mint, #10B981)" }}>
             <h2
               style={{
                 margin: "0 0 6px",
