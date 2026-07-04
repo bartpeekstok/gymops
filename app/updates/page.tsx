@@ -92,8 +92,8 @@ export default function UpdatesPage() {
           <div style={{ marginTop: 28, marginLeft: 28, paddingLeft: 14, borderLeft: "3px solid var(--mint, #10B981)" }}>
             <h2
               style={{
-                margin: "0 0 6px",
-                fontSize: 20,
+                margin: "0 0 8px",
+                fontSize: 24,
                 fontWeight: 700,
                 letterSpacing: "-0.02em",
                 color: "var(--fg-on-dark, #FFFFFF)",
@@ -104,7 +104,7 @@ export default function UpdatesPage() {
             <p
               style={{
                 margin: 0,
-                fontSize: 17,
+                fontSize: 19,
                 lineHeight: 1.6,
                 whiteSpace: "pre-line",
                 color: "var(--fg-on-dark, #FFFFFF)",
