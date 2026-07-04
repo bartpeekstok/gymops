@@ -104,10 +104,10 @@ export default function UpdatesPage() {
             <p
               style={{
                 margin: 0,
-                fontSize: 15,
+                fontSize: 17,
                 lineHeight: 1.6,
                 whiteSpace: "pre-line",
-                color: "var(--fg-on-dark-2, #9CA3AF)",
+                color: "var(--fg-on-dark, #FFFFFF)",
               }}
             >
               {TEKST}
