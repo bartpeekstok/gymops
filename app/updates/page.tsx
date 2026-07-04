@@ -13,7 +13,11 @@ const TITEL = "Ex leden campagne";
 const TEKST = `Zodra een lid geen lidmaatschap meer heeft, schuift hij of zij de ex-leden campagne in. Alle tags die aangeven dat iemand lid is worden verwijderd en er start een reactivatie campagne met mail, WhatsApp en automatische ansichtkaarten om diegene terug te laten keren als lid.
 
 Dit gaat nagenoeg altijd goed. Maar omdat het extra pijnlijk is als leden benaderd worden alsof ze geen lid meer zijn, hebben we een extra stap toegevoegd. Bekijk de video hiernaast.`;
-const VOETER = "Deze en alle andere video's over jouw GymOps-systeem vind je in de GymOps Academy.";
+const VOETER_VOOR = "Deze en alle andere video's over jouw GymOps-systeem vind je in de ";
+const VOETER_LINKTEKST = "GymOps Academy";
+const VOETER_NA = ".";
+const ACADEMY_URL =
+  "https://app.gymops.nl/v2/location/adUbRq7OtYvdBylJLHtH/custom-menu-link/6167e721-d1a1-48bc-96ab-f744f5246a69";
 /* ============================================================ */
 
 export const metadata: Metadata = {
@@ -129,7 +133,16 @@ export default function UpdatesPage() {
               color: "var(--fg-on-dark-2, #9CA3AF)",
             }}
           >
-            {VOETER}
+            {VOETER_VOOR}
+            <a
+              href={ACADEMY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "var(--mint-light, #34D399)", fontWeight: 600, textDecoration: "underline" }}
+            >
+              {VOETER_LINKTEKST}
+            </a>
+            {VOETER_NA}
           </p>
         </div>
 
