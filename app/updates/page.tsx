@@ -5,7 +5,7 @@ import type { Metadata } from "next";
    VIDEO_ID = het stuk achter "watch?v=" in de YouTube-URL.
    ============================================================ */
 const VIDEO_ID = "asKZDjdjiG0";
-const TITEL = "Update van deze week";
+const TITEL = "Ex leden campagne";
 const TEKST = "Let op! Check de leden die de ex-leden campagne in gaan!";
 /* ============================================================ */
 
