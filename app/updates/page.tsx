@@ -63,9 +63,28 @@ export default function UpdatesPage() {
             }}
           />
         </div>
+        <div style={{ textAlign: "right", marginTop: 10 }}>
+          <a
+            href={`https://www.youtube.com/watch?v=${VIDEO_ID}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-block",
+              fontSize: 14,
+              fontWeight: 600,
+              color: "#0F766E",
+              textDecoration: "none",
+              border: "1px solid #0F766E",
+              borderRadius: 8,
+              padding: "6px 12px",
+            }}
+          >
+            Bekijk fullscreen op YouTube ↗
+          </a>
+        </div>
         <h2
           style={{
-            margin: "20px 0 8px",
+            margin: "12px 0 8px",
             fontSize: 22,
             fontWeight: 700,
             color: "var(--fg2, #1F2937)",
