@@ -6,7 +6,7 @@ import VideoEmbed from "./VideoEmbed";
    VIDEO_ID = het stuk achter "watch?v=" in de YouTube-URL.
    ============================================================ */
 const VIDEO_ID = "asKZDjdjiG0";
-const KOP = "GymOps nieuws";
+const KOP = "GymOps Academy";
 const TITEL = "Ex leden campagne";
 const TEKST = `Zodra een lid geen lidmaatschap meer heeft, schuift hij of zij de ex-leden campagne in. Alle tags die aangeven dat iemand lid is worden verwijderd en er start een reactivatie campagne met mail, WhatsApp en automatische ansichtkaarten om diegene terug te laten keren als lid.
 
