@@ -8,6 +8,7 @@ import VideoEmbed from "./VideoEmbed";
    FOTO_ACHTERGROND: true = gym-foto met overlay, false = egaal zwart.
    ============================================================ */
 const FOTO_ACHTERGROND = false;
+const TOON_KOP = false; // true = grote kop boven de update tonen
 const VIDEO_ID = "https://www.loom.com/share/38d3a1ae173c49f69bb04553dbce5680";
 const KOP = "GymOps Academy";
 const TITEL = "Ansichtkaarten versturen binnen één minuut";
@@ -89,18 +90,20 @@ export default function UpdatesPage() {
             alt="GymOps"
             style={{ height: 112, width: "auto", alignSelf: "flex-start", marginBottom: 20, display: "block" }}
           />
-          <h1
-            style={{
-              margin: "0 0 20px 28px",
-              fontSize: "clamp(30px, 3.4vw, 46px)",
-              lineHeight: 1.06,
-              fontWeight: 800,
-              letterSpacing: "-0.03em",
-              color: "var(--fg-on-dark, #FFFFFF)",
-            }}
-          >
-            {KOP}
-          </h1>
+          {TOON_KOP && (
+            <h1
+              style={{
+                margin: "0 0 20px 28px",
+                fontSize: "clamp(30px, 3.4vw, 46px)",
+                lineHeight: 1.06,
+                fontWeight: 800,
+                letterSpacing: "-0.03em",
+                color: "var(--fg-on-dark, #FFFFFF)",
+              }}
+            >
+              {KOP}
+            </h1>
+          )}
           <div style={{ marginTop: 10, marginLeft: 28, paddingLeft: 14, borderLeft: "3px solid var(--mint, #10B981)" }}>
             <h2
               style={{
@@ -138,6 +141,20 @@ export default function UpdatesPage() {
             <strong style={{ color: "var(--fg-on-dark, #FFFFFF)", fontWeight: 700 }}>
               {VOETER_ACCENT}
             </strong>
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--fg-on-dark, #FFFFFF)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              style={{ width: 16, height: 16, marginLeft: 6, verticalAlign: "-3px", display: "inline-block" }}
+            >
+              <path d="M22 10v6" />
+              <path d="M2 10l10-5 10 5-10 5z" />
+              <path d="M6 12v5c3 3 9 3 12 0v-5" />
+            </svg>
             {VOETER_NA}
           </p>
         </div>
