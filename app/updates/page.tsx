@@ -11,7 +11,9 @@ const FOTO_ACHTERGROND = false;
 const VIDEO_ID = "https://www.loom.com/share/38d3a1ae173c49f69bb04553dbce5680";
 const KOP = "GymOps Academy";
 const TITEL = "Ansichtkaarten versturen binnen één minuut";
-const TEKST = `Bekijk de video hiernaast om te zien hoe je je leden een ansichtkaart stuurt vanaf je laptop of in de app!`;
+const TEKST = `Bekijk de video hiernaast om te zien hoe je je leden een ansichtkaart stuurt vanaf je laptop of in de app!
+
+Dit is een unieke feature van GymOps waar je je leden echt blij mee maakt. En het werkt twee kanten op: leden gaan met hun ansichtkaart op de foto en delen die op social media. Zo levert een kaartje van één minuut ook nog eens waardevolle zichtbaarheid op voor jouw gym.`;
 const VOETER_VOOR = "Deze en alle andere video's over jouw GymOps-systeem vind je in de ";
 const VOETER_ACCENT = "GymOps Academy";
 const VOETER_NA = ".";
