@@ -69,9 +69,9 @@ export default function UpdatesPage() {
 
       <style>{`
         .upd-grid { position: relative; z-index: 1; height: 100%; display: flex; align-items: stretch; gap: 44px; padding: 24px 24px 24px 32px; }
-        .upd-left { flex: 1 1 auto; min-width: 0; max-width: 640px; display: flex; flex-direction: column; justify-content: flex-start; overflow: hidden; }
+        .upd-left { flex: 1 1 auto; min-width: 0; max-width: 760px; display: flex; flex-direction: column; justify-content: flex-start; overflow: hidden; }
         .upd-right { flex: 0 0 auto; display: flex; align-items: center; margin-left: auto; }
-        .upd-video { width: min(calc((100vh - 72px) * 1.7778), 63vw); }
+        .upd-video { width: min(calc((100vh - 72px) * 1.7778), 55vw); }
         @media (max-width: 720px) {
           .upd-main { height: auto; min-height: 100vh; overflow: auto; }
           .upd-grid { flex-direction: column; gap: 20px; padding: 24px 16px; }
@@ -108,7 +108,7 @@ export default function UpdatesPage() {
             <h2
               style={{
                 margin: "0 0 8px",
-                fontSize: 24,
+                fontSize: 22,
                 fontWeight: 700,
                 letterSpacing: "-0.02em",
                 color: "var(--fg-on-dark, #FFFFFF)",
@@ -119,8 +119,8 @@ export default function UpdatesPage() {
             <p
               style={{
                 margin: 0,
-                fontSize: 19,
-                lineHeight: 1.6,
+                fontSize: 17,
+                lineHeight: 1.55,
                 whiteSpace: "pre-line",
                 color: "var(--fg-on-dark, #FFFFFF)",
               }}
