@@ -9,10 +9,10 @@ import VideoEmbed from "./VideoEmbed";
    ============================================================ */
 const FOTO_ACHTERGROND = false;
 const TOON_KOP = false; // true = grote kop boven de update tonen
-const VIDEO_ID = "https://www.loom.com/share/38d3a1ae173c49f69bb04553dbce5680";
+const VIDEO_ID = "https://www.loom.com/share/f48dc860313b4ae48e4da5e4e98ab8b2";
 const KOP = "GymOps Academy";
-const TITEL = "Ansichtkaarten versturen binnen één minuut";
-const TEKST = `Bekijk de video hiernaast om te zien hoe je je leden een ansichtkaart stuurt vanaf je laptop of in de app!
+const TITEL = "Jaarlijkse ansichtkaart";
+const TEKST = `Bekijk de video hiernaast om te zien hoe de jaarlijkse ansichtkaart voor je leden werkt!
 
 Dit is een unieke feature van GymOps waar je je leden echt blij mee maakt. En het werkt twee kanten op: leden gaan met hun ansichtkaart op de foto en delen die op social media. Zo levert een kaartje van één minuut ook nog eens waardevolle zichtbaarheid op voor jouw gym.
 
@@ -138,6 +138,7 @@ export default function UpdatesPage() {
             }}
           >
             {VOETER_VOOR}
+            <span style={{ whiteSpace: "nowrap" }}>
             <strong style={{ color: "var(--fg-on-dark, #FFFFFF)", fontWeight: 700 }}>
               {VOETER_ACCENT}
             </strong>
