@@ -9,10 +9,10 @@ import VideoEmbed from "./VideoEmbed";
    ============================================================ */
 const FOTO_ACHTERGROND = false;
 const TOON_KOP = false; // true = grote kop boven de update tonen
-const VIDEO_ID = "https://www.loom.com/share/f48dc860313b4ae48e4da5e4e98ab8b2";
+const VIDEO_ID = "https://www.loom.com/share/6c657d55353846c3852d6c1fc2bf50a2";
 const KOP = "GymOps Academy";
-const TITEL = "Jaarlijkse ansichtkaart";
-const TEKST = `Bekijk de video hiernaast om te zien hoe de jaarlijkse ansichtkaart voor je leden werkt!
+const TITEL = "Mijlpalen";
+const TEKST = `Bekijk de video hiernaast om te zien hoe mijlpalen voor je leden werken!
 
 Dit is een unieke feature van GymOps waar je je leden echt blij mee maakt. En het werkt twee kanten op: leden gaan met hun ansichtkaart op de foto en delen die op social media. Zo levert een kaartje van één minuut ook nog eens waardevolle zichtbaarheid op voor jouw gym.
 
@@ -139,24 +139,25 @@ export default function UpdatesPage() {
           >
             {VOETER_VOOR}
             <span style={{ whiteSpace: "nowrap" }}>
-            <strong style={{ color: "var(--fg-on-dark, #FFFFFF)", fontWeight: 700 }}>
-              {VOETER_ACCENT}
-            </strong>
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="var(--fg-on-dark, #FFFFFF)"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              style={{ width: 16, height: 16, marginLeft: 6, verticalAlign: "-3px", display: "inline-block" }}
-            >
-              <path d="M22 10v6" />
-              <path d="M2 10l10-5 10 5-10 5z" />
-              <path d="M6 12v5c3 3 9 3 12 0v-5" />
-            </svg>
-            {VOETER_NA}
+              <strong style={{ color: "var(--fg-on-dark, #FFFFFF)", fontWeight: 700 }}>
+                {VOETER_ACCENT}
+              </strong>
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--fg-on-dark, #FFFFFF)"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{ width: 16, height: 16, marginLeft: 6, verticalAlign: "-3px", display: "inline-block" }}
+              >
+                <path d="M22 10v6" />
+                <path d="M2 10l10-5 10 5-10 5z" />
+                <path d="M6 12v5c3 3 9 3 12 0v-5" />
+              </svg>
+              {VOETER_NA}
+            </span>
           </p>
         </div>
 
