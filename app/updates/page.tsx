@@ -9,10 +9,10 @@ import VideoEmbed from "./VideoEmbed";
    ============================================================ */
 const FOTO_ACHTERGROND = false;
 const TOON_KOP = false; // true = grote kop boven de update tonen
-const VIDEO_ID = "https://www.loom.com/share/6c657d55353846c3852d6c1fc2bf50a2";
+const VIDEO_ID = "https://www.loom.com/share/38d3a1ae173c49f69bb04553dbce5680";
 const KOP = "GymOps Academy";
-const TITEL = "Mijlpalen";
-const TEKST = `Bekijk de video hiernaast om te zien hoe mijlpalen voor je leden werken!
+const TITEL = "Ansichtkaarten versturen binnen één minuut";
+const TEKST = `Bekijk de video hiernaast om te zien hoe je je leden een ansichtkaart stuurt vanaf je laptop of in de app!
 
 Dit is een unieke feature van GymOps waar je je leden echt blij mee maakt. En het werkt twee kanten op: leden gaan met hun ansichtkaart op de foto en delen die op social media. Zo levert een kaartje van één minuut ook nog eens waardevolle zichtbaarheid op voor jouw gym.
 
