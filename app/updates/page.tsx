@@ -3,7 +3,8 @@ import VideoEmbed from "./VideoEmbed";
 
 /* ============================================================
    BEWERK ALLEEN DIT BLOK om de dashboard-update aan te passen.
-   VIDEO_ID = het stuk achter "watch?v=" in de YouTube-URL.
+   VIDEO_ID = het stuk achter "watch?v=" in de YouTube-URL,
+   OF een volledige Loom-deellink (bijv. https://www.loom.com/share/abc123).
    FOTO_ACHTERGROND: true = gym-foto met overlay, false = egaal zwart.
    ============================================================ */
 const FOTO_ACHTERGROND = false;

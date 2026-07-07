@@ -8,6 +8,17 @@ import { useEffect, useRef, useState } from "react";
 const BASE_W = 1920;
 const BASE_H = 1080;
 
+/* Bepaal de embed-URL. Een Loom-deellink (loom.com/share/...) wordt
+   herkend en omgezet naar de Loom-embed. Anders gaan we uit van een
+   YouTube video-ID. */
+function embedSrc(videoId: string): string {
+  const loom = videoId.match(/loom\.com\/(?:share|embed)\/([a-zA-Z0-9]+)/);
+  if (loom) {
+    return `https://www.loom.com/embed/${loom[1]}?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true`;
+  }
+  return `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&vq=hd1080`;
+}
+
 export default function VideoEmbed({ videoId, title }: { videoId: string; title: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(0);
@@ -36,7 +47,7 @@ export default function VideoEmbed({ videoId, title }: { videoId: string; title:
     >
       {scale > 0 && (
         <iframe
-          src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&vq=hd1080`}
+          src={embedSrc(videoId)}
           title={title}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture; web-share"
           allowFullScreen
