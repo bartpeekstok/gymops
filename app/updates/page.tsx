@@ -8,12 +8,10 @@ import VideoEmbed from "./VideoEmbed";
    FOTO_ACHTERGROND: true = gym-foto met overlay, false = egaal zwart.
    ============================================================ */
 const FOTO_ACHTERGROND = false;
-const VIDEO_ID = "asKZDjdjiG0";
+const VIDEO_ID = "https://www.loom.com/share/38d3a1ae173c49f69bb04553dbce5680";
 const KOP = "GymOps Academy";
-const TITEL = "Ex leden campagne";
-const TEKST = `Zodra een lid geen lidmaatschap meer heeft, schuift hij of zij de ex-leden campagne in. Alle tags die aangeven dat iemand lid is worden verwijderd en er start een reactivatie campagne met mail, WhatsApp en automatische ansichtkaarten om diegene terug te laten keren als lid.
-
-Dit gaat nagenoeg altijd goed. Maar omdat het extra pijnlijk is als leden benaderd worden alsof ze geen lid meer zijn, hebben we een extra stap toegevoegd. Bekijk de video hiernaast.`;
+const TITEL = "Ansichtkaarten versturen binnen één minuut";
+const TEKST = `Bekijk de video hiernaast om te zien hoe je je leden een ansichtkaart stuurt vanaf je laptop of in de app!`;
 const VOETER_VOOR = "Deze en alle andere video's over jouw GymOps-systeem vind je in de ";
 const VOETER_ACCENT = "GymOps Academy";
 const VOETER_NA = ".";
