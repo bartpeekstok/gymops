@@ -1770,7 +1770,7 @@ function Hero() {
         <div className="marquee">
           <div className="marquee-track">
             {[...GO.trusted, ...GO.trusted].map((l, i) => (
-              <div key={i} className="mq-item"><img src={GO.A + l.src} alt={l.name} title={l.name} /></div>
+              <div key={i} className="mq-item"><img src={GO.A + l.src} alt={l.name} title={l.name} style={l.scale ? { transform: `scale(${l.scale})` } : undefined} /></div>
             ))}
           </div>
         </div>
@@ -2890,7 +2890,7 @@ function Klanten() {
           <div className="marquee-track">
             {logos.map((l, i) => (
               <div key={i} style={{ width: 150, height: 52, marginRight: 60, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <img src={GO.A + l.src} alt={l.name} style={{ maxHeight: 46, maxWidth: 130, objectFit: 'contain', filter: 'grayscale(1)', opacity: .6 }} />
+                <img src={GO.A + l.src} alt={l.name} style={{ maxHeight: 46, maxWidth: 130, objectFit: 'contain', filter: 'grayscale(1)', opacity: .6, transform: l.scale ? `scale(${l.scale})` : undefined }} />
               </div>
             ))}
           </div>
