@@ -9,14 +9,14 @@ import VideoEmbed from "./VideoEmbed";
    ============================================================ */
 const FOTO_ACHTERGROND = false;
 const TOON_KOP = false; // true = grote kop boven de update tonen
-const VIDEO_ID = "https://www.loom.com/share/38d3a1ae173c49f69bb04553dbce5680";
+const VIDEO_ID = "https://www.loom.com/share/96d972b8c8974a6dae394bf97f012774";
 const KOP = "GymOps Academy";
-const TITEL = "Ansichtkaarten versturen binnen één minuut";
-const TEKST = `Bekijk de video hiernaast om te zien hoe je je leden een ansichtkaart stuurt vanaf je laptop of in de app!
+const TITEL = "Houd je intro pipeline bij!";
+const TEKST = `Bekijk de video hiernaast om te zien hoe je je intro pipeline bijhoudt in GymOps.
 
-Dit is een unieke feature van GymOps waar je je leden echt blij mee maakt. En het werkt twee kanten op: leden gaan met hun ansichtkaart op de foto en delen die op social media. Zo levert een kaartje van één minuut ook nog eens waardevolle zichtbaarheid op voor jouw gym.
+Elke aanvraag voor een intro of proefles komt automatisch in je pipeline terecht. Zo zie je in één oogopslag wie er nog gebeld moet worden, wie al een intro heeft gepland en wie klaar is om lid te worden. Geen lead valt meer tussen wal en schip.
 
-Enige voorwaarde: je hebt een Writify-account nodig dat je aan ons hebt doorgegeven, zodat wij de koppeling met jouw GymOps-systeem kunnen maken. Nog niet geregeld? Stuur ons een berichtje en we zetten het voor je klaar.`;
+Het enige dat jij hoeft te doen: na elk contactmoment de kaart naar de juiste kolom slepen. Dat kost een paar seconden en houdt je overzicht kloppend, voor jou en voor iedereen in je team.`;
 const VOETER_VOOR = "Deze en alle andere video's over jouw GymOps-systeem vind je in de ";
 const VOETER_ACCENT = "GymOps Academy";
 const VOETER_NA = ".";
