@@ -9,14 +9,12 @@ import VideoEmbed from "./VideoEmbed";
    ============================================================ */
 const FOTO_ACHTERGROND = false;
 const TOON_KOP = false; // true = grote kop boven de update tonen
-const VIDEO_ID = "https://www.loom.com/share/96d972b8c8974a6dae394bf97f012774";
+const VIDEO_ID = "https://www.loom.com/share/4bbb768b1639466d97027069ab563f5b";
 const KOP = "GymOps Academy";
-const TITEL = "Houd je intro pipeline bij!";
-const TEKST = `Bekijk de video hiernaast om te zien hoe je je intro pipeline bijhoudt in GymOps.
+const TITEL = "Zwangerschap registreren en opvolgen";
+const TEKST = `Bekijk de video hiernaast om te zien hoe je een zwangerschap registreert bij een lid en hoe de opvolging daarna verloopt. De video behandelt alle drie de zwangerschapsworkflows: zwanger, bevallen en anders verlopen.
 
-Elke aanvraag voor een intro of proefles komt automatisch in je pipeline terecht. Zo zie je in één oogopslag wie er nog gebeld moet worden, wie al een intro heeft gepland en wie klaar is om lid te worden. Geen lead valt meer tussen wal en schip.
-
-Het enige dat jij hoeft te doen: na elk contactmoment de kaart naar de juiste kolom slepen. Dat kost een paar seconden en houdt je overzicht kloppend, voor jou en voor iedereen in je team.`;
+Goed om te weten: bij een zwangerschap worden er geen automatische berichten naar het lid gestuurd. De workflows maken alleen taken aan voor je personeel. Dat is een bewuste keuze: een zwangerschap is persoonlijk en verdient echt persoonlijk contact. Een automatisch bericht kan bovendien pijnlijk overkomen als de situatie ondertussen is veranderd, bijvoorbeeld wanneer de zwangerschap anders is verlopen. Met een taak bepaal jij of je team zelf het juiste moment, de juiste toon en het juiste kanaal.`;
 const VOETER_VOOR = "Deze en alle andere video's over jouw GymOps-systeem vind je in de ";
 const VOETER_ACCENT = "GymOps Academy";
 const VOETER_NA = ".";
