@@ -12,9 +12,9 @@ const TOON_KOP = false; // true = grote kop boven de update tonen
 const VIDEO_ID = "https://www.loom.com/share/5ba84e3709a249ed874d59f39ba25d2c";
 const KOP = "GymOps Academy";
 const TITEL = "Uitleg Custom Values in WhatsApp en e-mail";
-const TEKST = `Bekijk de video hiernaast voor uitleg over Custom Values: de invulvelden die je in WhatsApp-berichten en e-mails kunt gebruiken, zoals de voornaam van een lid of de naam van je gym. Zo begint elk bericht persoonlijk, terwijl de tekst zelf gewoon uit een template komt.
+const TEKST = `Bekijk de video hiernaast voor uitleg over Custom Values: de invulvelden die in WhatsApp-berichten en e-mails worden gebruikt, zoals de voornaam van een lid of de naam van je gym. Zo beginnen berichten persoonlijk en zien ze er ook zo uit.
 
-In de video zie je welke Custom Values er zijn, hoe je ze in een bericht zet en waar je moet opletten. Controleer altijd even of het veld gevuld is voordat je verstuurt: een bericht met een lege of verkeerde waarde oogt slordiger dan helemaal geen personalisatie. Goed gebruikt schelen Custom Values je veel typewerk en voelt elk bericht toch alsof je het speciaal voor dat lid hebt geschreven.`;
+In de video laat ik je zien welke Custom Values je altijd moet gebruiken, maar ook dat niet alles een Custom Value hoeft te blijven. Sommige kun je gerust vervangen door een vaste tekst die past bij jouw gym.`;
 const VOETER_VOOR = "Deze en alle andere video's over jouw GymOps-systeem vind je in de ";
 const VOETER_ACCENT = "GymOps Academy";
 const VOETER_NA = ".";
