@@ -355,7 +355,8 @@ img { display: block; max-width: 100%; }
 }
 
 /* ---------- logo marquee ---------- */
-.marquee { overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent); }
+/* padding + negatieve marge: geschaalde logo's krijgen verticale ruimte zonder de layout te verschuiven */
+.marquee { overflow: hidden; padding: 12px 0; margin: -12px 0; -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent); }
 .marquee-track { display: flex; align-items: center; width: max-content; animation: marq 38s linear infinite; }
 .mq-item { width: 130px; height: 46px; margin-right: 56px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
 .mq-item img { max-height: 42px; max-width: 118px; object-fit: contain; filter: brightness(0) invert(1); opacity: .55; }
