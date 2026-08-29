@@ -2671,7 +2671,7 @@ function Website() {
 
       <MiniGrid eyebrow="En verder" title="Alles rond je website, geregeld." items={[
         { icon: 'gauge', title: 'Razendsnel, ook op mobiel', body: 'Gebouwd in moderne techniek (dezelfde als bedrijven als Netflix en Spotify). Geen trage laadtijden die bezoekers wegjagen.' },
-        { icon: 'wrench', title: 'Aanpassingen binnen een werkweek', body: 'Nieuwe abonnementsvorm, tariefswijziging of een nieuwe coach? Wij passen het binnen een werkweek aan. Inbegrepen, geen offertes.' },
+        { icon: 'wrench', title: 'Zelf aanpassen, direct live', body: 'Nieuwe abonnementsvorm, tariefswijziging of een nieuwe coach? Je past het zelf aan vanuit je GymOps-dashboard en het staat meteen live. Geen wachttijd, geen offertes.' },
         { icon: 'link', title: 'Naadloos gekoppeld', body: 'Je website werkt samen met SportBit en de flows van GymOps. Inschrijven, betalen en opvolgen lopen automatisch door.' },
         { icon: 'credit-card', title: 'Online betalen en inschrijven', body: 'Bezoekers boeken een kennismaking of rekenen een event direct af via iDEAL. Minder mailtjes, meer inschrijvingen.' },
         { icon: 'shield-check', title: 'Veilig en onderhoudsvrij', body: 'Hosting, beveiliging en updates regelen wij. Jij hebt er geen omkijken naar en je site is altijd up-to-date.' },
@@ -2769,7 +2769,7 @@ function Prijzen() {
           <SectionHead eyebrow="Wat je krijgt" title="Reken maar uit wat dit los zou kosten." sub="Een websitebureau, een marketeer, een planner én een retentiesysteem. Bij GymOps zit het in één abonnement." max={620} />
           <div data-reveal className="card" style={{ marginTop: 44, padding: m ? '24px 20px' : '36px 40px' }}>
             {[
-              { label: 'Website op maat + doorlopend onderhoud', sub: 'Gebouwd en binnen een week aangepast, inbegrepen', value: '€300' },
+              { label: 'Website op maat + doorlopend onderhoud', sub: 'Gebouwd op maat, zelf aan te passen en direct live', value: '€300' },
               { label: 'Leadopvolging 24/7', sub: 'WhatsApp en e-mail, automatisch tot er reactie is', value: '€375' },
               { label: 'Ledenbehoud', sub: 'Mijlpalen, handgeschreven kaarten, reactivatie', value: '€325' },
               { label: 'Team-aansturing & takensysteem', sub: 'Elke taak bij de juiste coach, niets blijft liggen', value: '€175' },
