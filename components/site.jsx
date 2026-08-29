@@ -1774,12 +1774,6 @@ function Hero() {
             ))}
           </div>
         </div>
-        {/* wat de logobalk ons oplevert: leren over alle gyms heen */}
-        <div className="wrap">
-          <p data-reveal style={{ textAlign: 'center', fontSize: m ? 14 : 15, lineHeight: 1.6, color: 'rgba(255,255,255,.5)', maxWidth: 640, margin: (m ? 20 : 26) + 'px auto 0' }}>
-            Al deze gyms draaien op GymOps, onze eigen voorop. We zien welke berichten, momenten en flows werken en welke niet. Wat zich bij de één bewijst, wordt standaard voor de rest.
-          </p>
-        </div>
       </div>
     </header>
   );
