@@ -1774,6 +1774,12 @@ function Hero() {
             ))}
           </div>
         </div>
+        {/* wat de logobalk ons oplevert: leren over alle gyms heen */}
+        <div className="wrap">
+          <p data-reveal style={{ textAlign: 'center', fontSize: m ? 14 : 15, lineHeight: 1.6, color: 'rgba(255,255,255,.5)', maxWidth: 640, margin: (m ? 20 : 26) + 'px auto 0' }}>
+            Al deze gyms draaien op GymOps, onze eigen voorop. We zien welke berichten, momenten en flows werken en welke niet. Wat zich bij de één bewijst, wordt standaard voor de rest.
+          </p>
+        </div>
       </div>
     </header>
   );
@@ -2969,7 +2975,7 @@ function OverOns() {
           <SectionHead eyebrow="Waarom GymOps" title={D.whyTitle} />
           <div style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : '1fr 1fr', gap: 24, marginTop: 52 }} data-reveal-stagger>
             {D.why.map((w, i) => (
-              <div key={i} className="card" style={{ padding: m ? 26 : 32, display: 'flex', gap: 18, alignItems: 'flex-start' }}>
+              <div key={i} className="card" style={{ padding: m ? 26 : 32, display: 'flex', gap: 18, alignItems: 'flex-start', gridColumn: w.wide && !m ? '1 / -1' : undefined }}>
                 <div className="icon-chip" style={{ marginTop: 2 }}><Icon data-lucide={w.icon}></Icon></div>
                 <div>
                   <h4 style={{ fontSize: 19 }}>{w.title}</h4>
