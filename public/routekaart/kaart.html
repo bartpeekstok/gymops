@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Routekaart naar 1 miljoen · GymOps</title>
+<style>
+@font-face{
+  font-family:'Inter';
+  src:url('/routekaart/assets/fonts/Inter-var-latin.woff2') format('woff2');
+  font-weight:100 900;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'Caveat';
+  src:url('/routekaart/assets/fonts/Caveat-var-latin.woff2') format('woff2');
+  font-weight:400 700;font-style:normal;font-display:swap;
+}
+:root{
+  --bg:#FFFFFF; --bg-soft:#F1F5F6; --bg-soft-2:#F8FAFB;
+  --ink:#0C161B; --fg1:#0A0A0F; --fg2:#1F2937; --fg3:#6B7280;
+  --mint:#3E788E; --mint-light:#7FB0C2; --mint-deep:#2E5C6E; --mint-tint:#E9F2F5;
+  --danger:#DC2626; --danger-tint:#FEF2F2;
+  --border:#E5E7EB; --border-strong:#D1D5DB;
+  --shadow-card:0 1px 2px rgba(10,10,15,.04),0 12px 32px -12px rgba(10,10,15,.12);
+  --shadow-lg:0 24px 60px -24px rgba(10,10,15,.28);
+  --font:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --hand:'Caveat','Inter',cursive;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--fg1);font-family:var(--font);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:660px;margin:0 auto;padding:0 22px}
+section{padding:44px 0}
+.eyebrow{font-size:13px;letter-spacing:.08em;font-weight:700;text-transform:uppercase;color:var(--mint-deep)}
+h1{font-size:clamp(34px,9vw,52px);font-weight:800;letter-spacing:-.035em;line-height:1.05;margin-top:10px}
+h1 .accent{color:var(--mint)}
+h2{font-size:clamp(24px,6vw,34px);font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.sub{font-size:17px;color:var(--fg3);margin-top:12px;max-width:52ch}
+.sub strong{color:var(--fg1)}
+
+header.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+header.top img{height:26px}
+header.top .chip{font-size:11px;letter-spacing:.06em;font-weight:700;text-transform:uppercase;color:var(--mint-deep);background:var(--mint-tint);border-radius:999px;padding:5px 12px}
+
+/* jouw cijfers */
+.cijfers{background:var(--bg-soft-2);border:1px solid var(--border);border-radius:20px;padding:20px;margin-top:26px;box-shadow:var(--shadow-card)}
+.cijfers .k{font-size:11px;letter-spacing:.07em;font-weight:700;text-transform:uppercase;color:var(--fg3)}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.cg .v{font-size:24px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.cg .l{font-size:12px;color:var(--fg3);font-weight:600}
+.mixbar{display:flex;height:12px;border-radius:99px;overflow:hidden;margin-top:16px}
+.mixbar i{display:block;height:100%}
+.mixleg{display:flex;gap:14px;margin-top:8px;font-size:12px;color:var(--fg3);font-weight:600;flex-wrap:wrap}
+.mixleg b{color:var(--fg1)}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+
+/* plateau */
+.plateau{background:var(--danger-tint);border:1px solid #FCA5A5;border-radius:24px;padding:26px 22px;margin-top:8px}
+.plateau .big{font-size:clamp(56px,16vw,92px);font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--danger);font-variant-numeric:tabular-nums}
+.plateau .big small{font-size:.35em;font-weight:700;letter-spacing:0}
+.plateau svg{width:100%;height:auto;margin-top:14px}
+
+/* het gat */
+.gatkaart{background:var(--mint-tint);border:1px solid var(--mint-light);border-radius:24px;padding:22px;margin-top:18px}
+.gatkaart .g{font-size:clamp(30px,8vw,44px);font-weight:800;letter-spacing:-.03em;color:var(--mint-deep);font-variant-numeric:tabular-nums;line-height:1.1}
+.gatkaart p{font-size:15px;color:var(--fg2);margin-top:8px}
+
+/* route */
+.route{margin-top:10px;border-left:3px solid var(--mint-light);padding-left:22px;position:relative}
+.station{position:relative;padding:6px 0 34px}
+.station:before{
+  content:"";position:absolute;left:-31.5px;top:12px;width:14px;height:14px;border-radius:50%;
+  background:#fff;border:3px solid var(--mint);
+}
+.station .nr{font-size:12px;letter-spacing:.07em;font-weight:700;text-transform:uppercase;color:var(--mint-deep)}
+.station h3{font-size:21px;font-weight:800;letter-spacing:-.02em;margin-top:4px}
+.station p{font-size:15px;color:var(--fg2);margin-top:8px;max-width:50ch}
+.effect{
+  display:flex;align-items:baseline;gap:10px;margin-top:12px;background:#fff;border:1px solid var(--border);
+  border-radius:14px;padding:12px 16px;box-shadow:var(--shadow-card);flex-wrap:wrap;
+}
+.effect .v{font-size:26px;font-weight:800;letter-spacing:-.02em;color:var(--mint);font-variant-numeric:tabular-nums;white-space:nowrap}
+.effect .l{font-size:13px;color:var(--fg3);font-weight:600}
+.gymops-hulp{margin-top:10px;font-size:14px;color:var(--fg2);background:var(--mint-tint);border-radius:12px;padding:10px 14px}
+.gymops-hulp b{color:var(--mint-deep)}
+
+/* eindplaat */
+.eind{background:var(--ink);color:#fff;border-radius:28px;padding:34px 26px;text-align:center;box-shadow:var(--shadow-lg)}
+.eind .eyebrow{color:var(--mint-light)}
+.eind .mega{font-size:clamp(44px,13vw,76px);font-weight:800;letter-spacing:-.04em;line-height:1;margin-top:10px;font-variant-numeric:tabular-nums}
+.eind .som{font-size:16px;color:#D1D5DB;margin-top:12px}
+.eind .som strong{color:#fff}
+.mijlpalen{margin-top:22px;display:grid;gap:8px;text-align:left}
+.mp{display:flex;gap:12px;align-items:baseline;background:rgba(255,255,255,.07);border-radius:12px;padding:10px 14px}
+.mp .j{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--mint-light);text-transform:uppercase;white-space:nowrap}
+.mp .t{font-size:14px;color:#E5E7EB}
+
+/* mentor + cta */
+.mentor{display:flex;gap:16px;align-items:center;background:var(--bg-soft-2);border:1px solid var(--border);border-radius:20px;padding:18px;margin-top:8px}
+.mentor>span{display:flex;flex:0 0 auto}
+.mentor img{width:54px;height:54px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:var(--shadow-card)}
+.mentor img+img{margin-left:-16px}
+.mentor .t{font-size:15px;color:var(--fg2)}
+.mentor .t b{color:var(--fg1)}
+.cta{
+  display:block;text-align:center;background:var(--mint);color:#fff;border-radius:999px;
+  padding:16px 22px;font-weight:800;font-size:17px;text-decoration:none;margin-top:22px;box-shadow:0 12px 30px -12px rgba(62,120,142,.45);
+}
+.disclaimer{font-size:12px;color:var(--fg3);margin-top:16px;text-align:center}
+footer{padding:30px 0 44px;text-align:center;color:var(--fg3);font-size:12px}
+footer img{height:22px;display:block;margin:0 auto 8px}
+.cnt{font-variant-numeric:tabular-nums}
+.hand{font-family:var(--hand);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <img src="/routekaart/assets/logo.png" alt="GymOps">
+  <span class="chip" id="topchip">Jouw routekaart</span>
+</header>
+
+<!-- HERO -->
+<section style="padding-top:18px">
+  <div class="eyebrow" id="gym-eyebrow">Routekaart</div>
+  <h1>Jouw route naar<br><span class="accent">1 miljoen.</span></h1>
+  <p class="sub" id="hero-sub">Op basis van jouw eigen cijfers. Vier stations, één route. Onderaan zie je hoe die eruitziet in jaren.</p>
+
+  <div class="cijfers">
+    <div class="k">Waar je nu staat (jouw opgave)</div>
+    <div class="cgrid">
+      <div class="cg"><div class="v" id="c-leden">—</div><div class="l">betalende leden</div></div>
+      <div class="cg"><div class="v" id="c-omzet">—</div><div class="l">omzet per maand (±)</div></div>
+      <div class="cg"><div class="v" id="c-churn">—</div><div class="l">opzeggers per maand</div></div>
+      <div class="cg"><div class="v" id="c-aanwas">—</div><div class="l">nieuwe leden per maand</div></div>
+    </div>
+    <div class="mixbar" id="mixbar"></div>
+    <div class="mixleg" id="mixleg"></div>
+  </div>
+</section>
+
+<!-- PLATEAU -->
+<section>
+  <div class="eyebrow">Eerst het eerlijke verhaal</div>
+  <h2 id="plateau-kop">Jouw groei stopt vanzelf.</h2>
+  <p class="sub">Een box is een emmer met een gat erin: het waterpeil stopt precies waar er evenveel uitstroomt als er instroomt. Met jouw aanwas en verloop ligt dat punt op:</p>
+  <div class="plateau">
+    <div class="big"><span id="p-plateau" class="cnt">—</span> <small>leden</small></div>
+    <p class="sub" style="margin-top:6px" id="plateau-uitleg">Dáár plateaut jouw box, wat je ook aan marketing doet. Meer adverteren maakt de emmer niet dichter.</p>
+    <svg viewBox="0 0 600 190" fill="none">
+      <line x1="30" y1="160" x2="580" y2="160" stroke="#D1D5DB" stroke-width="2"/>
+      <path d="M30,155 C 140,120 200,85 300,72 C 400,60 500,58 575,57" stroke="#DC2626" stroke-width="4" stroke-linecap="round"/>
+      <line x1="30" y1="57" x2="575" y2="57" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="5 6" opacity=".5"/>
+      <text x="415" y="44" fill="#DC2626" font-family="Caveat" font-size="26" font-weight="600" id="curve-note">hier loop je tegenaan</text>
+    </svg>
+  </div>
+
+  <div class="gatkaart">
+    <div class="g" id="gat-kop">—</div>
+    <p id="gat-uitleg">—</p>
+  </div>
+</section>
+
+<!-- DE ROUTE -->
+<section>
+  <div class="eyebrow">De route</div>
+  <h2 style="margin-bottom:26px">Vier stations naar de miljoen.</h2>
+  <div class="route">
+
+    <div class="station">
+      <div class="nr">Station 1 · jaar 1</div>
+      <h3 id="s1-kop">Dicht de achterdeur</h3>
+      <p id="s1-tekst">—</p>
+      <div class="effect"><span class="v"><span id="s1-plateau" class="cnt">—</span> leden</span><span class="l" id="s1-effect-l">wordt je nieuwe plateau</span></div>
+      <div class="gymops-hulp"><b>GymOps:</b> bezoekfrequentie-signalen, week-1-belletjes, mijlpalen vieren, opzeg-gesprekken. Elke wegzakker wordt een taak voor je team.</div>
+    </div>
+
+    <div class="station">
+      <div class="nr">Station 2 · jaar 1</div>
+      <h3>Vang elke lead</h3>
+      <p id="s2-tekst">—</p>
+      <div class="effect"><span class="v"><span id="s2-plateau" class="cnt">—</span> leden</span><span class="l">wordt het plateau met dezelfde advertenties</span></div>
+      <div class="gymops-hulp"><b>GymOps:</b> lead capture op je site, directe opvolging, beltaken en vangnetten voor no-shows en twijfelaars.</div>
+    </div>
+
+    <div class="station">
+      <div class="nr">Station 3 · jaar 2 en 3</div>
+      <h3 id="s3-kop">Verhoog de omzet per lid</h3>
+      <p id="s3-tekst">—</p>
+      <div class="effect"><span class="v" id="s3-omzet">—</span><span class="l">jaaromzet bij hetzelfde ledental</span></div>
+      <div class="gymops-hulp"><b>GymOps:</b> check-ins die doorstroom-momenten zichtbaar maken ("doel bijstellen: semi-PT erbij"), events- en nutritionmodules.</div>
+    </div>
+
+    <div class="station">
+      <div class="nr" id="s4-nr">Station 4 · jaar 3 tot 5</div>
+      <h3>Laat oud-leden terugkomen</h3>
+      <p id="s4-tekst">—</p>
+      <div class="effect"><span class="v"><span id="s4-leden" class="cnt">—</span> leden</span><span class="l">× <span id="s4-arm">—</span> per lid = de miljoen-lijn</span></div>
+      <div class="gymops-hulp"><b>GymOps:</b> warm afscheid, in beeld blijven, de kaart op de mat met het welkom-terug-aanbod.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EINDPLAAT -->
+<section>
+  <div class="eind">
+    <div class="eyebrow">Waar de route eindigt</div>
+    <div class="mega" id="e-omzet">—</div>
+    <div class="som"><strong><span id="e-leden">—</span> leden × <span id="e-arm">—</span> per lid per maand.</strong><br>Geen raketwetenschap. Vier reparaties, in de goede volgorde.</div>
+    <div class="mijlpalen" id="mijlpalen"></div>
+  </div>
+</section>
+
+<!-- MENTOR + CTA -->
+<section style="padding-top:0">
+  <div class="mentor">
+    <span><img src="/routekaart/assets/jeroen-van-duijn.webp" alt="Jeroen"><img src="/routekaart/assets/bart-peekstok.webp" alt="Bart"></span>
+    <div class="t"><b>Deze route is niet theoretisch.</b> Het is de route die wij zelf liepen met CrossFit Leiden en CrossFit Alkmaar. Software kun je kopiëren, de weg niet.</div>
+  </div>
+  <a class="cta" href="https://links.gymops.nl/widget/booking/9peD9aOwQ1sN9F4gOhev">Plan het routegesprek →</a>
+  <p class="disclaimer">Indicatie op basis van jouw eigen opgave en onze ervaringscijfers. Geen garantie, wel een richting. Als scanner van vandaag geldt de Gathering-aanbieding voor jou.</p>
+</section>
+
+<footer>
+  <img src="/routekaart/assets/logo.png" alt="GymOps">
+  gymops.nl · in samenwerking met SportBit
+</footer>
+
+</div>
+
+<script>
+/* ================================================================
+   ROUTEKAART v2 — rekent ACHTERUIT vanaf de miljoen.
+   Data komt uit ?d= (base64-JSON van het formulier: v,g,l,o,z,a,gp)
+   of valt terug op het Zuidlaren-voorbeeld.
+   ================================================================ */
+const DEMO = { v:"", g:"CrossFit Zuidlaren", l:220, o:23000, z:8, a:9, gp:85 };
+
+function leesData(){
+  try{
+    const q=new URLSearchParams(location.search).get("d");
+    if(!q) return {p:DEMO, demo:true};
+    const p=JSON.parse(decodeURIComponent(escape(atob(q))));
+    if(!(p.l>0&&p.o>0&&p.a>=0&&p.z>=0)) return {p:DEMO, demo:true};
+    return {p, demo:false};
+  }catch(e){ return {p:DEMO, demo:true}; }
+}
+const {p, demo} = leesData();
+
+const eur = n => "€ " + Math.round(n).toLocaleString("nl-NL");
+const pct = n => (n*100).toLocaleString("nl-NL",{maximumFractionDigits:1}).replace(".",",") + "%";
+const r10 = n => Math.round(n/10)*10;
+
+/* ---- het model ---- */
+const DOEL_OMZET = 1000000;
+const churnNu   = Math.max(p.z / p.l, 0.01);
+const armNu     = p.o / p.l;
+const armEind   = Math.max(160, Math.ceil(armNu/5)*5);
+const ledenEind = r10(DOEL_OMZET/12/armEind);
+const doelChurn = Math.min(churnNu, 0.025);
+const plateauNu = r10(p.a/churnNu);
+const plateauS1 = r10(p.a/doelChurn);
+const benodigd  = Math.ceil(ledenEind*doelChurn);
+const gat       = benodigd - p.a;
+const leadsDeel = Math.max(0, Math.min(3, gat));
+const exDeel    = gat > leadsDeel ? 1 : 0;
+const restDeel  = Math.max(0, gat - leadsDeel - exDeel);
+const aanwasS2  = p.a + leadsDeel;
+const plateauS2 = r10(aanwasS2/doelChurn);
+const omzetS3   = plateauS2*armEind*12;
+const churnGoed = churnNu <= 0.026;      /* verloop is al op of onder doel */
+const armGoed   = armNu >= 158;          /* omzet per lid al op niveau */
+const lastigeRoute = gat > 6;            /* groot aanwas-gat: langere adem */
+const overshoot = plateauS2 >= ledenEind; /* route komt boven de miljoen-lijn uit */
+
+/* ---- vullen ---- */
+const $=id=>document.getElementById(id);
+const set=(id,v)=>{$(id).textContent=v};
+const naam = p.g || "jouw box";
+set("gym-eyebrow","Routekaart · "+naam);
+if(demo) $("topchip").textContent="Voorbeeld";
+$("hero-sub").innerHTML=(p.v?"Hoi "+p.v+", dit":"Dit")+" is jouw routekaart, op basis van je eigen cijfers. Vier stations, één route. Onderaan zie je hoe die eruitziet in jaren.";
+
+set("c-leden", p.l);
+set("c-omzet", eur(p.o));
+set("c-churn", p.z+" ("+pct(churnNu)+")");
+set("c-aanwas", p.a);
+
+/* opener-framing: plateau / krimp / nog rek */
+set("p-plateau","±"+plateauNu);
+if(plateauNu < p.l*0.98){
+  $("plateau-kop").textContent="Je krimpt. Nu al.";
+  $("plateau-uitleg").textContent="Met jouw huidige verloop en aanwas zakt je ledental vanzelf hiernaartoe. Dit is geen dip, het is wiskunde.";
+  $("curve-note").textContent="hier zak je naartoe";
+}else if(plateauNu > p.l*1.3){
+  $("plateau-kop").textContent="Je hebt nog rek. Tot hier.";
+  $("plateau-uitleg").textContent="Je groeit nu nog, maar met dit verloop en deze aanwas stopt dat vanzelf op dit punt. Meer adverteren verschuift het niet.";
+  $("curve-note").textContent="hier stopt het";
+}
+
+/* het gat */
+if(gat<=0){
+  $("gat-kop").textContent="Jouw aanwas is al genoeg.";
+  $("gat-uitleg").textContent="Met "+p.a+" nieuwe leden per maand en "+pct(doelChurn)+" verloop draag jij al genoeg aan voor de miljoen-route. Jouw route gaat vooral over vasthouden en omzet per lid.";
+}else{
+  $("gat-kop").textContent=gat+" extra "+(gat===1?"lid":"leden")+" per maand";
+  $("gat-uitleg").textContent="Meer is het gat niet. Voor de miljoen heb je "+benodigd+" nieuwe leden per maand nodig (bij "+pct(doelChurn)+" verloop); jij zit op "+p.a+". "+
+    [leadsDeel?leadsDeel+" uit betere leadopvolging":"",exDeel?exDeel+" uit terugkerende oud-leden":"",restDeel?restDeel+" uit vindbaarheid en events":""].filter(Boolean).join(", ")+".";
+}
+
+/* station 1 */
+if(churnGoed){
+  $("s1-kop").textContent="Houd de achterdeur dicht";
+  $("s1-tekst").innerHTML="Jouw verloop van <strong>"+pct(churnNu)+"</strong> is al beter dan de meeste boxen. De kunst is dat vást te houden terwijl je groeit, en dat lukt niet uit je hoofd: dan heb je signalen en taken nodig.";
+  $("s1-effect-l").textContent="blijft je plateau, óók als je doorgroeit";
+}else{
+  $("s1-tekst").innerHTML="Van <strong>"+pct(churnNu)+"</strong> verloop per maand naar 2,5%. Niet met campagnes, maar met signalen: elke wegzakker wordt een taak voor je team, elke opzegging een gesprek.";
+  $("s1-effect-l").innerHTML="wordt je nieuwe plateau (was "+plateauNu+")";
+}
+set("s1-plateau","±"+plateauS1);
+
+/* station 2 */
+$("s2-tekst").innerHTML=leadsDeel>0
+  ? "Zelfde marketingbudget, maar geen aanvraag meer die tussen de appjes verdwijnt. Reken conservatief op <strong>"+leadsDeel+" extra "+(leadsDeel===1?"lid":"leden")+" per maand</strong>."
+  : "Jouw aanwas is al op niveau. Dit station gaat bij jou over minder afhankelijkheid van advertenties: dezelfde instroom, lagere kosten.";
+set("s2-plateau","±"+plateauS2);
+
+/* station 3 */
+if(armGoed){
+  $("s3-kop").textContent="Houd de omzet per lid hoog";
+  $("s3-tekst").innerHTML="Jouw omzet per lid ("+eur(armNu)+" per maand) is al sterk. De route draait bij jou om dit vasthouden terwijl het ledental groeit, met doorstroom en events als motor.";
+}else{
+  $("s3-tekst").innerHTML="Jouw mix leunt nu voor <strong>"+p.gp+"%</strong> op groepslessen. Door doorstroom naar small group, PT en nutrition groeit de omzet per lid van <strong>"+eur(armNu)+"</strong> naar zo'n <strong>"+eur(armEind)+"</strong> per maand.";
+}
+set("s3-omzet", eur(omzetS3)+" p/j");
+
+/* station 4 */
+if(lastigeRoute) $("s4-nr").textContent="Station 4 · jaar 3 tot 6";
+if(overshoot){
+  $("s4-tekst").innerHTML="Ex-leden zijn je goedkoopste aanwas: de kaart op de mat, het welkom-terug-aanbod, de check-in na drie maanden. Bij jou is dit de <strong>marge</strong>: de miljoen vraagt ±"+ledenEind+" leden en jouw route komt op ±"+plateauS2+". Terugkeerders maken dat verschil zeker.";
+  set("s4-leden","±"+plateauS2);
+  document.querySelector("#s4-leden").parentElement.nextElementSibling.innerHTML="ruim boven de ±"+ledenEind+" die de miljoen vraagt";
+}else{
+  $("s4-tekst").innerHTML="Ex-leden zijn je goedkoopste aanwas: de kaart op de mat, het welkom-terug-aanbod, de check-in na drie maanden. "+(exDeel?"Eén terugkeerder per maand tilt je over de streep.":"Zo houd je de instroom gezond zonder extra advertentiebudget.");
+  set("s4-leden","±"+ledenEind);
+  set("s4-arm", eur(armEind));
+}
+
+/* eindplaat */
+set("e-omzet","± "+eur(Math.round(ledenEind*armEind*12/50000)*50000));
+set("e-leden","±"+ledenEind);
+set("e-arm", eur(armEind));
+const MP=[
+  ["Jaar 1", churnGoed ? "Signalen en taken staan: verloop blijft laag terwijl je groeit, elke lead gevangen." : "Achterdeur dicht + elke lead gevangen: door je oude plateau heen."],
+  ["Jaar 2", "Richting "+plateauS2+" leden, eerste doorstroom naar small group en PT."],
+  ["Jaar 3", overshoot ? "Omzet per lid richting "+eur(armEind)+": hier passeer je de miljoen al." : (armGoed ? "Omzet per lid blijft rond "+eur(armEind)+": de "+eur(Math.round(omzetS3/50000)*50000)+" passeert." : "Omzet per lid richting "+eur(armEind)+": de "+eur(Math.round(omzetS3/50000)*50000)+" passeert.")],
+  [lastigeRoute?"Jaar 4-6":"Jaar 4-5", overshoot ? "Marge opbouwen: terugkeerders en events maken de route zeker." : (restDeel?"Vindbaarheid, events en terugkeerders":"Terugkeerders en events")+" tillen je over de miljoen-lijn."]
+];
+const mpEl=$("mijlpalen");
+MP.forEach(([j,t])=>{
+  const d=document.createElement("div");d.className="mp";
+  d.innerHTML='<span class="j">'+j+'</span><span class="t">'+t+'</span>';
+  mpEl.appendChild(d);
+});
+
+/* omzetmix-balk */
+const mix={ groep:p.gp, rest:100-p.gp };
+const bar=$("mixbar"), leg=$("mixleg");
+[["groep","#7FB0C2","groepslessen",mix.groep],["rest","#3E788E","small group · PT · overig",mix.rest]].forEach(([k,c,naam,val])=>{
+  const i=document.createElement("i");i.style.width=val+"%";i.style.background=c;bar.appendChild(i);
+  const s=document.createElement("span");
+  s.innerHTML='<span class="dot" style="background:'+c+'"></span>'+naam+' <b>'+val+'%</b>';
+  leg.appendChild(s);
+});
+
+/* tellende getallen zodra ze in beeld komen */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(!en.isIntersecting||en.target.dataset.done)return;
+    en.target.dataset.done="1";
+    const raw=en.target.textContent;
+    const num=parseInt(raw.replace(/[^\d]/g,""),10);
+    if(isNaN(num))return;
+    const pre=raw.split(/\d/)[0];
+    const t0=performance.now(),dur=800;
+    (function tick(t){
+      const q=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-q,3);
+      en.target.textContent=pre+Math.round(num*e).toLocaleString("nl-NL");
+      if(q<1)requestAnimationFrame(tick);
+    })(t0);
+  });
+},{threshold:.6});
+document.querySelectorAll(".cnt").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
