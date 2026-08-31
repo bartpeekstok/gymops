@@ -1645,7 +1645,7 @@ function Nav({ current }) {
       borderBottom: '1px solid ' + (light && !open ? 'var(--border)' : 'transparent'),
     }}>
       <div className="wrap" style={{ height: 74, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <a href={lnk('index.html')}><img src={GO.A + (light ? 'logo.png' : 'logo-wit.png')} alt="GymOps" style={{ height: 46, width: 'auto', display: 'block' }} /></a>
+        <a href={lnk('index.html')}><img src={GO.A + (light ? 'logo.png' : 'logo-wit.png')} alt="GymOps" style={{ height: 28, width: 'auto', display: 'block' }} /></a>
 
         {!m && (
           <React.Fragment>
@@ -1713,7 +1713,7 @@ function CtaFooter({ noCta }) {
       <footer style={{ background: 'var(--ink)', color: '#fff', padding: '64px 0 40px' }}>
         <div className="wrap" style={{ display: 'grid', gridTemplateColumns: m ? '1fr 1fr' : '1.4fr 1fr 1fr 1fr', gap: m ? 30 : 40 }}>
           <div style={{ gridColumn: m ? '1 / -1' : 'auto' }}>
-            <img src={GO.A + 'logo-wit.png'} alt="GymOps" style={{ height: 32, width: 'auto', marginBottom: 18 }} />
+            <img src={GO.A + 'logo-wit.png'} alt="GymOps" style={{ height: 20, width: 'auto', marginBottom: 18 }} />
             <p style={{ fontSize: 14, lineHeight: 1.6, color: 'rgba(255,255,255,.55)', maxWidth: 280 }}>Het alles-in-één systeem voor leadopvolging, ledenbehoud en team-aansturing. Gebouwd voor en door gym-owners.</p>
           </div>
           {[['Product', ['Leadopvolging', 'Ledenbehoud', 'Website', 'Prijzen']], ['Bedrijf', ['Over ons', 'Klanten', 'Demo plannen', 'Contact']], ['Volg ons', ['Instagram', 'Facebook']]].map(([h, items]) => (
