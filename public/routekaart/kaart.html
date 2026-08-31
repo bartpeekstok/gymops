@@ -235,7 +235,7 @@ footer img{height:22px;display:block;margin:0 auto 8px}
    Data komt uit ?d= (base64-JSON van het formulier: v,g,l,o,z,a,gp)
    of valt terug op het Zuidlaren-voorbeeld.
    ================================================================ */
-const DEMO = { v:"", g:"CrossFit Zuidlaren", l:220, o:23000, z:8, a:9, gp:85 };
+const DEMO = { v:"", g:"CrossFit Zuidlaren", l:220, o:23000, z:8, a:9, m:{g:85,sg:10,pt:5,nu:0,ob:0,ev:0} };
 
 function leesData(){
   try{
@@ -247,6 +247,9 @@ function leesData(){
   }catch(e){ return {p:DEMO, demo:true}; }
 }
 const {p, demo} = leesData();
+const mix = p.m || { g:(p.gp||80), sg:0, pt:0, nu:0, ob:0, ev:0 };
+const mixBekend = !!p.m;
+const opsom = a => a.length===1 ? a[0] : a.slice(0,-1).join(", ")+" en "+a[a.length-1];
 
 const eur = n => "€ " + Math.round(n).toLocaleString("nl-NL");
 const pct = n => (n*100).toLocaleString("nl-NL",{maximumFractionDigits:1}).replace(".",",") + "%";
@@ -327,11 +330,14 @@ $("s2-tekst").innerHTML=leadsDeel>0
 set("s2-plateau","±"+plateauS2);
 
 /* station 3 */
+const CATN={sg:"small group",pt:"PT",nu:"nutrition",ob:"onboardingprogramma's",ev:"events"};
+const mist=mixBekend?Object.keys(CATN).filter(k=>(mix[k]||0)<3).map(k=>CATN[k]):[];
+const mistTxt=mist.length?" Uit "+opsom(mist)+" haal je nu (bijna) niks: dáár zit de rek.":"";
 if(armGoed){
   $("s3-kop").textContent="Houd de omzet per lid hoog";
-  $("s3-tekst").innerHTML="Jouw omzet per lid ("+eur(armNu)+" per maand) is al sterk. De route draait bij jou om dit vasthouden terwijl het ledental groeit, met doorstroom en events als motor.";
+  $("s3-tekst").innerHTML="Jouw omzet per lid ("+eur(armNu)+" per maand) is al sterk. De route draait bij jou om dit vasthouden terwijl het ledental groeit"+(mist.length?", en om verbreden: uit "+opsom(mist)+" haal je nog weinig.":", met doorstroom en events als motor.");
 }else{
-  $("s3-tekst").innerHTML="Jouw mix leunt nu voor <strong>"+p.gp+"%</strong> op groepslessen. Door doorstroom naar small group, PT en nutrition groeit de omzet per lid van <strong>"+eur(armNu)+"</strong> naar zo'n <strong>"+eur(armEind)+"</strong> per maand.";
+  $("s3-tekst").innerHTML="Jouw omzet leunt nu voor <strong>"+mix.g+"%</strong> op groepslessen."+mistTxt+" Zo groeit de omzet per lid van <strong>"+eur(armNu)+"</strong> naar zo'n <strong>"+eur(armEind)+"</strong> per maand.";
 }
 set("s3-omzet", eur(omzetS3)+" p/j");
 
@@ -365,13 +371,19 @@ MP.forEach(([j,t])=>{
 });
 
 /* omzetmix-balk */
-const mix={ groep:p.gp, rest:100-p.gp };
+const MIXC=[["g","groepslessen","#7FB0C2"],["sg","small group","#3E788E"],["pt","PT","#0C161B"],["nu","nutrition","#059669"],["ob","onboarding","#F59E0B"],["ev","events","#C44A1C"]];
+const mixSom=MIXC.reduce((t,[k])=>t+(mix[k]||0),0);
+const segs=MIXC.filter(([k])=>(mix[k]||0)>0).map(([k,naam,c])=>[naam,c,mix[k]]);
+const overig=Math.max(0,100-mixSom);
+if(overig>0&&mixBekend) segs.push(["overig","#D1D5DB",overig]);
+if(!mixBekend&&overig>0) segs.push(["small group · PT · overig","#3E788E",overig]);
+const schaal=Math.max(100,mixSom);
 const bar=$("mixbar"), leg=$("mixleg");
-[["groep","#7FB0C2","groepslessen",mix.groep],["rest","#3E788E","small group · PT · overig",mix.rest]].forEach(([k,c,naam,val])=>{
-  const i=document.createElement("i");i.style.width=val+"%";i.style.background=c;bar.appendChild(i);
-  const s=document.createElement("span");
-  s.innerHTML='<span class="dot" style="background:'+c+'"></span>'+naam+' <b>'+val+'%</b>';
-  leg.appendChild(s);
+segs.forEach(([naam,c,val])=>{
+  const i=document.createElement("i");i.style.width=(val/schaal*100)+"%";i.style.background=c;bar.appendChild(i);
+  const sp=document.createElement("span");
+  sp.innerHTML='<span class="dot" style="background:'+c+'"></span>'+naam+' <b>'+val+'%</b>';
+  leg.appendChild(sp);
 });
 
 /* tellende getallen zodra ze in beeld komen */
