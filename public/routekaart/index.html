@@ -66,6 +66,7 @@ button.cta{
 button.cta:active{transform:translateY(1px)}
 .privacy{font-size:12px;color:var(--fg3);margin-top:12px;text-align:center}
 .fout{display:none;color:var(--danger);font-size:14px;font-weight:600;margin-top:12px;text-align:center}
+.exbtw{display:inline-block;font-size:11px;letter-spacing:.05em;font-weight:700;text-transform:uppercase;color:var(--mint-deep);background:var(--mint-tint);border-radius:999px;padding:2px 8px;vertical-align:2px;margin-left:6px}
 </style>
 </head>
 <body>
@@ -104,7 +105,7 @@ button.cta:active{transform:translateY(1px)}
       <input id="leden" type="number" inputmode="numeric" min="20" max="2000" placeholder="bijv. 180" required>
     </div>
     <div class="veld">
-      <label class="q" for="omzet">2 · Gemiddelde omzet per maand<small>alles bij elkaar, schuif naar het dichtstbijzijnde bedrag</small></label>
+      <label class="q" for="omzet">2 · Gemiddelde omzet per maand <span class="exbtw">ex btw</span><small>alles bij elkaar, exclusief btw · schuif naar het dichtstbijzijnde bedrag</small></label>
       <div class="slider">
         <input id="omzet" type="range" min="5000" max="100000" step="2500" value="20000">
         <span class="val" id="omzetVal">€ 20.000</span>
@@ -121,8 +122,8 @@ button.cta:active{transform:translateY(1px)}
       </span>
     </div>
     <div class="veld">
-      <label class="q">5 · Waar komt die omzet vandaan?<small>vul per onderdeel euro's óf procenten in, wij rekenen de rest uit. Doe je iets niet? Laat het leeg.</small></label>
-      <div class="mixhead"><span>Onderdeel</span><span>€ per maand</span><span>%</span></div>
+      <label class="q">5 · Waar komt die omzet vandaan? <span class="exbtw">ex btw</span><small>vul per onderdeel euro's óf procenten in (bedragen exclusief btw), wij rekenen de rest uit. Doe je iets niet? Laat het leeg.</small></label>
+      <div class="mixhead"><span>Onderdeel</span><span>€ p/m ex btw</span><span>%</span></div>
       <div id="mixrows"></div>
       <div class="mixsom" id="mixsom">Samen: 0% van je omzet</div>
     </div>
