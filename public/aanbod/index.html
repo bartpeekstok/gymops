@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GymOps · exclusief voor de Gathering</title>
+<style>
+@font-face{
+  font-family:'Inter';
+  src:url('/routekaart/assets/fonts/Inter-var-latin.woff2') format('woff2');
+  font-weight:100 900;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:'Caveat';
+  src:url('/routekaart/assets/fonts/Caveat-var-latin.woff2') format('woff2');
+  font-weight:400 700;font-style:normal;font-display:swap;
+}
+:root{
+  --bg:#FFFFFF; --bg-soft:#F1F5F6; --bg-soft-2:#F8FAFB;
+  --ink:#0C161B; --fg1:#0A0A0F; --fg2:#1F2937; --fg3:#6B7280;
+  --mint:#3E788E; --mint-deep:#2E5C6E; --mint-tint:#E9F2F5;
+  --danger:#DC2626; --danger-tint:#FEF2F2;
+  --border:#E5E7EB; --border-strong:#D1D5DB;
+  --shadow-card:0 1px 2px rgba(10,10,15,.04),0 12px 32px -12px rgba(10,10,15,.12);
+  --font:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --hand:'Caveat','Inter',cursive;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--fg1);font-family:var(--font);line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:520px;margin:0 auto;padding:30px 22px 60px}
+img.logo{height:34px;display:block}
+.eyebrow{font-size:12px;letter-spacing:.08em;font-weight:700;text-transform:uppercase;color:var(--mint-deep);margin-top:30px}
+h1{font-size:clamp(30px,8.4vw,42px);font-weight:800;letter-spacing:-.035em;line-height:1.08;margin-top:10px}
+h1 .accent{color:var(--mint);position:relative;display:inline-block}
+h1 .accent svg{position:absolute;left:-6%;right:-6%;bottom:-.14em;width:112%;height:.4em;overflow:visible}
+h1 .accent svg path{fill:none;stroke:var(--mint);stroke-width:6;stroke-linecap:round}
+.sub{font-size:16px;color:var(--fg3);margin-top:14px}
+.sub strong{color:var(--fg1)}
+
+.schaarste{
+  display:flex;gap:14px;align-items:stretch;margin-top:26px;
+}
+.sbox{
+  flex:1;background:var(--bg-soft-2);border:1px solid var(--border);border-radius:16px;
+  padding:14px 16px;box-shadow:var(--shadow-card);
+}
+.sbox .k{font-size:11px;letter-spacing:.07em;font-weight:700;text-transform:uppercase;color:var(--fg3)}
+.sbox .v{font-size:24px;font-weight:800;letter-spacing:-.02em;margin-top:4px;font-variant-numeric:tabular-nums}
+.sbox .v .dim{color:var(--border-strong)}
+.sbox.rood .v{color:var(--danger)}
+.plekjes{display:flex;gap:6px;margin-top:8px}
+.plekjes i{width:14px;height:14px;border-radius:50%;background:var(--mint);display:inline-block}
+.plekjes i.weg{background:var(--border)}
+
+.card{background:var(--bg-soft-2);border:1px solid var(--border);border-radius:18px;padding:18px;box-shadow:var(--shadow-card);margin-top:22px}
+label{display:block;font-size:14px;font-weight:700;margin:12px 0 6px}
+label:first-child{margin-top:0}
+input{width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1px solid var(--border-strong);border-radius:12px;background:#fff}
+input:focus{outline:2px solid var(--mint);border-color:var(--mint)}
+.hp{position:absolute;left:-5000px;opacity:0;height:0;overflow:hidden}
+button{
+  display:block;width:100%;text-align:center;background:var(--mint);color:#fff;border:none;border-radius:999px;
+  padding:16px 22px;font:inherit;font-weight:800;font-size:17px;cursor:pointer;margin-top:20px;
+  box-shadow:0 12px 30px -12px rgba(62,120,142,.45);
+}
+button:disabled{opacity:.6}
+.mondeling{font-size:13px;color:var(--fg3);margin-top:14px}
+.privacy{font-size:12px;color:var(--fg3);margin-top:12px;text-align:center}
+.fout{display:none;color:var(--danger);font-size:14px;font-weight:600;margin-top:12px;text-align:center}
+.handnote{font-family:var(--hand);font-size:24px;color:var(--mint-deep);transform:rotate(-1.5deg);margin-top:26px}
+
+#klaar,#verlopen{display:none;text-align:center;padding-top:7vh}
+#klaar .big,#verlopen .big{font-size:60px}
+#klaar h2,#verlopen h2{font-size:28px;font-weight:800;letter-spacing:-.03em;margin-top:14px}
+#klaar p,#verlopen p{font-size:16px;color:var(--fg3);margin-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div id="hoofd">
+  <img class="logo" src="/routekaart/assets/logo.png" alt="GymOps" onerror="this.remove()">
+  <div class="eyebrow">Benelux Gathering · alleen voor wie zondag heeft gescand</div>
+  <h1>15 maanden voor de prijs van <span class="accent">12<svg viewBox="0 0 200 20" preserveAspectRatio="none"><path d="M5,12 C60,5 140,4 195,10"/></svg></span>.</h1>
+  <p class="sub">De 3 gratis maanden plakken we <strong>achteraan</strong> je contract. Betaal je het jaar vooruit, dan reken je de prijs van <strong>11</strong>.</p>
+
+  <div class="schaarste">
+    <div class="sbox">
+      <div class="k">Plekken</div>
+      <div class="v"><span id="vrij">5</span> <span class="dim">van 5 vrij</span></div>
+      <div class="plekjes" id="plekjes"></div>
+    </div>
+    <div class="sbox rood">
+      <div class="k">Vervalt vrijdag 23:59</div>
+      <div class="v" id="klok">…</div>
+    </div>
+  </div>
+
+  <form id="f" novalidate>
+    <div class="card">
+      <label for="voornaam">Voornaam</label>
+      <input id="voornaam" type="text" autocomplete="given-name" required>
+      <label for="gym">Naam van jouw gym</label>
+      <input id="gym" type="text" autocomplete="organization" required>
+      <label for="tel">Telefoon (waarop je ons appje kreeg)</label>
+      <input id="tel" type="tel" inputmode="tel" autocomplete="tel" required>
+      <div class="hp"><label for="website">Website</label><input id="website" type="text" tabindex="-1" autocomplete="off"></div>
+    </div>
+    <button type="submit" id="knop">Claim mijn plek →</button>
+    <div class="fout" id="fout">Er ging iets mis. Check je gegevens en probeer nog een keer.</div>
+    <p class="mondeling">Vragen over de investering of het contract? We nemen alles persoonlijk met je door zodra je claimt. Geen kleine lettertjes, wel gewoon even bellen.</p>
+    <p class="privacy">Je gegevens gebruiken we alleen om dit aanbod met je te regelen.</p>
+  </form>
+
+  <div class="handnote">Vijf plekken, vijf dagen. Daarna is het weg.</div>
+</div>
+
+<div id="klaar">
+  <span class="big">💪</span>
+  <h2 id="klaarkop">Je plek is geclaimd!</h2>
+  <p id="klaartekst">We appen of bellen je vandaag nog om alles persoonlijk te regelen.</p>
+</div>
+
+<div id="verlopen">
+  <span class="big">⏳</span>
+  <h2>Het aanbod is verlopen.</h2>
+  <p>De vijf plekken golden tot en met vrijdag. Toch benieuwd wat GymOps voor jouw box kan doen? App ons gerust, je hebt ons nummer.</p>
+</div>
+
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const DEADLINE=new Date("2026-09-12T23:59:59+02:00").getTime();
+const MAX=5;
+let vrij=MAX;
+const start=Date.now();
+
+/* plekjes-teller */
+function tekenPlekjes(){
+  $("vrij").textContent=Math.max(0,vrij);
+  $("plekjes").innerHTML=Array.from({length:MAX},(_,i)=>'<i class="'+(i<vrij?"":"weg")+'"></i>').join("");
+  if(vrij<=0){
+    $("knop").textContent="Zet me op de wachtlijst →";
+  }
+}
+tekenPlekjes();
+fetch("https://gymops-gathering-demo.vercel.app/api/aanbod-status").then(r=>r.json()).then(j=>{
+  vrij=Math.max(0,(j.max||MAX)-(j.claimed||0));
+  tekenPlekjes();
+}).catch(()=>{});
+
+/* countdown */
+function klok(){
+  const ms=DEADLINE-Date.now();
+  if(ms<=0){
+    $("hoofd").style.display="none";$("klaar").style.display="none";$("verlopen").style.display="block";
+    return;
+  }
+  const d=Math.floor(ms/86400000), u=Math.floor(ms%86400000/3600000), m=Math.floor(ms%3600000/60000);
+  $("klok").textContent=(d>0?d+"d ":"")+u+"u "+String(m).padStart(2,"0")+"m";
+}
+klok();setInterval(klok,30000);
+
+/* claim */
+$("f").addEventListener("submit",async ev=>{
+  ev.preventDefault();
+  if(!$("f").checkValidity()){$("f").reportValidity();return;}
+  if($("website").value||Date.now()-start<3000){$("fout").style.display="block";return;}
+  const wacht=vrij<=0;
+  $("knop").disabled=true;$("knop").textContent="Momentje...";
+  try{
+    const r=await fetch("https://gymops-gathering-demo.vercel.app/api/aanbod-claim",{
+      method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        voornaam:$("voornaam").value.trim(), gymnaam:$("gym").value.trim(),
+        telefoon:$("tel").value.trim(), wachtlijst:wacht
+      })
+    });
+    if(!r.ok)throw new Error();
+    if(wacht){
+      $("klaarkop").textContent="Je staat op de wachtlijst.";
+      $("klaartekst").textContent="Valt er een plek vrij, dan ben jij de eerste die we bellen.";
+    }
+    $("hoofd").style.display="none";
+    $("klaar").style.display="block";
+  }catch(e){
+    $("fout").style.display="block";
+    $("knop").disabled=false;$("knop").textContent=wacht?"Zet me op de wachtlijst →":"Claim mijn plek →";
+  }
+});
+</script>
+</body>
+</html>
