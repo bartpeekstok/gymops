@@ -152,11 +152,12 @@ footer img{height:22px;display:block;margin:0 auto 8px}
   <div class="plateau">
     <div class="big"><span id="p-plateau" class="cnt">—</span> <small>leden</small></div>
     <p class="sub" style="margin-top:6px" id="plateau-uitleg">Dáár plateaut jouw box, wat je ook aan marketing doet. Meer adverteren maakt de emmer niet dichter.</p>
+    <p class="sub" style="margin-top:6px" id="plateau-tijd"></p>
     <svg viewBox="0 0 600 190" fill="none">
       <line x1="30" y1="160" x2="580" y2="160" stroke="#D1D5DB" stroke-width="2"/>
-      <path d="M30,155 C 140,120 200,85 300,72 C 400,60 500,58 575,57" stroke="#DC2626" stroke-width="4" stroke-linecap="round"/>
-      <line x1="30" y1="57" x2="575" y2="57" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="5 6" opacity=".5"/>
-      <text x="415" y="44" fill="#DC2626" font-family="Caveat" font-size="26" font-weight="600" id="curve-note">hier loop je tegenaan</text>
+      <path id="curve-pad" d="M30,155 C 140,120 200,85 300,72 C 400,60 500,58 575,57" stroke="#DC2626" stroke-width="4" stroke-linecap="round"/>
+      <line id="curve-dash" x1="30" y1="57" x2="575" y2="57" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="5 6" opacity=".5"/>
+      <text x="400" y="44" fill="#DC2626" font-family="Caveat" font-size="26" font-weight="600" id="curve-note">hier loop je tegenaan</text>
     </svg>
   </div>
 
@@ -306,6 +307,42 @@ if(plateauNu < p.l*0.98){
   $("plateau-uitleg").textContent="Je groeit nu nog, maar met dit verloop en deze aanwas stopt dat vanzelf op dit punt. Meer adverteren verschuift het niet.";
   $("curve-note").textContent="hier stopt het";
 }
+
+/* wanneer zit je daar? (uitgaande van vandaag) */
+const plateauExact = p.a/churnNu;
+const gap0 = Math.abs(p.l - plateauExact);
+const tPlateau = gap0 < Math.max(5, plateauExact*0.03) ? 0
+  : Math.max(1, Math.ceil(Math.log(Math.max(5, plateauExact*0.05)/gap0)/Math.log(1-churnNu)));
+(function(){
+  const el=$("plateau-tijd"); if(!el) return;
+  if(tPlateau===0){ el.innerHTML="Daar zit je nu al zo'n beetje op."; return; }
+  const dd=new Date(); dd.setMonth(dd.getMonth()+tPlateau);
+  const wanneer=dd.toLocaleDateString("nl-NL",{month:"long",year:"numeric"});
+  const jr=tPlateau>=24?" (ruim "+Math.floor(tPlateau/12)+" jaar)":"";
+  el.innerHTML="Op dit tempo zit je daar over <strong>± "+tPlateau+" maanden</strong>"+jr+": rond <strong>"+wanneer+"</strong>.";
+})();
+
+/* de curve tekenen op de echte beweging: omhoog of omlaag naar het plateau */
+(function(){
+  const pad=$("curve-pad"), dash=$("curve-dash"), note=$("curve-note");
+  if(!pad||!dash) return;
+  const L0=p.l, P=plateauExact;
+  const lo=Math.min(L0,P), hi=Math.max(L0,P);
+  const span=Math.max(hi-lo,1);
+  const yFor=v=>150-((v-lo)/span)*95;
+  const T=Math.max(24,(tPlateau||12)*1.1);
+  let d="";
+  for(let i=0;i<=48;i++){
+    const t=T*i/48;
+    const L=P+(L0-P)*Math.pow(1-churnNu,t);
+    const x=30+545*i/48;
+    d+=(i?" L":"M")+x.toFixed(1)+","+yFor(L).toFixed(1);
+  }
+  pad.setAttribute("d",d);
+  const yP=yFor(P).toFixed(1);
+  dash.setAttribute("y1",yP); dash.setAttribute("y2",yP);
+  note.setAttribute("y", L0>P ? (+yP+26) : (+yP-13));
+})();
 
 /* het gat */
 if(gat<=0){

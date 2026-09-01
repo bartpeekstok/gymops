@@ -66,6 +66,11 @@ button.cta{
 button.cta:active{transform:translateY(1px)}
 .privacy{font-size:12px;color:var(--fg3);margin-top:12px;text-align:center}
 .fout{display:none;color:var(--danger);font-size:14px;font-weight:600;margin-top:12px;text-align:center}
+.telrij{display:flex;gap:8px}
+.telrij select{font:inherit;font-size:16px;padding:12px 8px;border:1px solid var(--border-strong);border-radius:12px;background:#fff;flex:0 0 auto}
+.telrij input{flex:1;min-width:0}
+.mixrow.overig{border-top:1px dashed var(--border-strong);padding-top:10px;margin-top:6px}
+.mixrow .ost{font-size:15px;font-weight:700;text-align:right;color:var(--fg2);font-variant-numeric:tabular-nums}
 .verborgen{display:none}
 @media (max-width:480px){
   .wrap{padding:0 16px 48px}
@@ -100,7 +105,7 @@ button.cta:active{transform:translateY(1px)}
       <span><label class="q" for="gym">Naam van je gym</label><input id="gym" type="text" autocomplete="organization" required></span>
     </div>
     <div class="veld duo">
-      <span><label class="q" for="tel">Telefoon</label><input id="tel" type="tel" inputmode="tel" autocomplete="tel" required></span>
+      <span><label class="q" for="tel">Telefoon</label><div class="telrij"><select id="land" aria-label="Landcode"><option value="+31" selected>🇳🇱 +31</option><option value="+32">🇧🇪 +32</option><option value="+49">🇩🇪 +49</option><option value="+352">🇱🇺 +352</option><option value="+44">🇬🇧 +44</option></select><input id="tel" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="6 12345678" required></div></span>
       <span><label class="q" for="mail">E-mail</label><input id="mail" type="email" autocomplete="email" required></span>
     </div>
   </div>
@@ -172,7 +177,7 @@ function omzetLabel(){
   const v=omzetWaarde();
   $("omzetVal").textContent=eur(v)+(v>=100000?"+":"");
 }
-$("omzet").addEventListener("input",()=>{ omzetLabel(); syncAlleRijen(); });
+$("omzet").addEventListener("input",()=>{ omzetLabel(); syncAlleRijen(); toonSom(); });
 omzetLabel();
 
 /* --- vraag 5: omzetmix, euro's óf procenten per rij --- */
@@ -213,6 +218,10 @@ CATS.forEach(([k])=>{
   $("e-"+k).addEventListener("input",()=>syncRij(k,"e"));
   $("p-"+k).addEventListener("input",()=>syncRij(k,"p"));
 });
+const ovRow=document.createElement("div");
+ovRow.className="mixrow overig";
+ovRow.innerHTML='<span class="n">Overig (alles wat hierboven niet staat)</span><span class="ost" id="ov-e">—</span><span class="ost" id="ov-p">100%</span>';
+rows.appendChild(ovRow);
 function mixPct(){
   const m={};
   CATS.forEach(([k])=>{ m[k]=Math.max(0,Math.round(parseFloat($("p-"+k).value)||0)); });
@@ -224,8 +233,27 @@ function toonSom(){
   const el=$("mixsom");
   if(som>105){ el.className="mixsom teveel"; el.innerHTML="Samen: <b>"+som+"%</b>, dat is meer dan je omzet; check de bedragen even."; }
   else if(som===0){ el.className="mixsom"; el.textContent="Samen: 0% van je omzet"; }
-  else{ el.className="mixsom"; el.innerHTML="Samen: <b>"+som+"%</b> van je omzet"+(som<100?" · de rest telt als overig":""); }
+  else{ el.className="mixsom"; el.innerHTML="Samen: <b>"+som+"%</b> van je omzet"; }
+  const rest=Math.max(0,100-som);
+  $("ov-p").textContent=rest+"%";
+  $("ov-e").textContent=eur(omzetWaarde()*rest/100);
 }
+toonSom();
+
+/* --- telefoon + e-mail echt valideren --- */
+function telOk(){
+  const d=$("tel").value.replace(/[\s\-\.\(\)]/g,"");
+  return /^(\+\d{9,14}|0?\d{7,11})$/.test(d);
+}
+function mailOk(){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test($("mail").value.trim()); }
+function volNummer(){
+  let d=$("tel").value.replace(/[\s\-\.\(\)]/g,"");
+  if(d.startsWith("00")) d="+"+d.slice(2);
+  if(d.startsWith("+")) return d;
+  if(d.startsWith("0")) d=d.slice(1);
+  return $("land").value+d;
+}
+function meld(el,tekst){ el.setCustomValidity(tekst); el.reportValidity(); el.setCustomValidity(""); }
 
 /* --- stap 1 → stap 2, met deel-webhook zodra contact bekend is --- */
 $("naarVragen").addEventListener("click",()=>{
@@ -233,13 +261,15 @@ $("naarVragen").addEventListener("click",()=>{
     const el=$(id);
     if(!el.checkValidity()){ el.reportValidity(); return; }
   }
+  if(!telOk()){ meld($("tel"),"Vul een echt telefoonnummer in, bijvoorbeeld 6 12345678."); return; }
+  if(!mailOk()){ meld($("mail"),"Dat lijkt geen geldig e-mailadres."); return; }
   if(WEBHOOK_URL){
     try{
       fetch(WEBHOOK_URL,{
         method:"POST",headers:{"Content-Type":"application/json"},keepalive:true,
         body:JSON.stringify({
           bron:"routekaart_start", voornaam:$("voornaam").value.trim(),
-          gymnaam:$("gym").value.trim(), telefoon:$("tel").value.trim(),
+          gymnaam:$("gym").value.trim(), telefoon:volNummer(),
           email:$("mail").value.trim()
         })
       }).catch(()=>{});
@@ -277,7 +307,7 @@ $("f").addEventListener("submit",ev=>{
         method:"POST",headers:{"Content-Type":"application/json"},keepalive:true,
         body:JSON.stringify(Object.assign({
           bron:"routekaart", voornaam:data.v, gymnaam:data.g,
-          telefoon:$("tel").value.trim(), email:$("mail").value.trim(),
+          telefoon:volNummer(), email:$("mail").value.trim(),
           leden:data.l, omzet_pm:data.o, opzeggers_pm:data.z, aanwas_pm:data.a,
           mix_pct:m, knelpunt:$("knel").value.trim(), routekaart_url:kaartUrl
         },euro))
