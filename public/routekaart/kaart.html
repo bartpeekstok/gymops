@@ -27,7 +27,7 @@
   --hand:'Caveat','Inter',cursive;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--fg1);font-family:var(--font);line-height:1.55;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--fg1);font-family:var(--font);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 .wrap{max-width:660px;margin:0 auto;padding:0 22px}
 section{padding:44px 0}
 .eyebrow{font-size:13px;letter-spacing:.08em;font-weight:700;text-transform:uppercase;color:var(--mint-deep)}
@@ -96,6 +96,11 @@ header.top .chip{font-size:11px;letter-spacing:.06em;font-weight:700;text-transf
 
 /* mentor + cta */
 .mentor{display:flex;gap:16px;align-items:center;background:var(--bg-soft-2);border:1px solid var(--border);border-radius:20px;padding:18px;margin-top:8px}
+@media (max-width:480px){
+  .mentor{flex-direction:column;align-items:flex-start}
+  .cgrid{gap:10px}
+  .mp{flex-wrap:wrap;gap:6px 12px}
+}
 .mentor>span{display:flex;flex:0 0 auto}
 .mentor img{width:54px;height:54px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:var(--shadow-card)}
 .mentor img+img{margin-left:-16px}
