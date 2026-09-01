@@ -178,6 +178,7 @@ footer img{height:22px;display:block;margin:0 auto 8px}
       <h3 id="s1-kop">Dicht de achterdeur</h3>
       <p id="s1-tekst">—</p>
       <div class="effect"><span class="v"><span id="s1-plateau" class="cnt">—</span> leden</span><span class="l" id="s1-effect-l">wordt je nieuwe plateau</span></div>
+      <div class="effect"><span class="v" id="s1-omzet">—</span><span class="l">omzet per jaar bij jouw huidige <span id="s1-arm">—</span> per lid</span></div>
       <div class="gymops-hulp"><b>GymOps:</b> bezoekfrequentie-signalen, week-1-belletjes, mijlpalen vieren, opzeg-gesprekken. Elke wegzakker wordt een taak voor je team.</div>
     </div>
 
@@ -186,23 +187,26 @@ footer img{height:22px;display:block;margin:0 auto 8px}
       <h3>Vang elke lead</h3>
       <p id="s2-tekst">—</p>
       <div class="effect"><span class="v"><span id="s2-plateau" class="cnt">—</span> leden</span><span class="l">wordt het plateau met dezelfde advertenties</span></div>
+      <div class="effect"><span class="v" id="s2-omzet">—</span><span class="l">omzet per jaar bij dezelfde omzet per lid</span></div>
       <div class="gymops-hulp"><b>GymOps:</b> lead capture op je site, directe opvolging, beltaken en vangnetten voor no-shows en twijfelaars.</div>
     </div>
 
     <div class="station">
-      <div class="nr">Station 3 · jaar 2 en 3</div>
-      <h3 id="s3-kop">Verhoog de omzet per lid</h3>
+      <div class="nr">Station 3 · jaar 1</div>
+      <h3>Laat oud-leden terugkomen</h3>
       <p id="s3-tekst">—</p>
-      <div class="effect"><span class="v" id="s3-omzet">—</span><span class="l">jaaromzet bij hetzelfde ledental</span></div>
-      <div class="gymops-hulp"><b>GymOps:</b> check-ins die doorstroom-momenten zichtbaar maken ("doel bijstellen: semi-PT erbij"), events- en nutritionmodules.</div>
+      <div class="effect"><span class="v"><span id="s3-leden" class="cnt">—</span> leden</span><span class="l">waar de leden-route op uitkomt</span></div>
+      <div class="effect"><span class="v" id="s3-omzet">—</span><span class="l">omzet per jaar, nog steeds bij jouw huidige omzet per lid</span></div>
+      <div class="gymops-hulp"><b>GymOps:</b> warm afscheid, in beeld blijven, de kaart op de mat met het welkom-terug-aanbod.</div>
     </div>
 
     <div class="station">
-      <div class="nr" id="s4-nr">Station 4 · jaar 3 tot 5</div>
-      <h3>Laat oud-leden terugkomen</h3>
+      <div class="nr" id="s4-nr">Station 4 · jaar 2 tot 4</div>
+      <h3 id="s4-kop">Verhoog de omzet per lid</h3>
       <p id="s4-tekst">—</p>
-      <div class="effect"><span class="v"><span id="s4-leden" class="cnt">—</span> leden</span><span class="l">× <span id="s4-arm">—</span> per lid = de miljoen-lijn</span></div>
-      <div class="gymops-hulp"><b>GymOps:</b> warm afscheid, in beeld blijven, de kaart op de mat met het welkom-terug-aanbod.</div>
+      <div class="effect"><span class="v" id="s4-arm">—</span><span class="l">per lid per maand (nu <span id="s4-arm-nu">—</span>)</span></div>
+      <div class="effect"><span class="v" id="s4-omzet">—</span><span class="l">omzet per jaar = de miljoen-lijn</span></div>
+      <div class="gymops-hulp"><b>GymOps:</b> check-ins die doorstroom-momenten zichtbaar maken ("doel bijstellen: semi-PT erbij"), events- en nutritionmodules.</div>
     </div>
 
   </div>
@@ -277,7 +281,13 @@ const exDeel    = gat > leadsDeel ? 1 : 0;
 const restDeel  = Math.max(0, gat - leadsDeel - exDeel);
 const aanwasS2  = p.a + leadsDeel;
 const plateauS2 = r10(aanwasS2/doelChurn);
-const omzetS3   = plateauS2*armEind*12;
+const aanwas3   = p.a + Math.max(0, gat);   /* na station 2+3: gat gedicht */
+const plateau3  = r10(aanwas3/doelChurn);
+const rOmz      = n => Math.round(n/5000)*5000;
+const omzet1    = rOmz(plateauS1*armNu*12);
+const omzet2    = rOmz(plateauS2*armNu*12);
+const omzet3    = rOmz(plateau3*armNu*12);
+const omzet4    = rOmz(ledenEind*armEind*12);
 const churnGoed = churnNu <= 0.026;      /* verloop is al op of onder doel */
 const armGoed   = armNu >= 158;          /* omzet per lid al op niveau */
 const lastigeRoute = gat > 6;            /* groot aanwas-gat: langere adem */
@@ -364,47 +374,52 @@ if(churnGoed){
   $("s1-effect-l").innerHTML="wordt je nieuwe plateau (was "+plateauNu+")";
 }
 set("s1-plateau","±"+plateauS1);
+set("s1-omzet","≈ "+eur(omzet1));
+set("s1-arm", eur(Math.round(armNu)));
 
 /* station 2 */
 $("s2-tekst").innerHTML=leadsDeel>0
   ? "Zelfde marketingbudget, maar geen aanvraag meer die tussen de appjes verdwijnt. Reken conservatief op <strong>"+leadsDeel+" extra "+(leadsDeel===1?"lid":"leden")+" per maand</strong>."
   : "Jouw aanwas is al op niveau. Dit station gaat bij jou over minder afhankelijkheid van advertenties: dezelfde instroom, lagere kosten.";
 set("s2-plateau","±"+plateauS2);
-/* station 3 */
+set("s2-omzet","≈ "+eur(omzet2));
+
+/* station 3 · oud-leden, gewoon in jaar 1 */
+if(overshoot){
+  $("s3-tekst").innerHTML="Ex-leden zijn je goedkoopste aanwas, en dit start je gewoon in jaar 1, samen met station 1 en 2: de kaart op de mat, het welkom-terug-aanbod, de check-in na drie maanden. Bij jou is dit pure <strong>marge</strong>: je route komt ruim boven de ±"+ledenEind+" uit die de miljoen vraagt.";
+}else{
+  $("s3-tekst").innerHTML="Ex-leden zijn je goedkoopste aanwas, en dit start je gewoon in jaar 1, samen met station 1 en 2: de kaart op de mat, het welkom-terug-aanbod, de check-in na drie maanden. "+(exDeel?"Eén terugkeerder per maand dicht het gat.":"Zo houd je de instroom gezond zonder extra advertentiebudget.")+(restDeel?" De laatste "+restDeel+" haal je uit vindbaarheid en events.":"");
+}
+set("s3-leden","±"+plateau3);
+set("s3-omzet","≈ "+eur(omzet3));
+
+/* station 4 · omzet per lid, jaar 2 tot 4 */
 const CATN={sg:"small group",pt:"PT",nu:"nutrition",ob:"onboardingprogramma's",ev:"events"};
 const mist=mixIngevuld?Object.keys(CATN).filter(k=>(mix[k]||0)<3).map(k=>CATN[k]):[];
 const mistTxt=mist.length?" Uit "+opsom(mist)+" haal je nu (bijna) niks: dáár zit de rek.":"";
+if(lastigeRoute) $("s4-nr").textContent="Station 4 · jaar 2 tot 5";
 if(armGoed){
-  $("s3-kop").textContent="Houd de omzet per lid hoog";
-  $("s3-tekst").innerHTML="Jouw omzet per lid ("+eur(armNu)+" per maand) is al sterk. De route draait bij jou om dit vasthouden terwijl het ledental groeit"+(mist.length?", en om verbreden: uit "+opsom(mist)+" haal je nog weinig.":", met doorstroom en events als motor.");
+  $("s4-kop").textContent="Houd de omzet per lid hoog";
+  $("s4-tekst").innerHTML="Jouw omzet per lid ("+eur(armNu)+" per maand) is al sterk. De route draait bij jou om dit vasthouden terwijl het ledental groeit"+(mist.length?", en om verbreden: uit "+opsom(mist)+" haal je nog weinig.":", met doorstroom en events als motor.");
 }else if(mixIngevuld){
-  $("s3-tekst").innerHTML="Jouw omzet leunt nu voor <strong>"+mix.g+"%</strong> op groepslessen."+mistTxt+" Zo groeit de omzet per lid van <strong>"+eur(armNu)+"</strong> naar zo'n <strong>"+eur(armEind)+"</strong> per maand.";
+  $("s4-tekst").innerHTML="Jouw omzet leunt nu voor <strong>"+mix.g+"%</strong> op groepslessen."+mistTxt+" Zo groeit de omzet per lid van <strong>"+eur(armNu)+"</strong> naar zo'n <strong>"+eur(armEind)+"</strong> per maand.";
 }else{
-  $("s3-tekst").innerHTML="Door doorstroom naar small group, PT, nutrition en events groeit de omzet per lid van <strong>"+eur(armNu)+"</strong> naar zo'n <strong>"+eur(armEind)+"</strong> per maand.";
+  $("s4-tekst").innerHTML="Door doorstroom naar small group, PT, nutrition en events groeit de omzet per lid van <strong>"+eur(armNu)+"</strong> naar zo'n <strong>"+eur(armEind)+"</strong> per maand.";
 }
-set("s3-omzet", eur(omzetS3)+" p/j");
-
-/* station 4 */
-if(lastigeRoute) $("s4-nr").textContent="Station 4 · jaar 3 tot 6";
-if(overshoot){
-  $("s4-tekst").innerHTML="Ex-leden zijn je goedkoopste aanwas: de kaart op de mat, het welkom-terug-aanbod, de check-in na drie maanden. Bij jou is dit de <strong>marge</strong>: de miljoen vraagt ±"+ledenEind+" leden en jouw route komt op ±"+plateauS2+". Terugkeerders maken dat verschil zeker.";
-  set("s4-leden","±"+plateauS2);
-  document.querySelector("#s4-leden").parentElement.nextElementSibling.innerHTML="ruim boven de ±"+ledenEind+" die de miljoen vraagt";
-}else{
-  $("s4-tekst").innerHTML="Ex-leden zijn je goedkoopste aanwas: de kaart op de mat, het welkom-terug-aanbod, de check-in na drie maanden. "+(exDeel?"Eén terugkeerder per maand tilt je over de streep.":"Zo houd je de instroom gezond zonder extra advertentiebudget.");
-  set("s4-leden","±"+ledenEind);
-  set("s4-arm", eur(armEind));
-}
+set("s4-arm", eur(armEind));
+set("s4-arm-nu", eur(Math.round(armNu)));
+set("s4-omzet","≈ "+eur(omzet4));
 
 /* eindplaat */
 set("e-omzet","± "+eur(Math.round(ledenEind*armEind*12/50000)*50000));
 set("e-leden","±"+ledenEind);
 set("e-arm", eur(armEind));
+const r50=n=>Math.round(n/50000)*50000;
 const MP=[
-  ["Jaar 1", churnGoed ? "Signalen en taken staan: verloop blijft laag terwijl je groeit, elke lead gevangen." : "Achterdeur dicht + elke lead gevangen: door je oude plateau heen."],
-  ["Jaar 2", "Richting "+plateauS2+" leden, eerste doorstroom naar small group en PT."],
-  ["Jaar 3", overshoot ? "Omzet per lid richting "+eur(armEind)+": hier passeer je de miljoen al." : (armGoed ? "Omzet per lid blijft rond "+eur(armEind)+": de "+eur(Math.round(omzetS3/50000)*50000)+" passeert." : "Omzet per lid richting "+eur(armEind)+": de "+eur(Math.round(omzetS3/50000)*50000)+" passeert.")],
-  [lastigeRoute?"Jaar 4-6":"Jaar 4-5", overshoot ? "Marge opbouwen: terugkeerders en events maken de route zeker." : (restDeel?"Vindbaarheid, events en terugkeerders":"Terugkeerders en events")+" tillen je over de miljoen-lijn."]
+  ["Jaar 1", churnGoed ? "Signalen en taken staan: verloop blijft laag, elke lead gevangen en oud-leden komen terug." : "Achterdeur dicht, elke lead gevangen én oud-leden terug: door je oude plateau heen."],
+  ["Jaar 2", "Richting "+plateau3+" leden, eerste doorstroom naar small group en PT."],
+  ["Jaar 3", overshoot ? "Omzet per lid richting "+eur(armEind)+": hier passeer je de miljoen al." : "Omzet per lid richting "+eur(armEind)+": de "+eur(r50(omzet4))+" komt in zicht."],
+  [lastigeRoute?"Jaar 4-5":"Jaar 4", "De miljoen-lijn: ±"+ledenEind+" leden × "+eur(armEind)+" per lid per maand."]
 ];
 const mpEl=$("mijlpalen");
 MP.forEach(([j,t])=>{
