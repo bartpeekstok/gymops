@@ -115,6 +115,21 @@ footer{padding:30px 0 44px;text-align:center;color:var(--fg3);font-size:12px}
 footer img{height:22px;display:block;margin:0 auto 8px}
 .cnt{font-variant-numeric:tabular-nums}
 .hand{font-family:var(--hand);font-weight:600}
+
+/* tempo-keuze */
+.tempo{margin-top:18px;background:var(--mint-tint);border:1px solid var(--mint-light);border-radius:24px;padding:22px 24px}
+.tempo h3{font-size:clamp(20px,4.6vw,26px);font-weight:800;letter-spacing:-.025em;margin:6px 0 6px;color:var(--ink)}
+.tempo .sub{margin:0}
+.tempo-slider{display:grid;gap:8px;margin:16px 0 10px}
+.tempo-slider>span:first-child{font-size:15px;color:var(--fg2)}
+.tempo-slider input[type=range]{width:100%;accent-color:var(--mint);height:32px}
+.tempo-ticks{display:flex;justify-content:space-between;font-size:12px;color:var(--fg3);padding:0 6px}
+.tempo-ticks i{font-style:normal}
+.tempo-uit{font-size:17px;line-height:1.5;color:var(--ink);margin:0}
+.tempo-uit strong{color:var(--mint-deep)}
+.tempo-hulp{margin-top:12px!important;font-size:14px!important;color:var(--fg3)!important}
+.keuze{display:block;margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.14);font-size:14px;color:rgba(255,255,255,.75)}
+.keuze strong{color:#fff}
 </style>
 </head>
 <body>
@@ -159,6 +174,19 @@ footer img{height:22px;display:block;margin:0 auto 8px}
       <line id="curve-dash" x1="30" y1="57" x2="575" y2="57" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="5 6" opacity=".5"/>
       <text x="400" y="44" fill="#DC2626" font-family="Caveat" font-size="26" font-weight="600" id="curve-note">hier loop je tegenaan</text>
     </svg>
+  </div>
+
+  <div class="tempo" id="tempo" hidden>
+    <div class="eyebrow">Sneller dan vanzelf</div>
+    <h3>Hoe snel wil je op <span id="tempo-doel">—</span> leden zitten?</h3>
+    <p class="sub" id="tempo-intro"></p>
+    <label class="tempo-slider">
+      <span>In <strong id="tempo-jaar-lbl">3 jaar</strong></span>
+      <input type="range" id="tempo-jaar" min="2" max="5" step="1" value="3" aria-label="Aantal jaren">
+      <span class="tempo-ticks"><i>2</i><i>3</i><i>4</i><i>5</i></span>
+    </label>
+    <p class="tempo-uit" id="tempo-uit"></p>
+    <p class="sub tempo-hulp">Meer nieuwe leden per maand komt langs twee wegen: betere conversie op de leads die je nu al krijgt, en méér leads via vindbaarheid, een betere site en lead capture. Allebei zit in ons systeem.</p>
   </div>
 
   <div class="gatkaart">
@@ -217,7 +245,7 @@ footer img{height:22px;display:block;margin:0 auto 8px}
   <div class="eind">
     <div class="eyebrow">Waar de route eindigt</div>
     <div class="mega" id="e-omzet">—</div>
-    <div class="som"><strong><span id="e-leden">—</span> leden × <span id="e-arm">—</span> per lid per maand.</strong><br>Geen raketwetenschap. Vier reparaties, in de goede volgorde.</div>
+    <div class="som"><strong><span id="e-leden">—</span> leden × <span id="e-arm">—</span> per lid per maand.</strong><br>Geen raketwetenschap. Vier reparaties, in de goede volgorde.<span class="keuze" id="e-keuze"></span></div>
     <div class="mijlpalen" id="mijlpalen"></div>
   </div>
 </section>
@@ -329,7 +357,33 @@ const tPlateau = gap0 < Math.max(5, plateauExact*0.03) ? 0
   const dd=new Date(); dd.setMonth(dd.getMonth()+tPlateau);
   const wanneer=dd.toLocaleDateString("nl-NL",{month:"long",year:"numeric"});
   const jr=tPlateau>=24?" (ruim "+Math.floor(tPlateau/12)+" jaar)":"";
-  el.innerHTML="Op dit tempo zit je daar over <strong>± "+tPlateau+" maanden</strong>"+jr+": rond <strong>"+wanneer+"</strong>.";
+  const teLang = tPlateau>=60 ? " Dat is te lang om op te wachten; hieronder kies je je tempo." : "";
+  el.innerHTML="Op dit tempo zit je daar over <strong>± "+tPlateau+" maanden</strong>"+jr+": rond <strong>"+wanneer+"</strong>."+teLang;
+})();
+
+/* tempo: hoe snel wil je op de miljoen-lijn (±ledenEind leden) zitten? */
+(function(){
+  const box=$("tempo"), sel=$("tempo-jaar"), out=$("tempo-uit"); if(!box||!sel||!out) return;
+  const doel=ledenEind, L0=p.l, c=churnNu;
+  if(L0>=doel) return; /* al voorbij de lijn: geen tempo-vraag */
+  box.hidden=false;
+  set("tempo-doel","±"+doel);
+  $("tempo-intro").textContent = churnGoed && tPlateau>=36
+    ? "Je verloop is goed en hiermee kom je er, alleen duurt het te lang. Kies hoe snel je er wilt zijn:"
+    : "Wachten tot het plateau duurt lang. Kies hoe snel je bij de miljoen-lijn wilt zijn:";
+  /* benodigde aanwas om in M maanden van L0 naar doel te komen bij verloop cc:
+     L(M) = a/cc + (L0 - a/cc)(1-cc)^M  =>  a = cc*(doel - L0*f)/(1-f), f=(1-cc)^M */
+  const nodig=(cc,M)=>{const f=Math.pow(1-cc,M);return cc*(doel-L0*f)/(1-f)};
+  function render(){
+    const T=parseInt(sel.value,10), M=T*12;
+    $("tempo-jaar-lbl").textContent=T+" jaar";
+    const a=nodig(c,M);
+    if(a<=p.a){ out.innerHTML="Met je huidige "+p.a+" nieuwe leden per maand zit je er binnen "+T+" jaar al."; return; }
+    const extra=" Dat zijn er <strong>"+Math.ceil(a-p.a)+" per maand méér</strong> dan nu.";
+    const bij25=c>0.026 ? " Breng je het verloop naar 2,5%, dan volstaan er <strong>"+Math.ceil(nodig(0.025,M))+"</strong>." : "";
+    out.innerHTML="Dan heb je <strong>"+Math.ceil(a)+" nieuwe leden per maand</strong> nodig bij je huidige verloop van "+pct(c)+"."+extra+bij25;
+  }
+  sel.addEventListener("input",render); render();
 })();
 
 /* de curve tekenen op de echte beweging: omhoog of omlaag naar het plateau */
@@ -357,7 +411,7 @@ const tPlateau = gap0 < Math.max(5, plateauExact*0.03) ? 0
 /* het gat */
 if(gat<=0){
   $("gat-kop").textContent="Jouw aanwas is al genoeg.";
-  $("gat-uitleg").textContent="Met "+p.a+" nieuwe leden per maand en "+pct(doelChurn)+" verloop draag jij al genoeg aan voor de miljoen-route. Jouw route gaat vooral over vasthouden en omzet per lid.";
+  $("gat-uitleg").textContent="Met "+p.a+" nieuwe leden per maand en "+pct(doelChurn)+" verloop draag jij al genoeg aan voor de miljoen-route. Jouw route gaat vooral over vasthouden en omzet per lid."+(tPlateau>=36?" Alleen het tempo: dat kies je hierboven.":"");
 }else{
   $("gat-kop").textContent=gat+" extra "+(gat===1?"lid":"leden")+" per maand";
   $("gat-uitleg").textContent="Meer is het gat niet. Voor de miljoen heb je "+benodigd+" nieuwe leden per maand nodig (bij "+pct(doelChurn)+" verloop); jij zit op "+p.a+". "+
@@ -414,6 +468,12 @@ set("s4-omzet","≈ "+eur(omzet4));
 set("e-omzet","± "+eur(Math.round(ledenEind*armEind*12/50000)*50000));
 set("e-leden","±"+ledenEind);
 set("e-arm", eur(armEind));
+/* de mix is een keuze: minder leden met een hogere omzet per lid kan ook */
+(function(){
+  const el=$("e-keuze"); if(!el) return;
+  const leden2=r10(ledenEind*0.6), arm2=Math.ceil(DOEL_OMZET/12/leden2/5)*5;
+  el.innerHTML="Dit is één manier. Het kan ook met minder leden en een hogere omzet per lid: bijvoorbeeld <strong>±"+leden2+" leden × "+eur(arm2)+"</strong>, of alleen small group. Welke mix bij jouw box past, kies jij; de vier stations blijven dezelfde.";
+})();
 const r50=n=>Math.round(n/50000)*50000;
 const MP=[
   ["Jaar 1", churnGoed ? "Signalen en taken staan: verloop blijft laag, elke lead gevangen en oud-leden komen terug." : "Achterdeur dicht, elke lead gevangen én oud-leden terug: door je oude plateau heen."],
