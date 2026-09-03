@@ -5,21 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Routekaart naar 1 miljoen · GymOps</title>
 <style>
-@font-face{
-  font-family:'Inter';
-  src:url('/routekaart/assets/fonts/Inter-var-latin.woff2') format('woff2');
-  font-weight:100 900;font-style:normal;font-display:swap;
-}
-@font-face{
-  font-family:'Caveat';
-  src:url('/routekaart/assets/fonts/Caveat-var-latin.woff2') format('woff2');
-  font-weight:400 700;font-style:normal;font-display:swap;
-}
+@font-face{font-family:'Inter';src:url('/routekaart/assets/fonts/Inter-var-latin.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'Caveat';src:url('/routekaart/assets/fonts/Caveat-var-latin.woff2') format('woff2');font-weight:400 700;font-style:normal;font-display:swap}
 :root{
   --bg:#FFFFFF; --bg-soft:#F1F5F6; --bg-soft-2:#F8FAFB;
   --ink:#0C161B; --fg1:#0A0A0F; --fg2:#1F2937; --fg3:#6B7280;
   --mint:#3E788E; --mint-light:#7FB0C2; --mint-deep:#2E5C6E; --mint-tint:#E9F2F5;
-  --danger:#DC2626; --danger-tint:#FEF2F2;
+  --water:#A9CFDC; --water-deep:#7FB0C2;
+  --danger:#DC2626; --danger-tint:#FEF2F2; --amber:#B45309; --ok:#059669;
   --border:#E5E7EB; --border-strong:#D1D5DB;
   --shadow-card:0 1px 2px rgba(10,10,15,.04),0 12px 32px -12px rgba(10,10,15,.12);
   --shadow-lg:0 24px 60px -24px rgba(10,10,15,.28);
@@ -29,157 +22,194 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--fg1);font-family:var(--font);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 .wrap{max-width:660px;margin:0 auto;padding:0 22px}
-section{padding:44px 0}
+section{padding:40px 0}
 .eyebrow{font-size:13px;letter-spacing:.08em;font-weight:700;text-transform:uppercase;color:var(--mint-deep)}
 h1{font-size:clamp(34px,9vw,52px);font-weight:800;letter-spacing:-.035em;line-height:1.05;margin-top:10px}
 h1 .accent{color:var(--mint)}
-h2{font-size:clamp(24px,6vw,34px);font-weight:800;letter-spacing:-.03em;line-height:1.1}
-.sub{font-size:17px;color:var(--fg3);margin-top:12px;max-width:52ch}
+h2{font-size:clamp(24px,6vw,32px);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-top:6px}
+.sub{font-size:16px;color:var(--fg3);margin-top:10px;max-width:52ch}
 .sub strong{color:var(--fg1)}
-
+.hand{font-family:var(--hand);font-weight:600}
 header.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
 header.top img{height:26px}
 header.top .chip{font-size:11px;letter-spacing:.06em;font-weight:700;text-transform:uppercase;color:var(--mint-deep);background:var(--mint-tint);border-radius:999px;padding:5px 12px}
 
-/* jouw cijfers */
-.cijfers{background:var(--bg-soft-2);border:1px solid var(--border);border-radius:20px;padding:20px;margin-top:26px;box-shadow:var(--shadow-card)}
-.cijfers .k{font-size:11px;letter-spacing:.07em;font-weight:700;text-transform:uppercase;color:var(--fg3)}
-.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
-.cg .v{font-size:24px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.cg .l{font-size:12px;color:var(--fg3);font-weight:600}
-.mixbar{display:flex;height:12px;border-radius:99px;overflow:hidden;margin-top:16px}
-.mixbar i{display:block;height:100%}
-.mixleg{display:flex;gap:14px;margin-top:8px;font-size:12px;color:var(--fg3);font-weight:600;flex-wrap:wrap}
-.mixleg b{color:var(--fg1)}
-.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+/* opgave als pills */
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.pill{background:var(--bg-soft-2);border:1px solid var(--border);border-radius:999px;padding:8px 14px;font-size:13px;color:var(--fg2);display:flex;gap:6px;align-items:baseline}
+.pill b{font-size:15px;color:var(--ink);font-variant-numeric:tabular-nums}
 
-/* plateau */
-.plateau{background:var(--danger-tint);border:1px solid #FCA5A5;border-radius:24px;padding:26px 22px;margin-top:8px}
-.plateau .big{font-size:clamp(56px,16vw,92px);font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--danger);font-variant-numeric:tabular-nums}
-.plateau .big small{font-size:.35em;font-weight:700;letter-spacing:0}
-.plateau svg{width:100%;height:auto;margin-top:14px}
 
-/* het gat */
-.gatkaart{background:var(--mint-tint);border:1px solid var(--mint-light);border-radius:24px;padding:22px;margin-top:18px}
-.gatkaart .g{font-size:clamp(30px,8vw,44px);font-weight:800;letter-spacing:-.03em;color:var(--mint-deep);font-variant-numeric:tabular-nums;line-height:1.1}
-.gatkaart p{font-size:15px;color:var(--fg2);margin-top:8px}
+/* kaarten */
+.kaart{background:#fff;border:1px solid var(--border);border-radius:24px;padding:22px;margin-top:18px;box-shadow:var(--shadow-card)}
+.kaart.rood{background:var(--danger-tint);border-color:#FCA5A5}
+.kaart.mint{background:var(--mint-tint);border-color:var(--mint-light)}
+.zin{font-size:17px;line-height:1.5;color:var(--ink);margin-top:14px}
+.zin strong{color:var(--mint-deep)}
+.zin strong.rood{color:var(--danger)}
+.mini{font-size:13px;color:var(--fg3);margin-top:8px}
+details.som{margin-top:14px;border-top:1px dashed var(--border-strong);padding-top:10px}
+details.som summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--mint-deep);list-style:none;display:flex;align-items:center;gap:6px}
+details.som summary::-webkit-details-marker{display:none}
+details.som summary:before{content:"+";display:inline-flex;width:18px;height:18px;border-radius:50%;background:var(--mint-tint);align-items:center;justify-content:center;font-weight:800}
+details.som[open] summary:before{content:"–"}
+details.som p{font-size:14px;color:var(--fg2);margin-top:8px}
+details.som table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+details.som td{padding:5px 0;border-bottom:1px solid var(--border)}
+details.som td:last-child{text-align:right;font-variant-numeric:tabular-nums;font-weight:600;color:var(--ink)}
 
-/* route */
-.route{margin-top:10px;border-left:3px solid var(--mint-light);padding-left:22px;position:relative}
-.station{position:relative;padding:6px 0 34px}
-.station:before{
-  content:"";position:absolute;left:-31.5px;top:12px;width:14px;height:14px;border-radius:50%;
-  background:#fff;border:3px solid var(--mint);
+/* 1. de emmer */
+.emmer-wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center;margin-top:14px}
+@media(max-width:560px){.emmer-wrap{grid-template-columns:1fr}}
+.emmer{width:100%;height:auto;display:block}
+.peil{text-align:center}
+.peil .big{font-size:clamp(52px,14vw,76px);font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--danger);font-variant-numeric:tabular-nums}
+.peil .big small{font-size:.33em;font-weight:700;letter-spacing:0;color:var(--danger)}
+.peil .wanneer{font-size:14px;color:var(--fg2);margin-top:8px}
+.peil .omzet{font-size:13px;color:var(--fg3);margin-top:4px}
+.knoppen{display:grid;gap:12px;margin-top:18px}
+.knop{display:grid;grid-template-columns:1fr auto;gap:2px 12px;align-items:center;background:#fff;border:1px solid var(--border);border-radius:14px;padding:10px 14px}
+.knop label{font-size:13px;font-weight:700;color:var(--fg2)}
+.knop output{font-size:15px;font-weight:800;color:var(--mint-deep);font-variant-numeric:tabular-nums;text-align:right}
+.knop input[type=range]{grid-column:1/-1;width:100%;accent-color:var(--mint);height:28px}
+.reset{font-size:13px;color:var(--fg3);text-decoration:underline;cursor:pointer;background:none;border:0;font-family:inherit;margin-top:8px}
+.effect-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chip{font-size:13px;background:#fff;border:1px solid var(--border);border-radius:999px;padding:6px 12px;color:var(--fg2)}
+.chip b{color:var(--mint-deep)}
+
+/* 2. negen blokjes */
+.negen{display:grid;grid-template-columns:repeat(9,1fr);gap:5px;margin-top:10px}
+.negen i{display:block;aspect-ratio:1/1;border-radius:7px;background:var(--border)}
+.negen i.l{background:var(--mint)} .negen i.v{background:#94A3AC} .negen i.w{background:var(--mint-deep)}
+.negen-leg{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;font-size:13px;color:var(--fg2)}
+.negen-leg span:before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.negen-leg .l:before{background:var(--mint)} .negen-leg .v:before{background:#94A3AC} .negen-leg .w:before{background:var(--mint-deep)}
+.euro{margin-top:16px}
+.euro .t{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;font-weight:700;color:var(--ink)}
+.euro .t small{font-weight:600;color:var(--fg3)}
+.euro-bar{position:relative;display:flex;height:34px;border-radius:9px;overflow:hidden;background:var(--border);margin-top:8px}
+.euro-bar i{display:block;height:100%}
+.euro-bar .l{background:var(--mint)} .euro-bar .v{background:#94A3AC} .euro-bar .w{background:var(--mint-deep)} .euro-bar .w.neg{background:var(--danger)}
+.euro-bar .ticks{position:absolute;inset:0;display:grid;grid-template-columns:repeat(9,1fr);pointer-events:none}
+.euro-bar .ticks b{border-right:2px solid rgba(255,255,255,.55)}
+.euro-bar .ticks b:last-child{border:0}
+.euro .uit{font-size:15px;color:var(--ink);margin-top:8px}
+.euro .uit .rood{color:var(--danger)} .euro .uit .amber{color:var(--amber)} .euro .uit .groen{color:var(--ok)}
+.velden{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+@media(max-width:480px){.velden{grid-template-columns:1fr}}
+.velden label{font-size:13px;color:var(--fg2);display:grid;gap:4px}
+.velden label small{color:var(--fg3);font-size:11.5px}
+.velden input{width:100%;border:1px solid var(--border-strong);border-radius:10px;padding:10px 12px;font:inherit;font-size:16px;background:#fff}
+
+/* 3. de curve */
+.curve{width:100%;height:auto;display:block;margin-top:10px}
+.tempo-slider{display:grid;gap:6px;margin:10px 0 4px}
+.tempo-slider>span:first-child{font-size:14px;color:var(--fg2)}
+.tempo-slider input[type=range]{width:100%;accent-color:var(--mint);height:30px}
+.tempo-ticks{display:flex;justify-content:space-between;font-size:12px;color:var(--fg3);padding:0 6px}
+.tempo-ticks i{font-style:normal}
+
+/* 4. de rechthoek */
+.rects{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+@media(max-width:480px){.rects{grid-template-columns:1fr 1fr 1fr;gap:6px}}
+.rect{background:#fff;border:1px solid var(--border-strong);border-radius:16px;padding:12px 10px 10px;cursor:pointer;text-align:center;font:inherit;box-shadow:var(--shadow-card);transition:border-color .15s,background .15s}
+.rect.active{background:var(--mint-tint);border-color:var(--mint);box-shadow:0 0 0 2px var(--mint-tint)}
+.rect .n{display:block;font-weight:800;font-size:14px;color:var(--ink)}
+.rect svg{width:100%;height:auto;display:block;margin:8px 0 6px}
+.rect .l{display:block;font-size:12px;color:var(--fg3)}
+.rect .l b{color:var(--mint-deep);font-size:13px}
+.gat-chip{display:inline-flex;align-items:baseline;gap:8px;margin-top:12px;background:#fff;border:1px solid var(--mint-light);border-radius:999px;padding:8px 14px;font-size:14px;color:var(--fg2)}
+.gat-chip b{font-size:18px;color:var(--mint-deep);font-variant-numeric:tabular-nums}
+
+/* 5. metrolijn */
+.metro{position:relative;margin-top:22px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.metro:before{content:"";position:absolute;left:8%;right:8%;top:17px;height:4px;background:var(--mint-light);border-radius:2px}
+.halte{position:relative;text-align:center}
+.halte .dot{width:38px;height:38px;border-radius:50%;background:#fff;border:4px solid var(--mint);margin:0 auto;display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--mint-deep);position:relative;z-index:1}
+.halte h3{font-size:14px;font-weight:800;letter-spacing:-.01em;margin-top:10px;line-height:1.2}
+.halte .v{font-size:20px;font-weight:800;color:var(--mint);letter-spacing:-.02em;margin-top:6px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.halte .l{font-size:11.5px;color:var(--fg3);line-height:1.3;margin-top:2px}
+.halte p{font-size:13px;color:var(--fg2);margin-top:8px;text-align:left}
+@media(max-width:560px){
+  .metro{grid-template-columns:1fr;gap:0;padding-left:8px}
+  .metro:before{left:26px;right:auto;top:10px;bottom:10px;width:4px;height:auto}
+  .halte{display:grid;grid-template-columns:38px 1fr;gap:4px 14px;text-align:left;padding:8px 0 22px}
+  .halte .dot{margin:0;grid-row:1/4}
+  .halte h3{margin-top:8px}
+  .halte .v{margin-top:0}
 }
-.station .nr{font-size:12px;letter-spacing:.07em;font-weight:700;text-transform:uppercase;color:var(--mint-deep)}
-.station h3{font-size:21px;font-weight:800;letter-spacing:-.02em;margin-top:4px}
-.station p{font-size:15px;color:var(--fg2);margin-top:8px;max-width:50ch}
-.effect{
-  display:flex;align-items:baseline;gap:10px;margin-top:12px;background:#fff;border:1px solid var(--border);
-  border-radius:14px;padding:12px 16px;box-shadow:var(--shadow-card);flex-wrap:wrap;
-}
-.effect .v{font-size:26px;font-weight:800;letter-spacing:-.02em;color:var(--mint);font-variant-numeric:tabular-nums;white-space:nowrap}
-.effect .l{font-size:13px;color:var(--fg3);font-weight:600}
-.gymops-hulp{margin-top:10px;font-size:14px;color:var(--fg2);background:var(--mint-tint);border-radius:12px;padding:10px 14px}
-.gymops-hulp b{color:var(--mint-deep)}
+.hulp{margin-top:14px;font-size:13.5px;color:var(--fg2);background:var(--mint-tint);border-radius:12px;padding:10px 14px}
+.hulp b{color:var(--mint-deep)}
 
-/* eindplaat */
+/* eind */
 .eind{background:var(--ink);color:#fff;border-radius:28px;padding:34px 26px;text-align:center;box-shadow:var(--shadow-lg)}
 .eind .eyebrow{color:var(--mint-light)}
 .eind .mega{font-size:clamp(44px,13vw,76px);font-weight:800;letter-spacing:-.04em;line-height:1;margin-top:10px;font-variant-numeric:tabular-nums}
 .eind .som{font-size:16px;color:#D1D5DB;margin-top:12px}
 .eind .som strong{color:#fff}
-.mijlpalen{margin-top:22px;display:grid;gap:8px;text-align:left}
-.mp{display:flex;gap:12px;align-items:baseline;background:rgba(255,255,255,.07);border-radius:12px;padding:10px 14px}
-.mp .j{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--mint-light);text-transform:uppercase;white-space:nowrap}
-.mp .t{font-size:14px;color:#E5E7EB}
+.tijdlijn{margin-top:22px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:left}
+@media(max-width:560px){.tijdlijn{grid-template-columns:1fr 1fr}}
+.tl{background:rgba(255,255,255,.07);border-radius:12px;padding:10px 12px}
+.tl .j{font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--mint-light);text-transform:uppercase}
+.tl .v{font-size:18px;font-weight:800;margin-top:4px;font-variant-numeric:tabular-nums}
+.tl .t{font-size:12px;color:#CBD5E1;margin-top:2px}
+.e-gezond{display:block;margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.14);font-size:14px;color:rgba(255,255,255,.75)}
+.e-gezond strong{color:#fff}
 
-/* mentor + cta */
 .mentor{display:flex;gap:16px;align-items:center;background:var(--bg-soft-2);border:1px solid var(--border);border-radius:20px;padding:18px;margin-top:8px}
-@media (max-width:480px){
-  .mentor{flex-direction:column;align-items:flex-start}
-  .cgrid{gap:10px}
-  .mp{flex-wrap:wrap;gap:6px 12px}
-}
+@media(max-width:480px){.mentor{flex-direction:column;align-items:flex-start}}
 .mentor>span{display:flex;flex:0 0 auto}
 .mentor img{width:54px;height:54px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:var(--shadow-card)}
 .mentor img+img{margin-left:-16px}
 .mentor .t{font-size:15px;color:var(--fg2)}
 .mentor .t b{color:var(--fg1)}
-.cta{
-  display:block;text-align:center;background:var(--mint);color:#fff;border-radius:999px;
-  padding:16px 22px;font-weight:800;font-size:17px;text-decoration:none;margin-top:22px;box-shadow:0 12px 30px -12px rgba(62,120,142,.45);
-}
+.cta{display:block;text-align:center;background:var(--mint);color:#fff;border-radius:999px;padding:16px 22px;font-weight:800;font-size:17px;text-decoration:none;margin-top:22px;box-shadow:0 12px 30px -12px rgba(62,120,142,.45)}
 .disclaimer{font-size:12px;color:var(--fg3);margin-top:16px;text-align:center}
 footer{padding:30px 0 44px;text-align:center;color:var(--fg3);font-size:12px}
 footer img{height:22px;display:block;margin:0 auto 8px}
-.cnt{font-variant-numeric:tabular-nums}
-.hand{font-family:var(--hand);font-weight:600}
 
-/* tempo-keuze */
-.tempo{margin-top:18px;background:var(--mint-tint);border:1px solid var(--mint-light);border-radius:24px;padding:22px 24px}
-.tempo h3{font-size:clamp(20px,4.6vw,26px);font-weight:800;letter-spacing:-.025em;margin:6px 0 6px;color:var(--ink)}
-.tempo .sub{margin:0}
-.tempo-slider{display:grid;gap:8px;margin:16px 0 10px}
-.tempo-slider>span:first-child{font-size:15px;color:var(--fg2)}
-.tempo-slider input[type=range]{width:100%;accent-color:var(--mint);height:32px}
-.tempo-ticks{display:flex;justify-content:space-between;font-size:12px;color:var(--fg3);padding:0 6px}
-.tempo-ticks i{font-style:normal}
-.tempo-uit{font-size:17px;line-height:1.5;color:var(--ink);margin:0}
-.tempo-uit strong{color:var(--mint-deep)}
-.tempo-hulp{margin-top:12px!important;font-size:14px!important;color:var(--fg3)!important}
+/* opgave-editor */
+.opgave{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}
+@media(max-width:560px){.opgave{grid-template-columns:1fr 1fr}}
+.opgave label{display:grid;gap:2px;background:var(--bg-soft-2);border:1px solid var(--border);border-radius:14px;padding:10px 12px;font-size:11.5px;color:var(--fg3);font-weight:600}
+.opgave input{width:100%;border:0;background:transparent;font:inherit;font-size:20px;font-weight:800;color:var(--ink);letter-spacing:-.02em;padding:0;font-variant-numeric:tabular-nums}
+.opgave input:focus{outline:none;color:var(--mint-deep)}
+.opgave-hint{font-size:12.5px;color:var(--fg3);margin-top:8px}
+.opgave-hint button{font:inherit;color:var(--mint-deep);background:none;border:0;text-decoration:underline;cursor:pointer;padding:0}
+.peil .big2{font-size:clamp(24px,6.5vw,32px);font-weight:800;letter-spacing:-.03em;line-height:1.1;color:var(--ink);margin-top:6px;font-variant-numeric:tabular-nums}
+.peil .big2 small{font-size:13px;font-weight:600;color:var(--fg3);letter-spacing:0;display:block;margin-top:2px}
+.knoppen.drie{grid-template-columns:1fr 1fr 1fr}
+@media(max-width:560px){.knoppen.drie{grid-template-columns:1fr}}
+.mijlpalen{margin-top:22px;display:grid;gap:8px;text-align:left}
+.mp{display:flex;gap:12px;align-items:baseline;background:rgba(255,255,255,.07);border-radius:12px;padding:10px 14px}
+.mp .j{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--mint-light);text-transform:uppercase;white-space:nowrap}
+.mp .t{font-size:14px;color:#E5E7EB}
 .keuze{display:block;margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.14);font-size:14px;color:rgba(255,255,255,.75)}
 .keuze strong{color:#fff}
 
-/* gezonde verdeling (4/9-model) */
-.verdeling{margin-top:18px;background:#fff;border:1px solid var(--border);border-radius:24px;padding:22px 24px;box-shadow:var(--shadow-card)}
-.verdeling h3{font-size:clamp(20px,4.6vw,26px);font-weight:800;letter-spacing:-.025em;margin:6px 0 8px;color:var(--ink)}
-.verdeling .sub{margin:0}
-.vd-caveat{font-family:var(--hand);color:var(--mint-deep);font-size:22px;transform:rotate(-2deg);display:inline-block;margin:12px 0 2px}
-.vd-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:6px 0 8px}
-@media(max-width:700px){.vd-cols{grid-template-columns:1fr}}
-.vd-col{background:var(--bg-soft-2);border-radius:16px;padding:12px 12px 10px;min-width:0}
-.vd-col .k{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mint-deep)}
-.vd-col .o{font-size:18px;font-weight:800;letter-spacing:-.02em;margin:4px 0 8px;color:var(--ink);white-space:nowrap}
-.vd-col .o small{font-size:12px;font-weight:500;color:var(--fg3);letter-spacing:0;margin-left:4px}
-.vd-col .s{font-size:12px;color:var(--fg3);margin-top:8px}
-.vd-bar{display:flex;height:14px;border-radius:7px;overflow:hidden;background:var(--border)}
-.vd-bar i{display:block;height:100%}
-.vd-bar .l{background:var(--mint)}.vd-bar .v{background:#94A3AC}.vd-bar .w{background:var(--mint-deep)}.vd-bar .w.neg{background:var(--danger)}
-.vd-leg{display:grid;gap:4px;margin-top:8px;font-size:12px;color:var(--fg2)}
-.vd-leg div{display:flex;justify-content:space-between;gap:6px;align-items:baseline}
-.vd-leg div span:first-child{white-space:nowrap}
-.vd-leg b{font-weight:700;color:var(--ink);white-space:nowrap}
-.vd-leg .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
-.vd-eigen{margin-top:16px;border-top:1px dashed var(--border-strong);padding-top:14px}
-.vd-eigen .kop{font-weight:800;letter-spacing:-.01em;margin:0 0 10px;color:var(--ink)}
-.vd-eigen .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-@media(max-width:480px){.vd-eigen .row{grid-template-columns:1fr}}
-.vd-eigen label{font-size:13px;color:var(--fg2);display:grid;gap:4px}
-.vd-eigen label small{color:var(--fg3);font-size:11.5px}
-.vd-eigen input{width:100%;border:1px solid var(--border-strong);border-radius:10px;padding:10px 12px;font:inherit;font-size:16px;background:#fff}
-.vd-eigen .uit{margin-top:12px;font-size:15px;line-height:1.55;color:var(--ink)}
-.vd-eigen .uit .rood{color:var(--danger)}.vd-eigen .uit .amber{color:#B45309}.vd-eigen .uit .groen{color:#059669}
-.vd-eigen .uit .mini{font-size:13px;color:var(--fg2)}
-.e-gezond{display:block;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.14);font-size:14px;color:rgba(255,255,255,.75)}
-.e-gezond strong{color:#fff}
-.vd-rij{margin-top:12px}
-.vd-rij+.vd-rij{margin-top:16px;padding-top:12px;border-top:1px dashed var(--border)}
-.vd-aanname{font-size:12px;color:var(--fg3);margin-top:10px}
-.tempo-slider[hidden]{display:none}
-
-/* route naar de miljoen */
-.routes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
-@media(max-width:700px){.routes{grid-template-columns:1fr}}
-.route-btn{text-align:left;background:#fff;border:1px solid var(--border-strong);border-radius:16px;padding:14px 14px 12px;font:inherit;cursor:pointer;box-shadow:var(--shadow-card);transition:border-color .15s,background .15s}
-.route-btn:hover{border-color:var(--mint-light)}
-.route-btn.active{background:var(--mint-tint);border-color:var(--mint);box-shadow:0 0 0 2px var(--mint-tint)}
-.route-btn .n{display:block;font-weight:800;font-size:16px;letter-spacing:-.01em;color:var(--ink)}
-.route-btn .a{display:block;font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--mint-deep);margin-top:4px;font-variant-numeric:tabular-nums}
-.route-btn .l{display:block;font-size:13px;color:var(--fg2);font-weight:600;margin-top:2px}
-.route-btn .s{display:block;font-size:12px;color:var(--fg3);margin-top:6px}
-#route-uit{margin-top:14px}
-#route-uit strong{color:var(--fg1)}
+section.stap > .eyebrow, section.stap > h2, section.stap > .sub, section.stap > .zin, section.stap > .gat-chip, section.stap > details{margin-left:22px}
+section.stap > .sub{max-width:calc(52ch)}
+/* euro-legenda: loon, vaste lasten en winst naast elkaar */
+.euro-leg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+@media(max-width:480px){.euro-leg{grid-template-columns:1fr}}
+.euro-leg div{font-size:12.5px;color:var(--fg2);line-height:1.35}
+.euro-leg b{display:block;font-size:15px;color:var(--ink);font-variant-numeric:tabular-nums}
+.euro-leg b.af{color:var(--danger)}
+.euro-leg small{color:var(--fg3)}
+/* metrolijn: verticaal, met wat GymOps per station doet */
+.metro{position:relative;margin-top:18px;display:grid;gap:14px;grid-template-columns:1fr}
+.metro:before{content:"";position:absolute;left:18px;top:14px;bottom:14px;width:4px;height:auto;background:var(--mint-light);border-radius:2px;right:auto}
+.halte{position:relative;display:grid;grid-template-columns:40px 1fr;gap:2px 14px;text-align:left;padding:0}
+.halte .dot{width:40px;height:40px;border-radius:50%;background:#fff;border:4px solid var(--mint);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--mint-deep);position:relative;z-index:1;margin:0;grid-row:1/5}
+.halte h3{font-size:17px;font-weight:800;letter-spacing:-.01em;margin-top:6px;line-height:1.2;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.halte h3 .v{font-size:15px;font-weight:800;color:var(--mint);background:var(--mint-tint);border-radius:999px;padding:3px 10px;white-space:nowrap;margin:0}
+.halte .l{font-size:12.5px;color:var(--fg3);margin-top:2px}
+.halte p{font-size:14px;color:var(--fg2);margin-top:6px;text-align:left}
+.doet{margin:8px 0 0;padding:10px 14px;background:var(--mint-tint);border-radius:12px;list-style:none;display:grid;gap:4px}
+.doet li{font-size:13px;color:var(--fg2);padding-left:16px;position:relative}
+.doet li:before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;background:var(--mint)}
+.doet .k{font-size:11px;letter-spacing:.07em;font-weight:700;text-transform:uppercase;color:var(--mint-deep);padding:0;margin-bottom:2px}
+.doet .k:before{display:none}
 </style>
 </head>
 <body>
@@ -190,137 +220,128 @@ footer img{height:22px;display:block;margin:0 auto 8px}
   <span class="chip" id="topchip">Jouw routekaart</span>
 </header>
 
-<!-- HERO -->
+<!-- HERO + OPGAVE -->
 <section style="padding-top:18px">
   <div class="eyebrow" id="gym-eyebrow">Routekaart</div>
   <h1>Jouw route naar<br><span class="accent">1 miljoen.</span></h1>
-  <p class="sub" id="hero-sub">Op basis van jouw eigen cijfers. Vier stations, één route. Onderaan zie je hoe die eruitziet in jaren.</p>
+  <p class="sub" id="hero-sub">Op basis van jouw cijfers. Elk beeld rekent mee als je iets aanpast.</p>
+  <div class="opgave">
+    <label>betalende leden<input type="number" id="i-l" min="1" step="1" inputmode="numeric"></label>
+    <label>omzet per maand, ex btw<input type="number" id="i-o" min="1" step="500" inputmode="numeric"></label>
+    <label>opzeggers per maand<input type="number" id="i-z" min="0" step="1" inputmode="numeric"></label>
+    <label>nieuwe leden per maand<input type="number" id="i-a" min="0" step="1" inputmode="numeric"></label>
+  </div>
+  <p class="opgave-hint" id="opgave-hint">Klopt er iets niet? Pas het hier aan.</p>
+</section>
 
-  <div class="cijfers">
-    <div class="k">Waar je nu staat (jouw opgave)</div>
-    <div class="cgrid">
-      <div class="cg"><div class="v" id="c-leden">—</div><div class="l">betalende leden</div></div>
-      <div class="cg"><div class="v" id="c-omzet">—</div><div class="l">omzet per maand · ex btw</div></div>
-      <div class="cg"><div class="v" id="c-churn">—</div><div class="l">opzeggers per maand</div></div>
-      <div class="cg"><div class="v" id="c-aanwas">—</div><div class="l">nieuwe leden per maand</div></div>
+<!-- 1. DIT IS JE PLATEAU -->
+<section id="stap1" class="stap">
+  <div class="eyebrow">Stap 1 · waar je uitkomt</div>
+  <h2 id="plateau-kop">Dit is je plateau.</h2>
+  <p class="sub">Je box is een emmer: er stroomt water in (nieuwe leden) en er lekt water weg (opzeggers). Het peil stopt precies waar instroom en lek gelijk zijn. Met jouw cijfers is dat:</p>
+  <div class="kaart rood">
+    <div class="emmer-wrap">
+      <svg class="emmer" viewBox="0 0 300 250" fill="none" aria-hidden="true">
+        <path d="M60 22 h60 v10 h-22 v8 h-16 v-8 h-22z" fill="#94A3AC"/>
+        <g id="drops" fill="var(--mint)"><circle cx="90" cy="52" r="3.5"/><circle cx="90" cy="70" r="3.5" opacity=".7"/><circle cx="90" cy="88" r="3.5" opacity=".4"/></g>
+        <text id="lbl-in" x="128" y="50" font-size="13" font-weight="700" fill="var(--mint-deep)"></text>
+        <clipPath id="clip"><path d="M40 60 L260 60 L245 235 Q244 242 236 242 L64 242 Q56 242 55 235 Z"/></clipPath>
+        <rect id="water" x="30" y="242" width="240" height="0" fill="var(--water)" clip-path="url(#clip)"/>
+        <rect id="water-top" x="30" y="242" width="240" height="6" fill="var(--water-deep)" clip-path="url(#clip)"/>
+        <path d="M40 60 L260 60 L245 235 Q244 242 236 242 L64 242 Q56 242 55 235 Z" stroke="#0C161B" stroke-width="3" stroke-linejoin="round"/>
+        <line id="nu-lijn" x1="42" y1="180" x2="258" y2="180" stroke="#0C161B" stroke-width="1.5" stroke-dasharray="4 5"/>
+        <text id="lbl-nu" x="50" y="176" font-size="11" font-weight="700" fill="#0C161B"></text>
+        <text id="lbl-pl" x="255" y="140" text-anchor="end" font-family="Caveat" font-size="24" font-weight="600" fill="#DC2626">hier stopt het</text>
+        <ellipse cx="228" cy="240" rx="10" ry="4" fill="#0C161B"/>
+        <g id="lek" fill="var(--water-deep)"><circle cx="228" cy="256" r="3" opacity=".8"/><circle cx="232" cy="268" r="2.5" opacity=".5"/></g>
+        <text id="lbl-uit" x="150" y="268" text-anchor="middle" font-size="13" font-weight="700" fill="#DC2626"></text>
+      </svg>
+      <div class="peil">
+        <div class="big"><span id="p-plateau">—</span> <small>leden</small></div>
+        <div class="big2"><span id="p-omzet">—</span><small id="p-omzet-sub">omzet per jaar op dit plateau</small></div>
+        <div class="wanneer" id="plateau-tijd"></div>
+      </div>
     </div>
-    <div class="mixbar" id="mixbar"></div>
-    <div class="mixleg" id="mixleg"></div>
+    <div class="knoppen drie">
+      <div class="knop"><label for="k-aanwas">Nieuwe leden per maand</label><output id="o-aanwas"></output><input type="range" id="k-aanwas" min="0" max="30" step="1"></div>
+      <div class="knop"><label for="k-churn">Verloop per maand</label><output id="o-churn"></output><input type="range" id="k-churn" min="0.5" max="8" step="0.1"></div>
+      <div class="knop"><label for="k-prijs">Omzet per lid per maand</label><output id="o-prijs"></output><input type="range" id="k-prijs" min="40" max="400" step="5"></div>
+    </div>
+    <button class="reset" type="button" id="k-reset" hidden>Terug naar de cijfers die je invulde</button>
+    <p class="zin" id="knop-zin"></p>
+    <details class="som"><summary>Toon de rekensom</summary><p id="som1"></p></details>
   </div>
 </section>
 
-<!-- PLATEAU -->
-<section>
-  <div class="eyebrow">Eerst het eerlijke verhaal</div>
-  <h2 id="plateau-kop">Jouw groei stopt vanzelf.</h2>
-  <p class="sub">Een box is een emmer met een gat erin: het waterpeil stopt precies waar er evenveel uitstroomt als er instroomt. Met jouw aanwas en verloop ligt dat punt op:</p>
-  <div class="plateau">
-    <div class="big"><span id="p-plateau" class="cnt">—</span> <small>leden</small></div>
-    <p class="sub" style="margin-top:6px" id="plateau-uitleg">Met deze trend kom je hier uit: elke maand komen er dan evenveel leden bij als er weggaan. Twee knoppen verschuiven dit punt: minder verloop en meer aanwas.</p>
-    <p class="sub" style="margin-top:6px" id="plateau-tijd"></p>
-    <p class="sub" style="margin-top:6px" id="plateau-omzet"></p>
-    <svg viewBox="0 0 600 190" fill="none">
-      <line x1="30" y1="160" x2="580" y2="160" stroke="#D1D5DB" stroke-width="2"/>
-      <path id="curve-pad" d="M30,155 C 140,120 200,85 300,72 C 400,60 500,58 575,57" stroke="#DC2626" stroke-width="4" stroke-linecap="round"/>
-      <line id="curve-dash" x1="30" y1="57" x2="575" y2="57" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="5 6" opacity=".5"/>
-      <text x="400" y="44" fill="#DC2626" font-family="Caveat" font-size="26" font-weight="600" id="curve-note">hier loop je tegenaan</text>
-    </svg>
-  </div>
-
-  <div class="verdeling" id="verdeling">
-    <div class="eyebrow">De verdeling</div>
-    <h3>Wat een gezonde box overhoudt</h3>
-    <p class="sub">Deel je omzet in negen gelijke stukken. Vier gaan naar loon: je team én jouw eigen uren in de operatie. Twee naar vaste lasten. Drie blijven over als winst: het rendement voor jou als eigenaar. Betaal je jezelf uit de winst terwijl je zelf lesgeeft of de boel runt? Dan is dat loon, geen winst.</p>
-    <span class="vd-caveat">zo hoort het</span>
-    <div class="vd-cols" id="vd-cols"></div>
-    <p class="sub">Bij de meeste boxen ziet het er niet zo uit: de winst is te dun en de kosten zijn hoger. Wil je weten hoe jij ervoor staat?</p>
-    <div class="vd-eigen">
-      <p class="kop">Klopt het plaatje? Vul je kosten in.</p>
-      <div class="row">
-        <label>Loonkosten per maand<small>team én jouw eigen uren in de operatie, ex btw</small><input type="number" id="vd-lk" min="0" step="250" inputmode="numeric" placeholder="bijv. 7500"></label>
-        <label>Overhead per maand<small>huur, energie, software, verzekeringen, ex btw</small><input type="number" id="vd-oh" min="0" step="250" inputmode="numeric" placeholder="bijv. 3000"></label>
-      </div>
-      <div class="uit" id="vd-uit"></div>
+<!-- 2. NEGEN BLOKJES -->
+<section id="stap2" class="stap">
+  <div class="eyebrow">Stap 2 · wat je overhoudt</div>
+  <h2>Je omzet in negen blokjes.</h2>
+  <p class="sub">Een gezonde box in deze industrie zit rond <strong>44% loon</strong>, <strong>22% vaste lasten</strong> en <strong>33% winst</strong>. In negen blokjes: 4, 2 en 3. Werk jij zelf in de operatie? Lesgeven, roosters, planning, verkoop, retentie: dat werk hoort bij de 44% loon, ook als je het jezelf nu uit de winst betaalt. De 33% winst is wat je als eigenaar overhoudt, los van je eigen uren.</p>
+  <div class="kaart">
+    <div style="display:flex;justify-content:space-between;align-items:baseline"><b style="font-size:14px">Zo hoort het</b><span class="hand" style="font-size:20px;color:var(--mint-deep);transform:rotate(-2deg);display:inline-block">de gezonde euro</span></div>
+    <div class="negen"><i class="l"></i><i class="l"></i><i class="l"></i><i class="l"></i><i class="v"></i><i class="v"></i><i class="w"></i><i class="w"></i><i class="w"></i></div>
+    <div class="negen-leg"><span class="l">Loon 4 blokjes (44%)</span><span class="v">Vaste lasten 2 (22%)</span><span class="w">Winst 3 (33%)</span></div>
+    <div class="velden">
+      <label>Jouw loonkosten per maand<small>team én jouw eigen uren, ex btw</small><input type="number" id="vd-lk" min="0" step="250" inputmode="numeric" placeholder="bijv. 9000"></label>
+      <label>Jouw vaste lasten per maand<small>huur, energie, software, verzekeringen</small><input type="number" id="vd-oh" min="0" step="250" inputmode="numeric" placeholder="bijv. 4000"></label>
     </div>
+    <div id="euros"></div>
+    <details class="som"><summary>Toon de bedragen</summary><table id="som2"></table></details>
   </div>
+</section>
 
-  <div class="tempo" id="tempo">
-    <div class="eyebrow">Sneller dan vanzelf</div>
-    <h3 id="tempo-kop">Hoe snel wil je op je plateau zitten?</h3>
-    <p class="sub" id="tempo-intro"></p>
+<!-- 3. DE RECHTHOEK -->
+<section id="stap3" class="stap">
+  <div class="eyebrow">Stap 3 · welke route</div>
+  <h2>Eén miljoen heeft drie vormen.</h2>
+  <p class="sub">Leden × prijs per lid = omzet. Dezelfde oppervlakte, een andere vorm: veel leden op groepsles, of minder leden die meer bij je doen. Kies wat bij jouw box past.</p>
+  <div class="rects" id="rects"></div>
+  <p class="zin" id="route-uit"></p>
+</section>
+
+<!-- 4. DE CURVE -->
+<section id="stap4" class="stap">
+  <div class="eyebrow">Stap 4 · hoe snel</div>
+  <h2 id="tempo-kop">Hoe snel wil je daar komen?</h2>
+  <p class="sub" id="tempo-intro"></p>
+  <div class="kaart mint">
+    <svg class="curve" id="curve" viewBox="0 0 600 240" fill="none" aria-hidden="true">
+      <line x1="40" y1="200" x2="580" y2="200" stroke="#D1D5DB" stroke-width="2"/>
+      <g id="curve-jaren" font-size="11" fill="#6B7280"></g>
+      <line id="pl-lijn" x1="40" y1="80" x2="580" y2="80" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="5 6" opacity=".6"/>
+      <text id="pl-lbl" x="576" y="72" text-anchor="end" font-family="Caveat" font-size="22" font-weight="600" fill="#DC2626">hier stopt het vanzelf</text>
+      <line id="doel-lijn" x1="40" y1="40" x2="580" y2="40" stroke="#0C161B" stroke-width="1.5" stroke-dasharray="5 6" opacity=".7"/>
+      <text id="doel-lbl" x="44" y="32" font-family="Caveat" font-size="22" font-weight="600" fill="#0C161B"></text>
+      <path id="pad-nu" d="" stroke="#94A3AC" stroke-width="3" stroke-linecap="round"/>
+      <path id="pad-tempo" d="" stroke="#3E788E" stroke-width="4" stroke-linecap="round"/>
+      <circle id="jaar-punt" cx="200" cy="120" r="6" fill="#3E788E" stroke="#fff" stroke-width="3"/>
+      <text id="jaar-lbl" x="200" y="50" text-anchor="middle" font-size="12" font-weight="700" fill="#2E5C6E"></text>
+    </svg>
     <label class="tempo-slider" id="tempo-slider">
-      <span>In <strong id="tempo-jaar-lbl">3 jaar</strong></span>
+      <span>In <strong id="tempo-jaar-lbl">3 jaar</strong> op je bestemming</span>
       <input type="range" id="tempo-jaar" min="1" max="5" step="1" value="3" aria-label="Aantal jaren">
       <span class="tempo-ticks"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></span>
     </label>
-    <p class="tempo-uit" id="tempo-uit"></p>
-    <p class="sub tempo-hulp" id="tempo-hulp">Meer nieuwe leden per maand komt langs twee wegen: betere conversie op de leads die je nu al krijgt, en méér leads via vindbaarheid, een betere site en lead capture. Allebei zit in ons systeem.</p>
+    <p class="zin" id="tempo-uit"></p>
+    <div class="gat-chip" id="gat-chip"></div>
+    <p class="mini">Meer nieuwe leden komt langs twee wegen: betere conversie op de leads die je al krijgt, en méér leads via vindbaarheid, een betere site en lead capture. Allebei zit in ons systeem.</p>
   </div>
 </section>
 
-<!-- ROUTE NAAR DE MILJOEN -->
-<section id="miljoen">
-  <div class="eyebrow">Verder dan je plateau</div>
-  <h2>Kies je route naar de miljoen.</h2>
-  <p class="sub">Kom je er met veel leden of met een hogere omzet per lid? Dat bepaalt hoeveel nieuwe leden je nodig hebt en wat station 4 moet opleveren. De vier stations blijven dezelfde; de getallen erin rekenen mee.</p>
-  <div class="routes" id="routes"></div>
-  <p class="sub" id="route-uit"></p>
-  <div class="gatkaart">
-    <div class="g" id="gat-kop">—</div>
-    <p id="gat-uitleg">—</p>
-  </div>
-</section>
-
-<!-- DE ROUTE -->
-<section>
-  <div class="eyebrow">De route</div>
-  <h2 style="margin-bottom:26px">Vier stations naar de miljoen.</h2>
-  <div class="route">
-
-    <div class="station">
-      <div class="nr">Station 1 · jaar 1</div>
-      <h3 id="s1-kop">Dicht de achterdeur</h3>
-      <p id="s1-tekst">—</p>
-      <div class="effect"><span class="v"><span id="s1-plateau" class="cnt">—</span> leden</span><span class="l" id="s1-effect-l">wordt je nieuwe plateau</span></div>
-      <div class="effect"><span class="v" id="s1-omzet">—</span><span class="l">omzet per jaar bij jouw huidige <span id="s1-arm">—</span> per lid</span></div>
-      <div class="gymops-hulp"><b>GymOps:</b> bezoekfrequentie-signalen, week-1-belletjes, mijlpalen vieren, opzeg-gesprekken. Elke wegzakker wordt een taak voor je team.</div>
-    </div>
-
-    <div class="station">
-      <div class="nr">Station 2 · jaar 1</div>
-      <h3>Vang elke lead</h3>
-      <p id="s2-tekst">—</p>
-      <div class="effect"><span class="v"><span id="s2-plateau" class="cnt">—</span> leden</span><span class="l">wordt het plateau met dezelfde advertenties</span></div>
-      <div class="effect"><span class="v" id="s2-omzet">—</span><span class="l">omzet per jaar bij dezelfde omzet per lid</span></div>
-      <div class="gymops-hulp"><b>GymOps:</b> lead capture op je site, directe opvolging, beltaken en vangnetten voor no-shows en twijfelaars.</div>
-    </div>
-
-    <div class="station">
-      <div class="nr">Station 3 · jaar 1</div>
-      <h3>Laat oud-leden terugkomen</h3>
-      <p id="s3-tekst">—</p>
-      <div class="effect"><span class="v"><span id="s3-leden" class="cnt">—</span> leden</span><span class="l">waar de leden-route op uitkomt</span></div>
-      <div class="effect"><span class="v" id="s3-omzet">—</span><span class="l">omzet per jaar, nog steeds bij jouw huidige omzet per lid</span></div>
-      <div class="gymops-hulp"><b>GymOps:</b> warm afscheid, in beeld blijven, de kaart op de mat met het welkom-terug-aanbod.</div>
-    </div>
-
-    <div class="station">
-      <div class="nr" id="s4-nr">Station 4 · jaar 2 tot 4</div>
-      <h3 id="s4-kop">Verhoog de omzet per lid</h3>
-      <p id="s4-tekst">—</p>
-      <div class="effect"><span class="v" id="s4-arm">—</span><span class="l">per lid per maand (nu <span id="s4-arm-nu">—</span>)</span></div>
-      <div class="effect"><span class="v" id="s4-omzet">—</span><span class="l">omzet per jaar = de miljoen-lijn</span></div>
-      <div class="gymops-hulp"><b>GymOps:</b> check-ins die doorstroom-momenten zichtbaar maken ("doel bijstellen: semi-PT erbij"), events- en nutritionmodules.</div>
-    </div>
-
-  </div>
+<!-- 5. METROLIJN -->
+<section id="stap5" class="stap">
+  <div class="eyebrow">Stap 5 · de route</div>
+  <h2>Vier stations naar de miljoen.</h2>
+  <p class="sub" id="metro-sub">In deze volgorde. De eerste drie tillen je ledental, het laatste je prijs.</p>
+  <div class="metro" id="metro"></div>
 </section>
 
 <!-- EINDPLAAT -->
 <section>
   <div class="eind">
     <div class="eyebrow">Waar de route eindigt</div>
-    <div class="mega" id="e-omzet">—</div>
+    <div class="mega" id="e-omzet">€ 1.000.000</div>
     <div class="som"><strong><span id="e-leden">—</span> leden × <span id="e-arm">—</span> per lid per maand.</strong><br>Geen raketwetenschap. Vier reparaties, in de goede volgorde.<span class="keuze" id="e-route"></span><span class="e-gezond" id="e-gezond"></span></div>
     <div class="mijlpalen" id="mijlpalen"></div>
   </div>
@@ -342,387 +363,231 @@ footer img{height:22px;display:block;margin:0 auto 8px}
 </footer>
 
 </div>
-
 <script>
-/* ================================================================
-   ROUTEKAART v3: eerst je plateau en wat je daar overhoudt, dan je
-   tempo, dan je route naar de miljoen. Data komt uit ?d= (base64-JSON
-   van het formulier: v,g,l,o,z,a,m) of valt terug op het voorbeeld.
-   Extra params: lk (loonkosten p/m), oh (overhead p/m), r (route).
-   ================================================================ */
+/* ROUTEKAART v5 (visueel): één toestand (jouw opgave), alles rekent mee. Volgorde: plateau → blokjes → route → tempo → stations. */
 const DEMO = { v:"", g:"CrossFit Zuidlaren", l:220, o:23000, z:8, a:9, m:{g:85,sg:10,pt:5,nu:0,ob:0,ev:0} };
 const Q = new URLSearchParams(location.search);
-
 function leesData(){
-  try{
-    const q=Q.get("d");
-    if(!q) return {p:DEMO, demo:true};
+  try{ const q=Q.get("d"); if(!q) return {p:DEMO, demo:true};
     const p=JSON.parse(decodeURIComponent(escape(atob(q))));
     if(!(p.l>0&&p.o>0&&p.a>=0&&p.z>=0)) return {p:DEMO, demo:true};
     return {p, demo:false};
   }catch(e){ return {p:DEMO, demo:true}; }
 }
-const {p, demo} = leesData();
-const mix = p.m || { g:(p.gp||80), sg:0, pt:0, nu:0, ob:0, ev:0 };
-const mixIngevuld = !!p.m && Object.values(p.m).reduce((t,x)=>t+(x||0),0) > 0;
-const opsom = a => a.length===1 ? a[0] : a.slice(0,-1).join(", ")+" en "+a[a.length-1];
-
+const {p:P0, demo} = leesData();
+let st = { l:P0.l, o:P0.o, z:P0.z, a:P0.a };
 const eur = n => "€ " + Math.round(n).toLocaleString("nl-NL");
 const pct = n => (n*100).toLocaleString("nl-NL",{maximumFractionDigits:1}).replace(".",",") + "%";
-const r10 = n => Math.round(n/10)*10;
-const rOmz = n => Math.round(n/5000)*5000;
-const rK = n => Math.round(n/1000)*1000;
-const r50 = n => Math.round(n/50000)*50000;
 const num = n => Math.round(n).toLocaleString("nl-NL");
+const fmt1 = n => n.toLocaleString("nl-NL",{maximumFractionDigits:1});
+const r10 = n => Math.round(n/10)*10, rOmz = n => Math.round(n/5000)*5000, rK = n => Math.round(n/1000)*1000, r50 = n => Math.round(n/50000)*50000;
+const $ = id => document.getElementById(id);
+const set = (id,v)=>{ const el=$(id); if(el) el.textContent=v; };
+const html = (id,v)=>{ const el=$(id); if(el) el.innerHTML=v; };
+const maandNaam=m=>{const d=new Date();d.setMonth(d.getMonth()+m);return d.toLocaleDateString("nl-NL",{month:"long",year:"numeric"});};
 
-/* ---- het model ---- */
-const DOEL_OMZET = 1000000;
-const LOON_MEEGROEI = 0.5;   /* loonkosten groeien half zo hard mee als het ledental */
-const VAST_MEEGROEI = 0;     /* vaste lasten blijven gelijk */
-const ROUTES = [
-  { key:"volume",  naam:"Volume",  arm:160, sub:"veel leden, groepsles als basis" },
-  { key:"balans",  naam:"Balans",  arm:220, sub:"groepsles plus small group en PT" },
-  { key:"premium", naam:"Premium", arm:300, sub:"small group en PT voorop" }
-];
-const churnNu   = Math.max(p.z / p.l, 0.01);
-const armNu     = p.o / p.l;
-const doelChurn = Math.min(churnNu, 0.025);
-const plateauExact = p.a/churnNu;               /* het plateau: aanwas gedeeld door verloop */
-const plateauNu = r10(plateauExact);
-const plateauS1 = r10(p.a/doelChurn);
-const omzet1    = rOmz(plateauS1*armNu*12);
-const churnGoed = churnNu <= 0.026;             /* verloop is al op of onder doel */
-const gap0 = Math.abs(p.l - plateauExact);
-const tPlateau = gap0 < Math.max(5, plateauExact*0.03) ? 0
-  : Math.max(1, Math.ceil(Math.log(Math.max(5, plateauExact*0.05)/gap0)/Math.log(1-churnNu)));
-const variant = plateauExact < p.l*0.98 ? "krimp" : tPlateau === 0 ? "plateau" : "rek";
+/* ---- model ---- */
+const DOEL=1000000, LOON_MEEGROEI=0.5, VAST_MEEGROEI=0;
+const ROUTES=[{key:"volume",naam:"Volume",arm:160,sub:"veel leden, groepsles als basis"},{key:"balans",naam:"Balans",arm:220,sub:"groepsles plus small group en PT"},{key:"premium",naam:"Premium",arm:300,sub:"small group en PT voorop"}];
+const nodig=(L0,doel,c,M)=>{const f=Math.pow(1-c,M);if(f>=1)return Math.max(0,(doel-L0)/Math.max(1,M));return c*(doel-L0*f)/(1-f);};
+const tVoor=(L0,P,c)=>{const gap=Math.abs(L0-P);return gap<Math.max(5,P*0.03)?0:Math.max(1,Math.ceil(Math.log(Math.max(5,P*0.05)/gap)/Math.log(1-c)));};
+const kostenOpPlateau=(L0,Lp,loon,vast)=>L0>0?{loon:Math.max(0,loon*(1+LOON_MEEGROEI*(Lp-L0)/L0)),vast:Math.max(0,vast*(1+VAST_MEEGROEI*(Lp-L0)/L0))}:{loon,vast};
+let routeKey=Q.get("r")||null, T=3, tGezet=false;
+function derive(){
+  const c=Math.max(st.z/st.l,0.005), arm=st.o/st.l, doelChurn=Math.min(c,0.025);
+  const P=st.a/c, t=tVoor(st.l,P,c);
+  const variant=P<st.l*0.98?"krimp":t===0?"plateau":"rek";
+  const armVloer=Math.ceil(arm/5)*5, seen=new Set(), opties=[];
+  ROUTES.forEach(r=>{const a=Math.max(r.arm,armVloer);if(seen.has(a))return;seen.add(a);opties.push({key:r.key,naam:r.naam,sub:r.sub,arm:a,leden:Math.max(10,r10(DOEL/12/a))});});
+  const std=arm>=300?"premium":arm>=220?"balans":"volume";
+  if(!opties.some(x=>x.key===routeKey)) routeKey=opties.some(x=>x.key===std)?std:opties[0].key;
+  const o=opties.find(x=>x.key===routeKey);
+  return {c,arm,doelChurn,P,t,variant,opties,o,c2:Math.max(0.005,c-0.005),perLid:1/c,kwal:c<=0.025?"dat is goed en lager kan nog":c<=0.04?"daar zit ruimte":"dat is hoog"};
+}
+/* plan: wat de gekozen route in T jaar vraagt, en hoe de stations dat verdelen */
+function plan(d){
+  const L0=st.l, M=T*12, ledenEind=d.o.leden, armEind=d.o.arm;
+  const voorbij=L0>=ledenEind;
+  /* haalt je huidige trend het doel al? dan: maanden tot je er bent */
+  const haalt=!voorbij&&d.P>ledenEind;
+  const tTrend=haalt?Math.max(1,Math.ceil(Math.log((d.P-ledenEind)/(d.P-L0))/Math.log(1-d.c))):null;
+  const nodigDoel=voorbij?0:nodig(L0,ledenEind,d.doelChurn,M), nodigNu=voorbij?0:nodig(L0,ledenEind,d.c,M);
+  const gat=Math.max(0,Math.ceil(nodigDoel)-st.a);
+  const leadsDeel=Math.min(3,gat), exDeel=gat>leadsDeel?1:0, restDeel=Math.max(0,gat-leadsDeel-exDeel);
+  const S1=st.a/d.doelChurn, S2=(st.a+leadsDeel)/d.doelChurn, S3=(st.a+gat)/d.doelChurn;
+  const L=t=>voorbij?L0:S3+(L0-S3)*Math.pow(1-d.doelChurn,t);
+  const armT=t=>d.arm+(armEind-d.arm)*Math.min(1,Math.max(0,t/M));
+  return {M,ledenEind,armEind,voorbij,haalt,tTrend,nodigDoel,nodigNu,gat,leadsDeel,exDeel,restDeel,S1,S2,S3,L,armT};
+}
 
-/* nieuwe leden per maand om in M maanden van L0 naar doel te komen bij verloop c:
-   L(M) = a/c + (L0 - a/c)(1-c)^M  =>  a = c*(doel - L0*f)/(1-f), f=(1-c)^M */
-const nodig = (L0, doel, c, M) => { const f=Math.pow(1-c,M); if(f>=1) return Math.max(0,(doel-L0)/Math.max(1,M)); return c*(doel-L0*f)/(1-f); };
-/* eigen kosten op het plateau: vaste lasten gelijk, loon groeit half mee met het ledental */
-const kostenOpPlateau = (L0, Lp, loon, vast) => L0>0
-  ? { loon: Math.max(0, loon*(1+LOON_MEEGROEI*(Lp-L0)/L0)), vast: Math.max(0, vast*(1+VAST_MEEGROEI*(Lp-L0)/L0)) }
-  : { loon, vast };
-const c2 = Math.max(0.005, churnNu-0.005);       /* een halve punt minder verloop */
-const perLid = 1/churnNu;                         /* plateau-winst per extra nieuw lid per maand */
-const deltaVerloop = p.a/c2 - p.a/churnNu;        /* plateau-winst bij een halve punt minder verloop */
-const opPeil = { aanwas: Math.ceil(churnNu*p.l), churn: p.l>0 ? p.a/p.l : 0 };
-const kwal = churnNu <= 0.025 ? "dat is goed en lager kan nog" : churnNu <= 0.04 ? "daar zit ruimte" : "dat is hoog";
-const tempoJaarStandaard = Math.min(3, Math.max(1, Math.round(tPlateau/24)));
-
-/* routes naar de miljoen: omzet per lid nooit onder je huidige, dubbele opties vallen weg */
-const armVloer = Math.ceil(armNu/5)*5;
-const routeOpties = (()=>{ const seen=new Set(), out=[]; ROUTES.forEach(r=>{ const arm=Math.max(r.arm, armVloer); if(seen.has(arm)) return; seen.add(arm); out.push({ key:r.key, naam:r.naam, sub:r.sub, arm, leden: Math.max(10, r10(DOEL_OMZET/12/arm)) }); }); return out; })();
-const routeStandaard = armNu>=300 ? "premium" : armNu>=220 ? "balans" : "volume";
-function leesRoute(){ const r=Q.get("r"); if(routeOpties.some(x=>x.key===r)) return r; if(routeOpties.some(x=>x.key===routeStandaard)) return routeStandaard; return routeOpties[0].key; }
-function zetParam(k,v){ try{ const u=new URL(location.href); if(v==null||v==="") u.searchParams.delete(k); else u.searchParams.set(k,v); history.replaceState(null,"",u.toString()); }catch(e){} }
-
-/* ---- vullen ---- */
-const $=id=>document.getElementById(id);
-const set=(id,v)=>{ const el=$(id); if(el) el.textContent=v; };
-const html=(id,v)=>{ const el=$(id); if(el) el.innerHTML=v; };
-const naam = p.g || "jouw box";
-set("gym-eyebrow","Routekaart · "+naam);
+/* ---- hero: de opgave, aanpasbaar ---- */
+set("gym-eyebrow","Routekaart · "+(P0.g||"jouw box"));
 if(demo) set("topchip","Voorbeeld");
-html("hero-sub",(p.v?"Hoi "+p.v+", dit":"Dit")+" is jouw routekaart, op basis van je eigen cijfers. Eerst waar je nu uitkomt, dan hoe snel het kan, dan je route naar de miljoen.");
+html("hero-sub",(P0.v?"Hoi "+P0.v+", dit":"Dit")+" is jouw routekaart, op basis van je eigen cijfers. Elk beeld rekent mee als je iets aanpast.");
+const I={l:$("i-l"),o:$("i-o"),z:$("i-z"),a:$("i-a")};
+function vulOpgave(){ I.l.value=st.l; I.o.value=Math.round(st.o); I.z.value=Math.round(st.z*10)/10; I.a.value=st.a; }
+Object.keys(I).forEach(k=>I[k].addEventListener("input",()=>{ const v=parseFloat(I[k].value); if(!(v>=0)||(k!=="z"&&k!=="a"&&v<=0)) return; st[k]=v; renderAll(false); }));
+function opgaveVeranderd(){ return st.l!==P0.l||Math.round(st.o)!==Math.round(P0.o)||Math.abs(st.z-P0.z)>0.05||st.a!==P0.a; }
+$("opgave-hint").addEventListener("click",e=>{ if(e.target.tagName==="BUTTON"){ st={l:P0.l,o:P0.o,z:P0.z,a:P0.a}; renderAll(true); } });
+$("k-reset").addEventListener("click",()=>{ st={l:P0.l,o:P0.o,z:P0.z,a:P0.a}; renderAll(true); });
 
-set("c-leden", p.l);
-set("c-omzet", eur(p.o));
-set("c-churn", p.z+" ("+pct(churnNu)+")");
-set("c-aanwas", p.a);
-
-/* plateau: eerst het eerlijke verhaal, met de twee knoppen die het bepalen */
-set("p-plateau","±"+plateauNu);
-const knoppenZin = "Twee knoppen bepalen dit getal: je verloop ("+pct(churnNu)+" per maand, "+kwal+") en je aanwas ("+p.a+" nieuwe leden per maand). Elk extra nieuw lid per maand tilt je plateau met ±"+Math.round(perLid)+" leden.";
-if(variant==="krimp"){
-  set("plateau-kop","Je krimpt. Nu al.");
-  set("plateau-uitleg","Met deze trend zakt je ledental hiernaartoe. Dit is geen dip, het is rekenwerk. Om op "+p.l+" leden te blijven heb je "+opPeil.aanwas+" nieuwe leden per maand nodig (nu "+p.a+"), of een verloop van "+pct(opPeil.churn)+".");
-  set("curve-note","hier zak je naartoe");
-}else if(plateauExact > p.l*1.3){
-  set("plateau-kop","Je hebt nog rek. Tot hier.");
-  set("plateau-uitleg","Je groeit nu nog, maar met deze trend stopt dat hier. "+knoppenZin);
-  set("curve-note","hier stopt het");
-}else{
-  set("plateau-uitleg","Met deze trend kom je hier uit: elke maand komen er dan evenveel leden bij als er weggaan. "+knoppenZin);
+/* ---- 1. emmer ---- */
+const K={a:$("k-aanwas"),c:$("k-churn"),p:$("k-prijs")};
+K.a.addEventListener("input",()=>{ st.a=parseInt(K.a.value,10); renderAll(false); });
+K.c.addEventListener("input",()=>{ st.z=Math.round(parseFloat(K.c.value)/100*st.l*10)/10; renderAll(false); });
+K.p.addEventListener("input",()=>{ st.o=parseInt(K.p.value,10)*st.l; renderAll(false); });
+function renderEmmer(d){
+  K.a.max=String(Math.max(30,Math.ceil(st.a*2))); K.a.value=String(Math.round(st.a)); K.c.value=String(Math.round(d.c*1000)/10); K.p.max=String(Math.max(400,Math.ceil(d.arm/5)*5)); K.p.value=String(Math.round(d.arm/5)*5);
+  set("o-aanwas",fmt1(st.a)); set("o-churn",pct(d.c)); set("o-prijs",eur(d.arm));
+  const bodem=242, top=60, hoogte=bodem-top, schaal=Math.max(d.P,st.l)*1.25, yVoor=v=>bodem-Math.min(1,v/schaal)*hoogte, yP=yVoor(d.P), yN=yVoor(st.l);
+  $("water").setAttribute("y",yP.toFixed(1)); $("water").setAttribute("height",(bodem-yP).toFixed(1)); $("water-top").setAttribute("y",yP.toFixed(1));
+  $("nu-lijn").setAttribute("y1",yN.toFixed(1)); $("nu-lijn").setAttribute("y2",yN.toFixed(1)); $("lbl-nu").setAttribute("y",(yN-4).toFixed(1)); set("lbl-nu","nu "+num(st.l));
+  $("lbl-pl").setAttribute("y",(yP-8).toFixed(1)); set("lbl-pl",d.variant==="krimp"?"hier zak je naartoe":"hier stopt het");
+  set("lbl-in","+"+fmt1(st.a)+" per maand"); set("lbl-uit","−"+fmt1(st.z)+" per maand ("+pct(d.c)+")");
+  $("drops").style.opacity=st.a===0?0.15:1;
+  set("p-plateau","±"+num(r10(d.P)));
+  set("p-omzet","≈ "+eur(rOmz(d.P*d.arm*12))); set("p-omzet-sub","omzet per jaar op dit plateau, bij "+eur(d.arm)+" per lid");
+  html("plateau-tijd", d.t===0?"Daar zit je nu al zo'n beetje op.":"Over <strong>± "+d.t+" maanden</strong>"+(d.t>=24?" (ruim "+Math.floor(d.t/12)+" jaar)":"")+", rond "+maandNaam(d.t)+".");
+  set("plateau-kop", d.variant==="krimp"?"Dit is je plateau. En het ligt lager dan nu.":"Dit is je plateau.");
+  html("knop-zin", d.variant==="krimp"
+    ? "Met deze cijfers <strong class=\"rood\">zak je naar ±"+num(r10(d.P))+" leden</strong>. Om op "+num(st.l)+" te blijven heb je "+Math.ceil(d.c*st.l)+" nieuwe leden per maand nodig, of "+pct(st.a/st.l)+" verloop. Schuif en zie wat elke knop doet."
+    : "Met deze cijfers stopt je groei bij <strong class=\"rood\">±"+num(r10(d.P))+" leden</strong>, ≈ "+eur(rOmz(d.P*d.arm*12))+" per jaar. Je verloop is "+pct(d.c)+" ("+d.kwal+"). Schuif en zie wat elke knop doet.");
+  html("som1","Plateau = nieuwe leden per maand ÷ verloop per maand = "+fmt1(st.a)+" ÷ "+pct(d.c)+" = ±"+num(r10(d.P))+" leden. Omzet op het plateau = "+num(r10(d.P))+" × "+eur(d.arm)+" × 12 ≈ "+eur(rOmz(d.P*d.arm*12))+". Elk extra nieuw lid per maand tilt het plateau met ±"+Math.round(d.perLid)+" leden; een half punt minder verloop ("+pct(d.c2)+") met ±"+num(st.a/d.c2-st.a/d.c)+".");
 }
 
-/* wanneer zit je daar? (uitgaande van vandaag) */
-(function(){
-  if(tPlateau===0){ html("plateau-tijd","Daar zit je nu al zo'n beetje op."); return; }
-  const dd=new Date(); dd.setMonth(dd.getMonth()+tPlateau);
-  const wanneer=dd.toLocaleDateString("nl-NL",{month:"long",year:"numeric"});
-  const jr=tPlateau>=24?" (ruim "+Math.floor(tPlateau/12)+" jaar)":"";
-  if(variant==="krimp"){ html("plateau-tijd","Op dit tempo zak je daar over <strong>± "+tPlateau+" maanden</strong>"+jr+" naartoe: rond <strong>"+wanneer+"</strong>."); return; }
-  const staart = tPlateau>=60 ? " Dat is te lang om op te wachten; verderop kies je je tempo." : " Verderop zie je wat het vraagt om er sneller te zijn.";
-  html("plateau-tijd","Op dit tempo zit je daar over <strong>± "+tPlateau+" maanden</strong>"+jr+": rond <strong>"+wanneer+"</strong>."+staart);
-})();
-
-/* plateau in geld: leden × omzet per lid */
-(function(){
-  const omzetPl=plateauExact*armNu*12;
-  html("plateau-omzet","±"+plateauNu+" leden × "+eur(armNu)+" per lid = <strong>≈ "+eur(rOmz(omzetPl))+" omzet per jaar</strong>"+(variant==="krimp" ? " (nu ≈ "+eur(rOmz(p.o*12))+")." : " op dit plateau."));
-})();
-
-/* gezonde verdeling: 4/9 loon, 2/9 vaste lasten, 3/9 winst (Two-Brain 4/9-model) */
-(function(){
-  const cols=$("vd-cols"); if(!cols) return;
-  const F={loon:4/9,vast:2/9,winst:3/9};
-  const omzetNu=p.o*12, omzetPl=plateauExact*armNu*12, omzetB=DOEL_OMZET;
-  const sc=[["Nu",omzetNu,p.l+" leden × "+eur(armNu)+" per lid"],["Op het plateau",omzetPl,"±"+plateauNu+" leden × "+eur(armNu)+" per lid"],["Bij 1 miljoen",omzetB,"1 miljoen, gezond verdeeld"]];
-  const leg=o=>'<div><span><span class="dot" style="background:var(--mint)"></span>Loon 44%</span><b>'+eur(rK(o*F.loon))+'</b></div><div><span><span class="dot" style="background:#94A3AC"></span>Vaste lasten 22%</span><b>'+eur(rK(o*F.vast))+'</b></div><div><span><span class="dot" style="background:var(--mint-deep)"></span>Winst 33%</span><b>'+eur(rK(o*F.winst))+'</b></div>';
-  cols.innerHTML=sc.map(([k,o,sub])=>'<div class="vd-col"><div class="k">'+k+'</div><div class="o">'+eur(rK(o))+'<small>per jaar</small></div><div class="vd-bar"><i class="l" style="width:44.4%"></i><i class="v" style="width:22.2%"></i><i class="w" style="width:33.4%"></i></div><div class="vd-leg">'+leg(o)+'</div><div class="s">'+sub+'</div></div>').join("");
-  html("e-gezond","Gezond verdeeld betekent 1 miljoen: ≈ <strong>"+eur(rK(omzetB*F.loon))+"</strong> loonruimte (team én jouw uren) · <strong>"+eur(rK(omzetB*F.vast))+"</strong> vaste lasten · <strong>"+eur(rK(omzetB*F.winst))+"</strong> winst voor jou als eigenaar.");
-
-  const lk=$("vd-lk"), oh=$("vd-oh"), uit=$("vd-uit"); if(!lk||!oh||!uit) return;
-  if(Q.get("lk")) lk.value=Q.get("lk"); if(Q.get("oh")) oh.value=Q.get("oh");
-  const verdeling=(omzet,loon,vast)=>{ const winst=omzet-loon-vast; return {loon,vast,winst,pl:loon/omzet,pv:vast/omzet,pw:winst/omzet}; };
-  const signaal=v=> (v.winst<0||v.pw<0.2||v.pl>0.5||v.pv>0.28) ? "rood" : v.pw<0.3 ? "amber" : "groen";
-  const bar=v=>{ const wl=Math.min(100,v.pl*100), wv=Math.min(100-wl,v.pv*100), ww=Math.max(0,Math.min(100-wl-wv,v.pw*100)); return '<div class="vd-bar eigen" style="margin:8px 0"><i class="l" style="width:'+wl.toFixed(1)+'%"></i><i class="v" style="width:'+wv.toFixed(1)+'%"></i><i class="w'+(v.winst<0?" neg":"")+'" style="width:'+ww.toFixed(1)+'%"></i></div>'; };
-  const mini=v=>'<span class="mini">Loon '+pct(v.pl)+' · vaste lasten '+pct(v.pv)+' · winst '+pct(v.pw)+' ('+(v.winst<0 ? eur(rK(-v.winst))+' tekort per jaar' : eur(rK(v.winst))+' per jaar')+')</span>';
-  function oordeel(v, pl){
-    const s='<strong class="'+signaal(v)+'">';
-    if(v.winst<0) return pl ? 'Ook op het plateau leg je erop toe: '+s+eur(rK(-v.winst))+' per jaar</strong>.' : 'Je legt er nu '+s+eur(rK(-v.winst))+' per jaar</strong> op toe: je kosten zijn hoger dan je omzet.';
-    if(v.pl>0.5)  return (pl?'Ook op het plateau zijn je loonkosten ':'Je loonkosten zijn ')+s+pct(v.pl)+'</strong> van je omzet; gezond is 44%.'+(pl?'':' Daar zit je winst.');
-    if(v.pv>0.28) return (pl?'Ook op het plateau zijn je vaste lasten ':'Je vaste lasten zijn ')+s+pct(v.pv)+'</strong> van je omzet; gezond is 22%.';
-    if(v.pw<0.2)  return (pl?'Op het plateau houd je ':'Je houdt ')+s+pct(v.pw)+'</strong> winst over; gezond is 33%.';
-    if(v.pw<0.3)  return (pl?'Op het plateau houd je ':'Je houdt ')+s+pct(v.pw)+'</strong> winst over; gezond is 33%. Bijna.';
-    return (pl?'Op het plateau houd je ':'Je houdt ')+s+pct(v.pw)+'</strong> winst over. Dat is gezond.';
+/* ---- 2. negen blokjes ---- */
+const F={loon:4/9,vast:2/9,winst:3/9};
+const lk=$("vd-lk"), oh=$("vd-oh");
+if(Q.get("lk")) lk.value=Q.get("lk"); if(Q.get("oh")) oh.value=Q.get("oh");
+lk.addEventListener("input",()=>renderAll(false)); oh.addEventListener("input",()=>renderAll(false));
+function renderBlokjes(d){
+  const omzetNu=st.o*12, omzetPl=d.P*d.arm*12, box=$("euros");
+  const verdeling=(o,l,v)=>{const w=o-l-v;return{loon:l,vast:v,winst:w,pl:l/o,pv:v/o,pw:w/o};};
+  const signaal=v=>(v.winst<0||v.pw<0.2||v.pl>0.5||v.pv>0.28)?"rood":v.pw<0.3?"amber":"groen";
+  const blok=x=>(x*9).toLocaleString("nl-NL",{maximumFractionDigits:1});
+  const bar=v=>{const wl=Math.min(100,v.pl*100),wv=Math.min(100-wl,v.pv*100),ww=Math.max(0,Math.min(100-wl-wv,v.pw*100));return '<div class="euro-bar"><i class="l" style="width:'+wl.toFixed(1)+'%"></i><i class="v" style="width:'+wv.toFixed(1)+'%"></i><i class="w'+(v.winst<0?" neg":"")+'" style="width:'+ww.toFixed(1)+'%"></i><span class="ticks"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></span></div>';};
+  const leg=v=>{const rij=(naam,x,gez,af)=>'<div>'+naam+'<b class="'+(af?"af":"")+'">'+blok(x)+' blokjes <small>('+pct(x)+')</small></b><small>gezond '+gez+'</small></div>';
+    return '<div class="euro-leg">'+rij("Loon",v.pl,4,v.pl>0.5)+rij("Vaste lasten",v.pv,2,v.pv>0.28)+rij("Winst",v.pw,3,v.winst<0||v.pw<0.2)+'</div>';};
+  const oordeel=(v,pl)=>{const s='<strong class="'+signaal(v)+'">';
+    if(v.winst<0) return (pl?'Ook op het plateau leg je erop toe: ':'Je legt er nu ')+s+eur(rK(-v.winst))+' per jaar</strong>'+(pl?'.':' op toe.');
+    if(v.pl>0.5) return (pl?'Ook op het plateau gaan ':'Er gaan ')+s+blok(v.pl)+' blokjes</strong> ('+pct(v.pl)+') naar loon; gezond is 4.'+(pl?'':' Daar zit je winst.');
+    if(v.pv>0.28) return (pl?'Ook op het plateau gaan ':'Er gaan ')+s+blok(v.pv)+' blokjes</strong> ('+pct(v.pv)+') naar vaste lasten; gezond is 2.';
+    if(v.pw<0.2) return (pl?'Op het plateau houd je ':'Je houdt ')+s+blok(v.pw)+' blokjes</strong> ('+pct(v.pw)+') winst over; gezond is 3.';
+    if(v.pw<0.3) return (pl?'Op het plateau houd je ':'Je houdt ')+s+blok(v.pw)+' blokjes</strong> ('+pct(v.pw)+') winst over; gezond is 3. Bijna.';
+    return (pl?'Op het plateau houd je ':'Je houdt ')+s+blok(v.pw)+' blokjes</strong> ('+pct(v.pw)+') winst over. Dat is gezond.';};
+  const L=parseFloat(lk.value), O=parseFloat(oh.value);
+  let tabel='<tr><td>Nu · '+eur(rK(omzetNu))+' per jaar</td><td>'+eur(rK(omzetNu*F.loon))+' · '+eur(rK(omzetNu*F.vast))+' · '+eur(rK(omzetNu*F.winst))+'</td></tr><tr><td>Op het plateau · '+eur(rK(omzetPl))+'</td><td>'+eur(rK(omzetPl*F.loon))+' · '+eur(rK(omzetPl*F.vast))+' · '+eur(rK(omzetPl*F.winst))+'</td></tr><tr><td>Bij 1 miljoen</td><td>'+eur(rK(DOEL*F.loon))+' · '+eur(rK(DOEL*F.vast))+' · '+eur(rK(DOEL*F.winst))+'</td></tr>';
+  if(!(L>=0)||!(O>=0)||(L===0&&O===0)){ box.innerHTML='<p class="mini">Vul je kosten in en je ziet jouw euro naast de gezonde, nu en op je plateau.</p>'; html("som2",tabel); return; }
+  const nu=verdeling(omzetNu,L*12,O*12);
+  let out='<div class="euro"><div class="t"><span>Jouw euro nu</span><small>'+eur(rK(omzetNu))+' per jaar</small></div>'+bar(nu)+leg(nu)+'<p class="uit">'+oordeel(nu,false)+'</p></div>';
+  if(d.variant!=="plateau"&&omzetPl>0){
+    const k=kostenOpPlateau(st.l,d.P,L*12,O*12), v=verdeling(omzetPl,k.loon,k.vast);
+    const vervolg=signaal(v)==="groen"?"Op papier gezond, als je vaste lasten gelijk blijven en je loon maar half meegroeit.":d.variant==="krimp"?"Krimpen maakt dit erger: eerst de krimp stoppen.":"Groeien lost dit niet op; je kostenverdeling wel.";
+    out+='<div class="euro"><div class="t"><span>Op je plateau (schatting)</span><small>'+eur(rK(omzetPl))+' per jaar</small></div>'+bar(v)+leg(v)+'<p class="uit">'+oordeel(v,true)+' <span style="color:var(--fg3);font-size:13px">'+vervolg+'</span></p></div>';
+    tabel+='<tr><td>Jouw kosten op het plateau (schatting)</td><td>loon '+eur(rK(k.loon))+' · vast '+eur(rK(k.vast))+' · winst '+eur(rK(v.winst))+'</td></tr>';
   }
-  function render(){
-    const L=parseFloat(lk.value), O=parseFloat(oh.value);
-    zetParam("lk", lk.value); zetParam("oh", oh.value);
-    if(!(L>=0)||!(O>=0)||(L===0&&O===0)){ uit.innerHTML=""; return; }
-    const nu=verdeling(omzetNu, L*12, O*12);
-    let out='<div class="vd-rij"><b>Jouw verdeling nu</b>'+bar(nu)+mini(nu)+'<br>'+oordeel(nu,false)+'</div>';
-    if(variant!=="plateau" && omzetPl>0){
-      const k=kostenOpPlateau(p.l, plateauExact, L*12, O*12);
-      const v=verdeling(omzetPl, k.loon, k.vast);
-      const vervolg = signaal(v)==="groen" ? "Op papier gezond, als je vaste lasten gelijk blijven en je loon maar half meegroeit."
-        : variant==="krimp" ? "Krimpen maakt dit erger: eerst de krimp stoppen, dan je kostenverdeling."
-        : "Groeien lost dit niet op; je kostenverdeling wel.";
-      out+='<div class="vd-rij"><b>Op het plateau (±'+plateauNu+' leden, schatting)</b>'+bar(v)+mini(v)+'<br>'+oordeel(v,true)+' <span class="mini">'+vervolg+'</span></div>';
-      out+='<p class="vd-aanname">Schatting: vaste lasten blijven gelijk, loonkosten groeien half zo hard mee als je ledental.</p>';
-    }
-    uit.innerHTML=out;
-  }
-  lk.addEventListener("input",render); oh.addEventListener("input",render); render();
-})();
-
-/* tempo: hoe snel wil je op je plateau zitten? (rek), of wat de knoppen doen (plateau, krimp) */
-(function(){
-  const sel=$("tempo-jaar"), out=$("tempo-uit"), slider=$("tempo-slider"); if(!sel||!out) return;
-  const L0=p.l, c=churnNu;
-  if(variant==="krimp"){
-    set("tempo-kop","Eerst de krimp stoppen.");
-    set("tempo-intro","Groei begint bij een ledental dat niet meer zakt.");
-    if(slider) slider.hidden=true;
-    out.innerHTML="Om op "+L0+" leden te blijven heb je <strong>"+opPeil.aanwas+" nieuwe leden per maand</strong> nodig, "+Math.max(0,opPeil.aanwas-p.a)+" meer dan nu, of een verloop van <strong>"+pct(opPeil.churn)+"</strong> bij je huidige aanwas. Alles daarboven is groei: elk extra nieuw lid per maand is ±"+Math.round(perLid)+" leden plateau.";
-    return;
-  }
-  if(variant==="plateau"){
-    set("tempo-kop","Je zit op je plateau.");
-    set("tempo-intro","Elke maand komt er ongeveer evenveel bij als eraf: "+p.a+" nieuwe leden, ±"+p.z+" opzeggers.");
-    if(slider) slider.hidden=true;
-    out.innerHTML="Elk extra nieuw lid per maand tilt je plateau met <strong>±"+Math.round(perLid)+" leden</strong>; een half punt minder verloop ("+pct(c2)+") met <strong>±"+Math.round(deltaVerloop)+" leden</strong>.";
-    return;
-  }
-  set("tempo-kop","Hoe snel wil je op ±"+plateauNu+" leden zitten?");
-  const jr=tPlateau>=24?" (ruim "+Math.floor(tPlateau/12)+" jaar)":"";
-  set("tempo-intro","Op dit tempo duurt dat ± "+tPlateau+" maanden"+jr+". Kies hoe snel je er wilt zijn:");
-  sel.value=String(tempoJaarStandaard);
-  function render(){
-    const T=parseInt(sel.value,10), M=T*12;
-    set("tempo-jaar-lbl",T+" jaar");
-    const N=Math.ceil(nodig(L0, plateauExact, c, M));
-    if(N<=p.a){ out.innerHTML="Met je huidige "+p.a+" nieuwe leden per maand zit je er binnen "+T+" jaar al."; return; }
-    const nieuwPl=r10(N/c);
-    const N2=Math.ceil(nodig(L0, plateauExact, c2, M));
-    const slot = N2<=p.a ? " Breng je het verloop naar "+pct(c2)+", dan is je huidige aanwas genoeg."
-      : churnGoed ? " Je verloop is al laag; de kans zit in instroom."
-      : (N-N2>0) ? " Verloop is je goedkoopste knop: naar "+pct(c2)+" scheelt "+(N-N2===1 ? "1 nieuw lid" : (N-N2)+" nieuwe leden")+" per maand."
-      : " Verloop is je andere knop: elke halve punt minder tilt je plateau met ±"+num(deltaVerloop)+" leden.";
-    out.innerHTML="Dan heb je <strong>"+N+" nieuwe leden per maand</strong> nodig, "+(N-p.a)+" meer dan nu. Met "+N+" per maand stopt je groei niet op ±"+plateauNu+" maar op ±"+num(nieuwPl)+" leden: meer aanwas tilt je plateau."+slot;
-  }
-  sel.addEventListener("input",render); render();
-})();
-
-/* de curve tekenen op de echte beweging: omhoog of omlaag naar het plateau */
-(function(){
-  const pad=$("curve-pad"), dash=$("curve-dash"), note=$("curve-note");
-  if(!pad||!dash) return;
-  const L0=p.l, P=plateauExact;
-  const lo=Math.min(L0,P), hi=Math.max(L0,P);
-  const span=Math.max(hi-lo,1);
-  const yFor=v=>150-((v-lo)/span)*95;
-  const T=Math.max(24,(tPlateau||12)*1.1);
-  let d="";
-  for(let i=0;i<=48;i++){
-    const t=T*i/48;
-    const L=P+(L0-P)*Math.pow(1-churnNu,t);
-    const x=30+545*i/48;
-    d+=(i?" L":"M")+x.toFixed(1)+","+yFor(L).toFixed(1);
-  }
-  pad.setAttribute("d",d);
-  const yP=yFor(P).toFixed(1);
-  dash.setAttribute("y1",yP); dash.setAttribute("y2",yP);
-  note.setAttribute("y", L0>P ? (+yP+26) : (+yP-13));
-})();
-
-/* station 1: hangt alleen aan je verloop, niet aan de route */
-if(churnGoed){
-  set("s1-kop","Houd de achterdeur dicht");
-  html("s1-tekst","Jouw verloop van <strong>"+pct(churnNu)+"</strong> is al beter dan de meeste boxen. De kunst is dat vást te houden terwijl je groeit, en dat lukt niet uit je hoofd: dan heb je signalen en taken nodig.");
-  set("s1-effect-l","blijft je plateau, óók als je doorgroeit");
-}else{
-  html("s1-tekst","Van <strong>"+pct(churnNu)+"</strong> verloop per maand naar 2,5%. Niet met campagnes, maar met signalen: elke wegzakker wordt een taak voor je team, elke opzegging een gesprek.");
-  html("s1-effect-l","wordt je nieuwe plateau (was "+plateauNu+")");
+  box.innerHTML=out; html("som2",tabel);
 }
-set("s1-plateau","±"+plateauS1);
-set("s1-omzet","≈ "+eur(omzet1));
-set("s1-arm", eur(Math.round(armNu)));
 
-/* route naar de miljoen: veel leden of een hogere omzet per lid; alles hieronder rekent mee */
-let routeKey = leesRoute();
-let routeRenders = 0;
-const ROUTE_ZIN = {
-  volume:  arm=>"Groepsles blijft de basis; small group, PT en nutrition tillen het gemiddelde naar "+eur(arm)+".",
-  balans:  ()=>"Ongeveer een derde van je omzet uit small group, PT en nutrition.",
-  premium: ()=>"De helft of meer uit small group en PT: minder leden, meer aandacht per lid."
+/* ---- 3. de rechthoek ---- */
+$("rects").addEventListener("click",e=>{const b=e.target.closest(".rect");if(!b)return;routeKey=b.dataset.r;try{const u=new URL(location.href);u.searchParams.set("r",routeKey);history.replaceState(null,"",u);}catch(x){}renderAll(false);});
+function renderRects(d){
+  const maxL=Math.max(...d.opties.map(o=>o.leden)), maxA=Math.max(...d.opties.map(o=>o.arm));
+  $("rects").innerHTML=d.opties.map(o=>{const w=100*o.leden/maxL,h=100*o.arm/maxA;return '<button type="button" class="rect'+(o.key===d.o.key?" active":"")+'" data-r="'+o.key+'"><span class="n">'+o.naam+'</span><svg viewBox="0 0 120 120"><rect x="'+((120-w*1.1)/2).toFixed(1)+'" y="'+(115-h*1.1).toFixed(1)+'" width="'+(w*1.1).toFixed(1)+'" height="'+(h*1.1).toFixed(1)+'" rx="6" fill="var(--mint-light)" stroke="var(--mint-deep)" stroke-width="2"/><text x="60" y="'+(115-h*1.1/2+4).toFixed(1)+'" text-anchor="middle" font-size="11" font-weight="800" fill="#0C161B">€ 1 mln</text></svg><span class="l"><b>±'+o.leden+' leden</b><br>× '+eur(o.arm)+' per lid</span></button>';}).join("");
+  const extra = st.l>=d.o.leden ? " Je hebt die leden al; bij jou gaat het om de prijs per lid." : " Van "+num(st.l)+" naar ±"+d.o.leden+" leden, en van "+eur(d.arm)+" naar "+eur(d.o.arm)+" per lid.";
+  html("route-uit","<strong>"+d.o.naam+"</strong>: ±"+d.o.leden+" leden × "+eur(d.o.arm)+" per lid per maand. "+d.o.sub.charAt(0).toUpperCase()+d.o.sub.slice(1)+"."+extra);
+}
+
+/* ---- 4. de curve: hoe snel naar de gekozen route ---- */
+const sel=$("tempo-jaar");
+sel.addEventListener("input",()=>{ T=parseInt(sel.value,10); tGezet=true; renderAll(false); });
+function renderCurve(d,pl){
+  const L0=st.l, X0=40,X1=580,Y0=200,Y1=42,MND=60, xVoor=t=>X0+(X1-X0)*t/MND;
+  $("curve-jaren").innerHTML=[1,2,3,4,5].map(j=>'<text x="'+xVoor(j*12).toFixed(1)+'" y="216" text-anchor="middle">jaar '+j+'</text>').join("");
+  if(!tGezet){ T=3; sel.value="3"; }
+  set("tempo-jaar-lbl",T+" jaar");
+  const schaal=Math.max(pl.ledenEind,d.P,L0)*1.15, yV=v=>Y0-(v/schaal)*(Y0-Y1);
+  const padNu=(()=>{let s="";for(let i=0;i<=60;i++){const t=MND*i/60,Lt=d.P+(L0-d.P)*Math.pow(1-d.c,t);s+=(i?" L":"M")+xVoor(t).toFixed(1)+","+yV(Lt).toFixed(1);}return s;})();
+  $("pad-nu").setAttribute("d",padNu);
+  const yP=yV(d.P); $("pl-lijn").setAttribute("y1",yP); $("pl-lijn").setAttribute("y2",yP); $("pl-lbl").setAttribute("y",d.P>=pl.ledenEind?yP-8:yP+18);
+  const yD=yV(pl.ledenEind); $("doel-lijn").setAttribute("y1",yD); $("doel-lijn").setAttribute("y2",yD); $("doel-lbl").setAttribute("y",yD-8); set("doel-lbl","de miljoen-lijn: ±"+pl.ledenEind+" leden");
+  if(pl.voorbij){
+    $("tempo-slider").hidden=true; $("pad-tempo").setAttribute("d",""); $("jaar-punt").style.display="none"; set("jaar-lbl","");
+    set("tempo-kop","Je hebt de leden al.");
+    set("tempo-intro","Voor deze route heb je ±"+pl.ledenEind+" leden nodig en je zit op "+num(L0)+". Je tempo zit in de prijs per lid.");
+    html("tempo-uit","Van <strong>"+eur(d.arm)+"</strong> naar <strong>"+eur(pl.armEind)+"</strong> per lid per maand: small group, PT en nutrition. Vasthouden wat je hebt (station 1 tot 3) en station 4 bouwen.");
+    html("gat-chip","<b>✓</b> ledental is er; de route gaat over omzet per lid");
+    return;
+  }
+  $("tempo-slider").hidden=false; $("jaar-punt").style.display="";
+  const padT=(()=>{let s="";for(let i=0;i<=60;i++){const t=pl.M*i/60;s+=(i?" L":"M")+xVoor(t).toFixed(1)+","+yV(pl.L(t)).toFixed(1);}return s;})();
+  $("pad-tempo").setAttribute("d",padT);
+  const x=xVoor(pl.M), y=yV(pl.L(pl.M)); $("jaar-punt").setAttribute("cx",x); $("jaar-punt").setAttribute("cy",y);
+  $("jaar-lbl").setAttribute("x",Math.min(x,540)); $("jaar-lbl").setAttribute("y",y+22); set("jaar-lbl","±"+pl.ledenEind+" in "+T+" jaar");
+  set("tempo-kop","Hoe snel wil je op ±"+pl.ledenEind+" leden zitten?");
+  const N=Math.ceil(pl.nodigDoel), Nnu=Math.ceil(pl.nodigNu);
+  if(pl.haalt){
+    const jr=pl.tTrend>=24?" (ruim "+Math.floor(pl.tTrend/12)+" jaar)":"";
+    set("tempo-intro", pl.tTrend<=6 ? "Je zit er bijna: nog "+num(pl.ledenEind-L0)+" leden. Op je huidige tempo ben je er over ± "+pl.tTrend+" maand"+(pl.tTrend===1?"":"en")+"." : "Op je huidige tempo zit je daar over ± "+pl.tTrend+" maanden"+jr+", rond "+maandNaam(pl.tTrend)+". Wil je sneller? Kies je tempo.");
+  }else{
+    set("tempo-intro","Op je huidige tempo kom je er niet: je groei stopt bij ±"+num(r10(d.P))+". Kies je tempo, dan zie je wat het per maand vraagt.");
+  }
+  if(N<=st.a){
+    html("tempo-uit","Met je huidige "+fmt1(st.a)+" nieuwe leden per maand zit je binnen "+T+" jaar op ±"+pl.ledenEind+". Bij deze route zit het werk in de prijs per lid: van <strong>"+eur(d.arm)+"</strong> naar <strong>"+eur(pl.armEind)+"</strong>. Station 1 tot 3 houden je ledental vast; station 4 doet de rest.");
+    html("gat-chip","<b>✓</b> je aanwas is al genoeg voor dit tempo");
+  }else{
+    const verloopZin = d.c>d.doelChurn+0.0005 ? " Bij je huidige verloop van "+pct(d.c)+" zouden het er "+Nnu+" zijn; met de achterdeur op 2,5% "+N+"." : " Je verloop van "+pct(d.c)+" is al goed; het gaat om instroom.";
+    html("tempo-uit","Van "+num(L0)+" naar ±"+pl.ledenEind+" leden in "+T+" jaar vraagt <strong>"+N+" nieuwe leden per maand</strong>; nu "+fmt1(st.a)+"."+verloopZin+" Dat verschil bouwen we in de vier stations hieronder.");
+    html("gat-chip","<b>+"+pl.gat+"</b> nieuw"+(pl.gat===1?" lid":"e leden")+" per maand nodig, bovenop je "+fmt1(st.a));
+  }
+}
+
+/* ---- 5. metrolijn, op basis van het tempo ---- */
+const ROUTE_ZIN={volume:arm=>"Groepsles blijft de basis; small group, PT en nutrition tillen het gemiddelde naar "+eur(arm)+".",balans:()=>"Ongeveer een derde van je omzet uit small group, PT en nutrition.",premium:()=>"De helft of meer uit small group en PT: minder leden, meer aandacht per lid."};
+const DOET={
+  deur:["Bezoeksignalen: wie twee weken wegblijft, wordt een taak voor je team","Week-1-belletje na de start en mijlpalen vieren","Opzeggesprek in plaats van een opzegformulier"],
+  lead:["Lead capture op je site: elke aanvraag in één lijst","Directe opvolging: belletje of appje binnen een uur","Beltaken en vangnetten voor no-shows en twijfelaars"],
+  ex:["Warm afscheid met een gesprek","In beeld blijven op 90, 130, 180 en 240 dagen","De kaart op de mat met het welkom-terug-aanbod, check-in na drie maanden"],
+  arm:["Check-ins die doorstroom-momenten zichtbaar maken (doel bijstellen: semi-PT erbij)","Small group en PT als volgende stap in de klantreis","Nutrition- en eventsmodules, omzet per lid als stuurgetal"]
 };
-(function(){
-  const box=$("routes"); if(!box) return;
-  if(routeOpties.length===1){ box.hidden=true; return; }
-  box.innerHTML=routeOpties.map(o=>'<button type="button" class="route-btn" data-r="'+o.key+'"><span class="n">'+o.naam+'</span><span class="a">'+eur(o.arm)+'</span><span class="l">per lid per maand · ±'+o.leden+' leden</span><span class="s">'+o.sub+'</span></button>').join("");
-  box.addEventListener("click",e=>{ const b=e.target.closest(".route-btn"); if(!b) return; routeKey=b.dataset.r; zetParam("r",routeKey); renderRoute(); });
-})();
-
-const CATN={sg:"small group",pt:"PT",nu:"nutrition",ob:"onboardingprogramma's",ev:"events"};
-const mist=mixIngevuld?Object.keys(CATN).filter(k=>(mix[k]||0)<3).map(k=>CATN[k]):[];
-const mistTxt=mist.length?" Uit "+opsom(mist)+" haal je nu (bijna) niks: dáár zit de rek.":"";
-
-function renderRoute(){
-  const o = routeOpties.find(x=>x.key===routeKey) || routeOpties[0];
-  const armEind=o.arm, ledenEind=o.leden;
-  const benodigd  = Math.ceil(ledenEind*doelChurn);
-  const gat       = benodigd - p.a;
-  const leadsDeel = Math.max(0, Math.min(3, gat));
-  const exDeel    = gat > leadsDeel ? 1 : 0;
-  const restDeel  = Math.max(0, gat - leadsDeel - exDeel);
-  const plateauS2 = r10((p.a+leadsDeel)/doelChurn);
-  const plateau3  = r10((p.a+Math.max(0,gat))/doelChurn);   /* na station 2+3: gat gedicht */
-  const omzet2    = rOmz(plateauS2*armNu*12);
-  const omzet3    = rOmz(plateau3*armNu*12);
-  const omzet4    = rOmz(ledenEind*armEind*12);
-  const armGoed   = armNu >= armEind-2;          /* omzet per lid al op het niveau van deze route */
-  const lastigeRoute = gat > 6;                  /* groot aanwas-gat: langere adem */
-  const overshoot = plateauS2 >= ledenEind;      /* route komt boven de miljoen-lijn uit */
-  const later = routeRenders>0; routeRenders++;
-  const cnt=(id,v)=>{ const el=$(id); if(!el) return; if(later) el.dataset.done="1"; el.textContent=v; };
-
-  document.querySelectorAll(".route-btn").forEach(b=>b.classList.toggle("active", b.dataset.r===o.key));
-  html("route-uit", (routeOpties.length===1
-    ? "Met je huidige "+eur(armNu)+" per lid per maand is de miljoen <strong>±"+ledenEind+" leden</strong>."
-    : "Jouw route: <strong>"+o.naam+"</strong>. ±"+ledenEind+" leden × "+eur(armEind)+" per lid per maand.")
-    +" Bij "+pct(doelChurn)+" verloop vraagt dat <strong>"+benodigd+" nieuwe leden per maand</strong>; nu "+p.a+".");
-
-  /* het gat */
-  if(gat<=0){
-    set("gat-kop","Jouw aanwas is al genoeg.");
-    set("gat-uitleg","Met "+p.a+" nieuwe leden per maand en "+pct(doelChurn)+" verloop draag jij al genoeg aan voor deze route. Jouw route gaat vooral over vasthouden en omzet per lid.");
-  }else{
-    set("gat-kop",gat+" extra "+(gat===1?"lid":"leden")+" per maand");
-    set("gat-uitleg","Meer is het gat niet. Voor deze route heb je "+benodigd+" nieuwe leden per maand nodig (bij "+pct(doelChurn)+" verloop); jij zit op "+p.a+". "+
-      [leadsDeel?leadsDeel+" uit betere leadopvolging":"",exDeel?exDeel+" uit terugkerende oud-leden":"",restDeel?restDeel+" uit vindbaarheid en events":""].filter(Boolean).join(", ")+".");
-  }
-
-  /* station 2 */
-  html("s2-tekst", leadsDeel>0
-    ? "Zelfde marketingbudget, maar geen aanvraag meer die tussen de appjes verdwijnt. Reken conservatief op <strong>"+leadsDeel+" extra "+(leadsDeel===1?"lid":"leden")+" per maand</strong>."
-    : "Jouw aanwas is al op niveau. Dit station gaat bij jou over minder afhankelijkheid van advertenties: dezelfde instroom, lagere kosten.");
-  cnt("s2-plateau","±"+plateauS2);
-  set("s2-omzet","≈ "+eur(omzet2));
-
-  /* station 3: oud-leden, gewoon in jaar 1 */
-  html("s3-tekst", overshoot
-    ? "Ex-leden zijn je goedkoopste aanwas, en dit start je gewoon in jaar 1, samen met station 1 en 2: de kaart op de mat, het welkom-terug-aanbod, de check-in na drie maanden. Bij jou is dit pure <strong>marge</strong>: je route komt ruim boven de ±"+ledenEind+" uit die deze route vraagt."
-    : "Ex-leden zijn je goedkoopste aanwas, en dit start je gewoon in jaar 1, samen met station 1 en 2: de kaart op de mat, het welkom-terug-aanbod, de check-in na drie maanden. "+(exDeel?"Eén terugkeerder per maand dicht het gat.":"Zo houd je de instroom gezond zonder extra advertentiebudget.")+(restDeel?" De laatste "+restDeel+" haal je uit vindbaarheid en events.":""));
-  cnt("s3-leden","±"+plateau3);
-  set("s3-omzet","≈ "+eur(omzet3));
-
-  /* station 4: omzet per lid, jaar 2 tot 4, per route */
-  set("s4-nr", lastigeRoute ? "Station 4 · jaar 2 tot 5" : "Station 4 · jaar 2 tot 4");
-  const routeZin=" "+ROUTE_ZIN[o.key](armEind);
-  if(armGoed){
-    set("s4-kop","Houd de omzet per lid hoog");
-    html("s4-tekst","Jouw omzet per lid ("+eur(armNu)+" per maand) zit al op het niveau van deze route. De route draait bij jou om dit vasthouden terwijl het ledental groeit"+(mist.length?", en om verbreden: uit "+opsom(mist)+" haal je nog weinig.":", met doorstroom en events als motor.")+routeZin);
-  }else if(mixIngevuld){
-    set("s4-kop","Verhoog de omzet per lid");
-    html("s4-tekst","Jouw omzet leunt nu voor <strong>"+mix.g+"%</strong> op groepslessen."+mistTxt+" Zo groeit de omzet per lid van <strong>"+eur(armNu)+"</strong> naar zo'n <strong>"+eur(armEind)+"</strong> per maand."+routeZin);
-  }else{
-    set("s4-kop","Verhoog de omzet per lid");
-    html("s4-tekst","Door doorstroom naar small group, PT, nutrition en events groeit de omzet per lid van <strong>"+eur(armNu)+"</strong> naar zo'n <strong>"+eur(armEind)+"</strong> per maand."+routeZin);
-  }
-  set("s4-arm", eur(armEind));
-  set("s4-arm-nu", eur(Math.round(armNu)));
-  set("s4-omzet","≈ "+eur(omzet4));
-
-  /* eindplaat */
-  set("e-omzet","± "+eur(r50(ledenEind*armEind*12)));
-  set("e-leden","±"+ledenEind);
-  set("e-arm", eur(armEind));
-  html("e-route", routeOpties.length===1
-    ? "Op je huidige omzet per lid: ±"+ledenEind+" leden × "+eur(armEind)+" per lid per maand."
-    : "Route: <strong>"+o.naam+"</strong> · ±"+ledenEind+" leden × "+eur(armEind)+" per lid per maand. Andere route? Kies hierboven bij de bestemming.");
-  const MP=[
-    ["Jaar 1", churnGoed ? "Signalen en taken staan: verloop blijft laag, elke lead gevangen en oud-leden komen terug." : "Achterdeur dicht, elke lead gevangen én oud-leden terug: door je oude plateau heen."],
-    ["Jaar 2", "Richting "+plateau3+" leden, eerste doorstroom naar small group en PT."],
-    ["Jaar 3", overshoot ? "Omzet per lid richting "+eur(armEind)+": hier passeer je de miljoen al." : "Omzet per lid richting "+eur(armEind)+": de "+eur(r50(omzet4))+" komt in zicht."],
-    [lastigeRoute?"Jaar 4-5":"Jaar 4", "De miljoen-lijn: ±"+ledenEind+" leden × "+eur(armEind)+" per lid per maand."]
+function renderMetro(d,pl){
+  const churnGoed=d.c<=0.026, genoeg=Math.ceil(pl.nodigDoel)<=st.a;
+  const haltes=[
+    {k:"deur",t:churnGoed?"Houd de achterdeur dicht":"Dicht de achterdeur",v:"±"+num(r10(pl.S1))+" leden",l:churnGoed?"blijft je plateau bij "+pct(d.c)+" verloop":"wordt je plateau bij 2,5% verloop (nu "+pct(d.c)+")",p:churnGoed?"Je verloop is al goed. Vasthouden vraagt signalen en taken, niet geheugen.":"Elke wegzakker een taak, elke opzegging een gesprek."},
+    {k:"lead",t:"Vang elke lead",v:pl.leadsDeel>0?"+"+pl.leadsDeel+" per maand":"op niveau",l:pl.leadsDeel>0?"plateau ±"+num(r10(pl.S2))+" met dezelfde marketing":"je aanwas is al genoeg; dit station verlaagt je leadkosten",p:pl.leadsDeel>0?"Geen aanvraag meer die tussen de appjes verdwijnt.":"Dezelfde instroom, minder advertenties."},
+    {k:"ex",t:"Laat oud-leden terugkomen",v:pl.exDeel>0?"+1 per maand":"marge",l:pl.exDeel>0?"plateau ±"+num(r10(pl.S3))+(pl.restDeel?", plus "+pl.restDeel+" uit vindbaarheid en events":""):"elke terugkeerder is winst",p:"Ex-leden zijn je goedkoopste aanwas: ze kennen je al."},
+    {k:"arm",t:"Verhoog de omzet per lid",v:eur(pl.armEind)+" per lid",l:"nu "+eur(d.arm)+" per lid per maand",p:ROUTE_ZIN[d.o.key](pl.armEind)}
   ];
-  const mpEl=$("mijlpalen"); if(mpEl){ mpEl.innerHTML=""; MP.forEach(([j,t])=>{ const d=document.createElement("div"); d.className="mp"; d.innerHTML='<span class="j">'+j+'</span><span class="t">'+t+'</span>'; mpEl.appendChild(d); }); }
+  html("metro",haltes.map((h,i)=>'<div class="halte"><div class="dot">'+(i+1)+'</div><h3>'+h.t+'<span class="v">'+h.v+'</span></h3><div class="l">'+h.l+'</div><p>'+h.p+'</p><ul class="doet"><li class="k">GymOps doet</li>'+DOET[h.k].map(x=>'<li>'+x+'</li>').join("")+'</ul></div>').join(""));
+  set("metro-sub", pl.voorbij||genoeg ? "Je aanwas is genoeg voor dit tempo. Station 1 tot 3 houden dat vast; station 4 tilt je prijs van "+eur(d.arm)+" naar "+eur(pl.armEind)+"." : "In deze volgorde. Samen tillen ze je aanwas van "+fmt1(st.a)+" naar "+Math.ceil(pl.nodigDoel)+" per maand; het laatste station tilt je prijs.");
 }
-renderRoute();
 
-/* omzetmix-balk */
-const MIXC=[["g","groepslessen","#7FB0C2"],["sg","small group","#3E788E"],["pt","PT","#0C161B"],["nu","nutrition","#059669"],["ob","onboarding","#F59E0B"],["ev","events","#C44A1C"]];
-const mixSom=MIXC.reduce((t,[k])=>t+(mix[k]||0),0);
-let segs=[];
-if(mixIngevuld){
-  segs=MIXC.filter(([k])=>(mix[k]||0)>0).map(([k,naam,c])=>[naam,c,mix[k]]);
-  const overig=Math.max(0,100-mixSom);
-  if(overig>0) segs.push(["overig","#D1D5DB",overig]);
-}else if(!p.m&&p.gp){
-  segs=[["groepslessen","#7FB0C2",p.gp],["small group · PT · overig","#3E788E",100-p.gp]];
+/* ---- eindplaat met mijlpalen per jaar ---- */
+function renderEind(d,pl){
+  set("e-omzet","± "+eur(r50(pl.ledenEind*pl.armEind*12))); set("e-leden","±"+pl.ledenEind); set("e-arm",eur(pl.armEind));
+  html("e-route","Route: <strong>"+d.o.naam+"</strong> · in "+T+" jaar. Andere route of ander tempo? Kies hierboven.");
+  html("e-gezond","Gezond verdeeld betekent 1 miljoen: ≈ <strong>"+eur(rK(DOEL*F.loon))+"</strong> loonruimte (team én jouw uren) · <strong>"+eur(rK(DOEL*F.vast))+"</strong> vaste lasten · <strong>"+eur(rK(DOEL*F.winst))+"</strong> winst voor jou als eigenaar.");
+  const jaren=Math.max(1,T), MP=[];
+  for(let j=1;j<=jaren;j++){
+    const t=j*12, L=pl.L(t), a=pl.armT(t), om=L*a*12;
+    let txt;
+    if(j===1) txt=(d.c>d.doelChurn+0.0005?"Achterdeur dicht (verloop naar "+pct(d.doelChurn)+"), elke lead gevangen en oud-leden terug":"Verloop laag ("+pct(d.c)+"), elke lead gevangen en oud-leden terug")+": ±"+num(r10(L))+" leden, ≈ "+eur(rOmz(om))+" per jaar.";
+    else if(j===jaren) txt="±"+num(pl.ledenEind)+" leden × "+eur(pl.armEind)+" per lid per maand = ≈ "+eur(r50(pl.ledenEind*pl.armEind*12))+" per jaar: de bestemming.";
+    else txt="±"+num(r10(L))+" leden × "+eur(a)+" per lid per maand: ≈ "+eur(rOmz(om))+" per jaar"+(j===2?", eerste doorstroom naar small group en PT.":".");
+    MP.push(["Jaar "+j,txt]);
+  }
+  if(pl.voorbij){ MP.length=0; MP.push(["Jaar 1","Vasthouden: verloop laag, elke lead gevangen, oud-leden terug."],["Jaar 2 tot "+jaren,"Omzet per lid van "+eur(d.arm)+" naar "+eur(pl.armEind)+": ≈ "+eur(r50(pl.ledenEind*pl.armEind*12))+" per jaar."]); }
+  html("mijlpalen",MP.map(([j,t])=>'<div class="mp"><span class="j">'+j+'</span><span class="t">'+t+'</span></div>').join(""));
 }
-const schaal=Math.max(100,mixSom);
-const bar=$("mixbar"), leg=$("mixleg");
-if(!segs.length){bar.style.display="none";leg.style.display="none";}
-segs.forEach(([naam,c,val])=>{
-  const i=document.createElement("i");i.style.width=(val/schaal*100)+"%";i.style.background=c;bar.appendChild(i);
-  const sp=document.createElement("span");
-  sp.innerHTML='<span class="dot" style="background:'+c+'"></span>'+naam+' <b>'+val+'%</b>';
-  leg.appendChild(sp);
-});
 
-/* tellende getallen zodra ze in beeld komen */
-const io=new IntersectionObserver(entries=>{
-  entries.forEach(en=>{
-    if(!en.isIntersecting||en.target.dataset.done)return;
-    en.target.dataset.done="1";
-    const raw=en.target.textContent;
-    const num=parseInt(raw.replace(/[^\d]/g,""),10);
-    if(isNaN(num))return;
-    const pre=raw.split(/\d/)[0];
-    const t0=performance.now(),dur=800;
-    (function tick(t){
-      const q=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-q,3);
-      en.target.textContent=pre+Math.round(num*e).toLocaleString("nl-NL");
-      if(q<1)requestAnimationFrame(tick);
-    })(t0);
-  });
-},{threshold:.6});
-document.querySelectorAll(".cnt").forEach(el=>io.observe(el));
+function renderAll(){
+  const d=derive(), pl=plan(d);
+  vulOpgave();
+  html("opgave-hint", opgaveVeranderd() ? "Je rekent nu met aangepaste cijfers. <button type=\"button\">Terug naar je opgave</button>" : "Klopt er iets niet? Pas het hier aan; alles rekent mee.");
+  $("k-reset").hidden=!opgaveVeranderd();
+  renderEmmer(d); renderBlokjes(d); renderRects(d); renderCurve(d,pl); renderMetro(d,pl); renderEind(d,pl);
+}
+renderAll();
 </script>
 </body>
 </html>
