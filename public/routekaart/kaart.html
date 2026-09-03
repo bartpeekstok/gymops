@@ -163,6 +163,23 @@ footer img{height:22px;display:block;margin:0 auto 8px}
 .vd-eigen .uit .mini{font-size:13px;color:var(--fg2)}
 .e-gezond{display:block;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.14);font-size:14px;color:rgba(255,255,255,.75)}
 .e-gezond strong{color:#fff}
+.vd-rij{margin-top:12px}
+.vd-rij+.vd-rij{margin-top:16px;padding-top:12px;border-top:1px dashed var(--border)}
+.vd-aanname{font-size:12px;color:var(--fg3);margin-top:10px}
+.tempo-slider[hidden]{display:none}
+
+/* route naar de miljoen */
+.routes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+@media(max-width:700px){.routes{grid-template-columns:1fr}}
+.route-btn{text-align:left;background:#fff;border:1px solid var(--border-strong);border-radius:16px;padding:14px 14px 12px;font:inherit;cursor:pointer;box-shadow:var(--shadow-card);transition:border-color .15s,background .15s}
+.route-btn:hover{border-color:var(--mint-light)}
+.route-btn.active{background:var(--mint-tint);border-color:var(--mint);box-shadow:0 0 0 2px var(--mint-tint)}
+.route-btn .n{display:block;font-weight:800;font-size:16px;letter-spacing:-.01em;color:var(--ink)}
+.route-btn .a{display:block;font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--mint-deep);margin-top:4px;font-variant-numeric:tabular-nums}
+.route-btn .l{display:block;font-size:13px;color:var(--fg2);font-weight:600;margin-top:2px}
+.route-btn .s{display:block;font-size:12px;color:var(--fg3);margin-top:6px}
+#route-uit{margin-top:14px}
+#route-uit strong{color:var(--fg1)}
 </style>
 </head>
 <body>
@@ -199,7 +216,7 @@ footer img{height:22px;display:block;margin:0 auto 8px}
   <p class="sub">Een box is een emmer met een gat erin: het waterpeil stopt precies waar er evenveel uitstroomt als er instroomt. Met jouw aanwas en verloop ligt dat punt op:</p>
   <div class="plateau">
     <div class="big"><span id="p-plateau" class="cnt">—</span> <small>leden</small></div>
-    <p class="sub" style="margin-top:6px" id="plateau-uitleg">Dáár plateaut jouw box, wat je ook aan marketing doet. Meer adverteren maakt de emmer niet dichter.</p>
+    <p class="sub" style="margin-top:6px" id="plateau-uitleg">Met deze trend kom je hier uit: elke maand komen er dan evenveel leden bij als er weggaan. Twee knoppen verschuiven dit punt: minder verloop en meer aanwas.</p>
     <p class="sub" style="margin-top:6px" id="plateau-tijd"></p>
     <p class="sub" style="margin-top:6px" id="plateau-omzet"></p>
     <svg viewBox="0 0 600 190" fill="none">
@@ -218,7 +235,7 @@ footer img{height:22px;display:block;margin:0 auto 8px}
     <div class="vd-cols" id="vd-cols"></div>
     <p class="sub">Bij de meeste boxen ziet het er niet zo uit: de winst is te dun en de kosten zijn hoger. Wil je weten hoe jij ervoor staat?</p>
     <div class="vd-eigen">
-      <p class="kop">Vergelijk met jouw situatie</p>
+      <p class="kop">Klopt het plaatje? Vul je kosten in.</p>
       <div class="row">
         <label>Loonkosten per maand<small>team én jouw eigen uren in de operatie, ex btw</small><input type="number" id="vd-lk" min="0" step="250" inputmode="numeric" placeholder="bijv. 7500"></label>
         <label>Overhead per maand<small>huur, energie, software, verzekeringen, ex btw</small><input type="number" id="vd-oh" min="0" step="250" inputmode="numeric" placeholder="bijv. 3000"></label>
@@ -227,19 +244,27 @@ footer img{height:22px;display:block;margin:0 auto 8px}
     </div>
   </div>
 
-  <div class="tempo" id="tempo" hidden>
+  <div class="tempo" id="tempo">
     <div class="eyebrow">Sneller dan vanzelf</div>
-    <h3>Hoe snel wil je op <span id="tempo-doel">—</span> leden zitten?</h3>
+    <h3 id="tempo-kop">Hoe snel wil je op je plateau zitten?</h3>
     <p class="sub" id="tempo-intro"></p>
-    <label class="tempo-slider">
+    <label class="tempo-slider" id="tempo-slider">
       <span>In <strong id="tempo-jaar-lbl">3 jaar</strong></span>
-      <input type="range" id="tempo-jaar" min="2" max="5" step="1" value="3" aria-label="Aantal jaren">
-      <span class="tempo-ticks"><i>2</i><i>3</i><i>4</i><i>5</i></span>
+      <input type="range" id="tempo-jaar" min="1" max="5" step="1" value="3" aria-label="Aantal jaren">
+      <span class="tempo-ticks"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></span>
     </label>
     <p class="tempo-uit" id="tempo-uit"></p>
-    <p class="sub tempo-hulp">Meer nieuwe leden per maand komt langs twee wegen: betere conversie op de leads die je nu al krijgt, en méér leads via vindbaarheid, een betere site en lead capture. Allebei zit in ons systeem.</p>
+    <p class="sub tempo-hulp" id="tempo-hulp">Meer nieuwe leden per maand komt langs twee wegen: betere conversie op de leads die je nu al krijgt, en méér leads via vindbaarheid, een betere site en lead capture. Allebei zit in ons systeem.</p>
   </div>
+</section>
 
+<!-- ROUTE NAAR DE MILJOEN -->
+<section id="miljoen">
+  <div class="eyebrow">Verder dan je plateau</div>
+  <h2>Kies je route naar de miljoen.</h2>
+  <p class="sub">Kom je er met veel leden of met een hogere omzet per lid? Dat bepaalt hoeveel nieuwe leden je nodig hebt en wat station 4 moet opleveren. De vier stations blijven dezelfde; de getallen erin rekenen mee.</p>
+  <div class="routes" id="routes"></div>
+  <p class="sub" id="route-uit"></p>
   <div class="gatkaart">
     <div class="g" id="gat-kop">—</div>
     <p id="gat-uitleg">—</p>
@@ -296,7 +321,7 @@ footer img{height:22px;display:block;margin:0 auto 8px}
   <div class="eind">
     <div class="eyebrow">Waar de route eindigt</div>
     <div class="mega" id="e-omzet">—</div>
-    <div class="som"><strong><span id="e-leden">—</span> leden × <span id="e-arm">—</span> per lid per maand.</strong><br>Geen raketwetenschap. Vier reparaties, in de goede volgorde.<span class="keuze" id="e-keuze"></span><span class="e-gezond" id="e-gezond"></span></div>
+    <div class="som"><strong><span id="e-leden">—</span> leden × <span id="e-arm">—</span> per lid per maand.</strong><br>Geen raketwetenschap. Vier reparaties, in de goede volgorde.<span class="keuze" id="e-route"></span><span class="e-gezond" id="e-gezond"></span></div>
     <div class="mijlpalen" id="mijlpalen"></div>
   </div>
 </section>
@@ -320,15 +345,17 @@ footer img{height:22px;display:block;margin:0 auto 8px}
 
 <script>
 /* ================================================================
-   ROUTEKAART v2 — rekent ACHTERUIT vanaf de miljoen.
-   Data komt uit ?d= (base64-JSON van het formulier: v,g,l,o,z,a,gp)
-   of valt terug op het Zuidlaren-voorbeeld.
+   ROUTEKAART v3: eerst je plateau en wat je daar overhoudt, dan je
+   tempo, dan je route naar de miljoen. Data komt uit ?d= (base64-JSON
+   van het formulier: v,g,l,o,z,a,m) of valt terug op het voorbeeld.
+   Extra params: lk (loonkosten p/m), oh (overhead p/m), r (route).
    ================================================================ */
 const DEMO = { v:"", g:"CrossFit Zuidlaren", l:220, o:23000, z:8, a:9, m:{g:85,sg:10,pt:5,nu:0,ob:0,ev:0} };
+const Q = new URLSearchParams(location.search);
 
 function leesData(){
   try{
-    const q=new URLSearchParams(location.search).get("d");
+    const q=Q.get("d");
     if(!q) return {p:DEMO, demo:true};
     const p=JSON.parse(decodeURIComponent(escape(atob(q))));
     if(!(p.l>0&&p.o>0&&p.a>=0&&p.z>=0)) return {p:DEMO, demo:true};
@@ -343,135 +370,179 @@ const opsom = a => a.length===1 ? a[0] : a.slice(0,-1).join(", ")+" en "+a[a.len
 const eur = n => "€ " + Math.round(n).toLocaleString("nl-NL");
 const pct = n => (n*100).toLocaleString("nl-NL",{maximumFractionDigits:1}).replace(".",",") + "%";
 const r10 = n => Math.round(n/10)*10;
+const rOmz = n => Math.round(n/5000)*5000;
+const rK = n => Math.round(n/1000)*1000;
+const r50 = n => Math.round(n/50000)*50000;
+const num = n => Math.round(n).toLocaleString("nl-NL");
 
 /* ---- het model ---- */
 const DOEL_OMZET = 1000000;
+const LOON_MEEGROEI = 0.5;   /* loonkosten groeien half zo hard mee als het ledental */
+const VAST_MEEGROEI = 0;     /* vaste lasten blijven gelijk */
+const ROUTES = [
+  { key:"volume",  naam:"Volume",  arm:160, sub:"veel leden, groepsles als basis" },
+  { key:"balans",  naam:"Balans",  arm:220, sub:"groepsles plus small group en PT" },
+  { key:"premium", naam:"Premium", arm:300, sub:"small group en PT voorop" }
+];
 const churnNu   = Math.max(p.z / p.l, 0.01);
 const armNu     = p.o / p.l;
-const armEind   = Math.max(160, Math.ceil(armNu/5)*5);
-const ledenEind = r10(DOEL_OMZET/12/armEind);
 const doelChurn = Math.min(churnNu, 0.025);
-const plateauNu = r10(p.a/churnNu);
+const plateauExact = p.a/churnNu;               /* het plateau: aanwas gedeeld door verloop */
+const plateauNu = r10(plateauExact);
 const plateauS1 = r10(p.a/doelChurn);
-const benodigd  = Math.ceil(ledenEind*doelChurn);
-const gat       = benodigd - p.a;
-const leadsDeel = Math.max(0, Math.min(3, gat));
-const exDeel    = gat > leadsDeel ? 1 : 0;
-const restDeel  = Math.max(0, gat - leadsDeel - exDeel);
-const aanwasS2  = p.a + leadsDeel;
-const plateauS2 = r10(aanwasS2/doelChurn);
-const aanwas3   = p.a + Math.max(0, gat);   /* na station 2+3: gat gedicht */
-const plateau3  = r10(aanwas3/doelChurn);
-const rOmz      = n => Math.round(n/5000)*5000;
 const omzet1    = rOmz(plateauS1*armNu*12);
-const omzet2    = rOmz(plateauS2*armNu*12);
-const omzet3    = rOmz(plateau3*armNu*12);
-const omzet4    = rOmz(ledenEind*armEind*12);
-const churnGoed = churnNu <= 0.026;      /* verloop is al op of onder doel */
-const armGoed   = armNu >= 158;          /* omzet per lid al op niveau */
-const lastigeRoute = gat > 6;            /* groot aanwas-gat: langere adem */
-const overshoot = plateauS2 >= ledenEind; /* route komt boven de miljoen-lijn uit */
+const churnGoed = churnNu <= 0.026;             /* verloop is al op of onder doel */
+const gap0 = Math.abs(p.l - plateauExact);
+const tPlateau = gap0 < Math.max(5, plateauExact*0.03) ? 0
+  : Math.max(1, Math.ceil(Math.log(Math.max(5, plateauExact*0.05)/gap0)/Math.log(1-churnNu)));
+const variant = plateauExact < p.l*0.98 ? "krimp" : tPlateau === 0 ? "plateau" : "rek";
+
+/* nieuwe leden per maand om in M maanden van L0 naar doel te komen bij verloop c:
+   L(M) = a/c + (L0 - a/c)(1-c)^M  =>  a = c*(doel - L0*f)/(1-f), f=(1-c)^M */
+const nodig = (L0, doel, c, M) => { const f=Math.pow(1-c,M); if(f>=1) return Math.max(0,(doel-L0)/Math.max(1,M)); return c*(doel-L0*f)/(1-f); };
+/* eigen kosten op het plateau: vaste lasten gelijk, loon groeit half mee met het ledental */
+const kostenOpPlateau = (L0, Lp, loon, vast) => L0>0
+  ? { loon: Math.max(0, loon*(1+LOON_MEEGROEI*(Lp-L0)/L0)), vast: Math.max(0, vast*(1+VAST_MEEGROEI*(Lp-L0)/L0)) }
+  : { loon, vast };
+const c2 = Math.max(0.005, churnNu-0.005);       /* een halve punt minder verloop */
+const perLid = 1/churnNu;                         /* plateau-winst per extra nieuw lid per maand */
+const deltaVerloop = p.a/c2 - p.a/churnNu;        /* plateau-winst bij een halve punt minder verloop */
+const opPeil = { aanwas: Math.ceil(churnNu*p.l), churn: p.l>0 ? p.a/p.l : 0 };
+const kwal = churnNu <= 0.025 ? "dat is goed en lager kan nog" : churnNu <= 0.04 ? "daar zit ruimte" : "dat is hoog";
+const tempoJaarStandaard = Math.min(3, Math.max(1, Math.round(tPlateau/24)));
+
+/* routes naar de miljoen: omzet per lid nooit onder je huidige, dubbele opties vallen weg */
+const armVloer = Math.ceil(armNu/5)*5;
+const routeOpties = (()=>{ const seen=new Set(), out=[]; ROUTES.forEach(r=>{ const arm=Math.max(r.arm, armVloer); if(seen.has(arm)) return; seen.add(arm); out.push({ key:r.key, naam:r.naam, sub:r.sub, arm, leden: Math.max(10, r10(DOEL_OMZET/12/arm)) }); }); return out; })();
+const routeStandaard = armNu>=300 ? "premium" : armNu>=220 ? "balans" : "volume";
+function leesRoute(){ const r=Q.get("r"); if(routeOpties.some(x=>x.key===r)) return r; if(routeOpties.some(x=>x.key===routeStandaard)) return routeStandaard; return routeOpties[0].key; }
+function zetParam(k,v){ try{ const u=new URL(location.href); if(v==null||v==="") u.searchParams.delete(k); else u.searchParams.set(k,v); history.replaceState(null,"",u.toString()); }catch(e){} }
 
 /* ---- vullen ---- */
 const $=id=>document.getElementById(id);
-const set=(id,v)=>{$(id).textContent=v};
+const set=(id,v)=>{ const el=$(id); if(el) el.textContent=v; };
+const html=(id,v)=>{ const el=$(id); if(el) el.innerHTML=v; };
 const naam = p.g || "jouw box";
 set("gym-eyebrow","Routekaart · "+naam);
-if(demo) $("topchip").textContent="Voorbeeld";
-$("hero-sub").innerHTML=(p.v?"Hoi "+p.v+", dit":"Dit")+" is jouw routekaart, op basis van je eigen cijfers. Vier stations, één route. Onderaan zie je hoe die eruitziet in jaren.";
+if(demo) set("topchip","Voorbeeld");
+html("hero-sub",(p.v?"Hoi "+p.v+", dit":"Dit")+" is jouw routekaart, op basis van je eigen cijfers. Eerst waar je nu uitkomt, dan hoe snel het kan, dan je route naar de miljoen.");
 
 set("c-leden", p.l);
 set("c-omzet", eur(p.o));
 set("c-churn", p.z+" ("+pct(churnNu)+")");
 set("c-aanwas", p.a);
 
-/* opener-framing: plateau / krimp / nog rek */
+/* plateau: eerst het eerlijke verhaal, met de twee knoppen die het bepalen */
 set("p-plateau","±"+plateauNu);
-if(plateauNu < p.l*0.98){
-  $("plateau-kop").textContent="Je krimpt. Nu al.";
-  $("plateau-uitleg").textContent="Met jouw huidige verloop en aanwas zakt je ledental vanzelf hiernaartoe. Dit is geen dip, het is wiskunde.";
-  $("curve-note").textContent="hier zak je naartoe";
-}else if(plateauNu > p.l*1.3){
-  $("plateau-kop").textContent="Je hebt nog rek. Tot hier.";
-  $("plateau-uitleg").textContent="Je groeit nu nog, maar met dit verloop en deze aanwas stopt dat vanzelf op dit punt. Meer adverteren verschuift het niet.";
-  $("curve-note").textContent="hier stopt het";
+const knoppenZin = "Twee knoppen bepalen dit getal: je verloop ("+pct(churnNu)+" per maand, "+kwal+") en je aanwas ("+p.a+" nieuwe leden per maand). Elk extra nieuw lid per maand tilt je plateau met ±"+Math.round(perLid)+" leden.";
+if(variant==="krimp"){
+  set("plateau-kop","Je krimpt. Nu al.");
+  set("plateau-uitleg","Met deze trend zakt je ledental hiernaartoe. Dit is geen dip, het is rekenwerk. Om op "+p.l+" leden te blijven heb je "+opPeil.aanwas+" nieuwe leden per maand nodig (nu "+p.a+"), of een verloop van "+pct(opPeil.churn)+".");
+  set("curve-note","hier zak je naartoe");
+}else if(plateauExact > p.l*1.3){
+  set("plateau-kop","Je hebt nog rek. Tot hier.");
+  set("plateau-uitleg","Je groeit nu nog, maar met deze trend stopt dat hier. "+knoppenZin);
+  set("curve-note","hier stopt het");
+}else{
+  set("plateau-uitleg","Met deze trend kom je hier uit: elke maand komen er dan evenveel leden bij als er weggaan. "+knoppenZin);
 }
 
 /* wanneer zit je daar? (uitgaande van vandaag) */
-const plateauExact = p.a/churnNu;
-const gap0 = Math.abs(p.l - plateauExact);
-const tPlateau = gap0 < Math.max(5, plateauExact*0.03) ? 0
-  : Math.max(1, Math.ceil(Math.log(Math.max(5, plateauExact*0.05)/gap0)/Math.log(1-churnNu)));
 (function(){
-  const el=$("plateau-tijd"); if(!el) return;
-  if(tPlateau===0){ el.innerHTML="Daar zit je nu al zo'n beetje op."; return; }
+  if(tPlateau===0){ html("plateau-tijd","Daar zit je nu al zo'n beetje op."); return; }
   const dd=new Date(); dd.setMonth(dd.getMonth()+tPlateau);
   const wanneer=dd.toLocaleDateString("nl-NL",{month:"long",year:"numeric"});
   const jr=tPlateau>=24?" (ruim "+Math.floor(tPlateau/12)+" jaar)":"";
-  const teLang = tPlateau>=60 ? " Dat is te lang om op te wachten; hieronder kies je je tempo." : "";
-  el.innerHTML="Op dit tempo zit je daar over <strong>± "+tPlateau+" maanden</strong>"+jr+": rond <strong>"+wanneer+"</strong>."+teLang;
+  if(variant==="krimp"){ html("plateau-tijd","Op dit tempo zak je daar over <strong>± "+tPlateau+" maanden</strong>"+jr+" naartoe: rond <strong>"+wanneer+"</strong>."); return; }
+  const staart = tPlateau>=60 ? " Dat is te lang om op te wachten; verderop kies je je tempo." : " Verderop zie je wat het vraagt om er sneller te zijn.";
+  html("plateau-tijd","Op dit tempo zit je daar over <strong>± "+tPlateau+" maanden</strong>"+jr+": rond <strong>"+wanneer+"</strong>."+staart);
 })();
 
 /* plateau in geld: leden × omzet per lid */
 (function(){
-  const el=$("plateau-omzet"); if(!el) return;
   const omzetPl=plateauExact*armNu*12;
-  el.innerHTML="±"+plateauNu+" leden × "+eur(armNu)+" per lid = <strong>≈ "+eur(rOmz(omzetPl))+" omzet per jaar</strong>"+(plateauNu < p.l*0.98 ? " (nu ≈ "+eur(rOmz(p.o*12))+")." : " op dit plateau.");
+  html("plateau-omzet","±"+plateauNu+" leden × "+eur(armNu)+" per lid = <strong>≈ "+eur(rOmz(omzetPl))+" omzet per jaar</strong>"+(variant==="krimp" ? " (nu ≈ "+eur(rOmz(p.o*12))+")." : " op dit plateau."));
 })();
 
 /* gezonde verdeling: 4/9 loon, 2/9 vaste lasten, 3/9 winst (Two-Brain 4/9-model) */
 (function(){
   const cols=$("vd-cols"); if(!cols) return;
   const F={loon:4/9,vast:2/9,winst:3/9};
-  const rK=n=>Math.round(n/1000)*1000;
   const omzetNu=p.o*12, omzetPl=plateauExact*armNu*12, omzetB=DOEL_OMZET;
-  const sc=[["Nu",omzetNu,p.l+" leden × "+eur(armNu)+" per lid"],["Op het plateau",omzetPl,"±"+plateauNu+" leden × "+eur(armNu)+" per lid"],["Bij 1 miljoen",omzetB,"±"+ledenEind+" leden × "+eur(armEind)+" per lid"]];
+  const sc=[["Nu",omzetNu,p.l+" leden × "+eur(armNu)+" per lid"],["Op het plateau",omzetPl,"±"+plateauNu+" leden × "+eur(armNu)+" per lid"],["Bij 1 miljoen",omzetB,"1 miljoen, gezond verdeeld"]];
   const leg=o=>'<div><span><span class="dot" style="background:var(--mint)"></span>Loon 44%</span><b>'+eur(rK(o*F.loon))+'</b></div><div><span><span class="dot" style="background:#94A3AC"></span>Vaste lasten 22%</span><b>'+eur(rK(o*F.vast))+'</b></div><div><span><span class="dot" style="background:var(--mint-deep)"></span>Winst 33%</span><b>'+eur(rK(o*F.winst))+'</b></div>';
   cols.innerHTML=sc.map(([k,o,sub])=>'<div class="vd-col"><div class="k">'+k+'</div><div class="o">'+eur(rK(o))+'<small>per jaar</small></div><div class="vd-bar"><i class="l" style="width:44.4%"></i><i class="v" style="width:22.2%"></i><i class="w" style="width:33.4%"></i></div><div class="vd-leg">'+leg(o)+'</div><div class="s">'+sub+'</div></div>').join("");
+  html("e-gezond","Gezond verdeeld betekent 1 miljoen: ≈ <strong>"+eur(rK(omzetB*F.loon))+"</strong> loonruimte (team én jouw uren) · <strong>"+eur(rK(omzetB*F.vast))+"</strong> vaste lasten · <strong>"+eur(rK(omzetB*F.winst))+"</strong> winst voor jou als eigenaar.");
+
   const lk=$("vd-lk"), oh=$("vd-oh"), uit=$("vd-uit"); if(!lk||!oh||!uit) return;
-  const q=new URLSearchParams(location.search);
-  if(q.get("lk")) lk.value=q.get("lk"); if(q.get("oh")) oh.value=q.get("oh");
+  if(Q.get("lk")) lk.value=Q.get("lk"); if(Q.get("oh")) oh.value=Q.get("oh");
+  const verdeling=(omzet,loon,vast)=>{ const winst=omzet-loon-vast; return {loon,vast,winst,pl:loon/omzet,pv:vast/omzet,pw:winst/omzet}; };
+  const signaal=v=> (v.winst<0||v.pw<0.2||v.pl>0.5||v.pv>0.28) ? "rood" : v.pw<0.3 ? "amber" : "groen";
+  const bar=v=>{ const wl=Math.min(100,v.pl*100), wv=Math.min(100-wl,v.pv*100), ww=Math.max(0,Math.min(100-wl-wv,v.pw*100)); return '<div class="vd-bar eigen" style="margin:8px 0"><i class="l" style="width:'+wl.toFixed(1)+'%"></i><i class="v" style="width:'+wv.toFixed(1)+'%"></i><i class="w'+(v.winst<0?" neg":"")+'" style="width:'+ww.toFixed(1)+'%"></i></div>'; };
+  const mini=v=>'<span class="mini">Loon '+pct(v.pl)+' · vaste lasten '+pct(v.pv)+' · winst '+pct(v.pw)+' ('+(v.winst<0 ? eur(rK(-v.winst))+' tekort per jaar' : eur(rK(v.winst))+' per jaar')+')</span>';
+  function oordeel(v, pl){
+    const s='<strong class="'+signaal(v)+'">';
+    if(v.winst<0) return pl ? 'Ook op het plateau leg je erop toe: '+s+eur(rK(-v.winst))+' per jaar</strong>.' : 'Je legt er nu '+s+eur(rK(-v.winst))+' per jaar</strong> op toe: je kosten zijn hoger dan je omzet.';
+    if(v.pl>0.5)  return (pl?'Ook op het plateau zijn je loonkosten ':'Je loonkosten zijn ')+s+pct(v.pl)+'</strong> van je omzet; gezond is 44%.'+(pl?'':' Daar zit je winst.');
+    if(v.pv>0.28) return (pl?'Ook op het plateau zijn je vaste lasten ':'Je vaste lasten zijn ')+s+pct(v.pv)+'</strong> van je omzet; gezond is 22%.';
+    if(v.pw<0.2)  return (pl?'Op het plateau houd je ':'Je houdt ')+s+pct(v.pw)+'</strong> winst over; gezond is 33%.';
+    if(v.pw<0.3)  return (pl?'Op het plateau houd je ':'Je houdt ')+s+pct(v.pw)+'</strong> winst over; gezond is 33%. Bijna.';
+    return (pl?'Op het plateau houd je ':'Je houdt ')+s+pct(v.pw)+'</strong> winst over. Dat is gezond.';
+  }
   function render(){
     const L=parseFloat(lk.value), O=parseFloat(oh.value);
+    zetParam("lk", lk.value); zetParam("oh", oh.value);
     if(!(L>=0)||!(O>=0)||(L===0&&O===0)){ uit.innerHTML=""; return; }
-    const loon=L*12, vast=O*12, winst=omzetNu-loon-vast;
-    const pl=loon/omzetNu, pv=vast/omzetNu, pw=winst/omzetNu;
-    const wl=Math.min(100,pl*100), wv=Math.min(100-wl,pv*100), ww=Math.max(0,Math.min(100-wl-wv,pw*100));
-    const bar='<div class="vd-bar eigen" style="margin:8px 0"><i class="l" style="width:'+wl.toFixed(1)+'%"></i><i class="v" style="width:'+wv.toFixed(1)+'%"></i><i class="w'+(winst<0?" neg":"")+'" style="width:'+ww.toFixed(1)+'%"></i></div>';
-    let oordeel;
-    if(winst<0) oordeel='Je legt er nu <strong class="rood">'+eur(rK(-winst))+' per jaar</strong> op toe: je kosten zijn hoger dan je omzet.';
-    else if(pl>0.5) oordeel='Je loonkosten zijn <strong class="rood">'+pct(pl)+'</strong> van je omzet; gezond is 44%. Daar zit je winst.';
-    else if(pv>0.28) oordeel='Je vaste lasten zijn <strong class="rood">'+pct(pv)+'</strong> van je omzet; gezond is 22%.';
-    else if(pw<0.2) oordeel='Je houdt <strong class="rood">'+pct(pw)+'</strong> winst over; gezond is 33%.';
-    else if(pw<0.3) oordeel='Je houdt <strong class="amber">'+pct(pw)+'</strong> winst over; gezond is 33%. Bijna.';
-    else oordeel='Je houdt <strong class="groen">'+pct(pw)+'</strong> winst over. Dat is gezond.';
-    uit.innerHTML='<b>Jouw verdeling nu</b>'+bar+'<span class="mini">Loon '+pct(pl)+' · vaste lasten '+pct(pv)+' · winst '+pct(pw)+' ('+eur(rK(winst))+' per jaar)</span><br>'+oordeel+' <span class="mini">Groeien je kosten mee zoals het model, dan houd je op het plateau '+eur(rK(omzetPl*F.winst))+' winst per jaar over, en bij 1 miljoen '+eur(rK(omzetB*F.winst))+'.</span>';
+    const nu=verdeling(omzetNu, L*12, O*12);
+    let out='<div class="vd-rij"><b>Jouw verdeling nu</b>'+bar(nu)+mini(nu)+'<br>'+oordeel(nu,false)+'</div>';
+    if(variant!=="plateau" && omzetPl>0){
+      const k=kostenOpPlateau(p.l, plateauExact, L*12, O*12);
+      const v=verdeling(omzetPl, k.loon, k.vast);
+      const vervolg = signaal(v)==="groen" ? "Op papier gezond, als je vaste lasten gelijk blijven en je loon maar half meegroeit."
+        : variant==="krimp" ? "Krimpen maakt dit erger: eerst de krimp stoppen, dan je kostenverdeling."
+        : "Groeien lost dit niet op; je kostenverdeling wel.";
+      out+='<div class="vd-rij"><b>Op het plateau (±'+plateauNu+' leden, schatting)</b>'+bar(v)+mini(v)+'<br>'+oordeel(v,true)+' <span class="mini">'+vervolg+'</span></div>';
+      out+='<p class="vd-aanname">Schatting: vaste lasten blijven gelijk, loonkosten groeien half zo hard mee als je ledental.</p>';
+    }
+    uit.innerHTML=out;
   }
   lk.addEventListener("input",render); oh.addEventListener("input",render); render();
-  const eg=$("e-gezond"); if(eg) eg.innerHTML="Gezond verdeeld betekent 1 miljoen: ≈ <strong>"+eur(rK(omzetB*F.loon))+"</strong> loonruimte (team én jouw uren) · <strong>"+eur(rK(omzetB*F.vast))+"</strong> vaste lasten · <strong>"+eur(rK(omzetB*F.winst))+"</strong> winst voor jou als eigenaar.";
 })();
 
-/* tempo: hoe snel wil je op de miljoen-lijn (±ledenEind leden) zitten? */
+/* tempo: hoe snel wil je op je plateau zitten? (rek), of wat de knoppen doen (plateau, krimp) */
 (function(){
-  const box=$("tempo"), sel=$("tempo-jaar"), out=$("tempo-uit"); if(!box||!sel||!out) return;
-  const doel=ledenEind, L0=p.l, c=churnNu;
-  if(L0>=doel) return; /* al voorbij de lijn: geen tempo-vraag */
-  box.hidden=false;
-  set("tempo-doel","±"+doel);
-  $("tempo-intro").textContent = churnGoed && tPlateau>=36
-    ? "Je verloop is goed en hiermee kom je er, alleen duurt het te lang. Kies hoe snel je er wilt zijn:"
-    : "Wachten tot het plateau duurt lang. Kies hoe snel je bij de miljoen-lijn wilt zijn:";
-  /* benodigde aanwas om in M maanden van L0 naar doel te komen bij verloop cc:
-     L(M) = a/cc + (L0 - a/cc)(1-cc)^M  =>  a = cc*(doel - L0*f)/(1-f), f=(1-cc)^M */
-  const nodig=(cc,M)=>{const f=Math.pow(1-cc,M);return cc*(doel-L0*f)/(1-f)};
+  const sel=$("tempo-jaar"), out=$("tempo-uit"), slider=$("tempo-slider"); if(!sel||!out) return;
+  const L0=p.l, c=churnNu;
+  if(variant==="krimp"){
+    set("tempo-kop","Eerst de krimp stoppen.");
+    set("tempo-intro","Groei begint bij een ledental dat niet meer zakt.");
+    if(slider) slider.hidden=true;
+    out.innerHTML="Om op "+L0+" leden te blijven heb je <strong>"+opPeil.aanwas+" nieuwe leden per maand</strong> nodig, "+Math.max(0,opPeil.aanwas-p.a)+" meer dan nu, of een verloop van <strong>"+pct(opPeil.churn)+"</strong> bij je huidige aanwas. Alles daarboven is groei: elk extra nieuw lid per maand is ±"+Math.round(perLid)+" leden plateau.";
+    return;
+  }
+  if(variant==="plateau"){
+    set("tempo-kop","Je zit op je plateau.");
+    set("tempo-intro","Elke maand komt er ongeveer evenveel bij als eraf: "+p.a+" nieuwe leden, ±"+p.z+" opzeggers.");
+    if(slider) slider.hidden=true;
+    out.innerHTML="Elk extra nieuw lid per maand tilt je plateau met <strong>±"+Math.round(perLid)+" leden</strong>; een half punt minder verloop ("+pct(c2)+") met <strong>±"+Math.round(deltaVerloop)+" leden</strong>.";
+    return;
+  }
+  set("tempo-kop","Hoe snel wil je op ±"+plateauNu+" leden zitten?");
+  const jr=tPlateau>=24?" (ruim "+Math.floor(tPlateau/12)+" jaar)":"";
+  set("tempo-intro","Op dit tempo duurt dat ± "+tPlateau+" maanden"+jr+". Kies hoe snel je er wilt zijn:");
+  sel.value=String(tempoJaarStandaard);
   function render(){
     const T=parseInt(sel.value,10), M=T*12;
-    $("tempo-jaar-lbl").textContent=T+" jaar";
-    const a=nodig(c,M);
-    if(a<=p.a){ out.innerHTML="Met je huidige "+p.a+" nieuwe leden per maand zit je er binnen "+T+" jaar al."; return; }
-    const extra=" Dat zijn er <strong>"+Math.ceil(a-p.a)+" per maand méér</strong> dan nu.";
-    const bij25=c>0.026 ? " Breng je het verloop naar 2,5%, dan volstaan er <strong>"+Math.ceil(nodig(0.025,M))+"</strong>." : "";
-    out.innerHTML="Dan heb je <strong>"+Math.ceil(a)+" nieuwe leden per maand</strong> nodig bij je huidige verloop van "+pct(c)+"."+extra+bij25;
+    set("tempo-jaar-lbl",T+" jaar");
+    const N=Math.ceil(nodig(L0, plateauExact, c, M));
+    if(N<=p.a){ out.innerHTML="Met je huidige "+p.a+" nieuwe leden per maand zit je er binnen "+T+" jaar al."; return; }
+    const nieuwPl=r10(N/c);
+    const N2=Math.ceil(nodig(L0, plateauExact, c2, M));
+    const slot = N2<=p.a ? " Breng je het verloop naar "+pct(c2)+", dan is je huidige aanwas genoeg."
+      : churnGoed ? " Je verloop is al laag; de kans zit in instroom."
+      : (N-N2>0) ? " Verloop is je goedkoopste knop: naar "+pct(c2)+" scheelt "+(N-N2===1 ? "1 nieuw lid" : (N-N2)+" nieuwe leden")+" per maand."
+      : " Verloop is je andere knop: elke halve punt minder tilt je plateau met ±"+num(deltaVerloop)+" leden.";
+    out.innerHTML="Dan heb je <strong>"+N+" nieuwe leden per maand</strong> nodig, "+(N-p.a)+" meer dan nu. Met "+N+" per maand stopt je groei niet op ±"+plateauNu+" maar op ±"+num(nieuwPl)+" leden: meer aanwas tilt je plateau."+slot;
   }
   sel.addEventListener("input",render); render();
 })();
@@ -498,85 +569,120 @@ const tPlateau = gap0 < Math.max(5, plateauExact*0.03) ? 0
   note.setAttribute("y", L0>P ? (+yP+26) : (+yP-13));
 })();
 
-/* het gat */
-if(gat<=0){
-  $("gat-kop").textContent="Jouw aanwas is al genoeg.";
-  $("gat-uitleg").textContent="Met "+p.a+" nieuwe leden per maand en "+pct(doelChurn)+" verloop draag jij al genoeg aan voor de miljoen-route. Jouw route gaat vooral over vasthouden en omzet per lid."+(tPlateau>=36?" Alleen het tempo: dat kies je hierboven.":"");
-}else{
-  $("gat-kop").textContent=gat+" extra "+(gat===1?"lid":"leden")+" per maand";
-  $("gat-uitleg").textContent="Meer is het gat niet. Voor de miljoen heb je "+benodigd+" nieuwe leden per maand nodig (bij "+pct(doelChurn)+" verloop); jij zit op "+p.a+". "+
-    [leadsDeel?leadsDeel+" uit betere leadopvolging":"",exDeel?exDeel+" uit terugkerende oud-leden":"",restDeel?restDeel+" uit vindbaarheid en events":""].filter(Boolean).join(", ")+".";
-}
-
-/* station 1 */
+/* station 1: hangt alleen aan je verloop, niet aan de route */
 if(churnGoed){
-  $("s1-kop").textContent="Houd de achterdeur dicht";
-  $("s1-tekst").innerHTML="Jouw verloop van <strong>"+pct(churnNu)+"</strong> is al beter dan de meeste boxen. De kunst is dat vást te houden terwijl je groeit, en dat lukt niet uit je hoofd: dan heb je signalen en taken nodig.";
-  $("s1-effect-l").textContent="blijft je plateau, óók als je doorgroeit";
+  set("s1-kop","Houd de achterdeur dicht");
+  html("s1-tekst","Jouw verloop van <strong>"+pct(churnNu)+"</strong> is al beter dan de meeste boxen. De kunst is dat vást te houden terwijl je groeit, en dat lukt niet uit je hoofd: dan heb je signalen en taken nodig.");
+  set("s1-effect-l","blijft je plateau, óók als je doorgroeit");
 }else{
-  $("s1-tekst").innerHTML="Van <strong>"+pct(churnNu)+"</strong> verloop per maand naar 2,5%. Niet met campagnes, maar met signalen: elke wegzakker wordt een taak voor je team, elke opzegging een gesprek.";
-  $("s1-effect-l").innerHTML="wordt je nieuwe plateau (was "+plateauNu+")";
+  html("s1-tekst","Van <strong>"+pct(churnNu)+"</strong> verloop per maand naar 2,5%. Niet met campagnes, maar met signalen: elke wegzakker wordt een taak voor je team, elke opzegging een gesprek.");
+  html("s1-effect-l","wordt je nieuwe plateau (was "+plateauNu+")");
 }
 set("s1-plateau","±"+plateauS1);
 set("s1-omzet","≈ "+eur(omzet1));
 set("s1-arm", eur(Math.round(armNu)));
 
-/* station 2 */
-$("s2-tekst").innerHTML=leadsDeel>0
-  ? "Zelfde marketingbudget, maar geen aanvraag meer die tussen de appjes verdwijnt. Reken conservatief op <strong>"+leadsDeel+" extra "+(leadsDeel===1?"lid":"leden")+" per maand</strong>."
-  : "Jouw aanwas is al op niveau. Dit station gaat bij jou over minder afhankelijkheid van advertenties: dezelfde instroom, lagere kosten.";
-set("s2-plateau","±"+plateauS2);
-set("s2-omzet","≈ "+eur(omzet2));
+/* route naar de miljoen: veel leden of een hogere omzet per lid; alles hieronder rekent mee */
+let routeKey = leesRoute();
+let routeRenders = 0;
+const ROUTE_ZIN = {
+  volume:  arm=>"Groepsles blijft de basis; small group, PT en nutrition tillen het gemiddelde naar "+eur(arm)+".",
+  balans:  ()=>"Ongeveer een derde van je omzet uit small group, PT en nutrition.",
+  premium: ()=>"De helft of meer uit small group en PT: minder leden, meer aandacht per lid."
+};
+(function(){
+  const box=$("routes"); if(!box) return;
+  if(routeOpties.length===1){ box.hidden=true; return; }
+  box.innerHTML=routeOpties.map(o=>'<button type="button" class="route-btn" data-r="'+o.key+'"><span class="n">'+o.naam+'</span><span class="a">'+eur(o.arm)+'</span><span class="l">per lid per maand · ±'+o.leden+' leden</span><span class="s">'+o.sub+'</span></button>').join("");
+  box.addEventListener("click",e=>{ const b=e.target.closest(".route-btn"); if(!b) return; routeKey=b.dataset.r; zetParam("r",routeKey); renderRoute(); });
+})();
 
-/* station 3 · oud-leden, gewoon in jaar 1 */
-if(overshoot){
-  $("s3-tekst").innerHTML="Ex-leden zijn je goedkoopste aanwas, en dit start je gewoon in jaar 1, samen met station 1 en 2: de kaart op de mat, het welkom-terug-aanbod, de check-in na drie maanden. Bij jou is dit pure <strong>marge</strong>: je route komt ruim boven de ±"+ledenEind+" uit die de miljoen vraagt.";
-}else{
-  $("s3-tekst").innerHTML="Ex-leden zijn je goedkoopste aanwas, en dit start je gewoon in jaar 1, samen met station 1 en 2: de kaart op de mat, het welkom-terug-aanbod, de check-in na drie maanden. "+(exDeel?"Eén terugkeerder per maand dicht het gat.":"Zo houd je de instroom gezond zonder extra advertentiebudget.")+(restDeel?" De laatste "+restDeel+" haal je uit vindbaarheid en events.":"");
-}
-set("s3-leden","±"+plateau3);
-set("s3-omzet","≈ "+eur(omzet3));
-
-/* station 4 · omzet per lid, jaar 2 tot 4 */
 const CATN={sg:"small group",pt:"PT",nu:"nutrition",ob:"onboardingprogramma's",ev:"events"};
 const mist=mixIngevuld?Object.keys(CATN).filter(k=>(mix[k]||0)<3).map(k=>CATN[k]):[];
 const mistTxt=mist.length?" Uit "+opsom(mist)+" haal je nu (bijna) niks: dáár zit de rek.":"";
-if(lastigeRoute) $("s4-nr").textContent="Station 4 · jaar 2 tot 5";
-if(armGoed){
-  $("s4-kop").textContent="Houd de omzet per lid hoog";
-  $("s4-tekst").innerHTML="Jouw omzet per lid ("+eur(armNu)+" per maand) is al sterk. De route draait bij jou om dit vasthouden terwijl het ledental groeit"+(mist.length?", en om verbreden: uit "+opsom(mist)+" haal je nog weinig.":", met doorstroom en events als motor.");
-}else if(mixIngevuld){
-  $("s4-tekst").innerHTML="Jouw omzet leunt nu voor <strong>"+mix.g+"%</strong> op groepslessen."+mistTxt+" Zo groeit de omzet per lid van <strong>"+eur(armNu)+"</strong> naar zo'n <strong>"+eur(armEind)+"</strong> per maand.";
-}else{
-  $("s4-tekst").innerHTML="Door doorstroom naar small group, PT, nutrition en events groeit de omzet per lid van <strong>"+eur(armNu)+"</strong> naar zo'n <strong>"+eur(armEind)+"</strong> per maand.";
-}
-set("s4-arm", eur(armEind));
-set("s4-arm-nu", eur(Math.round(armNu)));
-set("s4-omzet","≈ "+eur(omzet4));
 
-/* eindplaat */
-set("e-omzet","± "+eur(Math.round(ledenEind*armEind*12/50000)*50000));
-set("e-leden","±"+ledenEind);
-set("e-arm", eur(armEind));
-/* de mix is een keuze: minder leden met een hogere omzet per lid kan ook */
-(function(){
-  const el=$("e-keuze"); if(!el) return;
-  const leden2=r10(ledenEind*0.6), arm2=Math.ceil(DOEL_OMZET/12/leden2/5)*5;
-  el.innerHTML="Dit is één manier. Het kan ook met minder leden en een hogere omzet per lid: bijvoorbeeld <strong>±"+leden2+" leden × "+eur(arm2)+"</strong>, of alleen small group. Welke mix bij jouw box past, kies jij; de vier stations blijven dezelfde.";
-})();
-const r50=n=>Math.round(n/50000)*50000;
-const MP=[
-  ["Jaar 1", churnGoed ? "Signalen en taken staan: verloop blijft laag, elke lead gevangen en oud-leden komen terug." : "Achterdeur dicht, elke lead gevangen én oud-leden terug: door je oude plateau heen."],
-  ["Jaar 2", "Richting "+plateau3+" leden, eerste doorstroom naar small group en PT."],
-  ["Jaar 3", overshoot ? "Omzet per lid richting "+eur(armEind)+": hier passeer je de miljoen al." : "Omzet per lid richting "+eur(armEind)+": de "+eur(r50(omzet4))+" komt in zicht."],
-  [lastigeRoute?"Jaar 4-5":"Jaar 4", "De miljoen-lijn: ±"+ledenEind+" leden × "+eur(armEind)+" per lid per maand."]
-];
-const mpEl=$("mijlpalen");
-MP.forEach(([j,t])=>{
-  const d=document.createElement("div");d.className="mp";
-  d.innerHTML='<span class="j">'+j+'</span><span class="t">'+t+'</span>';
-  mpEl.appendChild(d);
-});
+function renderRoute(){
+  const o = routeOpties.find(x=>x.key===routeKey) || routeOpties[0];
+  const armEind=o.arm, ledenEind=o.leden;
+  const benodigd  = Math.ceil(ledenEind*doelChurn);
+  const gat       = benodigd - p.a;
+  const leadsDeel = Math.max(0, Math.min(3, gat));
+  const exDeel    = gat > leadsDeel ? 1 : 0;
+  const restDeel  = Math.max(0, gat - leadsDeel - exDeel);
+  const plateauS2 = r10((p.a+leadsDeel)/doelChurn);
+  const plateau3  = r10((p.a+Math.max(0,gat))/doelChurn);   /* na station 2+3: gat gedicht */
+  const omzet2    = rOmz(plateauS2*armNu*12);
+  const omzet3    = rOmz(plateau3*armNu*12);
+  const omzet4    = rOmz(ledenEind*armEind*12);
+  const armGoed   = armNu >= armEind-2;          /* omzet per lid al op het niveau van deze route */
+  const lastigeRoute = gat > 6;                  /* groot aanwas-gat: langere adem */
+  const overshoot = plateauS2 >= ledenEind;      /* route komt boven de miljoen-lijn uit */
+  const later = routeRenders>0; routeRenders++;
+  const cnt=(id,v)=>{ const el=$(id); if(!el) return; if(later) el.dataset.done="1"; el.textContent=v; };
+
+  document.querySelectorAll(".route-btn").forEach(b=>b.classList.toggle("active", b.dataset.r===o.key));
+  html("route-uit", (routeOpties.length===1
+    ? "Met je huidige "+eur(armNu)+" per lid per maand is de miljoen <strong>±"+ledenEind+" leden</strong>."
+    : "Jouw route: <strong>"+o.naam+"</strong>. ±"+ledenEind+" leden × "+eur(armEind)+" per lid per maand.")
+    +" Bij "+pct(doelChurn)+" verloop vraagt dat <strong>"+benodigd+" nieuwe leden per maand</strong>; nu "+p.a+".");
+
+  /* het gat */
+  if(gat<=0){
+    set("gat-kop","Jouw aanwas is al genoeg.");
+    set("gat-uitleg","Met "+p.a+" nieuwe leden per maand en "+pct(doelChurn)+" verloop draag jij al genoeg aan voor deze route. Jouw route gaat vooral over vasthouden en omzet per lid.");
+  }else{
+    set("gat-kop",gat+" extra "+(gat===1?"lid":"leden")+" per maand");
+    set("gat-uitleg","Meer is het gat niet. Voor deze route heb je "+benodigd+" nieuwe leden per maand nodig (bij "+pct(doelChurn)+" verloop); jij zit op "+p.a+". "+
+      [leadsDeel?leadsDeel+" uit betere leadopvolging":"",exDeel?exDeel+" uit terugkerende oud-leden":"",restDeel?restDeel+" uit vindbaarheid en events":""].filter(Boolean).join(", ")+".");
+  }
+
+  /* station 2 */
+  html("s2-tekst", leadsDeel>0
+    ? "Zelfde marketingbudget, maar geen aanvraag meer die tussen de appjes verdwijnt. Reken conservatief op <strong>"+leadsDeel+" extra "+(leadsDeel===1?"lid":"leden")+" per maand</strong>."
+    : "Jouw aanwas is al op niveau. Dit station gaat bij jou over minder afhankelijkheid van advertenties: dezelfde instroom, lagere kosten.");
+  cnt("s2-plateau","±"+plateauS2);
+  set("s2-omzet","≈ "+eur(omzet2));
+
+  /* station 3: oud-leden, gewoon in jaar 1 */
+  html("s3-tekst", overshoot
+    ? "Ex-leden zijn je goedkoopste aanwas, en dit start je gewoon in jaar 1, samen met station 1 en 2: de kaart op de mat, het welkom-terug-aanbod, de check-in na drie maanden. Bij jou is dit pure <strong>marge</strong>: je route komt ruim boven de ±"+ledenEind+" uit die deze route vraagt."
+    : "Ex-leden zijn je goedkoopste aanwas, en dit start je gewoon in jaar 1, samen met station 1 en 2: de kaart op de mat, het welkom-terug-aanbod, de check-in na drie maanden. "+(exDeel?"Eén terugkeerder per maand dicht het gat.":"Zo houd je de instroom gezond zonder extra advertentiebudget.")+(restDeel?" De laatste "+restDeel+" haal je uit vindbaarheid en events.":""));
+  cnt("s3-leden","±"+plateau3);
+  set("s3-omzet","≈ "+eur(omzet3));
+
+  /* station 4: omzet per lid, jaar 2 tot 4, per route */
+  set("s4-nr", lastigeRoute ? "Station 4 · jaar 2 tot 5" : "Station 4 · jaar 2 tot 4");
+  const routeZin=" "+ROUTE_ZIN[o.key](armEind);
+  if(armGoed){
+    set("s4-kop","Houd de omzet per lid hoog");
+    html("s4-tekst","Jouw omzet per lid ("+eur(armNu)+" per maand) zit al op het niveau van deze route. De route draait bij jou om dit vasthouden terwijl het ledental groeit"+(mist.length?", en om verbreden: uit "+opsom(mist)+" haal je nog weinig.":", met doorstroom en events als motor.")+routeZin);
+  }else if(mixIngevuld){
+    set("s4-kop","Verhoog de omzet per lid");
+    html("s4-tekst","Jouw omzet leunt nu voor <strong>"+mix.g+"%</strong> op groepslessen."+mistTxt+" Zo groeit de omzet per lid van <strong>"+eur(armNu)+"</strong> naar zo'n <strong>"+eur(armEind)+"</strong> per maand."+routeZin);
+  }else{
+    set("s4-kop","Verhoog de omzet per lid");
+    html("s4-tekst","Door doorstroom naar small group, PT, nutrition en events groeit de omzet per lid van <strong>"+eur(armNu)+"</strong> naar zo'n <strong>"+eur(armEind)+"</strong> per maand."+routeZin);
+  }
+  set("s4-arm", eur(armEind));
+  set("s4-arm-nu", eur(Math.round(armNu)));
+  set("s4-omzet","≈ "+eur(omzet4));
+
+  /* eindplaat */
+  set("e-omzet","± "+eur(r50(ledenEind*armEind*12)));
+  set("e-leden","±"+ledenEind);
+  set("e-arm", eur(armEind));
+  html("e-route", routeOpties.length===1
+    ? "Op je huidige omzet per lid: ±"+ledenEind+" leden × "+eur(armEind)+" per lid per maand."
+    : "Route: <strong>"+o.naam+"</strong> · ±"+ledenEind+" leden × "+eur(armEind)+" per lid per maand. Andere route? Kies hierboven bij de bestemming.");
+  const MP=[
+    ["Jaar 1", churnGoed ? "Signalen en taken staan: verloop blijft laag, elke lead gevangen en oud-leden komen terug." : "Achterdeur dicht, elke lead gevangen én oud-leden terug: door je oude plateau heen."],
+    ["Jaar 2", "Richting "+plateau3+" leden, eerste doorstroom naar small group en PT."],
+    ["Jaar 3", overshoot ? "Omzet per lid richting "+eur(armEind)+": hier passeer je de miljoen al." : "Omzet per lid richting "+eur(armEind)+": de "+eur(r50(omzet4))+" komt in zicht."],
+    [lastigeRoute?"Jaar 4-5":"Jaar 4", "De miljoen-lijn: ±"+ledenEind+" leden × "+eur(armEind)+" per lid per maand."]
+  ];
+  const mpEl=$("mijlpalen"); if(mpEl){ mpEl.innerHTML=""; MP.forEach(([j,t])=>{ const d=document.createElement("div"); d.className="mp"; d.innerHTML='<span class="j">'+j+'</span><span class="t">'+t+'</span>'; mpEl.appendChild(d); }); }
+}
+renderRoute();
 
 /* omzetmix-balk */
 const MIXC=[["g","groepslessen","#7FB0C2"],["sg","small group","#3E788E"],["pt","PT","#0C161B"],["nu","nutrition","#059669"],["ob","onboarding","#F59E0B"],["ev","events","#C44A1C"]];
