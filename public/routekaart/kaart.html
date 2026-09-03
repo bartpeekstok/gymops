@@ -184,6 +184,12 @@ footer img{height:22px;display:block;margin:0 auto 8px}
 .mixleg b{color:var(--fg1)}
 .mixleg .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
 .mix .uit{font-size:13px;color:var(--fg2);margin-top:8px}
+/* knelpunt in eigen woorden */
+.knel{margin-top:12px;background:var(--mint-tint);border:1px solid var(--mint-light);border-radius:14px;padding:12px 14px}
+.knel .k{font-size:11px;letter-spacing:.07em;font-weight:700;text-transform:uppercase;color:var(--mint-deep)}
+.knel q{display:block;font-size:17px;font-weight:700;letter-spacing:-.01em;color:var(--ink);margin-top:4px;quotes:"“" "”"}
+.knel .uit{font-size:13px;color:var(--fg2);margin-top:6px}
+.halte h3 .kp{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--mint-deep);border-radius:999px;padding:4px 9px;white-space:nowrap}
 .opgave-hint button{font:inherit;color:var(--mint-deep);background:none;border:0;text-decoration:underline;cursor:pointer;padding:0}
 .peil .big2{font-size:clamp(24px,6.5vw,32px);font-weight:800;letter-spacing:-.03em;line-height:1.1;color:var(--ink);margin-top:6px;font-variant-numeric:tabular-nums}
 .peil .big2 small{font-size:13px;font-weight:600;color:var(--fg3);letter-spacing:0;display:block;margin-top:2px}
@@ -246,6 +252,11 @@ section.stap > .sub{max-width:calc(52ch)}
     <div class="mixbar" id="mixbar"></div>
     <div class="mixleg" id="mixleg"></div>
     <p class="uit" id="mix-uit"></p>
+  </div>
+  <div class="knel" id="knel" hidden>
+    <div class="k">Jouw knelpunt in eigen woorden</div>
+    <q id="knel-txt"></q>
+    <p class="uit" id="knel-uit"></p>
   </div>
 </section>
 
@@ -460,6 +471,22 @@ function opgaveVeranderd(){ return st.l!==P0.l||Math.round(st.o)!==Math.round(P0
 $("opgave-hint").addEventListener("click",e=>{ if(e.target.tagName==="BUTTON"){ st={l:P0.l,o:P0.o,z:P0.z,a:P0.a}; renderAll(true); } });
 $("k-reset").addEventListener("click",()=>{ st={l:P0.l,o:P0.o,z:P0.z,a:P0.a}; renderAll(true); });
 
+/* ---- knelpunt in eigen woorden: tonen en aan een station koppelen ---- */
+const KNEL_TXT = (typeof P0.k === "string" ? P0.k : "").trim().slice(0,160);
+const knelStation = (()=>{
+  const t=KNEL_TXT.toLowerCase(); if(!t) return null;
+  const R=[["ex",/oud[- ]?le|ex[- ]?le|terugkom|terugkeer/],["deur",/opzeg|verloop|retentie|achterdeur|wegzak|uitstroom|churn|vasthoud|binding|blijven/],["lead",/lead|opvolg|aanvra|conversie|marketing|website|vindbaar|instagram|social|advertent|proefles|intake|instroom|nieuwe leden|groei/],["arm",/prijs|omzet per lid|upsell|small group|\bpt\b|personal|nutrition|voeding|marge|winst|kosten|tarie|abonnement/]];
+  for(const [k,re] of R) if(re.test(t)) return k;
+  return null;
+})();
+const KNEL_NAAM={deur:"Dicht de achterdeur",lead:"Vang elke lead",ex:"Laat oud-leden terugkomen",arm:"Verhoog de omzet per lid"};
+const KNEL_NR={deur:1,lead:2,ex:3,arm:4};
+(function(){
+  const box=$("knel"); if(!box||!KNEL_TXT) return;
+  box.hidden=false; set("knel-txt",KNEL_TXT);
+  set("knel-uit", knelStation ? "Dat hoort bij station "+KNEL_NR[knelStation]+": "+KNEL_NAAM[knelStation]+". Daar komen we in de route op terug." : "We nemen dit mee in het routegesprek.");
+})();
+
 /* ---- omzetmix in de kop ---- */
 (function(){
   const box=$("mix"); if(!box||!mixInfo) return;
@@ -608,7 +635,11 @@ function renderMetro(d,pl){
             : "Groepsles is je basis ("+mixInfo.groeps+"%), maar je doet al meer."+(mixInfo.mist.length?" Uit "+opsom(mixInfo.mist)+" haal je nu (bijna) niks.":"")+" De rek zit in doorstroom én in de prijs per programma: van "+eur(d.arm)+" naar "+eur(pl.armEind)+" per lid.")
       : ROUTE_ZIN[d.o.key](pl.armEind))}
   ];
-  html("metro",haltes.map((h,i)=>'<div class="halte"><div class="dot">'+(i+1)+'</div><h3>'+h.t+'<span class="v">'+h.v+'</span></h3><div class="l">'+h.l+'</div><p>'+h.p+'</p><ul class="doet"><li class="k">GymOps doet</li>'+DOET[h.k].map(x=>'<li>'+x+'</li>').join("")+'</ul></div>').join(""));
+  const knelKey = knelStation==="arm" ? (mixInfo&&mixInfo.soort==="prijs"?"armPrijs":"arm") : knelStation;
+  html("metro",haltes.map((h,i)=>{
+    const isKnel = knelKey && h.k===knelKey;
+    return '<div class="halte"><div class="dot">'+(i+1)+'</div><h3>'+h.t+'<span class="v">'+h.v+'</span>'+(isKnel?'<span class="kp">Jouw knelpunt</span>':'')+'</h3><div class="l">'+h.l+'</div><p>'+(isKnel?'Je noemde dit zelf als knelpunt: “'+KNEL_TXT.replace(/</g,"&lt;")+'”. ':'')+h.p+'</p><ul class="doet"><li class="k">GymOps doet</li>'+DOET[h.k].map(x=>'<li>'+x+'</li>').join("")+'</ul></div>';
+  }).join(""));
   set("metro-sub", pl.voorbij||genoeg ? "Je aanwas is genoeg voor dit tempo. Station 1 tot 3 houden dat vast; station 4 tilt je prijs van "+eur(d.arm)+" naar "+eur(pl.armEind)+"." : "In deze volgorde. Samen tillen ze je aanwas van "+fmt1(st.a)+" naar "+Math.ceil(pl.nodigDoel)+" per maand; het laatste station tilt je prijs.");
 }
 

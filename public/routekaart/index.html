@@ -294,7 +294,7 @@ $("f").addEventListener("submit",ev=>{
     v:$("voornaam").value.trim(), g:$("gym").value.trim(),
     l:parseInt($("leden").value,10), o:omzetWaarde(),
     z:parseInt($("opz").value,10), a:parseInt($("aanwas").value,10),
-    m:m
+    m:m, k:$("knel").value.trim().slice(0,160)
   };
   const d=btoa(unescape(encodeURIComponent(JSON.stringify(data))));
   const kaartUrl=new URL(KAART_PAD,location.href).href+"?d="+encodeURIComponent(d);
