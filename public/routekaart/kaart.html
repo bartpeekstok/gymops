@@ -130,6 +130,39 @@ footer img{height:22px;display:block;margin:0 auto 8px}
 .tempo-hulp{margin-top:12px!important;font-size:14px!important;color:var(--fg3)!important}
 .keuze{display:block;margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.14);font-size:14px;color:rgba(255,255,255,.75)}
 .keuze strong{color:#fff}
+
+/* gezonde verdeling (4/9-model) */
+.verdeling{margin-top:18px;background:#fff;border:1px solid var(--border);border-radius:24px;padding:22px 24px;box-shadow:var(--shadow-card)}
+.verdeling h3{font-size:clamp(20px,4.6vw,26px);font-weight:800;letter-spacing:-.025em;margin:6px 0 8px;color:var(--ink)}
+.verdeling .sub{margin:0}
+.vd-caveat{font-family:var(--hand);color:var(--mint-deep);font-size:22px;transform:rotate(-2deg);display:inline-block;margin:12px 0 2px}
+.vd-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:6px 0 8px}
+@media(max-width:700px){.vd-cols{grid-template-columns:1fr}}
+.vd-col{background:var(--bg-soft-2);border-radius:16px;padding:12px 12px 10px;min-width:0}
+.vd-col .k{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mint-deep)}
+.vd-col .o{font-size:18px;font-weight:800;letter-spacing:-.02em;margin:4px 0 8px;color:var(--ink);white-space:nowrap}
+.vd-col .o small{font-size:12px;font-weight:500;color:var(--fg3);letter-spacing:0;margin-left:4px}
+.vd-col .s{font-size:12px;color:var(--fg3);margin-top:8px}
+.vd-bar{display:flex;height:14px;border-radius:7px;overflow:hidden;background:var(--border)}
+.vd-bar i{display:block;height:100%}
+.vd-bar .l{background:var(--mint)}.vd-bar .v{background:#94A3AC}.vd-bar .w{background:var(--mint-deep)}.vd-bar .w.neg{background:var(--danger)}
+.vd-leg{display:grid;gap:4px;margin-top:8px;font-size:12px;color:var(--fg2)}
+.vd-leg div{display:flex;justify-content:space-between;gap:6px;align-items:baseline}
+.vd-leg div span:first-child{white-space:nowrap}
+.vd-leg b{font-weight:700;color:var(--ink);white-space:nowrap}
+.vd-leg .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+.vd-eigen{margin-top:16px;border-top:1px dashed var(--border-strong);padding-top:14px}
+.vd-eigen .kop{font-weight:800;letter-spacing:-.01em;margin:0 0 10px;color:var(--ink)}
+.vd-eigen .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:480px){.vd-eigen .row{grid-template-columns:1fr}}
+.vd-eigen label{font-size:13px;color:var(--fg2);display:grid;gap:4px}
+.vd-eigen label small{color:var(--fg3);font-size:11.5px}
+.vd-eigen input{width:100%;border:1px solid var(--border-strong);border-radius:10px;padding:10px 12px;font:inherit;font-size:16px;background:#fff}
+.vd-eigen .uit{margin-top:12px;font-size:15px;line-height:1.55;color:var(--ink)}
+.vd-eigen .uit .rood{color:var(--danger)}.vd-eigen .uit .amber{color:#B45309}.vd-eigen .uit .groen{color:#059669}
+.vd-eigen .uit .mini{font-size:13px;color:var(--fg2)}
+.e-gezond{display:block;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.14);font-size:14px;color:rgba(255,255,255,.75)}
+.e-gezond strong{color:#fff}
 </style>
 </head>
 <body>
@@ -168,12 +201,30 @@ footer img{height:22px;display:block;margin:0 auto 8px}
     <div class="big"><span id="p-plateau" class="cnt">—</span> <small>leden</small></div>
     <p class="sub" style="margin-top:6px" id="plateau-uitleg">Dáár plateaut jouw box, wat je ook aan marketing doet. Meer adverteren maakt de emmer niet dichter.</p>
     <p class="sub" style="margin-top:6px" id="plateau-tijd"></p>
+    <p class="sub" style="margin-top:6px" id="plateau-omzet"></p>
     <svg viewBox="0 0 600 190" fill="none">
       <line x1="30" y1="160" x2="580" y2="160" stroke="#D1D5DB" stroke-width="2"/>
       <path id="curve-pad" d="M30,155 C 140,120 200,85 300,72 C 400,60 500,58 575,57" stroke="#DC2626" stroke-width="4" stroke-linecap="round"/>
       <line id="curve-dash" x1="30" y1="57" x2="575" y2="57" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="5 6" opacity=".5"/>
       <text x="400" y="44" fill="#DC2626" font-family="Caveat" font-size="26" font-weight="600" id="curve-note">hier loop je tegenaan</text>
     </svg>
+  </div>
+
+  <div class="verdeling" id="verdeling">
+    <div class="eyebrow">De verdeling</div>
+    <h3>Wat een gezonde box overhoudt</h3>
+    <p class="sub">Deel je omzet in negen gelijke stukken. Vier gaan naar loon: je team én jouw eigen uren in de operatie. Twee naar vaste lasten. Drie blijven over als winst: het rendement voor jou als eigenaar. Betaal je jezelf uit de winst terwijl je zelf lesgeeft of de boel runt? Dan is dat loon, geen winst.</p>
+    <span class="vd-caveat">zo hoort het</span>
+    <div class="vd-cols" id="vd-cols"></div>
+    <p class="sub">Bij de meeste boxen ziet het er niet zo uit: de winst is te dun en de kosten zijn hoger. Wil je weten hoe jij ervoor staat?</p>
+    <div class="vd-eigen">
+      <p class="kop">Vergelijk met jouw situatie</p>
+      <div class="row">
+        <label>Loonkosten per maand<small>team én jouw eigen uren in de operatie, ex btw</small><input type="number" id="vd-lk" min="0" step="250" inputmode="numeric" placeholder="bijv. 7500"></label>
+        <label>Overhead per maand<small>huur, energie, software, verzekeringen, ex btw</small><input type="number" id="vd-oh" min="0" step="250" inputmode="numeric" placeholder="bijv. 3000"></label>
+      </div>
+      <div class="uit" id="vd-uit"></div>
+    </div>
   </div>
 
   <div class="tempo" id="tempo" hidden>
@@ -245,7 +296,7 @@ footer img{height:22px;display:block;margin:0 auto 8px}
   <div class="eind">
     <div class="eyebrow">Waar de route eindigt</div>
     <div class="mega" id="e-omzet">—</div>
-    <div class="som"><strong><span id="e-leden">—</span> leden × <span id="e-arm">—</span> per lid per maand.</strong><br>Geen raketwetenschap. Vier reparaties, in de goede volgorde.<span class="keuze" id="e-keuze"></span></div>
+    <div class="som"><strong><span id="e-leden">—</span> leden × <span id="e-arm">—</span> per lid per maand.</strong><br>Geen raketwetenschap. Vier reparaties, in de goede volgorde.<span class="keuze" id="e-keuze"></span><span class="e-gezond" id="e-gezond"></span></div>
     <div class="mijlpalen" id="mijlpalen"></div>
   </div>
 </section>
@@ -359,6 +410,45 @@ const tPlateau = gap0 < Math.max(5, plateauExact*0.03) ? 0
   const jr=tPlateau>=24?" (ruim "+Math.floor(tPlateau/12)+" jaar)":"";
   const teLang = tPlateau>=60 ? " Dat is te lang om op te wachten; hieronder kies je je tempo." : "";
   el.innerHTML="Op dit tempo zit je daar over <strong>± "+tPlateau+" maanden</strong>"+jr+": rond <strong>"+wanneer+"</strong>."+teLang;
+})();
+
+/* plateau in geld: leden × omzet per lid */
+(function(){
+  const el=$("plateau-omzet"); if(!el) return;
+  const omzetPl=plateauExact*armNu*12;
+  el.innerHTML="±"+plateauNu+" leden × "+eur(armNu)+" per lid = <strong>≈ "+eur(rOmz(omzetPl))+" omzet per jaar</strong>"+(plateauNu < p.l*0.98 ? " (nu ≈ "+eur(rOmz(p.o*12))+")." : " op dit plateau.");
+})();
+
+/* gezonde verdeling: 4/9 loon, 2/9 vaste lasten, 3/9 winst (Two-Brain 4/9-model) */
+(function(){
+  const cols=$("vd-cols"); if(!cols) return;
+  const F={loon:4/9,vast:2/9,winst:3/9};
+  const rK=n=>Math.round(n/1000)*1000;
+  const omzetNu=p.o*12, omzetPl=plateauExact*armNu*12, omzetB=DOEL_OMZET;
+  const sc=[["Nu",omzetNu,p.l+" leden × "+eur(armNu)+" per lid"],["Op het plateau",omzetPl,"±"+plateauNu+" leden × "+eur(armNu)+" per lid"],["Bij 1 miljoen",omzetB,"±"+ledenEind+" leden × "+eur(armEind)+" per lid"]];
+  const leg=o=>'<div><span><span class="dot" style="background:var(--mint)"></span>Loon 44%</span><b>'+eur(rK(o*F.loon))+'</b></div><div><span><span class="dot" style="background:#94A3AC"></span>Vaste lasten 22%</span><b>'+eur(rK(o*F.vast))+'</b></div><div><span><span class="dot" style="background:var(--mint-deep)"></span>Winst 33%</span><b>'+eur(rK(o*F.winst))+'</b></div>';
+  cols.innerHTML=sc.map(([k,o,sub])=>'<div class="vd-col"><div class="k">'+k+'</div><div class="o">'+eur(rK(o))+'<small>per jaar</small></div><div class="vd-bar"><i class="l" style="width:44.4%"></i><i class="v" style="width:22.2%"></i><i class="w" style="width:33.4%"></i></div><div class="vd-leg">'+leg(o)+'</div><div class="s">'+sub+'</div></div>').join("");
+  const lk=$("vd-lk"), oh=$("vd-oh"), uit=$("vd-uit"); if(!lk||!oh||!uit) return;
+  const q=new URLSearchParams(location.search);
+  if(q.get("lk")) lk.value=q.get("lk"); if(q.get("oh")) oh.value=q.get("oh");
+  function render(){
+    const L=parseFloat(lk.value), O=parseFloat(oh.value);
+    if(!(L>=0)||!(O>=0)||(L===0&&O===0)){ uit.innerHTML=""; return; }
+    const loon=L*12, vast=O*12, winst=omzetNu-loon-vast;
+    const pl=loon/omzetNu, pv=vast/omzetNu, pw=winst/omzetNu;
+    const wl=Math.min(100,pl*100), wv=Math.min(100-wl,pv*100), ww=Math.max(0,Math.min(100-wl-wv,pw*100));
+    const bar='<div class="vd-bar eigen" style="margin:8px 0"><i class="l" style="width:'+wl.toFixed(1)+'%"></i><i class="v" style="width:'+wv.toFixed(1)+'%"></i><i class="w'+(winst<0?" neg":"")+'" style="width:'+ww.toFixed(1)+'%"></i></div>';
+    let oordeel;
+    if(winst<0) oordeel='Je legt er nu <strong class="rood">'+eur(rK(-winst))+' per jaar</strong> op toe: je kosten zijn hoger dan je omzet.';
+    else if(pl>0.5) oordeel='Je loonkosten zijn <strong class="rood">'+pct(pl)+'</strong> van je omzet; gezond is 44%. Daar zit je winst.';
+    else if(pv>0.28) oordeel='Je vaste lasten zijn <strong class="rood">'+pct(pv)+'</strong> van je omzet; gezond is 22%.';
+    else if(pw<0.2) oordeel='Je houdt <strong class="rood">'+pct(pw)+'</strong> winst over; gezond is 33%.';
+    else if(pw<0.3) oordeel='Je houdt <strong class="amber">'+pct(pw)+'</strong> winst over; gezond is 33%. Bijna.';
+    else oordeel='Je houdt <strong class="groen">'+pct(pw)+'</strong> winst over. Dat is gezond.';
+    uit.innerHTML='<b>Jouw verdeling nu</b>'+bar+'<span class="mini">Loon '+pct(pl)+' · vaste lasten '+pct(pv)+' · winst '+pct(pw)+' ('+eur(rK(winst))+' per jaar)</span><br>'+oordeel+' <span class="mini">Groeien je kosten mee zoals het model, dan houd je op het plateau '+eur(rK(omzetPl*F.winst))+' winst per jaar over, en bij 1 miljoen '+eur(rK(omzetB*F.winst))+'.</span>';
+  }
+  lk.addEventListener("input",render); oh.addEventListener("input",render); render();
+  const eg=$("e-gezond"); if(eg) eg.innerHTML="Gezond verdeeld betekent 1 miljoen: ≈ <strong>"+eur(rK(omzetB*F.loon))+"</strong> loonruimte (team én jouw uren) · <strong>"+eur(rK(omzetB*F.vast))+"</strong> vaste lasten · <strong>"+eur(rK(omzetB*F.winst))+"</strong> winst voor jou als eigenaar.";
 })();
 
 /* tempo: hoe snel wil je op de miljoen-lijn (±ledenEind leden) zitten? */
