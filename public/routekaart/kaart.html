@@ -175,6 +175,15 @@ footer img{height:22px;display:block;margin:0 auto 8px}
 .opgave input{width:100%;border:0;background:transparent;font:inherit;font-size:20px;font-weight:800;color:var(--ink);letter-spacing:-.02em;padding:0;font-variant-numeric:tabular-nums}
 .opgave input:focus{outline:none;color:var(--mint-deep)}
 .opgave-hint{font-size:12.5px;color:var(--fg3);margin-top:8px}
+/* omzetmix uit het formulier */
+.mix{margin-top:14px;background:var(--bg-soft-2);border:1px solid var(--border);border-radius:14px;padding:12px 14px}
+.mix .k{font-size:11px;letter-spacing:.07em;font-weight:700;text-transform:uppercase;color:var(--fg3)}
+.mixbar{display:flex;height:12px;border-radius:99px;overflow:hidden;margin-top:8px}
+.mixbar i{display:block;height:100%}
+.mixleg{display:flex;gap:12px;margin-top:8px;font-size:12px;color:var(--fg3);font-weight:600;flex-wrap:wrap}
+.mixleg b{color:var(--fg1)}
+.mixleg .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+.mix .uit{font-size:13px;color:var(--fg2);margin-top:8px}
 .opgave-hint button{font:inherit;color:var(--mint-deep);background:none;border:0;text-decoration:underline;cursor:pointer;padding:0}
 .peil .big2{font-size:clamp(24px,6.5vw,32px);font-weight:800;letter-spacing:-.03em;line-height:1.1;color:var(--ink);margin-top:6px;font-variant-numeric:tabular-nums}
 .peil .big2 small{font-size:13px;font-weight:600;color:var(--fg3);letter-spacing:0;display:block;margin-top:2px}
@@ -232,6 +241,12 @@ section.stap > .sub{max-width:calc(52ch)}
     <label>nieuwe leden per maand<input type="number" id="i-a" min="0" step="1" inputmode="numeric"></label>
   </div>
   <p class="opgave-hint" id="opgave-hint">Klopt er iets niet? Pas het hier aan.</p>
+  <div class="mix" id="mix" hidden>
+    <div class="k">Waar je omzet vandaan komt (jouw opgave)</div>
+    <div class="mixbar" id="mixbar"></div>
+    <div class="mixleg" id="mixleg"></div>
+    <p class="uit" id="mix-uit"></p>
+  </div>
 </section>
 
 <!-- 1. DIT IS JE PLATEAU -->
@@ -375,6 +390,20 @@ function leesData(){
   }catch(e){ return {p:DEMO, demo:true}; }
 }
 const {p:P0, demo} = leesData();
+/* omzetmix uit het formulier: waar komt de omzet vandaan, en wat betekent dat voor station 4 */
+const MIXC=[["g","groepslessen","#7FB0C2"],["sg","small group","#3E788E"],["pt","PT","#0C161B"],["nu","nutrition","#059669"],["ob","onboarding","#F59E0B"],["ev","events","#C44A1C"]];
+const mix = P0.m || { g:(P0.gp||0), sg:0, pt:0, nu:0, ob:0, ev:0 };
+const mixIngevuld = !!P0.m && Object.values(P0.m).reduce((t,x)=>t+(x||0),0) > 0;
+const opsom = a => a.length===1 ? a[0] : a.slice(0,-1).join(", ")+" en "+a[a.length-1];
+const mixInfo = (()=>{
+  if(!mixIngevuld) return null;
+  const som=MIXC.reduce((t,[k])=>t+(mix[k]||0),0)||100;
+  const delen=MIXC.map(([k,naam])=>({k,naam,pct:Math.round((mix[k]||0)/som*100)})).sort((a,b)=>b.pct-a.pct);
+  const top=delen[0], groeps=delen.find(x=>x.k==="g").pct, breed=delen.filter(x=>x.pct>=10).length;
+  const mist=MIXC.filter(([k])=>(mix[k]||0)<3).map(([,naam])=>naam).filter(n=>n!=="groepslessen");
+  const soort = groeps>=80 || top.pct>=80 ? "upsell" : (top.pct<60 && breed>=3) ? "prijs" : "beide";
+  return {delen,top,groeps,breed,mist,soort};
+})();
 let st = { l:P0.l, o:P0.o, z:P0.z, a:P0.a };
 const eur = n => "€ " + Math.round(n).toLocaleString("nl-NL");
 const pct = n => (n*100).toLocaleString("nl-NL",{maximumFractionDigits:1}).replace(".",",") + "%";
@@ -430,6 +459,20 @@ Object.keys(I).forEach(k=>I[k].addEventListener("input",()=>{ const v=parseFloat
 function opgaveVeranderd(){ return st.l!==P0.l||Math.round(st.o)!==Math.round(P0.o)||Math.abs(st.z-P0.z)>0.05||st.a!==P0.a; }
 $("opgave-hint").addEventListener("click",e=>{ if(e.target.tagName==="BUTTON"){ st={l:P0.l,o:P0.o,z:P0.z,a:P0.a}; renderAll(true); } });
 $("k-reset").addEventListener("click",()=>{ st={l:P0.l,o:P0.o,z:P0.z,a:P0.a}; renderAll(true); });
+
+/* ---- omzetmix in de kop ---- */
+(function(){
+  const box=$("mix"); if(!box||!mixInfo) return;
+  box.hidden=false;
+  const bar=$("mixbar"), leg=$("mixleg");
+  bar.innerHTML=MIXC.filter(([k])=>(mix[k]||0)>0).map(([k,,c])=>'<i style="width:'+((mix[k]||0)/Math.max(100,MIXC.reduce((t,[kk])=>t+(mix[kk]||0),0))*100)+'%;background:'+c+'"></i>').join("");
+  leg.innerHTML=MIXC.filter(([k])=>(mix[k]||0)>0).map(([k,naam,c])=>'<span><span class="dot" style="background:'+c+'"></span>'+naam+' <b>'+(mix[k]||0)+'%</b></span>').join("");
+  html("mix-uit", mixInfo.soort==="upsell"
+    ? "Je omzet leunt voor <b>"+mixInfo.groeps+"%</b> op groepslessen. Dat is je kans bij station 4: doorstroom naar small group, PT en nutrition tilt je omzet per lid."
+    : mixInfo.soort==="prijs"
+      ? "Je omzet is al verdeeld over "+mixInfo.breed+" vormen. Dan zit de kans bij station 4 minder in nieuwe vormen en meer in de prijs van elk programma."
+      : "Groepsles is je basis ("+mixInfo.groeps+"%), maar je doet al meer. Station 4 gaat bij jou over doorstroom én over de prijs per programma.");
+})();
 
 /* ---- 1. emmer ---- */
 const K={a:$("k-aanwas"),c:$("k-churn"),p:$("k-prijs")};
@@ -548,7 +591,8 @@ const DOET={
   deur:["Bezoeksignalen: wie twee weken wegblijft, wordt een taak voor je team","Week-1-belletje na de start en mijlpalen vieren","Opzeggesprek in plaats van een opzegformulier"],
   lead:["Lead capture op je site: elke aanvraag in één lijst","Directe opvolging: belletje of appje binnen een uur","Beltaken en vangnetten voor no-shows en twijfelaars"],
   ex:["Warm afscheid met een gesprek","In beeld blijven op 90, 130, 180 en 240 dagen","De kaart op de mat met het welkom-terug-aanbod, check-in na drie maanden"],
-  arm:["Check-ins die doorstroom-momenten zichtbaar maken (doel bijstellen: semi-PT erbij)","Small group en PT als volgende stap in de klantreis","Nutrition- en eventsmodules, omzet per lid als stuurgetal"]
+  arm:["Check-ins die doorstroom-momenten zichtbaar maken (doel bijstellen: semi-PT erbij)","Small group en PT als volgende stap in de klantreis","Nutrition- en eventsmodules, omzet per lid als stuurgetal"],
+  armPrijs:["Prijs en inhoud van elk programma naast elkaar leggen: waar zit de waarde, waar de marge","Omzet per lid als stuurgetal, elke maand","Doorstroom tussen je programma's zichtbaar maken in check-ins"]
 };
 function renderMetro(d,pl){
   const churnGoed=d.c<=0.026, genoeg=Math.ceil(pl.nodigDoel)<=st.a;
@@ -556,7 +600,13 @@ function renderMetro(d,pl){
     {k:"deur",t:churnGoed?"Houd de achterdeur dicht":"Dicht de achterdeur",v:"±"+num(r10(pl.S1))+" leden",l:churnGoed?"blijft je plateau bij "+pct(d.c)+" verloop":"wordt je plateau bij 2,5% verloop (nu "+pct(d.c)+")",p:churnGoed?"Je verloop is al goed. Vasthouden vraagt signalen en taken, niet geheugen.":"Elke wegzakker een taak, elke opzegging een gesprek."},
     {k:"lead",t:"Vang elke lead",v:pl.leadsDeel>0?"+"+pl.leadsDeel+" per maand":"op niveau",l:pl.leadsDeel>0?"plateau ±"+num(r10(pl.S2))+" met dezelfde marketing":"je aanwas is al genoeg; dit station verlaagt je leadkosten",p:pl.leadsDeel>0?"Geen aanvraag meer die tussen de appjes verdwijnt.":"Dezelfde instroom, minder advertenties."},
     {k:"ex",t:"Laat oud-leden terugkomen",v:pl.exDeel>0?"+1 per maand":"marge",l:pl.exDeel>0?"plateau ±"+num(r10(pl.S3))+(pl.restDeel?", plus "+pl.restDeel+" uit vindbaarheid en events":""):"elke terugkeerder is winst",p:"Ex-leden zijn je goedkoopste aanwas: ze kennen je al."},
-    {k:"arm",t:"Verhoog de omzet per lid",v:eur(pl.armEind)+" per lid",l:"nu "+eur(d.arm)+" per lid per maand",p:ROUTE_ZIN[d.o.key](pl.armEind)}
+    {k:mixInfo&&mixInfo.soort==="prijs"?"armPrijs":"arm",t:"Verhoog de omzet per lid",v:eur(pl.armEind)+" per lid",l:"nu "+eur(d.arm)+" per lid per maand",p:(mixInfo
+      ? (mixInfo.soort==="upsell"
+          ? "Jouw omzet leunt voor "+mixInfo.groeps+"% op groepslessen: dáár zit de upsell."+(mixInfo.mist.length?" Uit "+opsom(mixInfo.mist)+" haal je nu (bijna) niks.":"")+" Doorstroom naar small group, PT en nutrition tilt de omzet per lid van "+eur(d.arm)+" naar "+eur(pl.armEind)+"."
+          : mixInfo.soort==="prijs"
+            ? "Je omzet is al verdeeld over "+mixInfo.breed+" vormen ("+mixInfo.delen.filter(x=>x.pct>=10).map(x=>x.naam+" "+x.pct+"%").join(", ")+"). Nieuwe vormen tillen je omzet per lid dan minder; de kans zit in de prijs van elk programma: van "+eur(d.arm)+" naar "+eur(pl.armEind)+" per lid."
+            : "Groepsles is je basis ("+mixInfo.groeps+"%), maar je doet al meer."+(mixInfo.mist.length?" Uit "+opsom(mixInfo.mist)+" haal je nu (bijna) niks.":"")+" De rek zit in doorstroom én in de prijs per programma: van "+eur(d.arm)+" naar "+eur(pl.armEind)+" per lid.")
+      : ROUTE_ZIN[d.o.key](pl.armEind))}
   ];
   html("metro",haltes.map((h,i)=>'<div class="halte"><div class="dot">'+(i+1)+'</div><h3>'+h.t+'<span class="v">'+h.v+'</span></h3><div class="l">'+h.l+'</div><p>'+h.p+'</p><ul class="doet"><li class="k">GymOps doet</li>'+DOET[h.k].map(x=>'<li>'+x+'</li>').join("")+'</ul></div>').join(""));
   set("metro-sub", pl.voorbij||genoeg ? "Je aanwas is genoeg voor dit tempo. Station 1 tot 3 houden dat vast; station 4 tilt je prijs van "+eur(d.arm)+" naar "+eur(pl.armEind)+"." : "In deze volgorde. Samen tillen ze je aanwas van "+fmt1(st.a)+" naar "+Math.ceil(pl.nodigDoel)+" per maand; het laatste station tilt je prijs.");
