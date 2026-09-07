@@ -8,16 +8,18 @@ import VideoEmbed from "./VideoEmbed";
    FOTO_ACHTERGROND: true = gym-foto met overlay, false = egaal zwart.
    ============================================================ */
 const FOTO_ACHTERGROND = false;
-const TOON_KOP = false; // true = grote kop boven de update tonen
-const VIDEO_ID = "https://www.loom.com/share/a9990c5cb2014853b485f6d235cb1f74";
-const KOP = "GymOps Academy";
-const TITEL = "Custom Values: wat zijn ze en wanneer gebruik je ze?";
-const TEKST = `Bekijk de video hiernaast voor uitleg over Custom Values: wat ze precies zijn en wanneer je ze gebruikt. Custom Values zijn de invulvelden in je WhatsApp-berichten en e-mails, zoals de voornaam van een lid of de naam van je gym. Zo voelt elk bericht persoonlijk, zonder dat je iets handmatig hoeft aan te passen.
+const TOON_KOP = true; // true = grote kop boven de update tonen
+const URGENT = true; // true = rode alarm-styling bij de kop en het tekstblok
+const VIDEO_ID = "https://www.loom.com/share/c280be969fb74b7883d9696640577cc3";
+const KOP = "BELANGRIJK";
+const TITEL = "Verifieer nu je bedrijf in Meta, anders lopen je koppelingen stuk";
+const TEKST = `Kijk deze video even, dit is echt belangrijk. Ik laat je stap voor stap zien hoe je je bedrijf verifieert in Meta. Doe je dit niet, dan is de kans groot dat je koppelingen met WhatsApp, Facebook en Instagram op een gegeven moment stuklopen. Dan komen berichten van leads niet meer binnen en loop je aanvragen mis zonder dat je het doorhebt.
 
-In de video laat ik je zien waar je de Custom Values in je systeem vindt, hoe je ze herkent in een bericht en wanneer je ze wel of juist niet gebruikt.`;
+Het kost je maar een paar minuten en je hoeft het maar een keer te doen. Pak het nu meteen op, dat scheelt je straks een hoop gedoe.`;
 const VOETER_VOOR = "Deze en alle andere video's over jouw GymOps-systeem vind je in de ";
 const VOETER_ACCENT = "GymOps Academy";
 const VOETER_NA = ".";
+const ALARM = "#EF4444"; // kleur voor de urgente kop en de streep langs de tekst
 /* ============================================================ */
 
 export const metadata: Metadata = {
@@ -95,14 +97,14 @@ export default function UpdatesPage() {
                 fontSize: "clamp(30px, 3.4vw, 46px)",
                 lineHeight: 1.06,
                 fontWeight: 800,
-                letterSpacing: "-0.03em",
-                color: "var(--fg-on-dark, #FFFFFF)",
+                letterSpacing: URGENT ? "0.02em" : "-0.03em",
+                color: URGENT ? ALARM : "var(--fg-on-dark, #FFFFFF)",
               }}
             >
               {KOP}
             </h1>
           )}
-          <div style={{ marginTop: 10, marginLeft: 28, paddingLeft: 14, borderLeft: "3px solid var(--mint, #10B981)" }}>
+          <div style={{ marginTop: 10, marginLeft: 28, paddingLeft: 14, borderLeft: `3px solid ${URGENT ? ALARM : "var(--mint, #10B981)"}` }}>
             <h2
               style={{
                 margin: "0 0 8px",
