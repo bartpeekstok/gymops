@@ -1704,6 +1704,7 @@ function CtaFooter({ noCta }) {
             <div style={{ position: 'relative', display: 'flex', flexWrap: 'wrap', gap: 14, justifyContent: 'center', marginTop: 34 }}>
               <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-primary">{C.primary}<Icon data-lucide="arrow-right"></Icon></a>
               {C.secondary && <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-outline-light">{C.secondary}</a>}
+              {C.routekaart && <a href={C.routekaart.href} className="btn btn-outline-light">{C.routekaart.label}<Icon data-lucide="map"></Icon></a>}
             </div>
           </div>
         </div>
@@ -1763,6 +1764,7 @@ function Hero() {
         <div data-reveal style={{ display: 'flex', flexWrap: 'wrap', gap: 14, marginTop: m ? 28 : 38, justifyContent: 'center', transitionDelay: '.25s' }}>
           <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-primary">{h.primary}<Icon data-lucide="arrow-right"></Icon></a>
           {h.secondary && <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-outline-light">{h.secondary}</a>}
+          {h.routekaart && <a href={h.routekaart.href} className="btn btn-outline-light">{h.routekaart.label}<Icon data-lucide="map"></Icon></a>}
         </div>
       </div>
 
