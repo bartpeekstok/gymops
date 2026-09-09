@@ -1720,7 +1720,7 @@ function CtaFooter({ noCta }) {
             <div key={h}>
               <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '.05em', textTransform: 'uppercase', color: 'rgba(255,255,255,.45)', marginBottom: 16 }}>{h}</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
-                {items.map(it => { if (it === 'Demo plannen') return <a key={it} href={BOOKING_URL} onClick={openLeadFormClick} style={{ fontSize: 14.5, color: 'rgba(255,255,255,.75)' }}>{it}</a>; const h = lnk(({ 'Prijzen': 'prijzen.html', 'Over ons': 'over-ons.html', 'Klanten': 'klanten.html', 'Leadopvolging': 'leadopvolging.html', 'Ledenbehoud': 'ledenbehoud.html', 'Website': 'website.html', 'Instagram': 'https://www.instagram.com/gymops.nl/', 'Facebook': 'https://www.facebook.com/profile.php?id=61577473601721' })[it] || '#'); const ext = h.indexOf('http') === 0; return <a key={it} href={h} {...(ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} style={{ fontSize: 14.5, color: 'rgba(255,255,255,.75)' }}>{it}</a>; })}
+                {items.map(it => { if (it === 'Demo plannen') return <a key={it} href={BOOKING_URL} onClick={openLeadFormClick} style={{ fontSize: 14.5, color: 'rgba(255,255,255,.75)' }}>{it}</a>; const h = lnk(({ 'Prijzen': 'prijzen.html', 'Over ons': 'over-ons.html', 'Klanten': 'klanten.html', 'Leadopvolging': 'leadopvolging.html', 'Ledenbehoud': 'ledenbehoud.html', 'Website': 'website.html', 'Contact': 'https://wa.me/31722340231', 'Instagram': 'https://www.instagram.com/gymops.nl/', 'Facebook': 'https://www.facebook.com/profile.php?id=61577473601721' })[it] || '#'); const ext = h.indexOf('http') === 0; return <a key={it} href={h} {...(ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} style={{ fontSize: 14.5, color: 'rgba(255,255,255,.75)' }}>{it}</a>; })}
               </div>
             </div>
           ))}
@@ -1731,6 +1731,8 @@ function CtaFooter({ noCta }) {
           <span>KVK-nummer 42079442</span>
           <span aria-hidden="true">·</span>
           <a href="mailto:contact@gymops.nl" style={{ color: 'inherit' }}>contact@gymops.nl</a>
+          <span aria-hidden="true">·</span>
+          <a href="tel:+31722340231" style={{ color: 'inherit' }}>072 234 0231</a>
           <span aria-hidden="true">·</span>
           <a href={lnk('privacy.html')} style={{ color: 'inherit' }}>Privacy</a>
         </div>
