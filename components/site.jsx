@@ -1856,11 +1856,11 @@ function HighlightRow({ eyebrow, title, items, link, visual, flip, soft }) {
    PageBits dependency) so the home page never needs the inner-page building
    blocks. Uses GO.leden copy: eyebrow + title + three items + handwritten card.
    Links through to the full ledenervaring.html detail page. */
-function LedenervaringHome() {
+function LedenervaringHome({ data } = {}) {
   useReveal();
   useLucide();
   const m = useIsMobile();
-  const L = GO.leden;
+  const L = data || GO.leden;
   const V1 = typeof window !== 'undefined' && window.__V1;
   const lnk = (h) => route(h);
 
@@ -3130,4 +3130,379 @@ function KlantenPage() { return (<React.Fragment><Nav current="klanten.html" /><
 function OverOnsPage() { return (<React.Fragment><Nav current="over-ons.html" /><OverOns /><CtaFooter /></React.Fragment>); }
 function PrivacyPage() { return (<React.Fragment><Nav /><Privacy /><CtaFooter noCta /></React.Fragment>); }
 
-export { Home, LeadopvolgingPage, LedenervaringPage, TeamAansturingPage, WebsitePage, PrijzenPage, KlantenPage, OverOnsPage, PrivacyPage };
+/* ============================ HomeNieuw ============================ */
+/* Voorbeeld van de homepage in de insteek van de Gathering-talk (1 box, 1 miljoen).
+   Staat op /home-nieuw met noindex. Teksten staan hieronder in HN, zodat je ze
+   los van de componenten kunt aanpassen. Hergebruikt de bestaande mockups. */
+const HN = {
+  hero: {
+    eyebrow: 'Voor box-eigenaren in Nederland en België',
+    headline: ['1 box.', '1 miljoen.'],
+    accent: 'Zonder dat jij de lijm bent.',
+    sub: 'Wij zijn Bart en Jeroen, eigenaren van CrossFit Alkmaar en CrossFit Leiden. De route die wij in onze eigen boxen lopen naar een miljoen omzet, krijg jij als systeem: leads, leden, ex-leden en je team op één plek, gekoppeld aan SportBit.',
+    primary: { label: 'Maak mijn routekaart', href: '/routekaart' },
+    secondary: 'Plan een demo',
+  },
+  vragen: {
+    eyebrow: 'Drie vragen die we elke eigenaar stellen',
+    title: 'Wat kost het je nu, zonder systeem?',
+    regel: ['Rekenregel: één lid is € 100 per maand, gemiddeld twee jaar.', '€ 2.400 per lid.'],
+    items: [
+      { tag: 'De lead', icon: 'zap', q: 'Welke aanvragen bleven vorig jaar liggen?', body: 'Tussen een appje van je moeder en de PostNL-melding. Je dacht: doe ik vanavond. En vanavond stond je op de vloer.', num: '€ 28.800', foot: '2 gemiste leads per maand, maar de helft geteld.' },
+      { tag: 'Het lid', icon: 'heart', q: 'Wie krijgt een melding als een lid drie weken niet is geweest?', body: 'Drie keer per week, dan één keer, dan af en toe, dan opgezegd. Iedereen had het kunnen zien. Niemand kreeg het te horen.', num: '€ 14.400', foot: '1 gered lid per maand, eerlijk gerekend met de halve rit.' },
+      { tag: 'Het ex-lid', icon: 'rotate-ccw', q: 'Wie stuurt consequent iets naar wie is opgezegd?', body: 'De goedkoopste leden die je ooit krijgt. Ze kennen je box, je coaches, je cultuur. Er hoeft alleen iemand te zeggen: we missen je.', num: '€ 28.800', foot: '1 terugkeerder per maand.' },
+    ],
+    som: '± € 70.000 per jaar',
+    somSub: 'Voorzichtig geschat. Upsell naar PT, small group en voeding is nog niet eens meegeteld.',
+  },
+  lisa: {
+    eyebrow: 'Zo werkt het in de praktijk',
+    title: 'Volg Lisa. Van aanvraag tot lid, en terug.',
+    sub: 'Op de Gathering keek de zaal mee op de eigen telefoon. Hier zie je hetzelfde: wat Lisa ziet, en wat jouw team ziet.',
+    akte1: {
+      eyebrow: 'Akte 1 · De lead', title: 'Dinsdagavond, 21:38. Lisa vult je formulier in.',
+      items: [
+        { icon: 'zap', title: 'Binnen één minuut reactie', body: 'Lisa heeft direct een appje en een mail, met een moment voor een kennismaking. Het momentum van 21:41 is morgen weg.' },
+        { icon: 'list-checks', title: 'Een taak bij je coach', body: 'Geen aanvraag in een inbox tussen alle andere mail, maar een taak: bel Lisa. Vandaag nog.' },
+        { icon: 'repeat', title: 'Opvolging tot er antwoord is', body: 'Geen reactie, no-show of "ik denk er nog over na"? GymOps blijft opvolgen in een natuurlijk ritme.' },
+      ],
+    },
+    akte2: {
+      eyebrow: 'Akte 2 · Het lid',
+      title: 'Wij automatiseren het signaal, niet het gesprek.',
+      items: [
+        { icon: 'route', title: 'De eerste 90 dagen strak', body: 'Daar zit de grootste uitval. Vaste contactmomenten leiden Lisa door de eerste weken en maanden.' },
+        { icon: 'pen-line', title: 'Een podium voor iedereen', body: 'Mijlpalen, verjaardagen, een handgeschreven kaart in de bus. Niet alleen voor wie je toevallig vaak ziet.' },
+        { icon: 'bell-ring', title: 'Zakt ze weg, dan ligt er een taak', body: 'Van drie keer naar één keer per week? Haar coach krijgt de taak: bel Lisa. Gemiddelde lidduur gaat van ± 13 naar ± 28 maanden.' },
+      ],
+      card: GO.leden.card,
+    },
+    akte3: {
+      eyebrow: 'Akte 3 · Het ex-lid', title: 'Een opzegging is geen administratie. Het is een gesprek.',
+      items: [
+        { icon: 'file-text', title: 'Opzeggen met reden', body: 'Via een formulier op je site, met de opzegtermijn erbij. Geen discussie over geld als laatste gevoel.' },
+        { icon: 'phone-call', title: 'Binnen een minuut een taak', body: 'Je team weet niet alleen dát Lisa opzegt, maar waarom. Knieklachten? Bel haar vandaag.' },
+        { icon: 'undo-2', title: 'De weg terug', body: 'Warm afscheid, in beeld blijven, en het alternatief: met een knie is semi-PT slimmer dan de groepsles.' },
+      ],
+    },
+    slot: 'Elke stap eindigt in een taak bij de juiste coach. Niet opgepakt? Morgen staat hij er weer. Valt iemand uit, dan neemt een collega in één klik over.',
+  },
+  download: {
+    eyebrow: 'Wat je niet kunt downloaden',
+    title: ['Software kun je kopiëren.', 'De weg niet.'],
+    cards: [
+      { k: 'Wij groeien zelf naar 1 miljoen', b: 'Al onze eigen boxen lopen dezelfde route. Jij krijgt hem erbij.' },
+      { k: '13 gyms als benchmark', b: 'Jouw cijfers naast die van 13 andere gyms. Je ziet wat een goed cijfer is qua leads, verloop en omzet per lid.' },
+      { k: 'Nederlands en snel', b: 'Support van box-eigenaren, in jouw tijdzone. WhatsApp erin, geen sms. Binnen 2 weken live.' },
+    ],
+    mentor: { pill: 'Vanaf nu voor iedereen', lead: '1-op-1 mentorschap erbij.', body: 'Een mentor die élke dag meekijkt in jouw eigen systeem: je leden, je in- en uitstroom, je cijfers. Alleen 1-op-1 en minimaal zes maanden, dus een beperkt aantal plekken.' },
+  },
+  oprichters: {
+    eyebrow: 'Wij lopen de route zelf',
+    title: 'Niet bedacht op een kantoor. Gebouwd op de vloer.',
+    people: [
+      { photo: 'jeroen-van-duijn.webp', name: 'Jeroen van Duijn', gym: 'CrossFit Leiden, gestart in 2016', story: 'Tot 2020 onder modaal, terwijl hij alles zelf deed. Vier, vijf mentoren later en na een Amerikaans platform dat alleen over leads ging, is hij het zelf gaan verbouwen. Zijn oude vak: rapportage- en BI-systemen.', stat: '€ 1 miljoen', statSub: 'omzet, en hij staat niet meer op de vloer' },
+      { photo: 'bart-peekstok.webp', name: 'Bart Peekstok', gym: 'CrossFit Alkmaar, bijna 13 jaar eigenaar', story: 'Altijd hard gewerkt, maar de klantreis ging op gevoel: zaterdagavond op de bank iemand appen. Met een echte klantreis en de juiste systemen zijn de omzet per lid en de lidduur flink gestegen.', stat: 'Omzet × 2', statSub: 'meer dan verdubbeld' },
+    ],
+  },
+  systeem: {
+    eyebrow: 'Uitgezoomd',
+    title: ['Nu ben jij de lijm tussen tien tools.', 'En jij bent altijd de lijm.'],
+    zonder: { lbl: 'Zonder GymOps', items: ['Website laten bouwen, daarna hosting en onderhoud', 'Mailchimp, een SEO-partij, landingspagina’s', 'Calendly voor kennismakingen', 'Eventbrite of Weeztix voor je events', 'Typeform voor de intake', 'WhatsApp Business op je privételefoon', 'Sheets voor de lijstjes, Gmail voor de opvolging', 'Zapier om het aan elkaar te knopen'], tot: '± € 600 tot 700 per maand', totSub: 'plus ± € 3.000 om je site te laten bouwen' },
+    met: { lbl: 'Met GymOps', items: ['Eén systeem, één login', 'Website, leads, klantreis, events, kaarten en taken praten met elkaar', 'WhatsApp en e-mail vanuit het systeem, niet vanaf jouw telefoon', 'Je ledenadministratie blijft gewoon SportBit, daar koppelen we direct mee'], tot: '€ 450 per maand', totSub: 'alles inbegrepen, geen setupkosten' },
+    link: { label: 'meer over je website', href: 'website.html' },
+  },
+  cta: {
+    eyebrow: 'En nu jij',
+    title: 'Jouw routekaart naar 1 miljoen.',
+    sub: 'Zes vragen, twee minuten. Je ziet direct waar jouw box nu staat, waar de groei stopt en wat de eerste stap is. Daarna hoef je ons niet te zoeken: wij appen jou.',
+    primary: { label: 'Maak mijn routekaart', href: '/routekaart' },
+    secondary: 'Liever eerst een demo',
+  },
+};
+
+function HeroNieuw() {
+  useLucide();
+  const m = useIsMobile();
+  const h = HN.hero;
+  return (
+    <header style={{ position: 'relative', background: 'var(--ink)', color: '#fff', overflow: 'hidden', paddingTop: 74 }}>
+      <HeaderBg />
+      <div style={{ position: 'absolute', top: -160, right: -120, width: 620, height: 620, borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(16,185,129,.22), transparent 62%)', filter: 'blur(20px)', pointerEvents: 'none' }} />
+      <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px)', backgroundSize: '26px 26px', pointerEvents: 'none', maskImage: 'linear-gradient(to bottom, #000, transparent 70%)', WebkitMaskImage: 'linear-gradient(to bottom, #000, transparent 70%)' }} />
+
+      <div className="wrap" style={{ position: 'relative', paddingTop: m ? 44 : 92, paddingBottom: m ? 48 : 104, textAlign: 'center' }}>
+        <div className="eyebrow eyebrow-dark" data-reveal style={{ marginBottom: m ? 16 : 22 }}>{h.eyebrow}</div>
+        <SplitHeadline lines={h.headline} style={{ fontSize: 'clamp(40px, 9vw, 84px)', fontWeight: 800, letterSpacing: '-.04em', lineHeight: 1.0, color: '#fff', maxWidth: 940, margin: '0 auto' }} />
+        <div data-reveal style={{ fontSize: 'clamp(24px, 4.2vw, 40px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.1, color: 'var(--mint-light)', marginTop: 14, transitionDelay: '.2s' }}>{h.accent}</div>
+        <p data-reveal style={{ fontSize: m ? 17 : 20, lineHeight: 1.6, color: 'rgba(255,255,255,.72)', maxWidth: 640, margin: (m ? 22 : 30) + 'px auto 0', transitionDelay: '.25s' }}>{h.sub}</p>
+        <div data-reveal style={{ display: 'flex', flexWrap: 'wrap', gap: 14, marginTop: m ? 28 : 38, justifyContent: 'center', transitionDelay: '.3s' }}>
+          <a href={h.primary.href} className="btn btn-primary">{h.primary.label}<Icon data-lucide="map"></Icon></a>
+          <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-outline-light">{h.secondary}</a>
+        </div>
+      </div>
+
+      <div style={{ position: 'relative', borderTop: '1px solid rgba(255,255,255,.08)', padding: '26px 0 34px' }}>
+        <div className="wrap"><p style={{ textAlign: 'center', fontSize: 12.5, fontWeight: 600, letterSpacing: '.04em', color: 'rgba(255,255,255,.45)', marginBottom: 22 }}>Vertrouwd door Nederlandse gyms</p></div>
+        <div className="marquee">
+          <div className="marquee-track">
+            {[...GO.trusted, ...GO.trusted].map((l, i) => (
+              <div key={i} className="mq-item"><img src={GO.A + l.src} alt={l.name} title={l.name} style={l.scale ? { transform: `scale(${l.scale})` } : undefined} /></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+function DrieVragen() {
+  useReveal();
+  useLucide();
+  const m = useIsMobile();
+  const V = HN.vragen;
+  return (
+    <section className="section" style={{ background: '#fff', padding: m ? '54px 0' : '96px 0' }}>
+      <div className="wrap">
+        <div data-reveal style={{ textAlign: 'center', maxWidth: 780, margin: '0 auto' }}>
+          <div className="eyebrow" style={{ marginBottom: 18 }}>{V.eyebrow}</div>
+          <h2 style={{ fontSize: 'clamp(30px,4.4vw,54px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.04, color: 'var(--ink)' }}>{V.title}</h2>
+          <p style={{ fontSize: m ? 16 : 18, lineHeight: 1.6, color: 'var(--fg3)', maxWidth: 560, margin: '18px auto 0' }}>{V.regel[0]} <strong style={{ color: 'var(--mint-deep)', fontWeight: 800 }}>{V.regel[1]}</strong></p>
+        </div>
+        <div data-reveal-stagger style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : 'repeat(3, 1fr)', gap: m ? 14 : 20, marginTop: m ? 34 : 52 }}>
+          {V.items.map((it, i) => (
+            <div key={i} className="card promise-card" style={{ padding: m ? 22 : 28, display: 'flex', flexDirection: 'column', transitionDelay: (i * 0.08) + 's' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <div className="icon-chip" style={{ width: 38, height: 38, borderRadius: 11 }}><Icon data-lucide={it.icon} style={{ width: 18, height: 18, color: 'var(--mint-deep)' }}></Icon></div>
+                <div className="eyebrow" style={{ fontSize: 12.5 }}>{it.tag}</div>
+              </div>
+              <h3 style={{ fontSize: 21, fontWeight: 800, letterSpacing: '-.02em', lineHeight: 1.25, color: 'var(--ink)', marginTop: 16 }}>{it.q}</h3>
+              <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--fg3)', marginTop: 10, flex: 1 }}>{it.body}</p>
+              <div style={{ marginTop: 20, paddingTop: 16, borderTop: '1px solid var(--border)' }}>
+                <div style={{ fontSize: 30, fontWeight: 800, letterSpacing: '-.03em', color: 'var(--ink)', fontVariantNumeric: 'tabular-nums' }}>{it.num} <span style={{ fontSize: 13, fontWeight: 500, color: 'var(--fg3)', letterSpacing: 0 }}>per jaar</span></div>
+                <div style={{ fontSize: 13, color: 'var(--fg3)', marginTop: 4 }}>{it.foot}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div data-reveal style={{ marginTop: 20, padding: m ? '18px 20px' : '22px 30px', borderRadius: 20, background: 'var(--ink)', color: '#fff', display: 'flex', flexWrap: 'wrap', gap: '8px 28px', alignItems: 'baseline', justifyContent: 'space-between' }}>
+          <div style={{ fontSize: m ? 28 : 36, fontWeight: 800, letterSpacing: '-.03em', color: 'var(--mint-light)', fontVariantNumeric: 'tabular-nums' }}>{V.som}</div>
+          <div style={{ fontSize: 15, color: 'rgba(255,255,255,.7)', maxWidth: 520 }}>{V.somSub}</div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function LisaIntro() {
+  useReveal();
+  const m = useIsMobile();
+  const L = HN.lisa;
+  return (
+    <section className="section" style={{ background: '#fff', padding: m ? '10px 0 0' : '20px 0 0' }}>
+      <div className="wrap">
+        <div data-reveal style={{ textAlign: 'center', maxWidth: 820, margin: '0 auto' }}>
+          <div className="eyebrow" style={{ marginBottom: 18 }}>{L.eyebrow}</div>
+          <h2 style={{ fontSize: 'clamp(30px,4.4vw,54px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.04, color: 'var(--ink)' }}>{L.title}</h2>
+          <p style={{ fontSize: m ? 16 : 18, lineHeight: 1.6, color: 'var(--fg3)', maxWidth: 600, margin: '18px auto 0' }}>{L.sub}</p>
+        </div>
+        <div data-reveal style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: m ? 30 : 44 }}>
+          <div style={{ width: 2, height: m ? 40 : 56, borderRadius: 2, background: 'linear-gradient(to bottom, var(--border), var(--mint))' }} />
+          <div style={{ width: 9, height: 9, borderRadius: 999, background: 'var(--mint)', boxShadow: '0 0 0 4px var(--mint-tint)' }} />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function LisaSlot() {
+  useReveal();
+  useLucide();
+  const m = useIsMobile();
+  return (
+    <section className="section" style={{ background: '#fff', padding: m ? '40px 0 56px' : '64px 0 88px' }}>
+      <div className="wrap">
+        <div data-reveal style={{ display: 'flex', gap: 16, alignItems: 'flex-start', maxWidth: 760, margin: '0 auto', padding: m ? '18px 20px' : '24px 28px', borderRadius: 18, background: 'var(--mint-tint)', border: '1px solid rgba(16,185,129,.25)' }}>
+          <div className="icon-chip" style={{ width: 44, height: 44, borderRadius: 13, background: '#fff' }}><Icon data-lucide="circle-check-big" style={{ width: 20, height: 20, color: 'var(--mint-deep)' }}></Icon></div>
+          <div>
+            <div style={{ fontSize: 12.5, fontWeight: 700, letterSpacing: '.07em', textTransform: 'uppercase', color: 'var(--mint-deep)' }}>Wat elke akte gemeen heeft</div>
+            <p style={{ fontSize: m ? 15.5 : 17, lineHeight: 1.6, color: 'var(--fg1)', fontWeight: 500, marginTop: 6 }}>{HN.lisa.slot}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function NietDownloaden() {
+  useReveal();
+  useLucide();
+  const m = useIsMobile();
+  const D = HN.download;
+  const faces = HN.oprichters.people;
+  return (
+    <section className="section section-soft" style={{ padding: m ? '54px 0' : '96px 0' }}>
+      <div className="wrap">
+        <div data-reveal style={{ textAlign: 'center', maxWidth: 820, margin: '0 auto' }}>
+          <div className="eyebrow" style={{ marginBottom: 22 }}>{D.eyebrow}</div>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 22 }}>
+            {faces.map((p, i) => (
+              <img key={i} src={GO.A + p.photo} alt={p.name} style={{ width: 76, height: 76, borderRadius: 999, objectFit: 'cover', border: '3px solid #fff', boxShadow: 'var(--shadow-card)', marginLeft: i ? -14 : 0, position: 'relative', zIndex: 2 - i }} />
+            ))}
+          </div>
+          <h2 style={{ fontSize: 'clamp(30px,4.4vw,54px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.04, color: 'var(--ink)' }}>{D.title[0]}<br /><span style={{ color: 'var(--mint-deep)' }}>{D.title[1]}</span></h2>
+        </div>
+        <div data-reveal-stagger style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : 'repeat(3, 1fr)', gap: m ? 14 : 20, marginTop: m ? 34 : 52 }}>
+          {D.cards.map((c, i) => (
+            <div key={i} className="card" style={{ padding: m ? 22 : 26, transitionDelay: (i * 0.08) + 's' }}>
+              <div className="eyebrow" style={{ fontSize: 12.5 }}>{c.k}</div>
+              <p style={{ fontSize: 17, lineHeight: 1.5, color: 'var(--fg1)', fontWeight: 500, marginTop: 12 }}>{c.b}</p>
+            </div>
+          ))}
+        </div>
+        <div data-reveal style={{ marginTop: 20, padding: m ? '20px 20px' : '26px 30px', borderRadius: 20, background: '#fff', border: '1.5px solid var(--mint)', boxShadow: 'var(--shadow-mint)' }}>
+          <span style={{ display: 'inline-block', fontSize: 11.5, fontWeight: 800, letterSpacing: '.06em', textTransform: 'uppercase', background: 'var(--mint-deep)', color: '#fff', padding: '5px 12px', borderRadius: 999 }}>{D.mentor.pill}</span>
+          <p style={{ fontSize: m ? 16 : 18, lineHeight: 1.6, color: 'var(--fg2)', marginTop: 12 }}><strong style={{ color: 'var(--mint-deep)', fontWeight: 800 }}>{D.mentor.lead}</strong> {D.mentor.body}</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Oprichters() {
+  useReveal();
+  const m = useIsMobile();
+  const O = HN.oprichters;
+  return (
+    <section className="section" style={{ background: '#fff', padding: m ? '54px 0' : '96px 0' }}>
+      <div className="wrap">
+        <div data-reveal style={{ textAlign: 'center', maxWidth: 820, margin: '0 auto' }}>
+          <div className="eyebrow" style={{ marginBottom: 18 }}>{O.eyebrow}</div>
+          <h2 style={{ fontSize: 'clamp(30px,4.4vw,54px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.04, color: 'var(--ink)' }}>{O.title}</h2>
+        </div>
+        <div data-reveal-stagger style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : '1fr 1fr', gap: m ? 16 : 24, marginTop: m ? 34 : 52, maxWidth: 1000, marginLeft: 'auto', marginRight: 'auto' }}>
+          {O.people.map((p, i) => (
+            <div key={i} className="card" style={{ overflow: 'hidden', display: 'flex', flexDirection: m ? 'column' : 'row', transitionDelay: (i * 0.1) + 's' }}>
+              <img src={GO.A + p.photo} alt={p.name} style={{ width: m ? '100%' : 190, height: m ? 240 : 'auto', objectFit: 'cover', display: 'block', flexShrink: 0 }} />
+              <div style={{ padding: m ? 22 : 26, display: 'flex', flexDirection: 'column' }}>
+                <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-.02em', color: 'var(--ink)' }}>{p.name}</div>
+                <div style={{ fontSize: 13.5, color: 'var(--fg3)', marginTop: 2 }}>{p.gym}</div>
+                <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--fg2)', marginTop: 12, flex: 1 }}>{p.story}</p>
+                <div style={{ marginTop: 16, paddingTop: 14, borderTop: '1px solid var(--border)' }}>
+                  <div style={{ fontSize: 26, fontWeight: 800, letterSpacing: '-.03em', color: 'var(--mint-deep)', fontVariantNumeric: 'tabular-nums' }}>{p.stat}</div>
+                  <div style={{ fontSize: 13, color: 'var(--fg3)', marginTop: 2 }}>{p.statSub}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function EenSysteem() {
+  useReveal();
+  useLucide();
+  const m = useIsMobile();
+  const S = HN.systeem;
+  const I = GO.integrations;
+  const lnk = (h) => route(h);
+  const col = (c, ok) => (
+    <div data-reveal style={{ flex: 1, minWidth: 0, padding: m ? '22px 20px' : '28px 30px', borderRadius: 20, background: ok ? 'rgba(52,211,153,.10)' : 'var(--surface-dark-2)', border: '1px solid ' + (ok ? 'rgba(52,211,153,.35)' : 'var(--border-on-dark)') }}>
+      <div className="eyebrow eyebrow-dark" style={{ fontSize: 12.5, color: ok ? 'var(--mint-light)' : 'rgba(255,255,255,.5)' }}>{c.lbl}</div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 9, marginTop: 16 }}>
+        {c.items.map((t, i) => (
+          <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontSize: 15, lineHeight: 1.5, color: ok ? '#fff' : 'rgba(255,255,255,.75)' }}>
+            <Icon data-lucide={ok ? 'check' : 'x'} style={{ width: 16, height: 16, marginTop: 4, flexShrink: 0, color: ok ? 'var(--mint-light)' : 'rgba(255,255,255,.35)' }}></Icon>
+            <span>{t}</span>
+          </div>
+        ))}
+      </div>
+      <div style={{ marginTop: 22, paddingTop: 16, borderTop: '1px solid var(--border-on-dark)' }}>
+        <div style={{ fontSize: m ? 22 : 26, fontWeight: 800, letterSpacing: '-.03em', color: ok ? 'var(--mint-light)' : '#fff', fontVariantNumeric: 'tabular-nums' }}>{c.tot}</div>
+        <div style={{ fontSize: 13.5, color: 'rgba(255,255,255,.55)', marginTop: 3 }}>{c.totSub}</div>
+      </div>
+    </div>
+  );
+  return (
+    <section className="section section-dark" style={{ padding: m ? '56px 0' : '96px 0' }}>
+      <div className="wrap">
+        <div data-reveal style={{ textAlign: 'center', maxWidth: 820, margin: '0 auto' }}>
+          <div className="eyebrow eyebrow-dark" style={{ marginBottom: 18 }}>{S.eyebrow}</div>
+          <h2 style={{ fontSize: 'clamp(30px,4.4vw,54px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.04, color: '#fff' }}>{S.title[0]}<br /><span style={{ color: 'var(--mint-light)' }}>{S.title[1]}</span></h2>
+        </div>
+        <div style={{ display: 'flex', flexDirection: m ? 'column' : 'row', gap: m ? 14 : 20, maxWidth: 1000, margin: (m ? 34 : 52) + 'px auto 0' }}>
+          {col(S.zonder, false)}
+          {col(S.met, true)}
+        </div>
+        <div data-reveal style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: 10, marginTop: m ? 30 : 44 }}>
+          {[...I.primary, ...I.secondary].map((s, i) => (
+            <div key={i} title={s.name} style={{ width: 52, height: 52, borderRadius: 13, background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 10 }}>
+              <img src={GO.A + s.src} alt={s.name} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+            </div>
+          ))}
+        </div>
+        <div data-reveal style={{ textAlign: 'center', marginTop: 22 }}>
+          <a href={lnk(S.link.href)} className="btn-ghost" style={{ color: 'var(--mint-light)' }}>{S.link.label}<Icon data-lucide="arrow-right"></Icon></a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RoutekaartCta() {
+  useReveal();
+  useLucide();
+  const m = useIsMobile();
+  const C = HN.cta;
+  return (
+    <section style={{ background: '#fff', padding: m ? '44px 0 96px' : '80px 0 96px' }}>
+      <div className="wrap">
+        <div data-reveal style={{ position: 'relative', overflow: 'hidden', background: 'var(--ink)', borderRadius: 28, padding: m ? '48px 24px' : '72px 48px', textAlign: 'center' }}>
+          <div style={{ position: 'absolute', bottom: -160, left: '50%', transform: 'translateX(-50%)', width: 640, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(16,185,129,.28), transparent 60%)', filter: 'blur(20px)', pointerEvents: 'none' }} />
+          <div className="eyebrow eyebrow-dark" style={{ position: 'relative', marginBottom: 16 }}>{C.eyebrow}</div>
+          <h2 style={{ position: 'relative', fontSize: 'clamp(30px,3.6vw,48px)', fontWeight: 800, letterSpacing: '-.03em', color: '#fff', maxWidth: 680, margin: '0 auto' }}>{C.title}</h2>
+          <p style={{ position: 'relative', fontSize: 18, color: 'rgba(255,255,255,.7)', maxWidth: 560, margin: '18px auto 0' }}>{C.sub}</p>
+          <div style={{ position: 'relative', display: 'flex', flexWrap: 'wrap', gap: 14, justifyContent: 'center', marginTop: 34 }}>
+            <a href={C.primary.href} className="btn btn-primary">{C.primary.label}<Icon data-lucide="map"></Icon></a>
+            <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-outline-light">{C.secondary}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HomeNieuwPage() {
+  useReveal();
+  const L = HN.lisa;
+  return (
+    <React.Fragment>
+      <Nav />
+      <HeroNieuw />
+      <DrieVragen />
+      <LisaIntro />
+      <PinnedFeature num={1} eyebrow={L.akte1.eyebrow} title={L.akte1.title} items={L.akte1.items}
+        link={{ label: 'meer over leadopvolging', href: 'leadopvolging.html' }}
+        steps={5}
+        renderGraphic={(step) => <LeadFlowStage step={step} />} />
+      <LedenervaringHome data={L.akte2} />
+      <PinnedFeature num={3} eyebrow={L.akte3.eyebrow} title={L.akte3.title} items={L.akte3.items}
+        link={{ label: 'meer over ledenbehoud', href: 'ledenbehoud.html' }}
+        staticStep={0}
+        renderGraphic={() => <Phone w={258} className="gfx-warm"><TaskOverviewScreen /></Phone>} />
+      <LisaSlot />
+      <NietDownloaden />
+      <Oprichters />
+      <Testimonials />
+      <EenSysteem />
+      <RoutekaartCta />
+      <CtaFooter noCta />
+    </React.Fragment>
+  );
+}
+
+
+export { Home, LeadopvolgingPage, LedenervaringPage, TeamAansturingPage, WebsitePage, PrijzenPage, KlantenPage, OverOnsPage, PrivacyPage, HomeNieuwPage };
