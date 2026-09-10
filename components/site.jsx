@@ -3235,8 +3235,6 @@ const HN = {
     title: ['Nu ben jij de lijm tussen tien tools.', 'En jij bent altijd de lijm.'],
     zonder: { lbl: 'Zonder GymOps', items: ['Website laten bouwen, daarna hosting en onderhoud', 'Mailchimp, een SEO-partij, landingspagina’s', 'Calendly voor kennismakingen', 'Eventbrite of Weeztix voor je events', 'Typeform voor de intake', 'WhatsApp Business op je privételefoon', 'Sheets voor de lijstjes, Gmail voor de opvolging', 'Zapier om het aan elkaar te knopen'], tot: 'En elke avond ben jij degene die het aan elkaar plakt.' },
     met: { lbl: 'Met GymOps', items: ['Eén systeem, één login', 'Website, leads, klantreis, events, kaarten en taken praten met elkaar', 'WhatsApp en e-mail vanuit het systeem, niet vanaf jouw telefoon', 'Je ledenadministratie blijft gewoon SportBit, daar koppelen we direct mee'], tot: 'Eén login, één overzicht, en je team ziet hetzelfde als jij.' },
-    slot: 'Wat het kost staat op de prijzenpagina. Wat het oplevert staat hierboven.',
-    link: { label: 'bekijk de prijzen', href: 'prijzen.html' },
   },
   cta: {
     eyebrow: 'En nu jij',
@@ -3766,17 +3764,6 @@ function EenSysteem() {
         <div style={{ display: 'flex', flexDirection: m ? 'column' : 'row', gap: m ? 14 : 20, maxWidth: 1000, margin: (m ? 34 : 52) + 'px auto 0' }}>
           {col(S.zonder, false)}
           {col(S.met, true)}
-        </div>
-        <div data-reveal style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: 10, marginTop: m ? 30 : 44 }}>
-          {[...I.primary, ...I.secondary].map((s, i) => (
-            <div key={i} title={s.name} style={{ width: 52, height: 52, borderRadius: 13, background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 10 }}>
-              <img src={GO.A + s.src} alt={s.name} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
-            </div>
-          ))}
-        </div>
-        <div data-reveal style={{ textAlign: 'center', marginTop: 26 }}>
-          <p style={{ fontSize: m ? 15.5 : 17, color: 'rgba(255,255,255,.72)', margin: '0 0 12px' }}>{S.slot}</p>
-          <a href={lnk(S.link.href)} className="btn-ghost" style={{ color: 'var(--mint-light)' }}>{S.link.label}<Icon data-lucide="arrow-right"></Icon></a>
         </div>
       </div>
     </section>
