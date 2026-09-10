@@ -3136,7 +3136,7 @@ function PrivacyPage() { return (<React.Fragment><Nav /><Privacy /><CtaFooter no
    los van de componenten kunt aanpassen. Hergebruikt de bestaande mockups. */
 const HN = {
   hero: {
-    eyebrow: 'Voor box-eigenaren in Nederland en België',
+    eyebrow: 'Voor gym-eigenaren in Nederland en België',
     headline: ['1 box.', '1 miljoen.'],
     accent: 'Zonder dat jij de lijm bent.',
     sub: 'Wij zijn Bart en Jeroen, eigenaren van CrossFit Alkmaar en CrossFit Leiden. De route die wij in onze eigen boxen lopen naar een miljoen omzet, krijg jij als systeem: leads, leden, ex-leden en je team op één plek, gekoppeld aan SportBit.',
@@ -3144,16 +3144,19 @@ const HN = {
     secondary: 'Plan een demo',
   },
   vragen: {
-    eyebrow: 'Drie vragen die we elke eigenaar stellen',
+    eyebrow: 'Drie vragen die we elke gym-eigenaar stellen',
     title: 'Wat kost het je nu, zonder systeem?',
-    regel: ['Rekenregel: één lid is € 100 per maand, gemiddeld twee jaar.', '€ 2.400 per lid.'],
+    /* Rekenregel: de bezoeker vult zelf in wat een lid per maand is; twee jaar staat vast.
+       factor = aantal leden dat je per jaar misloopt (2 leads/maand de helft geteld = 12,
+       1 gered lid/maand met de halve rit = 6, 1 terugkeerder/maand = 12). */
+    standaardBedrag: 100,
+    maanden: 24,
     items: [
-      { tag: 'De lead', icon: 'zap', q: 'Welke aanvragen bleven vorig jaar liggen?', body: 'Tussen een appje van je moeder en de PostNL-melding. Je dacht: doe ik vanavond. En vanavond stond je op de vloer.', num: '€ 28.800', foot: '2 gemiste leads per maand, maar de helft geteld.' },
-      { tag: 'Het lid', icon: 'heart', q: 'Wie krijgt een melding als een lid drie weken niet is geweest?', body: 'Drie keer per week, dan één keer, dan af en toe, dan opgezegd. Iedereen had het kunnen zien. Niemand kreeg het te horen.', num: '€ 14.400', foot: '1 gered lid per maand, eerlijk gerekend met de halve rit.' },
-      { tag: 'Het ex-lid', icon: 'rotate-ccw', q: 'Wie stuurt consequent iets naar wie is opgezegd?', body: 'De goedkoopste leden die je ooit krijgt. Ze kennen je box, je coaches, je cultuur. Er hoeft alleen iemand te zeggen: we missen je.', num: '€ 28.800', foot: '1 terugkeerder per maand.' },
+      { tag: 'De lead', icon: 'zap', q: 'Welke aanvragen bleven vorig jaar liggen?', body: 'Tussen een appje van je moeder en de PostNL-melding. Je dacht: doe ik vanavond. En vanavond stond je op de vloer.', factor: 12, foot: '2 gemiste leads per maand, maar de helft geteld.' },
+      { tag: 'Het lid', icon: 'heart', q: 'Wie krijgt een melding als een lid drie weken niet is geweest?', body: 'Drie keer per week, dan één keer, dan af en toe, dan opgezegd. Iedereen had het kunnen zien. Niemand kreeg het te horen.', factor: 6, foot: '1 gered lid per maand, eerlijk gerekend met de halve rit.' },
+      { tag: 'Het ex-lid', icon: 'rotate-ccw', q: 'Wie stuurt consequent iets naar wie is opgezegd?', body: 'De goedkoopste leden die je ooit krijgt. Ze kennen je box, je coaches, je cultuur. Er hoeft alleen iemand te zeggen: we missen je.', factor: 12, foot: '1 terugkeerder per maand.' },
     ],
-    som: '± € 70.000 per jaar',
-    somSub: 'Voorzichtig geschat. Upsell naar PT, small group en voeding is nog niet eens meegeteld.',
+    somSub: 'Voorzichtig geschat, met jouw bedrag per lid. Upsell naar PT, small group en voeding is nog niet eens meegeteld.',
   },
   lisa: {
     eyebrow: 'Zo werkt het in de praktijk',
@@ -3257,18 +3260,34 @@ function HeroNieuw() {
   );
 }
 
+const euro = (n) => '€ ' + String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
 function DrieVragen() {
   useReveal();
   useLucide();
   const m = useIsMobile();
   const V = HN.vragen;
+  const [bedrag, setBedrag] = React.useState(String(V.standaardBedrag));
+  const fee = Math.max(0, parseFloat(String(bedrag).replace(',', '.')) || 0);
+  const perLid = fee * V.maanden;
+  const totaal = V.items.reduce((acc, it) => acc + it.factor * perLid, 0);
   return (
     <section className="section" style={{ background: '#fff', padding: m ? '54px 0' : '96px 0' }}>
       <div className="wrap">
         <div data-reveal style={{ textAlign: 'center', maxWidth: 780, margin: '0 auto' }}>
           <div className="eyebrow" style={{ marginBottom: 18 }}>{V.eyebrow}</div>
           <h2 style={{ fontSize: 'clamp(30px,4.4vw,54px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.04, color: 'var(--ink)' }}>{V.title}</h2>
-          <p style={{ fontSize: m ? 16 : 18, lineHeight: 1.6, color: 'var(--fg3)', maxWidth: 560, margin: '18px auto 0' }}>{V.regel[0]} <strong style={{ color: 'var(--mint-deep)', fontWeight: 800 }}>{V.regel[1]}</strong></p>
+          <div style={{ display: 'inline-flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '10px 12px', marginTop: 24, padding: m ? '14px 16px' : '16px 24px', borderRadius: 18, background: 'var(--bg-soft)', border: '1px solid var(--border)', fontSize: m ? 16 : 18, color: 'var(--fg2)' }}>
+            <span>Eén lid is</span>
+            <label style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#fff', border: '1.5px solid var(--mint)', borderRadius: 12, padding: '6px 12px', boxShadow: 'var(--shadow-sm)' }}>
+              <span style={{ fontWeight: 800, color: 'var(--mint-deep)' }}>€</span>
+              <input type="number" inputMode="decimal" min="0" step="5" value={bedrag} onChange={(e) => setBedrag(e.target.value)} aria-label="Wat een lid per maand betaalt"
+                style={{ width: 76, border: 0, outline: 'none', background: 'transparent', font: 'inherit', fontWeight: 800, fontSize: m ? 20 : 22, color: 'var(--ink)', letterSpacing: '-.02em', fontVariantNumeric: 'tabular-nums' }} />
+            </label>
+            <span>per maand, gemiddeld twee jaar.</span>
+            <span style={{ fontWeight: 800, color: 'var(--mint-deep)', fontVariantNumeric: 'tabular-nums' }}>Dus {euro(perLid)} per lid.</span>
+          </div>
+          <p style={{ fontSize: 13.5, color: 'var(--fg3)', marginTop: 12 }}>Vul in wat een lid bij jou per maand betaalt. De bedragen hieronder rekenen mee.</p>
         </div>
         <div data-reveal-stagger style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : 'repeat(3, 1fr)', gap: m ? 14 : 20, marginTop: m ? 34 : 52 }}>
           {V.items.map((it, i) => (
@@ -3280,14 +3299,14 @@ function DrieVragen() {
               <h3 style={{ fontSize: 21, fontWeight: 800, letterSpacing: '-.02em', lineHeight: 1.25, color: 'var(--ink)', marginTop: 16 }}>{it.q}</h3>
               <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--fg3)', marginTop: 10, flex: 1 }}>{it.body}</p>
               <div style={{ marginTop: 20, paddingTop: 16, borderTop: '1px solid var(--border)' }}>
-                <div style={{ fontSize: 30, fontWeight: 800, letterSpacing: '-.03em', color: 'var(--ink)', fontVariantNumeric: 'tabular-nums' }}>{it.num} <span style={{ fontSize: 13, fontWeight: 500, color: 'var(--fg3)', letterSpacing: 0 }}>per jaar</span></div>
+                <div style={{ fontSize: 30, fontWeight: 800, letterSpacing: '-.03em', color: 'var(--ink)', fontVariantNumeric: 'tabular-nums' }}>{euro(it.factor * perLid)} <span style={{ fontSize: 13, fontWeight: 500, color: 'var(--fg3)', letterSpacing: 0 }}>per jaar</span></div>
                 <div style={{ fontSize: 13, color: 'var(--fg3)', marginTop: 4 }}>{it.foot}</div>
               </div>
             </div>
           ))}
         </div>
         <div data-reveal style={{ marginTop: 20, padding: m ? '18px 20px' : '22px 30px', borderRadius: 20, background: 'var(--ink)', color: '#fff', display: 'flex', flexWrap: 'wrap', gap: '8px 28px', alignItems: 'baseline', justifyContent: 'space-between' }}>
-          <div style={{ fontSize: m ? 28 : 36, fontWeight: 800, letterSpacing: '-.03em', color: 'var(--mint-light)', fontVariantNumeric: 'tabular-nums' }}>{V.som}</div>
+          <div style={{ fontSize: m ? 28 : 36, fontWeight: 800, letterSpacing: '-.03em', color: 'var(--mint-light)', fontVariantNumeric: 'tabular-nums' }}>{euro(totaal)} per jaar</div>
           <div style={{ fontSize: 15, color: 'rgba(255,255,255,.7)', maxWidth: 520 }}>{V.somSub}</div>
         </div>
       </div>
