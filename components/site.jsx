@@ -3233,9 +3233,10 @@ const HN = {
   systeem: {
     eyebrow: 'Uitgezoomd',
     title: ['Nu ben jij de lijm tussen tien tools.', 'En jij bent altijd de lijm.'],
-    zonder: { lbl: 'Zonder GymOps', items: ['Website laten bouwen, daarna hosting en onderhoud', 'Mailchimp, een SEO-partij, landingspagina’s', 'Calendly voor kennismakingen', 'Eventbrite of Weeztix voor je events', 'Typeform voor de intake', 'WhatsApp Business op je privételefoon', 'Sheets voor de lijstjes, Gmail voor de opvolging', 'Zapier om het aan elkaar te knopen'], tot: '± € 600 tot 700 per maand', totSub: 'plus ± € 3.000 om je site te laten bouwen' },
-    met: { lbl: 'Met GymOps', items: ['Eén systeem, één login', 'Website, leads, klantreis, events, kaarten en taken praten met elkaar', 'WhatsApp en e-mail vanuit het systeem, niet vanaf jouw telefoon', 'Je ledenadministratie blijft gewoon SportBit, daar koppelen we direct mee'], tot: '€ 450 per maand', totSub: 'alles inbegrepen, geen setupkosten' },
-    link: { label: 'meer over je website', href: 'website.html' },
+    zonder: { lbl: 'Zonder GymOps', items: ['Website laten bouwen, daarna hosting en onderhoud', 'Mailchimp, een SEO-partij, landingspagina’s', 'Calendly voor kennismakingen', 'Eventbrite of Weeztix voor je events', 'Typeform voor de intake', 'WhatsApp Business op je privételefoon', 'Sheets voor de lijstjes, Gmail voor de opvolging', 'Zapier om het aan elkaar te knopen'], tot: 'En elke avond ben jij degene die het aan elkaar plakt.' },
+    met: { lbl: 'Met GymOps', items: ['Eén systeem, één login', 'Website, leads, klantreis, events, kaarten en taken praten met elkaar', 'WhatsApp en e-mail vanuit het systeem, niet vanaf jouw telefoon', 'Je ledenadministratie blijft gewoon SportBit, daar koppelen we direct mee'], tot: 'Eén login, één overzicht, en je team ziet hetzelfde als jij.' },
+    slot: 'Wat het kost staat op de prijzenpagina. Wat het oplevert staat hierboven.',
+    link: { label: 'bekijk de prijzen', href: 'prijzen.html' },
   },
   cta: {
     eyebrow: 'En nu jij',
@@ -3751,8 +3752,7 @@ function EenSysteem() {
         ))}
       </div>
       <div style={{ marginTop: 22, paddingTop: 16, borderTop: '1px solid var(--border-on-dark)' }}>
-        <div style={{ fontSize: m ? 22 : 26, fontWeight: 800, letterSpacing: '-.03em', color: ok ? 'var(--mint-light)' : '#fff', fontVariantNumeric: 'tabular-nums' }}>{c.tot}</div>
-        <div style={{ fontSize: 13.5, color: 'rgba(255,255,255,.55)', marginTop: 3 }}>{c.totSub}</div>
+        <div style={{ fontSize: m ? 17 : 19, fontWeight: 700, letterSpacing: '-.01em', lineHeight: 1.4, color: ok ? 'var(--mint-light)' : '#fff' }}>{c.tot}</div>
       </div>
     </div>
   );
@@ -3774,7 +3774,8 @@ function EenSysteem() {
             </div>
           ))}
         </div>
-        <div data-reveal style={{ textAlign: 'center', marginTop: 22 }}>
+        <div data-reveal style={{ textAlign: 'center', marginTop: 26 }}>
+          <p style={{ fontSize: m ? 15.5 : 17, color: 'rgba(255,255,255,.72)', margin: '0 0 12px' }}>{S.slot}</p>
           <a href={lnk(S.link.href)} className="btn-ghost" style={{ color: 'var(--mint-light)' }}>{S.link.label}<Icon data-lucide="arrow-right"></Icon></a>
         </div>
       </div>
