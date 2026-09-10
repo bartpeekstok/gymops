@@ -3131,15 +3131,15 @@ function OverOnsPage() { return (<React.Fragment><Nav current="over-ons.html" />
 function PrivacyPage() { return (<React.Fragment><Nav /><Privacy /><CtaFooter noCta /></React.Fragment>); }
 
 /* ============================ HomeNieuw ============================ */
-/* Voorbeeld van de homepage in de insteek van de Gathering-talk (1 box, 1 miljoen).
-   Staat op /home-nieuw met noindex. Teksten staan hieronder in HN, zodat je ze
-   los van de componenten kunt aanpassen. Hergebruikt de bestaande mockups. */
+/* Voorbeeld van de homepage in de nieuwe insteek. Staat op /home-nieuw met
+   noindex. Alle teksten staan hieronder in HN, zodat je ze los van de
+   componenten kunt aanpassen. */
 const HN = {
   hero: {
     eyebrow: 'Voor gym-eigenaren in Nederland en België',
-    headline: ['1 box.', '1 miljoen.'],
-    accent: 'Zonder dat jij de lijm bent.',
-    sub: 'Wij zijn Bart en Jeroen, eigenaren van CrossFit Alkmaar en CrossFit Leiden. De route die wij in onze eigen gyms lopen naar een miljoen omzet, krijg jij als systeem: leads, leden, ex-leden en je team op één plek, gekoppeld aan SportBit.',
+    headline: ['Een gym die draait.', 'Ook zonder jou.'],
+    accent: 'Goed loon voor jou en je team, leden die blijven, en vier weken vakantie zonder één appje.',
+    sub: 'Wij zijn Bart en Jeroen, eigenaren van CrossFit Alkmaar en CrossFit Leiden. De route die wij in onze eigen gyms lopen, krijg jij als systeem: leads, leden, ex-leden en je team op één plek, gekoppeld aan SportBit.',
     primary: { label: 'Maak mijn routekaart', href: '/routekaart' },
     secondary: 'Plan een demo',
   },
@@ -3161,32 +3161,55 @@ const HN = {
   lisa: {
     eyebrow: 'Zo werkt het in de praktijk',
     title: 'Volg Lisa. Van aanvraag tot lid, en terug.',
-    sub: 'Op de Gathering keek de zaal mee op de eigen telefoon. Hier zie je hetzelfde: wat Lisa ziet, en wat jouw team ziet.',
-    akte1: {
-      eyebrow: 'Akte 1 · De lead', title: 'Dinsdagavond, 21:38. Lisa vult je formulier in.',
+    intro: 'Dit is Lisa. Ze is 34 en wil weer fitter worden. Dinsdagavond zit ze op de bank, telefoon in de hand, op zoek naar een gym.',
+    lead: {
+      title: 'Dinsdagavond, 21:38. Lisa vult je formulier in.',
       items: [
         { icon: 'zap', title: 'Binnen één minuut reactie', body: 'Lisa heeft direct een appje en een mail, met een moment voor een kennismaking. Het momentum van 21:41 is morgen weg.' },
         { icon: 'list-checks', title: 'Een taak bij je coach', body: 'Geen aanvraag in een inbox tussen alle andere mail, maar een taak: bel Lisa. Vandaag nog.' },
         { icon: 'repeat', title: 'Opvolging tot er antwoord is', body: 'Geen reactie, no-show of "ik denk er nog over na"? GymOps blijft opvolgen in een natuurlijk ritme.' },
       ],
+      link: { label: 'meer over leadopvolging', href: 'leadopvolging.html' },
+      volgende: 'Lisa wordt lid',
     },
-    akte2: {
-      eyebrow: 'Akte 2 · Het lid',
+    lid: {
       title: 'Wij automatiseren het signaal, niet het gesprek.',
-      items: [
-        { icon: 'route', title: 'De eerste 90 dagen strak', body: 'Daar zit de grootste uitval. Vaste contactmomenten leiden Lisa door de eerste weken en maanden.' },
-        { icon: 'pen-line', title: 'Een podium voor iedereen', body: 'Mijlpalen, verjaardagen, een handgeschreven kaart in de bus. Niet alleen voor wie je toevallig vaak ziet.' },
-        { icon: 'bell-ring', title: 'Zakt ze weg, dan ligt er een taak', body: 'Van drie keer naar één keer per week? Haar coach krijgt de taak: bel Lisa. Gemiddelde lidduur gaat van ± 13 naar ± 28 maanden.' },
+      sub: 'Boven de lijn: taken voor je team. Onder de lijn: wat Lisa ontvangt. Ga met je muis over een moment en je ziet wat het triggert.',
+      legenda: [['task', 'Taak voor je team'], ['msg', 'Bericht aan Lisa'], ['signal', 'Signaal wordt taak']],
+      fases: [['De eerste 90 dagen', 0, 50], ['Daarna, twee jaar lang', 50, 100]],
+      momenten: [
+        { pos: 3, kind: 'msg', lane: 1, when: 'Dag 1', title: 'Welkom, Lisa', trigger: 'Lid geworden in SportBit', detail: 'Wat ze kan verwachten, haar inlog en wanneer haar eerste les is. Vanuit het systeem, in jouw woorden.' },
+        { pos: 9, kind: 'task', lane: 1, when: 'Week 1', title: 'Bel Lisa: hoe was je eerste week?', trigger: '7 dagen lid', detail: 'Spierpijn, vragen, twijfel. Het eerste hobbeltje is precies het moment om even te bellen.' },
+        { pos: 15, kind: 'msg', lane: 2, when: 'Week 2', title: 'Videoselfie van de coach', trigger: '14 dagen lid', detail: '"Lisa, wat goed dat je twee weken lid bent. Trots op je." Geen standaardmail, maar een gezicht.' },
+        { pos: 22, kind: 'task', lane: 2, when: 'Week 4', title: 'Leg een verrassing klaar', trigger: '30 dagen lid', detail: 'Een shirt of een badge van jouw gym. Wat het is verzin je zelf, de taak maken wij.' },
+        { pos: 30, kind: 'signal', lane: 3, when: 'Dag 45', title: 'Lisa 2 weken niet gezien', trigger: 'Geen check-in in 14 dagen', detail: 'Geen automatische mail, die heeft ze na twee keer door. Een coach appt of belt: hé Lisa, waar ben je? Ik mis je.' },
+        { pos: 38, kind: 'msg', lane: 1, when: 'Dag 60', title: 'Review en Bring a Friend', trigger: '20 bezoeken', detail: 'Ze zit er goed in. Nu vraag je een Google-review, en: weet je nog iemand die we kunnen helpen?' },
+        { pos: 47, kind: 'task', lane: 2, when: 'Dag 90', title: 'Kwartaal-check-in', trigger: '90 dagen lid, daarna elk kwartaal', detail: 'Zit je nog op je plek? Doel bijstellen, en het moment voor small group, PT of voedingsadvies.' },
+        { pos: 56, kind: 'task', lane: 1, when: 'Maand 5', title: '50 bezoeken: cadeau en foto', trigger: '50e check-in', detail: 'In het zonnetje, foto op je socials. Die delen leden zelf ook verder.' },
+        { pos: 64, kind: 'msg', lane: 2, when: 'Verjaardag', title: 'Videoselfie van de eigenaar', trigger: 'Geboortedatum uit SportBit', detail: 'Best uniek als je die op je verjaardag krijgt. Tekst en toon stel je zelf in.' },
+        { pos: 72, kind: 'msg', lane: 1, when: 'Maand 9', title: 'Eerste pull-up gevierd', trigger: 'PR gelogd', detail: 'PR’s worden niet vergeten. Ook niet bij leden die je toevallig weinig ziet.' },
+        { pos: 81, kind: 'task', lane: 2, when: 'Maand 11', title: '100 bezoeken: kaart in de bus', trigger: '100e check-in', detail: 'Handgeschreven, in 15 seconden vanuit de app: "Hey Lisa, wat ben jij goed bezig. Wij zijn trots op je." Een echte kaart valt op tussen het werk en de pakketten.' },
+        { pos: 91, kind: 'signal', lane: 1, when: 'Maand 15', title: 'Van 3× naar 1× per week', trigger: 'Opkomst daalt ten opzichte van haar eigen ritme', detail: 'Precies het signaal dat anders niemand ziet. Taak bij haar coach: bel Lisa.' },
       ],
-      card: GO.leden.card,
+      resultaat: [
+        { van: '± 13 mnd', naar: '± 28 mnd', lbl: 'gemiddelde lidduur, zonder en met klantreis', sub: 'Zelfde sport, hetzelfde soort leden. Ruim een jaar langer, dus ruim € 1.000 méér per lid.' },
+        { van: '€ 100', naar: '€ 160', lbl: 'omzet per lid per maand, zonder en met klantreis', sub: 'Small group, PT, voeding en events tillen de omzet per lid omhoog. En je leden halen hun doelen.' },
+      ],
+      link: { label: 'meer over ledenbehoud', href: 'ledenbehoud.html' },
+      volgende: 'Anderhalf jaar later zegt Lisa toch op',
     },
-    akte3: {
-      eyebrow: 'Akte 3 · Het ex-lid', title: 'Een opzegging is geen administratie. Het is een gesprek.',
-      items: [
-        { icon: 'file-text', title: 'Opzeggen met reden', body: 'Via een formulier op je site, met de opzegtermijn erbij. Geen discussie over geld als laatste gevoel.' },
-        { icon: 'phone-call', title: 'Binnen een minuut een taak', body: 'Je team weet niet alleen dát Lisa opzegt, maar waarom. Knieklachten? Bel haar vandaag.' },
-        { icon: 'undo-2', title: 'De weg terug', body: 'Warm afscheid, in beeld blijven, en het alternatief: met een knie is semi-PT slimmer dan de groepsles.' },
+    exlid: {
+      title: 'Een ex-lid hoeft geen ex-lid te blijven.',
+      sub: 'Het zijn de warmste leads die je ooit krijgt. Ze kennen je gym, je coaches en je cultuur. Er is maar een klein duwtje nodig, als iemand het maar doet.',
+      stations: [
+        { lbl: 'opzegging', title: 'De opzegging', body: 'Lisa zegt op via het opzegformulier op je site, met reden: knieklachten. De opzegtermijn staat bovenaan, dus geen discussie over geld als laatste gevoel. Binnen één minuut ligt er een taak bij je team: bel Lisa vandaag.' },
+        { lbl: 'gesprek', title: 'Eerst een gesprek', body: 'Geen "opzegging verwerkt, klaar", maar een coach die appt: wat vervelend van je knie, heb je morgen tijd om te bellen? Vaak blijkt de opzegging een programmavraag.', quote: '"Met je knie is semi-PT nu veel slimmer dan de groepsles. Coach Max belt je over je startdatum."', zijpad: 'Soms eindigt het hier: Lisa blijft, in het juiste programma.' },
+        { lbl: 'warm afscheid', title: 'Warm afscheid', body: 'Gaat ze toch, dan gaat ze warm weg. Op haar laatste dag een persoonlijk bericht: mooi om te zien hoe je gegroeid bent, de deur staat altijd open. Zo praat ze op verjaardagen positief over jouw gym.' },
+        { lbl: 'in beeld blijven', title: 'In beeld blijven', body: 'Nieuwsbrief, de HYROX-simulatie, Bring a Friend. Niet te veel, net genoeg. Niet spammerig, wél aanwezig.' },
+        { lbl: 'de kaart', title: 'De kaart op de mat', body: 'Drie maanden later valt een handgeschreven kaart op de mat, met een QR voor een gratis week. Scant ze, dan komt ze binnen met een taak en landt ze op: welkom terug, je eerste twee lessen staan klaar.' },
+        { lbl: 'weer lid', title: 'Weer lid', body: 'Af en toe een persoonlijk berichtje aan een paar oud-leden: hé Lisa, hoe gaat het met je knie? Daar komen gesprekken uit, en intakes. Zo halen we maandelijks ex-leden terug bij onze klanten.', quote: '"Wat toevallig dat je appt! Knie is top en ik wilde nét weer beginnen."' },
       ],
+      slot: 'De cirkel is rond. En hij draait ook als jij vier weken weg bent: elke taak komt bij de juiste coach, elke automatisering loopt door.',
     },
     slot: 'Elke stap eindigt in een taak bij de juiste coach. Niet opgepakt? Morgen staat hij er weer. Valt iemand uit, dan neemt een collega in één klik over.',
   },
@@ -3203,10 +3226,6 @@ const HN = {
   oprichters: {
     eyebrow: 'Wij lopen de route zelf',
     title: 'Niet bedacht op een kantoor. Gebouwd op de vloer.',
-    people: [
-      { photo: 'jeroen-van-duijn.webp', name: 'Jeroen van Duijn', gym: 'CrossFit Leiden, gestart in 2016', story: 'Tot 2020 onder modaal, terwijl hij alles zelf deed. Vier, vijf mentoren later en na een Amerikaans platform dat alleen over leads ging, is hij het zelf gaan verbouwen. Zijn oude vak: rapportage- en BI-systemen.', stat: '€ 1 miljoen', statSub: 'omzet, en hij staat niet meer op de vloer' },
-      { photo: 'bart-peekstok.webp', name: 'Bart Peekstok', gym: 'CrossFit Alkmaar, bijna 13 jaar eigenaar', story: 'Altijd hard gewerkt, maar de klantreis ging op gevoel: zaterdagavond op de bank iemand appen. Met een echte klantreis en de juiste systemen zijn de omzet per lid en de lidduur flink gestegen.', stat: 'Omzet × 2', statSub: 'meer dan verdubbeld' },
-    ],
   },
   systeem: {
     eyebrow: 'Uitgezoomd',
@@ -3224,6 +3243,15 @@ const HN = {
   },
 };
 
+const euro = (n) => '€ ' + String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+/* Kleuren per soort moment op de tijdlijn. */
+const HN_KIND = {
+  task: { bg: 'var(--ink)', fg: '#fff', dot: 'var(--ink)', lbl: 'Taak voor je team' },
+  msg: { bg: 'var(--mint)', fg: '#fff', dot: 'var(--mint)', lbl: 'Bericht aan Lisa' },
+  signal: { bg: 'var(--amber)', fg: '#fff', dot: 'var(--amber)', lbl: 'Signaal wordt taak' },
+};
+
 function HeroNieuw() {
   useLucide();
   const m = useIsMobile();
@@ -3237,9 +3265,9 @@ function HeroNieuw() {
 
       <div className="wrap" style={{ position: 'relative', paddingTop: m ? 44 : 92, paddingBottom: m ? 48 : 104, textAlign: 'center' }}>
         <div className="eyebrow eyebrow-dark" data-reveal style={{ marginBottom: m ? 16 : 22 }}>{h.eyebrow}</div>
-        <SplitHeadline lines={h.headline} style={{ fontSize: 'clamp(40px, 9vw, 84px)', fontWeight: 800, letterSpacing: '-.04em', lineHeight: 1.0, color: '#fff', maxWidth: 940, margin: '0 auto' }} />
-        <div data-reveal style={{ fontSize: 'clamp(24px, 4.2vw, 40px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.1, color: 'var(--mint-light)', marginTop: 14, transitionDelay: '.2s' }}>{h.accent}</div>
-        <p data-reveal style={{ fontSize: m ? 17 : 20, lineHeight: 1.6, color: 'rgba(255,255,255,.72)', maxWidth: 640, margin: (m ? 22 : 30) + 'px auto 0', transitionDelay: '.25s' }}>{h.sub}</p>
+        <SplitHeadline lines={h.headline} style={{ fontSize: 'clamp(38px, 8vw, 78px)', fontWeight: 800, letterSpacing: '-.04em', lineHeight: 1.02, color: '#fff', maxWidth: 940, margin: '0 auto' }} />
+        <div data-reveal style={{ fontSize: 'clamp(19px, 2.6vw, 27px)', fontWeight: 700, letterSpacing: '-.02em', lineHeight: 1.3, color: 'var(--mint-light)', maxWidth: 720, margin: (m ? 18 : 24) + 'px auto 0', transitionDelay: '.2s' }}>{h.accent}</div>
+        <p data-reveal style={{ fontSize: m ? 16.5 : 19, lineHeight: 1.6, color: 'rgba(255,255,255,.72)', maxWidth: 640, margin: (m ? 20 : 26) + 'px auto 0', transitionDelay: '.25s' }}>{h.sub}</p>
         <div data-reveal style={{ display: 'flex', flexWrap: 'wrap', gap: 14, marginTop: m ? 28 : 38, justifyContent: 'center', transitionDelay: '.3s' }}>
           <a href={h.primary.href} className="btn btn-primary">{h.primary.label}<Icon data-lucide="map"></Icon></a>
           <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-outline-light">{h.secondary}</a>
@@ -3259,8 +3287,6 @@ function HeroNieuw() {
     </header>
   );
 }
-
-const euro = (n) => '€ ' + String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 
 function DrieVragen() {
   useReveal();
@@ -3314,6 +3340,28 @@ function DrieVragen() {
   );
 }
 
+/* Verbinder tussen de stappen van Lisa: lijn, stip en een label met wat er gebeurt. */
+function Verbinder({ label, soft }) {
+  useReveal();
+  const m = useIsMobile();
+  return (
+    <div className={soft ? 'section-soft' : ''} style={{ background: soft ? undefined : '#fff' }}>
+      <div className="wrap">
+        <div data-reveal style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: m ? '26px 0 8px' : '40px 0 12px' }}>
+          <div style={{ width: 2, height: m ? 34 : 48, borderRadius: 2, background: 'linear-gradient(to bottom, var(--border), var(--mint))' }} />
+          {label ? (
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 16px', borderRadius: 999, background: 'var(--ink)', color: '#fff', fontSize: 14, fontWeight: 700, boxShadow: 'var(--shadow-card)' }}>
+              <span style={{ width: 8, height: 8, borderRadius: 999, background: 'var(--mint-light)' }} />{label}
+            </div>
+          ) : (
+            <div style={{ width: 9, height: 9, borderRadius: 999, background: 'var(--mint)', boxShadow: '0 0 0 4px var(--mint-tint)' }} />
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function LisaIntro() {
   useReveal();
   const m = useIsMobile();
@@ -3324,11 +3372,269 @@ function LisaIntro() {
         <div data-reveal style={{ textAlign: 'center', maxWidth: 820, margin: '0 auto' }}>
           <div className="eyebrow" style={{ marginBottom: 18 }}>{L.eyebrow}</div>
           <h2 style={{ fontSize: 'clamp(30px,4.4vw,54px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.04, color: 'var(--ink)' }}>{L.title}</h2>
-          <p style={{ fontSize: m ? 16 : 18, lineHeight: 1.6, color: 'var(--fg3)', maxWidth: 600, margin: '18px auto 0' }}>{L.sub}</p>
+          <p style={{ fontSize: m ? 17 : 20, lineHeight: 1.6, color: 'var(--fg2)', maxWidth: 600, margin: '20px auto 0' }}>{L.intro}</p>
         </div>
-        <div data-reveal style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: m ? 30 : 44 }}>
-          <div style={{ width: 2, height: m ? 40 : 56, borderRadius: 2, background: 'linear-gradient(to bottom, var(--border), var(--mint))' }} />
-          <div style={{ width: 9, height: 9, borderRadius: 999, background: 'var(--mint)', boxShadow: '0 0 0 4px var(--mint-tint)' }} />
+      </div>
+      <Verbinder />
+    </section>
+  );
+}
+
+/* Stap 1: de lead. Kop en drie punten, zonder nummer en zonder animatie. */
+function LisaLead() {
+  useReveal();
+  useLucide();
+  const m = useIsMobile();
+  const L = HN.lisa.lead;
+  const lnk = (h) => route(h);
+  return (
+    <section className="section" style={{ background: '#fff', padding: m ? '24px 0 0' : '36px 0 0' }}>
+      <div className="wrap">
+        <div data-reveal style={{ maxWidth: 760, margin: '0 auto', textAlign: 'center' }}>
+          <h2 style={{ fontSize: 'clamp(26px,3.2vw,40px)', fontWeight: 800, letterSpacing: '-.025em', color: 'var(--ink)' }}>{L.title}</h2>
+        </div>
+        <div data-reveal style={{ maxWidth: 1040, margin: '0 auto', textAlign: 'center' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : 'repeat(3, 1fr)', gap: m ? 18 : 30, marginTop: 32 }}>
+            {L.items.map((it, i) => (
+              <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', textAlign: 'left' }}>
+                <div className="icon-chip" style={{ width: 40, height: 40, borderRadius: 12, flexShrink: 0 }}><Icon data-lucide={it.icon} style={{ width: 19, height: 19, color: 'var(--mint-deep)' }}></Icon></div>
+                <div>
+                  <h4 style={{ fontSize: 16, fontWeight: 700, color: 'var(--fg1)' }}>{it.title}</h4>
+                  <p style={{ fontSize: 14, lineHeight: 1.55, color: 'var(--fg3)', marginTop: 4 }}>{it.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <a href={lnk(L.link.href)} className="btn-soft" style={{ marginTop: 26 }}>{L.link.label}<Icon data-lucide="arrow-right"></Icon></a>
+        </div>
+      </div>
+      <Verbinder label={L.volgende} />
+    </section>
+  );
+}
+
+/* Stap 2: het lid, als klantreis-tijdlijn. Desktop: horizontale lijn met momenten
+   erboven (team) en eronder (Lisa), popover bij hover. Mobiel: verticale lijst. */
+function LisaTijdlijn() {
+  useReveal();
+  useLucide();
+  const m = useIsMobile(900);
+  const L = HN.lisa.lid;
+  const lnk = (h) => route(h);
+  const [actief, setActief] = React.useState(null);
+  const [vast, setVast] = React.useState(false);
+  const toon = (i) => { if (!vast) setActief(i); };
+  const kies = (i) => { if (vast && actief === i) { setVast(false); setActief(null); } else { setVast(true); setActief(i); } };
+
+  const kop = (
+    <div data-reveal style={{ maxWidth: 760, margin: '0 auto', textAlign: 'center' }}>
+      <h2 style={{ fontSize: 'clamp(26px,3.2vw,40px)', fontWeight: 800, letterSpacing: '-.025em', color: 'var(--ink)' }}>{L.title}</h2>
+      <p style={{ fontSize: m ? 15.5 : 17, lineHeight: 1.6, color: 'var(--fg3)', marginTop: 14 }}>{m ? 'Boven elk moment staat wat het triggert. Aan de kleur zie je of het een taak voor je team is, een bericht aan Lisa, of een signaal dat een taak wordt.' : L.sub}</p>
+      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '8px 18px', marginTop: 18 }}>
+        {L.legenda.map(([k, lbl]) => (
+          <span key={k} style={{ display: 'inline-flex', alignItems: 'center', gap: 7, fontSize: 13, fontWeight: 600, color: 'var(--fg2)' }}><span style={{ width: 10, height: 10, borderRadius: 999, background: HN_KIND[k].dot }} />{lbl}</span>
+        ))}
+      </div>
+    </div>
+  );
+
+  const popover = (mo) => (
+    <div style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: 14, padding: '12px 14px', boxShadow: 'var(--shadow-lg)', textAlign: 'left', width: 250 }}>
+      <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.07em', textTransform: 'uppercase', color: HN_KIND[mo.kind].dot === 'var(--ink)' ? 'var(--fg3)' : HN_KIND[mo.kind].dot }}>{HN_KIND[mo.kind].lbl}</div>
+      <div style={{ fontSize: 13, color: 'var(--fg2)', marginTop: 6 }}><span style={{ fontWeight: 700, color: 'var(--ink)' }}>Trigger:</span> {mo.trigger}</div>
+      <div style={{ fontSize: 13.5, lineHeight: 1.5, color: 'var(--fg2)', marginTop: 6 }}>{mo.detail}</div>
+    </div>
+  );
+
+  const desktop = (
+    <div data-reveal style={{ marginTop: 44 }}>
+      {/* fasen boven de lijn */}
+      <div style={{ position: 'relative', height: 22, marginBottom: 8 }}>
+        {L.fases.map(([lbl, a, b], i) => (
+          <div key={i} style={{ position: 'absolute', left: a + '%', width: (b - a) + '%', textAlign: 'center', fontSize: 12, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', color: i === 0 ? 'var(--mint-deep)' : 'var(--fg3)' }}>
+            <span style={{ background: '#fff', padding: '0 10px' }}>{lbl}</span>
+            <div style={{ position: 'absolute', left: 8, right: 8, top: 9, borderTop: '1px dashed ' + (i === 0 ? 'rgba(16,185,129,.5)' : 'var(--border-strong)'), zIndex: -1 }} />
+          </div>
+        ))}
+      </div>
+      <div style={{ position: 'relative', height: 420 }}>
+        <div style={{ position: 'absolute', left: 0, right: 0, top: '50%', height: 4, marginTop: -2, borderRadius: 2, background: 'linear-gradient(to right, var(--mint) 0%, var(--mint) 50%, var(--border-strong) 50%, var(--border-strong) 100%)' }} />
+        <div style={{ position: 'absolute', left: 0, top: '50%', width: 14, height: 14, marginTop: -7, marginLeft: -4, borderRadius: 999, background: 'var(--mint)', boxShadow: '0 0 0 4px var(--mint-tint)' }} />
+        <div style={{ position: 'absolute', left: -4, top: 'calc(50% + 14px)', fontSize: 12, fontWeight: 700, color: 'var(--mint-deep)' }}>Lisa wordt lid</div>
+        <div style={{ position: 'absolute', right: -4, top: 'calc(50% + 14px)', fontSize: 12, fontWeight: 700, color: 'var(--fg3)' }}>2 jaar</div>
+        {L.momenten.map((mo, i) => {
+          const top = mo.kind !== 'msg';
+          const K = HN_KIND[mo.kind];
+          const stem = mo.lane === 1 ? 34 : mo.lane === 2 ? 92 : 150;
+          const open = actief === i;
+          const align = mo.pos < 14 ? 'left' : mo.pos > 86 ? 'right' : 'center';
+          return (
+            <div key={i} style={{ position: 'absolute', left: mo.pos + '%', top: '50%', width: 0, zIndex: open ? 20 : 1 }}
+              onMouseEnter={() => toon(i)} onMouseLeave={() => { if (!vast) setActief(null); }}>
+              <div style={{ position: 'absolute', left: -1, width: 2, height: stem, background: open ? K.dot : 'var(--border-strong)', top: top ? -stem : 0, transition: 'background .2s' }} />
+              <div style={{ position: 'absolute', left: -6, top: -6, width: 12, height: 12, borderRadius: 999, background: K.dot, border: '2px solid #fff', boxShadow: '0 0 0 2px ' + K.dot }} />
+              <button type="button" onClick={() => kies(i)} aria-expanded={open} aria-label={mo.when + ': ' + mo.title}
+                onFocus={() => toon(i)} onBlur={() => { if (!vast) setActief(null); }}
+                style={{ position: 'absolute', left: align === 'left' ? -8 : align === 'right' ? 'auto' : 0, right: align === 'right' ? -8 : 'auto', transform: align === 'center' ? 'translateX(-50%)' : 'none',
+                  top: top ? -(stem + 30) : stem + 8, whiteSpace: 'nowrap', border: 0, cursor: 'pointer', font: 'inherit',
+                  display: 'inline-flex', alignItems: 'center', gap: 7, padding: '5px 11px', borderRadius: 999, background: open ? K.bg : '#fff', color: open ? K.fg : 'var(--ink)',
+                  boxShadow: open ? 'var(--shadow-card)' : '0 0 0 1px var(--border)', fontSize: 12.5, fontWeight: 700, transition: 'background .2s, color .2s', height: 28 }}>
+                <span style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: '.05em', textTransform: 'uppercase', color: open ? 'rgba(255,255,255,.75)' : K.dot === 'var(--ink)' ? 'var(--fg3)' : K.dot }}>{mo.when}</span>
+                {mo.title}
+              </button>
+              {open && (
+                <div style={{ position: 'absolute', zIndex: 30, left: align === 'left' ? -8 : align === 'right' ? 'auto' : 0, right: align === 'right' ? -8 : 'auto', top: top ? -(stem + 30 + 8) : stem + 8 + 36, transform: (align === 'center' ? 'translateX(-50%) ' : '') + (top ? 'translateY(-100%)' : '') }}>
+                  {popover(mo)}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+
+  const mobiel = (
+    <div data-reveal style={{ marginTop: 30, position: 'relative', paddingLeft: 26 }}>
+      <div style={{ position: 'absolute', left: 7, top: 6, bottom: 6, width: 3, borderRadius: 2, background: 'linear-gradient(to bottom, var(--mint) 0%, var(--mint) 58%, var(--border-strong) 58%)' }} />
+      {L.momenten.map((mo, i) => {
+        const K = HN_KIND[mo.kind];
+        const faseKop = i === 0 ? L.fases[0][0] : mo.pos >= 50 && L.momenten[i - 1].pos < 50 ? L.fases[1][0] : null;
+        return (
+          <div key={i}>
+            {faseKop && <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', color: i === 0 ? 'var(--mint-deep)' : 'var(--fg3)', margin: i === 0 ? '0 0 12px' : '22px 0 12px' }}>{faseKop}</div>}
+            <div style={{ position: 'relative', marginBottom: 14 }}>
+              <div style={{ position: 'absolute', left: -25, top: 14, width: 13, height: 13, borderRadius: 999, background: K.dot, border: '2px solid #fff', boxShadow: '0 0 0 2px ' + K.dot }} />
+              <div className="card" style={{ padding: '12px 14px', borderRadius: 14 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                  <span style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', color: '#fff', background: K.bg, padding: '3px 8px', borderRadius: 999 }}>{mo.when}</span>
+                  <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--ink)' }}>{mo.title}</span>
+                </div>
+                <div style={{ fontSize: 12.5, color: 'var(--fg2)', marginTop: 6 }}><span style={{ fontWeight: 700 }}>Trigger:</span> {mo.trigger}</div>
+                <div style={{ fontSize: 13.5, lineHeight: 1.5, color: 'var(--fg3)', marginTop: 4 }}>{mo.detail}</div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+
+  return (
+    <section className="section section-soft" style={{ padding: m ? '44px 0 0' : '72px 0 0' }}>
+      <div className="wrap">
+        {kop}
+        {m ? mobiel : desktop}
+        <div data-reveal-stagger style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : '1fr 1fr', gap: m ? 14 : 20, marginTop: m ? 28 : 36, maxWidth: 900, marginLeft: 'auto', marginRight: 'auto' }}>
+          {L.resultaat.map((r, i) => (
+            <div key={i} className="card" style={{ padding: m ? 20 : 24, transitionDelay: (i * 0.08) + 's' }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, flexWrap: 'wrap' }}>
+                <span style={{ fontSize: 22, fontWeight: 700, color: 'var(--fg3)', textDecoration: 'line-through', textDecorationColor: 'var(--danger)', fontVariantNumeric: 'tabular-nums' }}>{r.van}</span>
+                <Icon data-lucide="arrow-right" style={{ width: 18, height: 18, color: 'var(--fg3)', alignSelf: 'center' }}></Icon>
+                <span style={{ fontSize: 30, fontWeight: 800, letterSpacing: '-.03em', color: 'var(--mint-deep)', fontVariantNumeric: 'tabular-nums' }}>{r.naar}</span>
+              </div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--fg2)', marginTop: 4 }}>{r.lbl}</div>
+              <p style={{ fontSize: 14, lineHeight: 1.55, color: 'var(--fg3)', marginTop: 8 }}>{r.sub}</p>
+            </div>
+          ))}
+        </div>
+        <div data-reveal style={{ textAlign: 'center', marginTop: 24 }}>
+          <a href={lnk(L.link.href)} className="btn-soft">{L.link.label}<Icon data-lucide="arrow-right"></Icon></a>
+        </div>
+      </div>
+      <Verbinder label={L.volgende} soft />
+    </section>
+  );
+}
+
+/* Stap 3: het ex-lid. De lijn die normaal doodloopt wordt een cirkel met zes
+   stations. Klik of hover op een station, het detail staat ernaast. */
+function LisaCirkel() {
+  useReveal();
+  useLucide();
+  const m = useIsMobile(900);
+  const E = HN.lisa.exlid;
+  const N = E.stations.length;
+  const [actief, setActief] = React.useState(0);
+  const [handmatig, setHandmatig] = React.useState(false);
+  React.useEffect(() => {
+    if (handmatig) return;
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const t = setInterval(() => setActief((a) => (a + 1) % (N + 1)), 3200);
+    return () => clearInterval(t);
+  }, [handmatig, N]);
+  const kies = (i) => { setHandmatig(true); setActief(i); };
+
+  const cx = 280, cy = 280, r = 185;
+  const pt = (i, rad = r) => { const a = (-90 + i * (360 / N)) * Math.PI / 180; return [cx + rad * Math.cos(a), cy + rad * Math.sin(a)]; };
+  const [x0, y0] = pt(0);
+  const rond = actief >= N;
+  const k = rond ? N : actief;
+  let arc = null;
+  if (k > 0 && k < N) { const [x1, y1] = pt(k); arc = `M ${x0} ${y0} A ${r} ${r} 0 ${k * (360 / N) > 180 ? 1 : 0} 1 ${x1} ${y1}`; }
+  const [bx, by] = pt(1);
+  const st = rond ? { title: 'De cirkel is rond', body: E.slot } : E.stations[actief];
+
+  const svg = (
+    <svg viewBox="-50 -10 660 580" style={{ width: '100%', maxWidth: 520, height: 'auto', display: 'block', margin: '0 auto' }} role="img" aria-label="De reis van een ex-lid terug naar lid, als cirkel">
+      <circle cx={cx} cy={cy} r={r} fill="none" stroke="var(--border-strong)" strokeWidth="4" strokeDasharray="4 12" />
+      {rond && <circle cx={cx} cy={cy} r={r} fill="none" stroke="var(--mint)" strokeWidth="6" />}
+      {arc && <path d={arc} fill="none" stroke="var(--mint)" strokeWidth="6" strokeLinecap="round" style={{ transition: 'd .4s' }} />}
+      {k >= 1 && (
+        <g>
+          <path d={`M ${bx + 10} ${by - 8} C ${bx + 60} ${by - 40}, ${bx + 90} ${by - 70}, ${bx + 100} ${by - 100}`} fill="none" stroke="var(--mint-deep)" strokeWidth="4" strokeLinecap="round" strokeDasharray="1 9" />
+          <text x={bx + 70} y={by - 112} textAnchor="middle" fontSize="15" fontWeight="700" fill="var(--mint-deep)" fontFamily="inherit">blijft: semi-PT</text>
+        </g>
+      )}
+      {E.stations.map((s, i) => {
+        const [x, y] = pt(i); const [lx, ly] = pt(i, r + 44);
+        const aan = rond || i <= actief;
+        const nu = !rond && i === actief;
+        const anchor = Math.abs(lx - cx) < 20 ? 'middle' : lx > cx ? 'start' : 'end';
+        return (
+          <g key={i} onClick={() => kies(i)} onMouseEnter={() => kies(i)} style={{ cursor: 'pointer' }}>
+            <circle cx={x} cy={y} r={nu ? 15 : 11} fill={aan ? 'var(--mint)' : '#fff'} stroke={aan ? 'var(--mint)' : 'var(--border-strong)'} strokeWidth="4" style={{ transition: 'r .2s, fill .2s' }} />
+            {nu && <circle cx={x} cy={y} r="24" fill="none" stroke="var(--mint)" strokeWidth="2" opacity=".45" />}
+            <text x={anchor === 'middle' ? lx : lx} y={ly + 5} textAnchor={anchor} fontSize="15" fontWeight={nu ? 800 : 600} fill={aan ? 'var(--ink)' : 'var(--fg3)'} fontFamily="inherit">{s.lbl}</text>
+            <circle cx={x} cy={y} r="30" fill="transparent" />
+          </g>
+        );
+      })}
+    </svg>
+  );
+
+  const detail = (
+    <div style={{ flex: 1, minWidth: 0 }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 18 }}>
+        {E.stations.map((s, i) => (
+          <button key={i} type="button" onClick={() => kies(i)} aria-pressed={!rond && actief === i}
+            style={{ font: 'inherit', fontSize: 12.5, fontWeight: 700, padding: '6px 12px', borderRadius: 999, cursor: 'pointer', border: '1px solid ' + (!rond && actief === i ? 'var(--mint)' : 'var(--border)'), background: !rond && actief === i ? 'var(--mint)' : '#fff', color: !rond && actief === i ? '#fff' : 'var(--fg2)', transition: 'background .2s' }}>{i + 1}. {s.lbl}</button>
+        ))}
+        <button type="button" onClick={() => kies(N)} aria-pressed={rond}
+          style={{ font: 'inherit', fontSize: 12.5, fontWeight: 700, padding: '6px 12px', borderRadius: 999, cursor: 'pointer', border: '1px solid ' + (rond ? 'var(--ink)' : 'var(--border)'), background: rond ? 'var(--ink)' : '#fff', color: rond ? '#fff' : 'var(--fg2)' }}>rond</button>
+      </div>
+      <div className="card" style={{ padding: m ? 20 : 26, minHeight: m ? 0 : 250 }}>
+        <div className="eyebrow" style={{ fontSize: 12.5 }}>{rond ? 'Lead, lid, ex-lid, lid' : 'Station ' + (actief + 1) + ' van ' + N}</div>
+        <h3 style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-.02em', color: 'var(--ink)', marginTop: 8 }}>{st.title}</h3>
+        <p style={{ fontSize: 15.5, lineHeight: 1.6, color: 'var(--fg2)', marginTop: 10 }}>{st.body}</p>
+        {st.quote && (
+          <div style={{ marginTop: 14, display: 'inline-block', maxWidth: '100%', background: 'var(--mint-tint)', border: '1px solid rgba(16,185,129,.3)', borderRadius: '14px 14px 14px 4px', padding: '10px 14px', fontSize: 14, lineHeight: 1.5, color: 'var(--fg1)' }}>{st.quote}</div>
+        )}
+        {st.zijpad && <p style={{ fontSize: 13.5, color: 'var(--mint-deep)', fontWeight: 600, marginTop: 10 }}>{st.zijpad}</p>}
+      </div>
+    </div>
+  );
+
+  return (
+    <section className="section" style={{ background: '#fff', padding: m ? '24px 0 0' : '36px 0 0' }}>
+      <div className="wrap">
+        <div data-reveal style={{ maxWidth: 760, margin: '0 auto', textAlign: 'center' }}>
+          <h2 style={{ fontSize: 'clamp(26px,3.2vw,40px)', fontWeight: 800, letterSpacing: '-.025em', color: 'var(--ink)' }}>{E.title}</h2>
+          <p style={{ fontSize: m ? 15.5 : 17, lineHeight: 1.6, color: 'var(--fg3)', marginTop: 14 }}>{E.sub}</p>
+        </div>
+        <div data-reveal style={{ display: 'flex', flexDirection: m ? 'column' : 'row', gap: m ? 20 : 48, alignItems: 'center', marginTop: m ? 26 : 44 }}>
+          <div style={{ flex: '0 0 auto', width: m ? '100%' : 500 }}>{svg}</div>
+          {detail}
         </div>
       </div>
     </section>
@@ -3345,7 +3651,7 @@ function LisaSlot() {
         <div data-reveal style={{ display: 'flex', gap: 16, alignItems: 'flex-start', maxWidth: 760, margin: '0 auto', padding: m ? '18px 20px' : '24px 28px', borderRadius: 18, background: 'var(--mint-tint)', border: '1px solid rgba(16,185,129,.25)' }}>
           <div className="icon-chip" style={{ width: 44, height: 44, borderRadius: 13, background: '#fff' }}><Icon data-lucide="circle-check-big" style={{ width: 20, height: 20, color: 'var(--mint-deep)' }}></Icon></div>
           <div>
-            <div style={{ fontSize: 12.5, fontWeight: 700, letterSpacing: '.07em', textTransform: 'uppercase', color: 'var(--mint-deep)' }}>Wat elke akte gemeen heeft</div>
+            <div style={{ fontSize: 12.5, fontWeight: 700, letterSpacing: '.07em', textTransform: 'uppercase', color: 'var(--mint-deep)' }}>Wat elke stap gemeen heeft</div>
             <p style={{ fontSize: m ? 15.5 : 17, lineHeight: 1.6, color: 'var(--fg1)', fontWeight: 500, marginTop: 6 }}>{HN.lisa.slot}</p>
           </div>
         </div>
@@ -3359,7 +3665,7 @@ function NietDownloaden() {
   useLucide();
   const m = useIsMobile();
   const D = HN.download;
-  const faces = HN.oprichters.people;
+  const faces = GOP.overons.founders;
   return (
     <section className="section section-soft" style={{ padding: m ? '54px 0' : '96px 0' }}>
       <div className="wrap">
@@ -3389,6 +3695,7 @@ function NietDownloaden() {
   );
 }
 
+/* Bart en Jeroen, met de teksten van de Over ons-pagina. */
 function Oprichters() {
   useReveal();
   const m = useIsMobile();
@@ -3400,21 +3707,8 @@ function Oprichters() {
           <div className="eyebrow" style={{ marginBottom: 18 }}>{O.eyebrow}</div>
           <h2 style={{ fontSize: 'clamp(30px,4.4vw,54px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.04, color: 'var(--ink)' }}>{O.title}</h2>
         </div>
-        <div data-reveal-stagger style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : '1fr 1fr', gap: m ? 16 : 24, marginTop: m ? 34 : 52, maxWidth: 1000, marginLeft: 'auto', marginRight: 'auto' }}>
-          {O.people.map((p, i) => (
-            <div key={i} className="card" style={{ overflow: 'hidden', display: 'flex', flexDirection: m ? 'column' : 'row', transitionDelay: (i * 0.1) + 's' }}>
-              <img src={GO.A + p.photo} alt={p.name} style={{ width: m ? '100%' : 190, height: m ? 240 : 'auto', objectFit: 'cover', display: 'block', flexShrink: 0 }} />
-              <div style={{ padding: m ? 22 : 26, display: 'flex', flexDirection: 'column' }}>
-                <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-.02em', color: 'var(--ink)' }}>{p.name}</div>
-                <div style={{ fontSize: 13.5, color: 'var(--fg3)', marginTop: 2 }}>{p.gym}</div>
-                <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--fg2)', marginTop: 12, flex: 1 }}>{p.story}</p>
-                <div style={{ marginTop: 16, paddingTop: 14, borderTop: '1px solid var(--border)' }}>
-                  <div style={{ fontSize: 26, fontWeight: 800, letterSpacing: '-.03em', color: 'var(--mint-deep)', fontVariantNumeric: 'tabular-nums' }}>{p.stat}</div>
-                  <div style={{ fontSize: 13, color: 'var(--fg3)', marginTop: 2 }}>{p.statSub}</div>
-                </div>
-              </div>
-            </div>
-          ))}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: m ? 44 : 72, marginTop: m ? 36 : 60, maxWidth: 1040, marginLeft: 'auto', marginRight: 'auto' }}>
+          {GOP.overons.founders.map((f, i) => <FounderRow key={i} f={f} flip={i % 2 === 1} m={m} />)}
         </div>
       </div>
     </section>
@@ -3496,22 +3790,15 @@ function RoutekaartCta() {
 
 function HomeNieuwPage() {
   useReveal();
-  const L = HN.lisa;
   return (
     <React.Fragment>
       <Nav />
       <HeroNieuw />
       <DrieVragen />
       <LisaIntro />
-      <PinnedFeature num={1} eyebrow={L.akte1.eyebrow} title={L.akte1.title} items={L.akte1.items}
-        link={{ label: 'meer over leadopvolging', href: 'leadopvolging.html' }}
-        steps={5}
-        renderGraphic={(step) => <LeadFlowStage step={step} />} />
-      <LedenervaringHome data={L.akte2} />
-      <PinnedFeature num={3} eyebrow={L.akte3.eyebrow} title={L.akte3.title} items={L.akte3.items}
-        link={{ label: 'meer over ledenbehoud', href: 'ledenbehoud.html' }}
-        staticStep={0}
-        renderGraphic={() => <Phone w={258} className="gfx-warm"><TaskOverviewScreen /></Phone>} />
+      <LisaLead />
+      <LisaTijdlijn />
+      <LisaCirkel />
       <LisaSlot />
       <NietDownloaden />
       <Oprichters />
