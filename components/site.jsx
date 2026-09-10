@@ -3138,7 +3138,7 @@ const HN = {
   hero: {
     eyebrow: 'Voor gym-eigenaren in Nederland en België',
     headline: ['Een gym die draait.', 'Ook zonder jou.'],
-    accent: 'Goed loon voor jou en je team, leden die blijven, en vier weken vakantie zonder één appje.',
+    accent: 'Een gym die levens verandert. Ook dat van jou.',
     sub: 'Wij zijn Bart en Jeroen, eigenaren van CrossFit Alkmaar en CrossFit Leiden. De route die wij in onze eigen gyms lopen, krijg jij als systeem: leads, leden, ex-leden en je team op één plek, gekoppeld aan SportBit.',
     primary: 'Plan een demo',
   },
