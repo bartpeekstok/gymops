@@ -3151,9 +3151,9 @@ const HN = {
     standaardBedrag: 100,
     maanden: 24,
     items: [
-      { tag: 'De lead', icon: 'zap', q: 'Welke aanvragen bleven vorig jaar liggen?', body: 'Tussen een appje van je moeder en de PostNL-melding. Je dacht: doe ik vanavond. En vanavond stond je op de vloer.', factor: 12, foot: '2 gemiste leads per maand, maar de helft geteld.' },
-      { tag: 'Het lid', icon: 'heart', q: 'Wie krijgt een melding als een lid drie weken niet is geweest?', body: 'Drie keer per week, dan één keer, dan af en toe, dan opgezegd. Iedereen had het kunnen zien. Niemand kreeg het te horen.', factor: 6, foot: '1 gered lid per maand, eerlijk gerekend met de halve rit.' },
-      { tag: 'Het ex-lid', icon: 'rotate-ccw', q: 'Wie stuurt consequent iets naar wie is opgezegd?', body: 'De goedkoopste leden die je ooit krijgt. Ze kennen je gym, je coaches, je cultuur. Er hoeft alleen iemand te zeggen: we missen je.', factor: 12, foot: '1 terugkeerder per maand.' },
+      { tag: 'De lead', icon: 'zap', q: 'Hoeveel aanvragen bleven er vorig jaar liggen?', body: 'Tussen een paar facturen in je inbox, een opzegging en een PostNL-melding. Je dacht: doe ik vanavond. Maar toen stond je weer op de vloer.', factor: 12, foot: '2 gemiste leads per maand, we tellen er maar één.' },
+      { tag: 'Het lid', icon: 'heart', q: 'Hoeveel leden zijn er aan het wegzakken?', body: 'Drie keer per week, dan één keer, dan af en toe, dan opgezegd. Iedereen had het kunnen zien. Niemand kreeg het te horen.', factor: 6, foot: '1 gered lid per maand, eerlijk gerekend met de halve rit.' },
+      { tag: 'Het ex-lid', icon: 'rotate-ccw', q: 'De warmste leads die er zijn.', body: 'De goedkoopste leden die je ooit krijgt. Ze kennen je gym, je coaches, je cultuur. Er hoeft alleen iemand te zeggen: we missen je.', factor: 12, foot: '1 terugkeerder per maand.' },
     ],
     somSub: 'Voorzichtig geschat, met jouw bedrag per lid. Upsell naar PT, small group en voeding is nog niet eens meegeteld.',
   },
@@ -3328,9 +3328,12 @@ function DrieVragen() {
             </div>
           ))}
         </div>
-        <div data-reveal style={{ marginTop: 20, padding: m ? '18px 20px' : '22px 30px', borderRadius: 20, background: 'var(--ink)', color: '#fff', display: 'flex', flexWrap: 'wrap', gap: '8px 28px', alignItems: 'baseline', justifyContent: 'space-between' }}>
-          <div style={{ fontSize: m ? 28 : 36, fontWeight: 800, letterSpacing: '-.03em', color: 'var(--mint-light)', fontVariantNumeric: 'tabular-nums' }}>{euro(totaal)} per jaar</div>
-          <div style={{ fontSize: 15, color: 'rgba(255,255,255,.7)', maxWidth: 520 }}>{V.somSub}</div>
+        <div data-reveal style={{ marginTop: 20, padding: m ? '22px 22px' : '26px 34px', borderRadius: 20, background: 'var(--ink)', color: '#fff', display: 'grid', gridTemplateColumns: m ? '1fr' : 'auto 1fr', gap: m ? 14 : 34, alignItems: 'center' }}>
+          <div>
+            <div className="eyebrow eyebrow-dark" style={{ fontSize: 12.5, marginBottom: 6 }}>Samen, per jaar</div>
+            <div style={{ fontSize: m ? 34 : 44, fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1, color: 'var(--mint-light)', fontVariantNumeric: 'tabular-nums', whiteSpace: 'nowrap' }}>{euro(totaal)}</div>
+          </div>
+          <p style={{ fontSize: m ? 15 : 16, lineHeight: 1.6, color: 'rgba(255,255,255,.72)', maxWidth: 560, margin: 0, paddingLeft: m ? 0 : 34, borderLeft: m ? 0 : '1px solid rgba(255,255,255,.14)' }}>{V.somSub}</p>
         </div>
       </div>
     </section>
