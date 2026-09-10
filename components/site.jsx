@@ -3139,7 +3139,7 @@ const HN = {
     eyebrow: 'Voor gym-eigenaren in Nederland en België',
     headline: ['1 box.', '1 miljoen.'],
     accent: 'Zonder dat jij de lijm bent.',
-    sub: 'Wij zijn Bart en Jeroen, eigenaren van CrossFit Alkmaar en CrossFit Leiden. De route die wij in onze eigen boxen lopen naar een miljoen omzet, krijg jij als systeem: leads, leden, ex-leden en je team op één plek, gekoppeld aan SportBit.',
+    sub: 'Wij zijn Bart en Jeroen, eigenaren van CrossFit Alkmaar en CrossFit Leiden. De route die wij in onze eigen gyms lopen naar een miljoen omzet, krijg jij als systeem: leads, leden, ex-leden en je team op één plek, gekoppeld aan SportBit.',
     primary: { label: 'Maak mijn routekaart', href: '/routekaart' },
     secondary: 'Plan een demo',
   },
@@ -3154,7 +3154,7 @@ const HN = {
     items: [
       { tag: 'De lead', icon: 'zap', q: 'Welke aanvragen bleven vorig jaar liggen?', body: 'Tussen een appje van je moeder en de PostNL-melding. Je dacht: doe ik vanavond. En vanavond stond je op de vloer.', factor: 12, foot: '2 gemiste leads per maand, maar de helft geteld.' },
       { tag: 'Het lid', icon: 'heart', q: 'Wie krijgt een melding als een lid drie weken niet is geweest?', body: 'Drie keer per week, dan één keer, dan af en toe, dan opgezegd. Iedereen had het kunnen zien. Niemand kreeg het te horen.', factor: 6, foot: '1 gered lid per maand, eerlijk gerekend met de halve rit.' },
-      { tag: 'Het ex-lid', icon: 'rotate-ccw', q: 'Wie stuurt consequent iets naar wie is opgezegd?', body: 'De goedkoopste leden die je ooit krijgt. Ze kennen je box, je coaches, je cultuur. Er hoeft alleen iemand te zeggen: we missen je.', factor: 12, foot: '1 terugkeerder per maand.' },
+      { tag: 'Het ex-lid', icon: 'rotate-ccw', q: 'Wie stuurt consequent iets naar wie is opgezegd?', body: 'De goedkoopste leden die je ooit krijgt. Ze kennen je gym, je coaches, je cultuur. Er hoeft alleen iemand te zeggen: we missen je.', factor: 12, foot: '1 terugkeerder per maand.' },
     ],
     somSub: 'Voorzichtig geschat, met jouw bedrag per lid. Upsell naar PT, small group en voeding is nog niet eens meegeteld.',
   },
@@ -3194,9 +3194,9 @@ const HN = {
     eyebrow: 'Wat je niet kunt downloaden',
     title: ['Software kun je kopiëren.', 'De weg niet.'],
     cards: [
-      { k: 'Wij groeien zelf naar 1 miljoen', b: 'Al onze eigen boxen lopen dezelfde route. Jij krijgt hem erbij.' },
+      { k: 'Wij groeien zelf naar 1 miljoen', b: 'Al onze eigen gyms lopen dezelfde route. Jij krijgt hem erbij.' },
       { k: '13 gyms als benchmark', b: 'Jouw cijfers naast die van 13 andere gyms. Je ziet wat een goed cijfer is qua leads, verloop en omzet per lid.' },
-      { k: 'Nederlands en snel', b: 'Support van box-eigenaren, in jouw tijdzone. WhatsApp erin, geen sms. Binnen 2 weken live.' },
+      { k: 'Nederlands en snel', b: 'Support van gym-eigenaren, in jouw tijdzone. WhatsApp erin, geen sms. Binnen 2 weken live.' },
     ],
     mentor: { pill: 'Vanaf nu voor iedereen', lead: '1-op-1 mentorschap erbij.', body: 'Een mentor die élke dag meekijkt in jouw eigen systeem: je leden, je in- en uitstroom, je cijfers. Alleen 1-op-1 en minimaal zes maanden, dus een beperkt aantal plekken.' },
   },
@@ -3218,7 +3218,7 @@ const HN = {
   cta: {
     eyebrow: 'En nu jij',
     title: 'Jouw routekaart naar 1 miljoen.',
-    sub: 'Zes vragen, twee minuten. Je ziet direct waar jouw box nu staat, waar de groei stopt en wat de eerste stap is. Daarna hoef je ons niet te zoeken: wij appen jou.',
+    sub: 'Zes vragen, twee minuten. Je ziet direct waar jouw gym nu staat, waar de groei stopt en wat de eerste stap is. Daarna hoef je ons niet te zoeken: wij appen jou.',
     primary: { label: 'Maak mijn routekaart', href: '/routekaart' },
     secondary: 'Liever eerst een demo',
   },
