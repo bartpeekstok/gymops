@@ -3140,8 +3140,7 @@ const HN = {
     headline: ['Een gym die draait.', 'Ook zonder jou.'],
     accent: 'Goed loon voor jou en je team, leden die blijven, en vier weken vakantie zonder één appje.',
     sub: 'Wij zijn Bart en Jeroen, eigenaren van CrossFit Alkmaar en CrossFit Leiden. De route die wij in onze eigen gyms lopen, krijg jij als systeem: leads, leden, ex-leden en je team op één plek, gekoppeld aan SportBit.',
-    primary: { label: 'Maak mijn routekaart', href: '/routekaart' },
-    secondary: 'Plan een demo',
+    primary: 'Plan een demo',
   },
   vragen: {
     eyebrow: 'Drie vragen die we elke gym-eigenaar stellen',
@@ -3236,10 +3235,9 @@ const HN = {
   },
   cta: {
     eyebrow: 'En nu jij',
-    title: 'Jouw routekaart naar 1 miljoen.',
-    sub: 'Zes vragen, twee minuten. Je ziet direct waar jouw gym nu staat, waar de groei stopt en wat de eerste stap is. Daarna hoef je ons niet te zoeken: wij appen jou.',
-    primary: { label: 'Maak mijn routekaart', href: '/routekaart' },
-    secondary: 'Liever eerst een demo',
+    title: 'Klaar voor een gym die draait, ook zonder jou?',
+    sub: 'Plan een demo van 30 minuten. We laten je zien hoe het systeem voor jouw gym werkt, en waar je morgen kunt beginnen.',
+    primary: 'Plan een demo',
   },
 };
 
@@ -3269,8 +3267,7 @@ function HeroNieuw() {
         <div data-reveal style={{ fontSize: 'clamp(19px, 2.6vw, 27px)', fontWeight: 700, letterSpacing: '-.02em', lineHeight: 1.3, color: 'var(--mint-light)', maxWidth: 720, margin: (m ? 18 : 24) + 'px auto 0', transitionDelay: '.2s' }}>{h.accent}</div>
         <p data-reveal style={{ fontSize: m ? 16.5 : 19, lineHeight: 1.6, color: 'rgba(255,255,255,.72)', maxWidth: 640, margin: (m ? 20 : 26) + 'px auto 0', transitionDelay: '.25s' }}>{h.sub}</p>
         <div data-reveal style={{ display: 'flex', flexWrap: 'wrap', gap: 14, marginTop: m ? 28 : 38, justifyContent: 'center', transitionDelay: '.3s' }}>
-          <a href={h.primary.href} className="btn btn-primary">{h.primary.label}<Icon data-lucide="map"></Icon></a>
-          <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-outline-light">{h.secondary}</a>
+          <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-primary">{h.primary}<Icon data-lucide="arrow-right"></Icon></a>
         </div>
       </div>
 
@@ -3779,8 +3776,7 @@ function RoutekaartCta() {
           <h2 style={{ position: 'relative', fontSize: 'clamp(30px,3.6vw,48px)', fontWeight: 800, letterSpacing: '-.03em', color: '#fff', maxWidth: 680, margin: '0 auto' }}>{C.title}</h2>
           <p style={{ position: 'relative', fontSize: 18, color: 'rgba(255,255,255,.7)', maxWidth: 560, margin: '18px auto 0' }}>{C.sub}</p>
           <div style={{ position: 'relative', display: 'flex', flexWrap: 'wrap', gap: 14, justifyContent: 'center', marginTop: 34 }}>
-            <a href={C.primary.href} className="btn btn-primary">{C.primary.label}<Icon data-lucide="map"></Icon></a>
-            <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-outline-light">{C.secondary}</a>
+            <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-primary">{C.primary}<Icon data-lucide="arrow-right"></Icon></a>
           </div>
         </div>
       </div>
