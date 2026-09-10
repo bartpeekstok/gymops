@@ -3139,7 +3139,6 @@ const HN = {
     eyebrow: 'Voor gym-eigenaren in Nederland en België',
     headline: ['Een gym die draait.', 'Ook zonder jou.'],
     accent: 'Een gym die levens verandert. Ook dat van jou.',
-    sub: 'Wij zijn Bart en Jeroen, eigenaren van CrossFit Alkmaar en CrossFit Leiden. De route die wij in onze eigen gyms lopen, krijg jij als systeem: leads, leden, ex-leden en je team op één plek, gekoppeld aan SportBit.',
     primary: 'Plan een demo',
   },
   vragen: {
@@ -3265,7 +3264,6 @@ function HeroNieuw() {
         <div className="eyebrow eyebrow-dark" data-reveal style={{ marginBottom: m ? 16 : 22 }}>{h.eyebrow}</div>
         <SplitHeadline lines={h.headline} style={{ fontSize: 'clamp(38px, 8vw, 78px)', fontWeight: 800, letterSpacing: '-.04em', lineHeight: 1.02, color: '#fff', maxWidth: 940, margin: '0 auto' }} />
         <div data-reveal style={{ fontSize: 'clamp(19px, 2.6vw, 27px)', fontWeight: 700, letterSpacing: '-.02em', lineHeight: 1.3, color: 'var(--mint-light)', maxWidth: 720, margin: (m ? 18 : 24) + 'px auto 0', transitionDelay: '.2s' }}>{h.accent}</div>
-        <p data-reveal style={{ fontSize: m ? 16.5 : 19, lineHeight: 1.6, color: 'rgba(255,255,255,.72)', maxWidth: 640, margin: (m ? 20 : 26) + 'px auto 0', transitionDelay: '.25s' }}>{h.sub}</p>
         <div data-reveal style={{ display: 'flex', flexWrap: 'wrap', gap: 14, marginTop: m ? 28 : 38, justifyContent: 'center', transitionDelay: '.3s' }}>
           <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-primary">{h.primary}<Icon data-lucide="arrow-right"></Icon></a>
         </div>
