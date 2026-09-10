@@ -3224,6 +3224,11 @@ const HN = {
   oprichters: {
     eyebrow: 'Wij lopen de route zelf',
     title: 'Niet bedacht op een kantoor. Gebouwd op de vloer.',
+    people: [
+      { photo: 'jeroen-van-duijn.webp', name: 'Jeroen van Duijn', role: 'Eigenaar CrossFit Leiden', tekst: 'Sinds 2016 eigenaar, en jarenlang alles zelf gedaan: coaches aansturen via WhatsApp, leads opvolgen tussen de trainingen door. Wilde een systeem dat ook werkt als hij zelf op de vloer staat. Achtergrond in financial controlling en data.' },
+      { photo: 'bart-peekstok.webp', name: 'Bart Peekstok', role: 'Eigenaar CrossFit Alkmaar', tekst: 'Al ruim twaalf jaar eigenaar. Probeerde Nederlandse en Amerikaanse CRM-systemen, geen één was gemaakt voor een coaching gym. Persoonlijk contact is zijn ding, het systeem zorgt dat niemand wordt vergeten.' },
+    ],
+    link: { label: 'lees ons hele verhaal', href: 'over-ons.html' },
   },
   systeem: {
     eyebrow: 'Uitgezoomd',
@@ -3693,20 +3698,34 @@ function NietDownloaden() {
   );
 }
 
-/* Bart en Jeroen, met de teksten van de Over ons-pagina. */
+/* Bart en Jeroen, kort. Doorlink naar Over ons voor het hele verhaal. */
 function Oprichters() {
   useReveal();
+  useLucide();
   const m = useIsMobile();
   const O = HN.oprichters;
+  const lnk = (h) => route(h);
   return (
-    <section className="section" style={{ background: '#fff', padding: m ? '54px 0' : '96px 0' }}>
+    <section className="section section-soft" style={{ padding: m ? '48px 0' : '80px 0' }}>
       <div className="wrap">
-        <div data-reveal style={{ textAlign: 'center', maxWidth: 820, margin: '0 auto' }}>
-          <div className="eyebrow" style={{ marginBottom: 18 }}>{O.eyebrow}</div>
-          <h2 style={{ fontSize: 'clamp(30px,4.4vw,54px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.04, color: 'var(--ink)' }}>{O.title}</h2>
+        <div data-reveal style={{ textAlign: 'center', maxWidth: 760, margin: '0 auto' }}>
+          <div className="eyebrow" style={{ marginBottom: 16 }}>{O.eyebrow}</div>
+          <h2 style={{ fontSize: 'clamp(26px,3.4vw,42px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.06, color: 'var(--ink)' }}>{O.title}</h2>
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: m ? 44 : 72, marginTop: m ? 36 : 60, maxWidth: 1040, marginLeft: 'auto', marginRight: 'auto' }}>
-          {GOP.overons.founders.map((f, i) => <FounderRow key={i} f={f} flip={i % 2 === 1} m={m} />)}
+        <div data-reveal-stagger style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : '1fr 1fr', gap: m ? 14 : 20, marginTop: m ? 28 : 40, maxWidth: 960, marginLeft: 'auto', marginRight: 'auto' }}>
+          {O.people.map((p, i) => (
+            <div key={i} className="card" style={{ padding: m ? 20 : 24, display: 'flex', gap: 18, alignItems: 'flex-start', transitionDelay: (i * 0.08) + 's' }}>
+              <img src={GO.A + p.photo} alt={p.name} style={{ width: m ? 64 : 84, height: m ? 64 : 84, borderRadius: 999, objectFit: 'cover', flexShrink: 0, border: '3px solid #fff', boxShadow: 'var(--shadow-card)' }} />
+              <div>
+                <div style={{ fontSize: 18, fontWeight: 800, letterSpacing: '-.02em', color: 'var(--ink)' }}>{p.name}</div>
+                <div className="eyebrow" style={{ fontSize: 12, marginTop: 2 }}>{p.role}</div>
+                <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--fg2)', marginTop: 10 }}>{p.tekst}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div data-reveal style={{ textAlign: 'center', marginTop: 24 }}>
+          <a href={lnk(O.link.href)} className="btn-ghost">{O.link.label}<Icon data-lucide="arrow-right"></Icon></a>
         </div>
       </div>
     </section>
@@ -3792,13 +3811,13 @@ function HomeNieuwPage() {
       <Nav />
       <HeroNieuw />
       <DrieVragen />
+      <Oprichters />
       <LisaIntro />
       <LisaLead />
       <LisaTijdlijn />
       <LisaCirkel />
       <LisaSlot />
       <NietDownloaden />
-      <Oprichters />
       <Testimonials />
       <EenSysteem />
       <RoutekaartCta />
