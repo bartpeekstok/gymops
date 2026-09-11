@@ -3120,7 +3120,7 @@ function Home() {
 }
 
 function LeadopvolgingPage() { return (<React.Fragment><Nav current="leadopvolging.html" /><Leadopvolging /><CtaFooter /></React.Fragment>); }
-function LedenervaringPage() { return (<React.Fragment><Nav current="ledenbehoud.html" /><Ledenervaring /><CtaFooter /></React.Fragment>); }
+function LedenervaringPage() { return (<React.Fragment><Nav current="ledenbehoud.html" /><Ledenervaring /><LisaCirkel /><CtaFooter /></React.Fragment>); }
 function TeamAansturingPage() { return (<React.Fragment><Nav current="team-aansturing.html" /><TeamAansturing /><CtaFooter /></React.Fragment>); }
 function WebsitePage() { return (<React.Fragment><Nav current="website.html" /><Website /><CtaFooter /></React.Fragment>); }
 function PrijzenPage() { return (<React.Fragment><Nav current="prijzen.html" /><Prijzen /><CtaFooter /></React.Fragment>); }
@@ -3410,8 +3410,9 @@ const HN = {
       volgende: 'Anderhalf jaar later zegt Lisa toch op',
     },
     exlid: {
+      eyebrow: 'Het ex-lid',
       title: 'Een ex-lid hoeft geen ex-lid te blijven.',
-      sub: 'Het zijn de warmste leads die je ooit krijgt. Ze kennen je gym, je coaches en je cultuur. Er is maar een klein duwtje nodig, als iemand het maar doet.',
+      sub: 'Het zijn de warmste leads die je ooit krijgt. Ze kennen je gym, je coaches en je cultuur. Er is maar een klein duwtje nodig, als iemand het maar doet. Neem Lisa: anderhalf jaar lid, knieklachten, en ze zegt op. Zo loopt dat bij ons.',
       stations: [
         { lbl: 'opzegging', title: 'De opzegging', body: 'Lisa zegt op via het opzegformulier op je site, met reden: knieklachten. De opzegtermijn staat bovenaan, dus geen discussie over geld als laatste gevoel. Binnen één minuut ligt er een taak bij je team: bel Lisa vandaag.' },
         { lbl: 'gesprek', title: 'Eerst een gesprek', body: 'Geen "opzegging verwerkt, klaar", maar een coach die appt: wat vervelend van je knie, heb je morgen tijd om te bellen? Vaak blijkt de opzegging een programmavraag.', quote: '"Met je knie is semi-PT nu veel slimmer dan de groepsles. Coach Max belt je over je startdatum."', zijpad: 'Soms eindigt het hier: Lisa blijft, in het juiste programma.' },
@@ -3992,9 +3993,10 @@ function LisaCirkel() {
   );
 
   return (
-    <section className="section" style={{ background: '#fff', padding: m ? '24px 0 0' : '36px 0 0' }}>
+    <section className="section section-soft" style={{ padding: m ? '52px 0 60px' : '88px 0 100px' }}>
       <div className="wrap">
         <div data-reveal style={{ maxWidth: 760, margin: '0 auto', textAlign: 'center' }}>
+          <div className="eyebrow" style={{ marginBottom: 16 }}>{E.eyebrow}</div>
           <h2 style={{ fontSize: 'clamp(26px,3.2vw,40px)', fontWeight: 800, letterSpacing: '-.025em', color: 'var(--ink)' }}>{E.title}</h2>
           <p style={{ fontSize: m ? 15.5 : 17, lineHeight: 1.6, color: 'var(--fg3)', marginTop: 14 }}>{E.sub}</p>
         </div>
