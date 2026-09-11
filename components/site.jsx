@@ -3348,7 +3348,7 @@ const HN = {
   hero: {
     eyebrow: 'Voor gym-eigenaren in Nederland en België',
     headline: ['Een gym die draait.', 'Ook zonder jou.'],
-    sub: 'GymOps is de software die aanvragen opvolgt, signaleert welke leden aandacht nodig hebben en taken klaarzet voor je coaches.',
+    sub: 'GymOps helpt je leden langer te behouden. De software signaleert wie aandacht nodig heeft, zet taken klaar voor je coaches en volgt nieuwe aanvragen op.',
     support: 'Gekoppeld aan SportBit, met inrichting en begeleiding door twee gym-eigenaren.',
     primary: 'Plan een demo',
   },
@@ -3677,10 +3677,10 @@ function DrieVragen() {
 const HN_WERKT = {
   eyebrow: 'Zo werkt het in de praktijk',
   title: 'Een gezonde gym draaien hoeft niet moeilijk te zijn.',
-  sub: 'Het draait om drie dingen. Niet meer, niet minder.',
+  sub: 'Leden behouden staat centraal. Nieuwe leden aantrekken en oud-leden terughalen maken het compleet.',
   items: [
-    { icon: 'zap', tag: 'Leads', title: 'Zorg dat je leads binnenkomen, en volg ze op tot ze lid zijn.', body: 'Wie een aanvraag doet, wil nu geholpen worden, niet morgen. Elke aanvraag krijgt daarom binnen een minuut een reactie en een taak bij een coach. Niet één keer, maar tot er antwoord is, en tot de kennismaking echt gepland staat.', link: { label: 'meer over leadopvolging', href: 'leadopvolging.html' } },
     { icon: 'heart', tag: 'Leden', title: 'Zorg dat je leden lang lid blijven.', body: 'Leden blijven waar ze zich gezien voelen en waar ze met plezier naartoe gaan. Dat is geen toeval, maar een klantreis: van de eerste week tot het tweede jaar aandacht op het juiste moment, en een taak bij een coach zodra iemand wegzakt.', link: { label: 'meer over ledenbehoud', href: 'ledenbehoud.html' } },
+    { icon: 'zap', tag: 'Leads', title: 'Zorg dat je leads binnenkomen, en volg ze op tot ze lid zijn.', body: 'Wie een aanvraag doet, wil nu geholpen worden, niet morgen. Elke aanvraag krijgt daarom binnen een minuut een reactie en een taak bij een coach. Niet één keer, maar tot er antwoord is, en tot de kennismaking echt gepland staat.', link: { label: 'meer over leadopvolging', href: 'leadopvolging.html' } },
     { icon: 'rotate-ccw', tag: 'Ex-leden', title: 'Haal je ex-leden terug.', body: 'Wie opzegt, hoeft geen ex-lid te blijven. Ze kennen je gym, je coaches en je cultuur, en met een goed gevoel vertrokken. Een warm afscheid, in beeld blijven, en op het juiste moment een persoonlijk berichtje. De warmste leads die er zijn.', link: { label: 'meer over ledenbehoud', href: 'ledenbehoud.html' } },
   ],
 };
@@ -4200,10 +4200,10 @@ function HomeNieuwPage() {
       <HeroNieuw />
       <Opening />
       <ProductVoorbeeld demoUrl={BOOKING_URL} onDemoClick={openLeadFormClick} />
-      <PodcastFragment />
       <Oprichters />
       <DrieVragen />
       <ZoWerktHet />
+      <PodcastFragment />
       <NietDownloaden />
       <MentorTeaser />
       <KlantLogos />

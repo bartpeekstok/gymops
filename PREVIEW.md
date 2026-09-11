@@ -22,13 +22,17 @@ Bron Reel: `Documents/GymOps Campagnes/Sportbazen Reels/Reels/01 - Elke lead bel
 
 Validatie: productiebuild incl. lint/typechecks geslaagd. Browsercontrole op 1440×1000, 390×844 en 320×740: geen horizontale overloop of paginafouten; CTA in eerste scherm; video laadt pas bij afspelen en speelt correct. Geen formulier verzonden of afspraak geboekt.
 
-## Stap 2 — productvoorbeeld ter beoordeling
+## Stap 2 — productvoorbeeld, aangepast naar retentie als hoofdverhaal
 
-Direct na de openingsalinea en vóór het podcastfragment staat een compact, aanklikbaar voorbeeld: aanvraag van Lisa → automatische reactie → beltaak voor coach Sanne → voortgang voor de eigenaar. Alle vier stappen blijven zichtbaar; de bezoeker bepaalt zelf welk voorbeeld verschijnt. Ook te bedienen met toetsenbord. Geen automatische animatie of extra mediabestanden.
+De gebruiker vindt het aanklikbare voorbeeld goed, maar wil retentie als belangrijkste onderdeel van GymOps laten zien. Daarom opent de sectie nu met **Leden behouden**: een check-in in de eerste week → de 50e les vieren → contact bij twee weken afwezigheid → overzicht van gegeven aandacht en openstaande taken. De mijlpalen en signalen leiden tot taken voor de coach; de coach verzorgt het persoonlijke contact. Deze voorbeelden staan al beschreven op de ledenbehoudpagina en in de bestaande Lisa-klantreis.
+
+**Aanvragen opvolgen** blijft als tweede keuze in dezelfde sectie beschikbaar. De vier stappen van beide voorbeelden zijn aanklikbaar en werken met toetsenbord. Een ander voorbeeld kiezen zet de weergave terug naar de eerste stap. Er zijn geen automatische animaties of extra mediabestanden.
+
+De hero begint nu met “GymOps helpt je leden langer te behouden.” Ook het overzicht met leden, leads en ex-leden begint bij ledenbehoud. Het SportBazen-fragment blijft specifiek over persoonlijke leadopvolging gaan en staat na dit overzicht, zodat het niet de eerste positionering bepaalt.
 
 De weergave is als voorbeeld gelabeld en gebruikt de functies die al op de productpagina's worden beschreven. Lisa en Sanne illustreren de werkwijze; dit is geen klantcase of resultaatclaim. De demo-knop gebruikt de bestaande demoroute. Anker voor directe review: `#zo-werkt-gymops`.
 
-Validatie stap 2: productiebuild inclusief lint/typechecks geslaagd. Alle vier de stappen en toetsenbordbediening gecontroleerd op 1440×1000, 390×844 en 320×740, zonder paginafouten of horizontale overloop. De sectie begint op mobiel rond 1.068 px vanaf de paginatop (eerder stond de productuitleg rond 3.919 px). De hero-CTA blijft in het eerste scherm en de podcast speelt pas na bediening. Formulier en kalender niet ingestuurd.
+Validatie van de versie met retentie voorop: productiebuild inclusief lint/typechecks geslaagd. Op 1440×1000, 390×844 en 320×740 zijn beide voorbeelden, alle vier stappen, het terugzetten naar stap 1, toetsenbordbediening, de detailpagina-links, de demo-knop en video gecontroleerd. Geen paginafouten of horizontale overloop; de hero-CTA blijft in het eerste scherm. De demo opent en sluit zonder gegevens te versturen. Video laadt pas na bediening. Formulier en kalender niet ingestuurd.
 
 ## Volgende stappen, nog te bespreken
 
@@ -39,4 +43,4 @@ Validatie stap 2: productiebuild inclusief lint/typechecks geslaagd. Alle vier d
 - Demo: 30/45/60 minuten gelijkmaken, dubbele velden oplossen en kalender vernederlandsen. Kalenderwijzigingen kunnen de live verkooproute raken; eerst de echte duur en testaanpak vaststellen.
 - Overstapvragen, toon en concrete invulling mentorschap.
 
-Stap 2 is nog niet goedgekeurd. Itereer eerst op de feedback van de gebruiker; voer niet automatisch alle overige aanbevelingen uit.
+De versie met retentie voorop is nog ter beoordeling. Itereer eerst op de feedback van de gebruiker; voer niet automatisch alle overige aanbevelingen uit.

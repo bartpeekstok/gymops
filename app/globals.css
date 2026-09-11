@@ -538,8 +538,14 @@ details[open] .faq-chev { transform: rotate(180deg); }
 /* Eén aanvraag volgen, vóór het praktijkverhaal en de uitgebreide uitleg. */
 .product-example { background: #fff; scroll-margin-top: 90px; }
 .product-example-heading { max-width: 730px; margin: 0 auto 36px; text-align: center; }
-.product-example h2 { margin-top: 16px; font-size: clamp(30px, 3.2vw, 42px); line-height: 1.12; letter-spacing: -.03em; }
+.product-example h2 { margin-top: 16px; font-size: clamp(30px, 3.2vw, 42px); line-height: 1.12; letter-spacing: -.03em; text-wrap: balance; }
 .product-example-heading p { margin: 18px auto 0; max-width: 600px; color: var(--fg2); font-size: 18px; line-height: 1.6; }
+.product-example-switch { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 430px; margin: 0 auto; padding: 5px; gap: 5px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 13px; }
+.product-example-switch button { padding: 12px 10px; border: 1px solid transparent; border-radius: 9px; background: transparent; color: var(--fg2); font: inherit; font-size: 14px; line-height: 1.4; font-weight: 700; cursor: pointer; }
+.product-example-switch button[aria-pressed="true"] { background: var(--mint-deep); color: #fff; }
+.product-example-switch button:hover { border-color: var(--mint); }
+.product-example-switch button:focus-visible { outline: 3px solid var(--mint-deep); outline-offset: 3px; }
+.product-example-intro { max-width: 620px; margin: 18px auto 28px; text-align: center; font-size: 15px; line-height: 1.6; color: var(--fg2); }
 .product-example-layout { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 36px; max-width: 980px; margin: 0 auto; align-items: center; }
 .product-example-steps { display: grid; gap: 10px; }
 .product-example-step { display: flex; align-items: center; gap: 14px; width: 100%; padding: 18px; border: 1px solid var(--border); border-radius: 14px; background: #fff; color: var(--fg2); font: inherit; text-align: left; cursor: pointer; }
@@ -555,7 +561,7 @@ details[open] .faq-chev { transform: rotate(180deg); }
 .product-example-screen-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 17px 24px; background: var(--ink); color: #fff; font-size: 14px; font-weight: 700; }
 .product-example-preview-label, .product-example-counter { color: #c6d4db; font-size: 12px; font-weight: 500; }
 .product-example-counter { white-space: nowrap; }
-.product-example-screen-content { padding: 24px; min-height: 360px; }
+.product-example-screen-content { padding: 24px; min-height: 410px; }
 .product-example-screen-title { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; color: var(--mint-deep); }
 .product-example-screen-title h3 { color: var(--ink); font-size: 18px; letter-spacing: -.02em; }
 .product-example-card { padding: 22px; border: 1px solid var(--border); border-radius: 14px; background: #fff; }
@@ -581,7 +587,8 @@ details[open] .faq-chev { transform: rotate(180deg); }
 .product-example-progress .product-example-open { color: var(--ink); }
 .product-example-footer { max-width: 640px; margin: 32px auto 0; text-align: center; }
 .product-example-footer p { font-size: 15px; color: var(--fg2); line-height: 1.6; }
-.product-example-footer .btn { margin-top: 18px; }
+.product-example-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 24px; margin-top: 18px; }
+.product-example-actions .btn-ghost { font-size: 14px; }
 @media (max-width: 767px) {
   .product-example-heading { margin-bottom: 24px; }
   .product-example-heading p { font-size: 16px; }
