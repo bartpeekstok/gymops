@@ -535,6 +535,73 @@ details[open] .faq-chev { transform: rotate(180deg); }
   .lockscene-inner > .wrap { transform: none !important; }
 }
 
+/* Eén aanvraag volgen, vóór het praktijkverhaal en de uitgebreide uitleg. */
+.product-example { background: #fff; scroll-margin-top: 90px; }
+.product-example-heading { max-width: 730px; margin: 0 auto 36px; text-align: center; }
+.product-example h2 { margin-top: 16px; font-size: clamp(30px, 3.2vw, 42px); line-height: 1.12; letter-spacing: -.03em; }
+.product-example-heading p { margin: 18px auto 0; max-width: 600px; color: var(--fg2); font-size: 18px; line-height: 1.6; }
+.product-example-layout { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 36px; max-width: 980px; margin: 0 auto; align-items: center; }
+.product-example-steps { display: grid; gap: 10px; }
+.product-example-step { display: flex; align-items: center; gap: 14px; width: 100%; padding: 18px; border: 1px solid var(--border); border-radius: 14px; background: #fff; color: var(--fg2); font: inherit; text-align: left; cursor: pointer; }
+.product-example-step:hover { border-color: var(--mint); }
+.product-example-step[aria-pressed="true"] { border-color: var(--mint); background: var(--mint-tint); }
+.product-example-step:focus-visible { outline: 3px solid var(--mint-deep); outline-offset: 3px; }
+.product-example-number { display: grid; place-items: center; width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%; background: var(--bg-soft); color: var(--mint-deep); font-size: 14px; font-weight: 800; }
+.product-example-step[aria-pressed="true"] .product-example-number { background: var(--mint-deep); color: #fff; }
+.product-example-step strong { display: block; font-size: 16px; line-height: 1.35; color: var(--ink); }
+.product-example-step strong + span { display: block; margin-top: 4px; font-size: 13px; line-height: 1.45; }
+.product-example-step-arrow { margin-left: auto; flex-shrink: 0; color: var(--mint-deep); }
+.product-example-screen { min-width: 0; border: 1px solid var(--border-strong); border-radius: 20px; overflow: hidden; background: var(--bg-soft); box-shadow: var(--shadow-card); }
+.product-example-screen-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 17px 24px; background: var(--ink); color: #fff; font-size: 14px; font-weight: 700; }
+.product-example-preview-label, .product-example-counter { color: #c6d4db; font-size: 12px; font-weight: 500; }
+.product-example-counter { white-space: nowrap; }
+.product-example-screen-content { padding: 24px; min-height: 360px; }
+.product-example-screen-title { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; color: var(--mint-deep); }
+.product-example-screen-title h3 { color: var(--ink); font-size: 18px; letter-spacing: -.02em; }
+.product-example-card { padding: 22px; border: 1px solid var(--border); border-radius: 14px; background: #fff; }
+.product-example-contact { display: flex; align-items: center; gap: 12px; }
+.product-example-contact > div { min-width: 0; }
+.product-example-contact strong { display: block; font-size: 17px; }
+.product-example-contact div > span { display: block; margin-top: 3px; font-size: 13px; color: var(--fg2); line-height: 1.4; }
+.product-example-avatar { display: grid; place-items: center; width: 42px; height: 42px; flex-shrink: 0; border-radius: 50%; background: var(--mint-tint); color: var(--mint-deep); font-weight: 800; }
+.product-example-badge { display: inline-block; padding: 5px 9px; border-radius: 6px; background: var(--mint-tint); color: var(--mint-deep); font-size: 12px; font-weight: 700; }
+.product-example-contact > .product-example-badge { margin-left: auto; }
+.product-example-details { display: grid; gap: 12px; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border); font-size: 13px; line-height: 1.5; }
+.product-example-details > div { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.product-example-details dt { color: var(--fg2); }
+.product-example-details dd { margin: 0; text-align: right; font-weight: 600; }
+.product-example-explanation { margin-top: 20px; font-size: 15px; line-height: 1.65; color: var(--fg2); }
+.product-example-message-label { display: flex; gap: 7px; align-items: center; font-size: 13px; color: var(--mint-deep); }
+.product-example-message-label svg { flex-shrink: 0; }
+.product-example-message { margin-top: 16px; padding: 16px; background: var(--mint-tint); border-radius: 12px 12px 3px 12px; font-size: 15px; line-height: 1.6; }
+.product-example-sent { display: flex; gap: 5px; justify-content: flex-end; align-items: center; margin-top: 10px; color: var(--mint-deep); font-size: 12px; }
+.product-example-task-title { margin-top: 16px; font-size: 19px; line-height: 1.35; letter-spacing: -.02em; }
+.product-example-task-copy { margin-top: 10px; font-size: 14px; color: var(--fg2); line-height: 1.6; }
+.product-example-progress dd { display: flex; gap: 5px; align-items: center; color: var(--mint-deep); }
+.product-example-progress .product-example-open { color: var(--ink); }
+.product-example-footer { max-width: 640px; margin: 32px auto 0; text-align: center; }
+.product-example-footer p { font-size: 15px; color: var(--fg2); line-height: 1.6; }
+.product-example-footer .btn { margin-top: 18px; }
+@media (max-width: 767px) {
+  .product-example-heading { margin-bottom: 24px; }
+  .product-example-heading p { font-size: 16px; }
+  .product-example-layout { grid-template-columns: 1fr; gap: 18px; }
+  .product-example-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .product-example-step { align-items: flex-start; gap: 8px; padding: 12px 10px; }
+  .product-example-number { width: 23px; height: 23px; font-size: 12px; }
+  .product-example-step strong { font-size: 14px; }
+  .product-example-step strong + span { font-size: 12px; }
+  .product-example-step-arrow { display: none; }
+  .product-example-screen-bar { padding: 15px 16px; }
+  .product-example-screen-content { padding: 18px 16px; min-height: 410px; }
+  .product-example-card { padding: 16px; }
+  .product-example-contact { gap: 8px; flex-wrap: wrap; }
+  .product-example-contact > div { flex: 1; }
+  .product-example-contact > .product-example-badge { margin-left: 0; }
+  .product-example-details > div { gap: 8px; }
+  .product-example-footer { margin-top: 24px; }
+}
+
 /* Kort praktijkverhaal uit de bestaande SportBazen-aflevering. */
 .podcast-proof { background: #fff; }
 .podcast-proof-layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 64px; align-items: center; max-width: 920px; margin: 0 auto; }

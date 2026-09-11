@@ -9,6 +9,7 @@ import React from 'react';
 import { icons } from 'lucide-react';
 import { GO, GOP } from '@/lib/site-data';
 import PodcastFragment from '@/components/PodcastFragment';
+import ProductVoorbeeld from '@/components/ProductVoorbeeld';
 
 const { useState, useEffect, useRef, useMemo, useCallback, useLayoutEffect } = React;
 
@@ -4198,6 +4199,7 @@ function HomeNieuwPage() {
       <Nav />
       <HeroNieuw />
       <Opening />
+      <ProductVoorbeeld demoUrl={BOOKING_URL} onDemoClick={openLeadFormClick} />
       <PodcastFragment />
       <Oprichters />
       <DrieVragen />
