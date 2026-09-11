@@ -3229,7 +3229,7 @@ const HN = {
     title: 'Niet bedacht op een kantoor. Gebouwd op de vloer.',
     people: [
       { photo: 'jeroen-van-duijn.webp', name: 'Jeroen van Duijn', role: 'Eigenaar CrossFit Leiden', tekst: ['Als eigenaar van CrossFit Leiden weet ik als geen ander hoe het is om alles zelf te doen. Ik wilde een systeem dat voor mij werkt, ook als ik zelf op de vloer sta.', 'Vandaag draait mijn gym volledig op GymOps. Ik kan me eerlijk gezegd niet meer voorstellen hoe het zonder was.'] },
-      { photo: 'bart-peekstok.webp', name: 'Bart Peekstok', role: 'Eigenaar CrossFit Alkmaar', tekst: ['Ik weet hoe een gym werkt, want ik sta er zelf al meer dan 12 jaar middenin. Bij CrossFit Alkmaar zijn we altijd goed geweest in persoonlijk, oprecht contact. Ook met meer leden lukt het ons nog goed om iemand nét op het goede moment een berichtje te sturen of een kaartje om iets te vieren. Het systeem zorgt ervoor dat we niemand vergeten, onze teksten en cadeautjes zijn nog steeds oprecht en persoonlijk.', 'Dit is wat ik zelf tien jaar geleden al had willen hebben.'] },
+      { photo: 'bart-peekstok.webp', name: 'Bart Peekstok', role: 'Eigenaar CrossFit Alkmaar', tekst: ['Ik weet hoe een gym werkt, want ik sta er zelf al meer dan 12 jaar middenin. GymOps zorgt ervoor dat we niemand vergeten, onze teksten en cadeautjes zijn nog steeds oprecht en persoonlijk.', 'Dit is wat ik zelf tien jaar geleden al had willen hebben.'] },
     ],
     link: { label: 'lees ons hele verhaal', href: 'over-ons.html' },
   },
