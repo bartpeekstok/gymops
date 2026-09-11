@@ -3724,7 +3724,7 @@ function KlantLogos() {
       <div className="wrap">
         <div data-reveal style={{ textAlign: 'center', maxWidth: 720, margin: '0 auto' }}>
           <div className="eyebrow" style={{ marginBottom: 16 }}>Klanten</div>
-          <h2 style={{ fontSize: 'clamp(26px,3.4vw,42px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.06, color: 'var(--ink)' }}>Deze gyms draaien op GymOps.</h2>
+          <h2 style={{ fontSize: 'clamp(26px,3.4vw,42px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.06, color: 'var(--ink)' }}>Deze gyms draaien nu op GymOps.</h2>
         </div>
         <div data-reveal-stagger style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: m ? 10 : 14, marginTop: m ? 26 : 40, maxWidth: 1000, marginLeft: 'auto', marginRight: 'auto' }}>
           {logos.map((l, i) => (
