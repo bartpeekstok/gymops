@@ -1770,7 +1770,7 @@ function Hero() {
 
       {/* trusted-by marquee */}
       <div style={{ position: 'relative', borderTop: '1px solid rgba(255,255,255,.08)', padding: '26px 0 34px' }}>
-        <div className="wrap"><p style={{ textAlign: 'center', fontSize: 12.5, fontWeight: 600, letterSpacing: '.04em', color: 'rgba(255,255,255,.45)', marginBottom: 22 }}>Vertrouwd door Nederlandse gyms</p></div>
+        <div className="wrap"><p style={{ textAlign: 'center', fontSize: 12.5, fontWeight: 600, letterSpacing: '.04em', color: 'rgba(255,255,255,.45)', marginBottom: 22 }}>Vertrouwd door Nederlandse en Belgische gyms</p></div>
         <div className="marquee">
           <div className="marquee-track">
             {[...GO.trusted, ...GO.trusted].map((l, i) => (
@@ -3158,6 +3158,10 @@ const HN = {
       { tag: 'Het ex-lid', icon: 'rotate-ccw', q: 'De warmste leads die er zijn.', body: 'De goedkoopste leden die je ooit krijgt. Ze kennen je gym, je coaches, je cultuur. Er hoeft alleen iemand te zeggen: we missen je.', factor: 12, foot: '1 terugkeerder per maand.' },
     ],
     somSub: 'Voorzichtig geschat, met jouw bedrag per lid. Upsell naar PT, small group en voeding is nog niet eens meegeteld.',
+    meerDanGeld: {
+      kop: 'En dat is alleen het geld.',
+      tekst: 'Wat het je verder kost, staat op geen enkele factuur: de avonden op de bank met je telefoon, de vakantie die je weer niet neemt, coaches die wachten tot jij het zegt. Een eigenaar die opbrandt, komt niet vooruit. En een gym die alleen draait als jij erbij bent, staat stil zodra jij even niet kunt.',
+    },
   },
   lisa: {
     eyebrow: 'Zo werkt het in de praktijk',
@@ -3276,7 +3280,7 @@ function HeroNieuw() {
       </div>
 
       <div style={{ position: 'relative', borderTop: '1px solid rgba(255,255,255,.08)', padding: '26px 0 34px' }}>
-        <div className="wrap"><p style={{ textAlign: 'center', fontSize: 12.5, fontWeight: 600, letterSpacing: '.04em', color: 'rgba(255,255,255,.45)', marginBottom: 22 }}>Vertrouwd door Nederlandse gyms</p></div>
+        <div className="wrap"><p style={{ textAlign: 'center', fontSize: 12.5, fontWeight: 600, letterSpacing: '.04em', color: 'rgba(255,255,255,.45)', marginBottom: 22 }}>Vertrouwd door Nederlandse en Belgische gyms</p></div>
         <div className="marquee">
           <div className="marquee-track">
             {[...GO.trusted, ...GO.trusted].map((l, i) => (
@@ -3355,6 +3359,10 @@ function DrieVragen() {
             <div style={{ fontSize: m ? 34 : 44, fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1, color: 'var(--mint-light)', fontVariantNumeric: 'tabular-nums', whiteSpace: 'nowrap' }}>{euro(totaal)}</div>
           </div>
           <p style={{ fontSize: m ? 15 : 16, lineHeight: 1.6, color: 'rgba(255,255,255,.72)', maxWidth: 560, margin: 0, paddingLeft: m ? 0 : 34, borderLeft: m ? 0 : '1px solid rgba(255,255,255,.14)' }}>{V.somSub}</p>
+        </div>
+        <div data-reveal style={{ maxWidth: 680, margin: (m ? 36 : 52) + 'px auto 0', textAlign: 'center' }}>
+          <p style={{ fontSize: m ? 22 : 26, fontWeight: 800, letterSpacing: '-.025em', lineHeight: 1.2, color: 'var(--ink)' }}>{V.meerDanGeld.kop}</p>
+          <p style={{ fontSize: m ? 16 : 18, lineHeight: 1.65, color: 'var(--fg2)', marginTop: 14 }}>{V.meerDanGeld.tekst}</p>
         </div>
       </div>
     </section>
@@ -3662,6 +3670,30 @@ function LisaCirkel() {
   );
 }
 
+/* Vaste logowand met alle klanten, in kleur en in hetzelfde kader. */
+function KlantLogos() {
+  useReveal();
+  const m = useIsMobile();
+  const logos = GOP.klanten.trusted;
+  return (
+    <section className="section" style={{ background: '#fff', padding: m ? '48px 0 8px' : '80px 0 16px' }}>
+      <div className="wrap">
+        <div data-reveal style={{ textAlign: 'center', maxWidth: 720, margin: '0 auto' }}>
+          <div className="eyebrow" style={{ marginBottom: 16 }}>Klanten</div>
+          <h2 style={{ fontSize: 'clamp(26px,3.4vw,42px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.06, color: 'var(--ink)' }}>Deze gyms draaien op GymOps.</h2>
+        </div>
+        <div data-reveal-stagger style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: m ? 10 : 14, marginTop: m ? 26 : 40, maxWidth: 1000, marginLeft: 'auto', marginRight: 'auto' }}>
+          {logos.map((l, i) => (
+            <div key={i} title={l.name} style={{ width: m ? 'calc(50% - 5px)' : 176, height: m ? 84 : 96, borderRadius: 16, background: '#fff', border: '1px solid var(--border)', boxShadow: 'var(--shadow-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: m ? '14px 18px' : '18px 24px', transitionDelay: (i * 0.04) + 's' }}>
+              <img src={GO.A + l.src} alt={l.name} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', display: 'block', transform: l.scale ? `scale(${l.scale})` : undefined }} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function LisaSlot() {
   useReveal();
   useLucide();
@@ -3830,6 +3862,7 @@ function HomeNieuwPage() {
       <LisaCirkel />
       <LisaSlot />
       <NietDownloaden />
+      <KlantLogos />
       <Testimonials />
       <EenSysteem />
       <RoutekaartCta />
