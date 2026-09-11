@@ -3228,7 +3228,8 @@ const HN = {
     eyebrow: 'Wij lopen de route zelf',
     title: 'Niet bedacht op een kantoor. Gebouwd op de vloer.',
     people: [
-      { photo: 'jeroen-van-duijn.webp', name: 'Jeroen van Duijn', role: 'Eigenaar CrossFit Leiden', tekst: 'Sinds 2016 eigenaar, en jarenlang alles zelf gedaan: coaches aansturen via WhatsApp, leads opvolgen tussen de trainingen door. Wilde een systeem dat ook werkt als hij zelf op de vloer staat. Ik kan me eerlijk gezegd niet meer voorstellen hoe het zonder was.' },
+      { photo: 'jeroen-van-duijn.webp', name: 'Jeroen van Duijn', role: 'Eigenaar CrossFit Leiden', tekst: 'Als eigenaar van CrossFit Leiden weet ik als geen ander hoe het is om alles zelf te doen. Ik wilde een systeem dat voor mij werkt, ook als ik zelf op de vloer sta.
+Vandaag draait mijn gym volledig op GymOps. Ik kan me eerlijk gezegd niet meer voorstellen hoe het zonder was.' },
       { photo: 'bart-peekstok.webp', name: 'Bart Peekstok', role: 'Eigenaar CrossFit Alkmaar', tekst: 'Al ruim twaalf jaar eigenaar. Probeerde Nederlandse en Amerikaanse CRM-systemen, geen één was gemaakt voor een coaching gym. Het contact met onze leden is nog steeds echt en oprecht, GymOps zorgt ervoor dat het niet wordt vergeten.' },
     ],
     link: { label: 'lees ons hele verhaal', href: 'over-ons.html' },
@@ -3737,7 +3738,7 @@ function Oprichters() {
               <div>
                 <div style={{ fontSize: 18, fontWeight: 800, letterSpacing: '-.02em', color: 'var(--ink)' }}>{p.name}</div>
                 <div className="eyebrow" style={{ fontSize: 12, marginTop: 2 }}>{p.role}</div>
-                <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--fg2)', marginTop: 10 }}>{p.tekst}</p>
+                <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--fg2)', marginTop: 10, whiteSpace: 'pre-line' }}>{'“' + p.tekst + '”'}</p>
               </div>
             </div>
           ))}
