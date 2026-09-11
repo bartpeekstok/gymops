@@ -2543,6 +2543,8 @@ function Leadopvolging() {
         body={'Krijg je iemand niet meteen te pakken? Dan stopt GymOps niet bij één poging. Opvolgberichten in een natuurlijk ritme, op het juiste tijdstip van de dag. Nooit spammerig, wel net genoeg om bovenop de stapel te blijven.'}
         visual={<FollowupMock />} />
 
+      <WebsiteTeaser />
+
       <MiniGrid eyebrow="En verder" title="Alles wat opvolging compleet maakt." items={[
         { icon: 'bell', title: 'Show-rate omhoog met reminders', body: 'Reminders via WhatsApp en e-mail tot je lead daadwerkelijk in je gym staat. Minder no-shows.' },
         { icon: 'tag', title: 'Jouw branding, niet die van GymOps', body: 'Elke mail, WhatsApp en agenda-uitnodiging komt uit jouw gym. Met jouw logo, toon en kleuren.' },
@@ -2826,6 +2828,22 @@ function Prijzen() {
             <p style={{ fontSize: m ? 15 : 17, fontWeight: 700, color: 'var(--mint-light)', marginTop: 10 }}>Ruim 4× de waarde, plus gratis merkgroei, in één systeem.</p>
             <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-primary" style={{ marginTop: 24 }}>{plan.cta}<Icon data-lucide={plan.ctaIcon || 'arrow-right'}></Icon></a>
             <p style={{ fontSize: 12.5, lineHeight: 1.6, color: 'rgba(255,255,255,.5)', marginTop: 18, maxWidth: 420, margin: '18px auto 0' }}>{plan.disclaimer}{plan.yearly ? ' ' + plan.yearly : ''}</p>
+          </div>
+
+          {/* Mentorschap: GymOps plus een mentor die dagelijks meekijkt */}
+          <div data-reveal className="card" style={{ marginTop: 16, padding: m ? '24px 20px' : '30px 36px', border: '1.5px solid var(--mint)', display: 'flex', flexDirection: m ? 'column' : 'row', gap: m ? 18 : 32, alignItems: m ? 'stretch' : 'center' }}>
+            <div style={{ flex: '0 0 auto' }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--mint-deep)' }}>GymOps met mentorschap</div>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginTop: 4 }}>
+                <span style={{ fontSize: m ? 32 : 38, fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1, color: 'var(--ink)', fontVariantNumeric: 'tabular-nums' }}>{MS.voorwaarden.prijs}</span>
+                <span style={{ fontSize: 16, color: 'var(--fg3)' }}>{MS.voorwaarden.periode}</span>
+              </div>
+              <div style={{ fontSize: 12.5, color: 'var(--fg3)', marginTop: 4 }}>{MS.voorwaarden.opbouw}</div>
+            </div>
+            <div style={{ flex: 1 }}>
+              <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--fg2)', margin: 0 }}>Bart of Jeroen als mentor, die dagelijks meekijkt in jouw GymOps en stuurt op wat er echt gebeurt. Alleen 1-op-1, minimaal zes maanden, tien plekken.</p>
+              <a href={route('mentorschap.html')} className="btn-ghost" style={{ marginTop: 10, fontSize: 15 }}>meer over mentorschap<Icon data-lucide="arrow-right"></Icon></a>
+            </div>
           </div>
         </div>
       </section>
@@ -3129,6 +3147,214 @@ function PrijzenPage() { return (<React.Fragment><Nav current="prijzen.html" /><
 function KlantenPage() { return (<React.Fragment><Nav current="klanten.html" /><Klanten /><CtaFooter /></React.Fragment>); }
 function OverOnsPage() { return (<React.Fragment><Nav current="over-ons.html" /><OverOns /><CtaFooter /></React.Fragment>); }
 function PrivacyPage() { return (<React.Fragment><Nav /><Privacy /><CtaFooter noCta /></React.Fragment>); }
+
+
+/* ============================ Mentorschap ============================ */
+/* Mentorschap: een mentor die live meekijkt in jouw GymOps. Teksten in MS. */
+const MS = {
+  video: { id: 'ekUdKW3g28A', title: 'SportBazen #5 · Gevangen in je eigen onderneming. Over loslaten, prijzen verhogen en bouwen.', duur: '46 minuten' },
+  hero: {
+    eyebrow: 'Mentorschap',
+    title: 'Een mentor die niet luistert naar je verhaal, maar meekijkt in je systeem.',
+    sub: 'Elke businesscoach werkt met wat jij vertelt in een wekelijks gesprek. Jouw GymOps-mentor ziet wat er echt gebeurt: je leads, je opvolging, je verloop en je taken. Van dag tot dag.',
+    cta: 'Vraag een plek aan',
+  },
+  hoe: {
+    eyebrow: 'Hoe het werkt',
+    title: 'Sturing op wat er gebeurt, niet op wat je dacht dat er gebeurde.',
+    items: [
+      { icon: 'eye', title: 'Live meekijken in jouw GymOps', body: 'Je mentor heeft toegang tot jouw systeem. Geen export, geen rapport, maar dezelfde schermen als jij. Hij ziet welke lead bleef liggen, welk lid wegzakt en welke taak niet is opgepakt.' },
+      { icon: 'message-square-text', title: 'Gerichte feedback op wat je doet', body: 'Geen algemene adviezen uit een boek. Je hoort precies wat er deze week beter kon, waarom, en wat je morgen anders doet. Ook als je er zelf niet om vraagt.' },
+      { icon: 'trending-up', title: 'Sturing op je cijfers', body: 'Vaste momenten waarop je samen naar je leads, je verloop en je omzet per lid kijkt. Naast de cijfers van de andere gyms op GymOps, zodat je weet wat een goed cijfer is.' },
+    ],
+  },
+  waarom: {
+    eyebrow: 'Waarom wij dit doen',
+    title: 'Jeroen had zelf vier, vijf businesscoaches. Geen van hen kon in zijn systeem kijken.',
+    body: 'In de podcast SportBazen vertelt Jeroen hoe hij CrossFit Leiden van een baan die hij zelf had verzonnen naar een gezond bedrijf bracht: leren verkopen, de prijs durven vragen die het waard is, processen bouwen en uiteindelijk zelf uit de dagelijkse operatie stappen. Elke coach onderweg hielp, maar elke coach werkte met wat Jeroen vertelde. Wat hij miste, is precies wat wij nu doen: iemand die meekijkt in wat er werkelijk gebeurt.',
+    onderschrift: 'Het hele gesprek, 46 minuten. Over loslaten, prijzen verhogen en bouwen.',
+  },
+  wie: {
+    eyebrow: 'Wie je mentor is',
+    title: 'Twee gym-eigenaren die de route zelf lopen.',
+    body: 'Je mentor is Bart of Jeroen. Allebei eigenaar van een gym die volledig op GymOps draait, allebei met dezelfde cijfers op het scherm als jij. Wat ze zien in jouw systeem, hebben ze zelf ook gezien.',
+  },
+  voorwaarden: {
+    eyebrow: 'Voorwaarden',
+    title: 'Eén prijs, één afspraak, tien plekken.',
+    prijs: '€ 1.050',
+    periode: '/ maand',
+    opbouw: 'GymOps € 450 + mentorschap € 600, excl. btw.',
+    punten: [
+      'Alleen in combinatie met GymOps. Zonder systeem valt er niets mee te kijken.',
+      'Altijd 1-op-1. Geen groepscalls, geen cursus.',
+      'Minimaal zes maanden. Korter heeft geen zin, gedrag verandert niet in een maand.',
+      'Tien plekken. Meer kunnen wij niet dagelijks bijhouden, en dat is precies het punt.',
+    ],
+    cta: 'Vraag een plek aan',
+    voet: 'Na je aanvraag plannen we een gesprek van 30 minuten. Daarin kijken we of het past, voor jou en voor ons.',
+  },
+  teaser: {
+    pill: 'Nieuw · 10 plekken',
+    title: 'Wil je iemand die dagelijks meekijkt in jouw systeem?',
+    body: 'Met mentorschap krijg je Bart of Jeroen als mentor. Niet op basis van wat jij vertelt, maar op basis van wat jouw GymOps laat zien. 1-op-1, minimaal zes maanden.',
+    link: 'meer over mentorschap',
+  },
+};
+
+function VideoFrame({ id, title }) {
+  return (
+    <div style={{ position: 'relative', paddingTop: '56.25%', borderRadius: 20, overflow: 'hidden', background: '#000', boxShadow: 'var(--shadow-lg)' }}>
+      <iframe src={'https://www.youtube-nocookie.com/embed/' + id + '?rel=0'} title={title} loading="lazy"
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0 }}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+    </div>
+  );
+}
+
+function Mentorschap() {
+  useReveal();
+  useLucide();
+  const m = useIsMobile();
+  const founders = GOP.overons.founders;
+  return (
+    <React.Fragment>
+      <PageHero eyebrow={MS.hero.eyebrow} title={MS.hero.title} sub={MS.hero.sub} cta={{ primary: MS.hero.cta }} />
+
+      {/* Hoe het werkt */}
+      <section className="section">
+        <div className="wrap">
+          <SectionHead eyebrow={MS.hoe.eyebrow} title={MS.hoe.title} max={760} />
+          <div data-reveal-stagger style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : 'repeat(3, 1fr)', gap: m ? 14 : 20, marginTop: m ? 30 : 48 }}>
+            {MS.hoe.items.map((it, i) => (
+              <div key={i} className="card" style={{ padding: m ? 22 : 28, transitionDelay: (i * 0.08) + 's' }}>
+                <div className="icon-chip"><Icon data-lucide={it.icon} style={{ width: 22, height: 22, color: 'var(--mint-deep)' }}></Icon></div>
+                <h3 style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-.02em', lineHeight: 1.25, color: 'var(--ink)', marginTop: 18 }}>{it.title}</h3>
+                <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--fg3)', marginTop: 10 }}>{it.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Waarom, met de podcast */}
+      <section className="section section-soft">
+        <div className="wrap">
+          <div style={{ display: 'flex', flexDirection: m ? 'column' : 'row', gap: m ? 28 : 64, alignItems: 'center' }}>
+            <div data-reveal style={{ flex: 1, minWidth: 0 }}>
+              <div className="eyebrow" style={{ marginBottom: 16 }}>{MS.waarom.eyebrow}</div>
+              <h2 style={{ fontSize: 'clamp(26px,3.2vw,40px)', fontWeight: 800, letterSpacing: '-.025em', color: 'var(--ink)' }}>{MS.waarom.title}</h2>
+              <p style={{ fontSize: 16, lineHeight: 1.65, color: 'var(--fg2)', marginTop: 18 }}>{MS.waarom.body}</p>
+            </div>
+            <div data-reveal style={{ flex: 1.15, minWidth: 0, width: '100%' }}>
+              <VideoFrame id={MS.video.id} title={MS.video.title} />
+              <p style={{ fontSize: 13.5, color: 'var(--fg3)', marginTop: 12, textAlign: 'center' }}>{MS.waarom.onderschrift}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Wie je mentor is */}
+      <section className="section">
+        <div className="wrap">
+          <SectionHead eyebrow={MS.wie.eyebrow} title={MS.wie.title} sub={MS.wie.body} max={720} />
+          <div data-reveal-stagger style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : '1fr 1fr', gap: m ? 14 : 20, marginTop: m ? 30 : 48, maxWidth: 900, marginLeft: 'auto', marginRight: 'auto' }}>
+            {founders.map((f, i) => (
+              <div key={i} className="card" style={{ overflow: 'hidden', display: 'flex', alignItems: 'center', gap: 18, padding: 18, transitionDelay: (i * 0.08) + 's' }}>
+                <img src={GO.A + f.photo} alt={f.name} style={{ width: 92, height: 92, borderRadius: 18, objectFit: 'cover', flexShrink: 0 }} />
+                <div>
+                  <div style={{ fontSize: 19, fontWeight: 800, letterSpacing: '-.02em', color: 'var(--ink)' }}>{f.name}</div>
+                  <div style={{ fontSize: 13.5, color: 'var(--fg3)', marginTop: 3 }}>{f.role}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Voorwaarden en prijs */}
+      <section className="section section-soft">
+        <div className="wrap" style={{ maxWidth: 820 }}>
+          <SectionHead eyebrow={MS.voorwaarden.eyebrow} title={MS.voorwaarden.title} max={640} />
+          <div data-reveal className="card" style={{ marginTop: m ? 30 : 44, padding: m ? '28px 22px' : '40px 44px', border: '2px solid var(--mint)' }}>
+            <div style={{ display: 'flex', flexDirection: m ? 'column' : 'row', gap: m ? 22 : 44, alignItems: m ? 'stretch' : 'flex-start' }}>
+              <div style={{ flex: '0 0 auto' }}>
+                <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--mint-deep)' }}>GymOps met mentorschap</div>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginTop: 8 }}>
+                  <span style={{ fontSize: 48, fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1, color: 'var(--ink)', fontVariantNumeric: 'tabular-nums' }}>{MS.voorwaarden.prijs}</span>
+                  <span style={{ fontSize: 18, color: 'var(--fg3)' }}>{MS.voorwaarden.periode}</span>
+                </div>
+                <div style={{ fontSize: 13.5, color: 'var(--fg3)', marginTop: 8 }}>{MS.voorwaarden.opbouw}</div>
+              </div>
+              <ul style={{ listStyle: 'none', margin: 0, padding: m ? '22px 0 0' : '0 0 0 44px', borderTop: m ? '1px solid var(--border)' : 0, borderLeft: m ? 0 : '1px solid var(--border)', display: 'flex', flexDirection: 'column', gap: 12, flex: 1 }}>
+                {MS.voorwaarden.punten.map((p, i) => (
+                  <li key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontSize: 15, lineHeight: 1.55, color: 'var(--fg2)' }}>
+                    <Icon data-lucide="check" style={{ width: 18, height: 18, color: 'var(--mint)', flexShrink: 0, marginTop: 3 }}></Icon>{p}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div style={{ marginTop: 28, paddingTop: 24, borderTop: '1px solid var(--border)', display: 'flex', flexDirection: m ? 'column' : 'row', gap: 16, alignItems: m ? 'stretch' : 'center', justifyContent: 'space-between' }}>
+              <p style={{ fontSize: 14, lineHeight: 1.55, color: 'var(--fg3)', maxWidth: 460, margin: 0 }}>{MS.voorwaarden.voet}</p>
+              <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-primary" style={{ justifyContent: 'center' }}>{MS.voorwaarden.cta}<Icon data-lucide="arrow-right"></Icon></a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </React.Fragment>
+  );
+}
+
+function MentorschapPage() { return (<React.Fragment><Nav current="mentorschap.html" /><Mentorschap /><CtaFooter noCta /></React.Fragment>); }
+
+/* Kort blok op de homepage: verwijst naar de mentorschap-pagina. */
+function MentorTeaser() {
+  useReveal();
+  useLucide();
+  const m = useIsMobile();
+  const T = MS.teaser;
+  const founders = GOP.overons.founders;
+  const lnk = (h) => route(h);
+  return (
+    <section className="section" style={{ background: '#fff', padding: m ? '48px 0' : '80px 0' }}>
+      <div className="wrap">
+        <div data-reveal className="card" style={{ maxWidth: 960, margin: '0 auto', padding: m ? '26px 22px' : '36px 40px', border: '2px solid var(--mint)', display: 'flex', flexDirection: m ? 'column' : 'row', gap: m ? 22 : 40, alignItems: 'center' }}>
+          <div style={{ display: 'flex', flexShrink: 0 }}>
+            {founders.map((f, i) => (
+              <img key={i} src={GO.A + f.photo} alt={f.name} style={{ width: m ? 72 : 96, height: m ? 72 : 96, borderRadius: 999, objectFit: 'cover', border: '3px solid #fff', boxShadow: 'var(--shadow-card)', marginLeft: i ? -18 : 0, position: 'relative', zIndex: 2 - i }} />
+            ))}
+          </div>
+          <div style={{ flex: 1 }}>
+            <span style={{ display: 'inline-block', fontSize: 11.5, fontWeight: 800, letterSpacing: '.06em', textTransform: 'uppercase', background: 'var(--mint-tint)', color: 'var(--mint-deep)', padding: '5px 12px', borderRadius: 999 }}>{T.pill}</span>
+            <h3 style={{ fontSize: m ? 22 : 26, fontWeight: 800, letterSpacing: '-.025em', lineHeight: 1.2, color: 'var(--ink)', marginTop: 12 }}>{T.title}</h3>
+            <p style={{ fontSize: 15.5, lineHeight: 1.6, color: 'var(--fg2)', marginTop: 10 }}>{T.body}</p>
+            <a href={lnk('mentorschap.html')} className="btn-ghost" style={{ marginTop: 14 }}>{T.link}<Icon data-lucide="arrow-right"></Icon></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* Kort blok op de leadopvolgingspagina: elke lead begint bij je website. */
+function WebsiteTeaser() {
+  useReveal();
+  useLucide();
+  const m = useIsMobile();
+  const lnk = (h) => route(h);
+  return (
+    <section className="section section-soft" style={{ padding: m ? '48px 0' : '80px 0' }}>
+      <div className="wrap">
+        <div data-reveal style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
+          <div className="eyebrow" style={{ marginBottom: 16 }}>Het begint bij je website</div>
+          <h2 style={{ fontSize: 'clamp(26px,3.2vw,40px)', fontWeight: 800, letterSpacing: '-.025em', color: 'var(--ink)' }}>Opvolging werkt pas als er iets binnenkomt.</h2>
+          <p style={{ fontSize: m ? 16 : 18, lineHeight: 1.6, color: 'var(--fg3)', marginTop: 16 }}>Elke lead in GymOps begint op je website: gevonden in Google en AI, een formulier dat direct in je systeem landt, en eventpagina's met betaling en berichtenflow erbij. Wij bouwen die site op maat, als onderdeel van GymOps.</p>
+          <a href={lnk('website.html')} className="btn btn-primary" style={{ marginTop: 26 }}>meer over je website<Icon data-lucide="arrow-right"></Icon></a>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 /* ============================ HomeNieuw ============================ */
 /* Voorbeeld van de homepage in de nieuwe insteek. Staat op /home-nieuw met
@@ -3898,6 +4124,7 @@ function HomeNieuwPage() {
       <DrieVragen />
       <ZoWerktHet />
       <NietDownloaden />
+      <MentorTeaser />
       <KlantLogos />
       <RoutekaartCta />
       <CtaFooter noCta />
@@ -3906,4 +4133,4 @@ function HomeNieuwPage() {
 }
 
 
-export { Home, LeadopvolgingPage, LedenervaringPage, TeamAansturingPage, WebsitePage, PrijzenPage, KlantenPage, OverOnsPage, PrivacyPage, HomeNieuwPage };
+export { Home, LeadopvolgingPage, LedenervaringPage, TeamAansturingPage, WebsitePage, PrijzenPage, KlantenPage, OverOnsPage, PrivacyPage, HomeNieuwPage, MentorschapPage };
