@@ -8,6 +8,7 @@
 import React from 'react';
 import { icons } from 'lucide-react';
 import { GO, GOP } from '@/lib/site-data';
+import PodcastFragment from '@/components/PodcastFragment';
 
 const { useState, useEffect, useRef, useMemo, useCallback, useLayoutEffect } = React;
 
@@ -3346,6 +3347,8 @@ const HN = {
   hero: {
     eyebrow: 'Voor gym-eigenaren in Nederland en België',
     headline: ['Een gym die draait.', 'Ook zonder jou.'],
+    sub: 'GymOps is de software die aanvragen opvolgt, signaleert welke leden aandacht nodig hebben en taken klaarzet voor je coaches.',
+    support: 'Gekoppeld aan SportBit, met inrichting en begeleiding door twee gym-eigenaren.',
     primary: 'Plan een demo',
   },
   opening: {
@@ -3495,6 +3498,10 @@ function HeroNieuw() {
       <div className="wrap" style={{ position: 'relative', paddingTop: m ? 44 : 92, paddingBottom: m ? 48 : 104, textAlign: 'center' }}>
         <div className="eyebrow eyebrow-dark" data-reveal style={{ marginBottom: m ? 16 : 22 }}>{h.eyebrow}</div>
         <SplitHeadline lines={h.headline} style={{ fontSize: 'clamp(38px, 8vw, 78px)', fontWeight: 800, letterSpacing: '-.04em', lineHeight: 1.02, color: '#fff', maxWidth: 940, margin: '0 auto' }} />
+        <div data-reveal style={{ maxWidth: 690, margin: m ? '22px auto 0' : '28px auto 0', transitionDelay: '.2s' }}>
+          <p style={{ fontSize: m ? 17 : 20, lineHeight: 1.55, color: 'rgba(255,255,255,.92)' }}>{h.sub}</p>
+          <p style={{ fontSize: m ? 14 : 16, lineHeight: 1.55, color: 'rgba(255,255,255,.78)', marginTop: 12 }}>{h.support}</p>
+        </div>
         <div data-reveal style={{ display: 'flex', flexWrap: 'wrap', gap: 14, marginTop: m ? 28 : 38, justifyContent: 'center', transitionDelay: '.3s' }}>
           <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-primary">{h.primary}<Icon data-lucide="arrow-right"></Icon></a>
         </div>
@@ -4191,6 +4198,7 @@ function HomeNieuwPage() {
       <Nav />
       <HeroNieuw />
       <Opening />
+      <PodcastFragment />
       <Oprichters />
       <DrieVragen />
       <ZoWerktHet />

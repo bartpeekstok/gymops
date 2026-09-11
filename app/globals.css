@@ -534,3 +534,21 @@ details[open] .faq-chev { transform: rotate(180deg); }
 @media (prefers-reduced-motion: reduce) {
   .lockscene-inner > .wrap { transform: none !important; }
 }
+
+/* Kort praktijkverhaal uit de bestaande SportBazen-aflevering. */
+.podcast-proof { background: #fff; }
+.podcast-proof-layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 64px; align-items: center; max-width: 920px; margin: 0 auto; }
+.podcast-proof h2 { margin-top: 18px; font-size: clamp(30px, 3.2vw, 42px); line-height: 1.12; letter-spacing: -.03em; }
+.podcast-proof-intro { margin-top: 20px; font-size: 18px; line-height: 1.65; color: var(--fg2); }
+.podcast-proof-bridge { margin-top: 14px; font-size: 16px; line-height: 1.65; color: var(--fg2); }
+.podcast-proof-meta { margin-top: 22px; font-size: 13px; line-height: 1.6; color: var(--fg3); }
+.podcast-proof .btn-ghost { margin-top: 18px; font-size: 15px; }
+.podcast-proof-media { margin: 0; width: 100%; }
+.podcast-proof-media video { display: block; width: 100%; aspect-ratio: 9 / 16; background: var(--ink); border-radius: 18px; box-shadow: var(--shadow-md); }
+.podcast-proof-media figcaption { margin-top: 12px; text-align: center; color: var(--fg3); font-size: 12.5px; }
+@media (max-width: 767px) {
+  .podcast-proof-layout { grid-template-columns: 1fr; gap: 28px; }
+  .podcast-proof-intro { font-size: 16px; }
+  .podcast-proof-bridge { font-size: 15px; }
+  .podcast-proof-media { max-width: 260px; justify-self: center; }
+}
