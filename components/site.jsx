@@ -1717,11 +1717,11 @@ function CtaFooter({ noCta }) {
             <img src={GO.A + 'logo-wit.png'} alt="GymOps" style={{ height: 20, width: 'auto', marginBottom: 18 }} />
             <p style={{ fontSize: 14, lineHeight: 1.6, color: 'rgba(255,255,255,.55)', maxWidth: 280 }}>Het systeem waarmee je gym draait, ook zonder jou. Leads, leden en ex-leden op één plek, gebouwd door twee gym-eigenaren die het zelf doen.</p>
           </div>
-          {[['Product', ['Leadopvolging', 'Ledenbehoud', 'Website', 'Prijzen']], ['Bedrijf', ['Over ons', 'Klanten', 'Demo plannen', 'Contact']], ['Volg ons', ['Instagram', 'Facebook']]].map(([h, items]) => (
+          {[['Product', ['Leadopvolging', 'Ledenbehoud', 'Website', 'Prijzen']], ['Bedrijf', ['Over ons', 'Mentorschap', 'Demo plannen', 'Contact']], ['Volg ons', ['Instagram', 'Facebook']]].map(([h, items]) => (
             <div key={h}>
               <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '.05em', textTransform: 'uppercase', color: 'rgba(255,255,255,.45)', marginBottom: 16 }}>{h}</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
-                {items.map(it => { if (it === 'Demo plannen') return <a key={it} href={BOOKING_URL} onClick={openLeadFormClick} style={{ fontSize: 14.5, color: 'rgba(255,255,255,.75)' }}>{it}</a>; const h = lnk(({ 'Prijzen': 'prijzen.html', 'Over ons': 'over-ons.html', 'Klanten': 'klanten.html', 'Leadopvolging': 'leadopvolging.html', 'Ledenbehoud': 'ledenbehoud.html', 'Website': 'website.html', 'Contact': 'https://wa.me/31722340231', 'Instagram': 'https://www.instagram.com/gymops.nl/', 'Facebook': 'https://www.facebook.com/profile.php?id=61577473601721' })[it] || '#'); const ext = h.indexOf('http') === 0; return <a key={it} href={h} {...(ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} style={{ fontSize: 14.5, color: 'rgba(255,255,255,.75)' }}>{it}</a>; })}
+                {items.map(it => { if (it === 'Demo plannen') return <a key={it} href={BOOKING_URL} onClick={openLeadFormClick} style={{ fontSize: 14.5, color: 'rgba(255,255,255,.75)' }}>{it}</a>; const h = lnk(({ 'Prijzen': 'prijzen.html', 'Over ons': 'over-ons.html', 'Mentorschap': 'mentorschap.html', 'Leadopvolging': 'leadopvolging.html', 'Ledenbehoud': 'ledenbehoud.html', 'Website': 'website.html', 'Contact': 'https://wa.me/31722340231', 'Instagram': 'https://www.instagram.com/gymops.nl/', 'Facebook': 'https://www.facebook.com/profile.php?id=61577473601721' })[it] || '#'); const ext = h.indexOf('http') === 0; return <a key={it} href={h} {...(ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})} style={{ fontSize: 14.5, color: 'rgba(255,255,255,.75)' }}>{it}</a>; })}
               </div>
             </div>
           ))}
