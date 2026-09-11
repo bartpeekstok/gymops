@@ -2516,7 +2516,7 @@ function Leadopvolging() {
   useLucide();
   return (
     <React.Fragment>
-      <PageHero eyebrow="GymOps Flow · Leadopvolging" title="Verander je leads" accent="in leden"
+      <PageHero eyebrow="GymOps · Leadopvolging" title="Verander je leads" accent="in leden"
         sub="Snelheid, persoonlijk contact en consistentie. Op alle kanalen waar je leads binnenkomen, en op elk moment in de reis naar abonnement."
         cta={{ primary: 'Plan een demo' }} />
 
@@ -2564,7 +2564,7 @@ function Ledenervaring() {
   useLucide();
   return (
     <React.Fragment>
-      <PageHero eyebrow="GymOps Flow · Ledenbehoud" title="Leden die zich gezien voelen," accent="blijven langer"
+      <PageHero eyebrow="GymOps · Ledenbehoud" title="Leden die zich gezien voelen," accent="blijven langer"
         sub="Automatisering doet het werk, jij maakt het persoonlijk. GymOps signaleert het juiste moment en zorgt dat niemand zich vergeten voelt, zodat leden langer bij je blijven."
         cta={{ primary: 'Plan een demo' }} />
 
@@ -2615,7 +2615,7 @@ function TeamAansturing() {
   useLucide();
   return (
     <React.Fragment>
-      <PageHero eyebrow="GymOps Flow · Team-aansturing" title="Geen taak meer" accent="vergeten"
+      <PageHero eyebrow="GymOps · Team-aansturing" title="Geen taak meer" accent="vergeten"
         sub="Elke taak gaat automatisch naar de juiste coach. Niet opgepakt blijft staan, en bij uitval neemt een collega in één klik over. Jij houdt overzicht."
         cta={{ primary: 'Plan een demo' }} />
 
@@ -2653,7 +2653,7 @@ function Website() {
   useLucide();
   return (
     <React.Fragment>
-      <PageHero eyebrow="GymOps Flow · Jouw website" title="Een website die werkt voor" accent="jouw gym"
+      <PageHero eyebrow="GymOps · Jouw website" title="Een website die werkt voor" accent="jouw gym"
         sub="Geen standaard thema, maar een site op maat die bezoekers omzet in kennismakingen. Gebouwd in dezelfde techniek als grote merken: snel, vindbaar en helemaal van jou."
         cta={{ primary: 'Plan een demo' }} />
 
@@ -3086,7 +3086,7 @@ function Home() {
       <Nav />
       <Hero />
       <PromiseCards />
-      <PinnedFeature num={1} eyebrow="GymOps Flow · Leadopvolging" title="Verander je leads in leden."
+      <PinnedFeature num={1} eyebrow="GymOps · Leadopvolging" title="Verander je leads in leden."
         items={[
           { icon: 'zap', title: 'Binnen 1 minuut reactie', body: 'Elke nieuwe lead krijgt direct een WhatsApp én e-mail. Snelheid is de grootste factor in conversie.' },
           { icon: 'inbox', title: 'Elk kanaal automatisch binnen', body: 'Website, Meta Ads, QR-code of een DM: alles komt op één plek binnen, gekoppeld aan dezelfde lead.' },
@@ -3096,7 +3096,7 @@ function Home() {
         steps={5}
         renderGraphic={(step) => <LeadFlowStage step={step} />} />
       <LedenervaringHome />
-      <PinnedFeature num={3} eyebrow="GymOps Flow · Team-aansturing" title="Je team draait, jij houdt de regie."
+      <PinnedFeature num={3} eyebrow="GymOps · Team-aansturing" title="Je team draait, jij houdt de regie."
         items={[
           { icon: 'circle-check-big', title: 'Elke taak naar de juiste coach', body: 'GymOps maakt automatisch een taak aan en wijst die toe. Geen losse WhatsApp-groepjes meer.' },
           { icon: 'clock', title: 'Niet opgepakt blijft staan', body: 'Een taak verdwijnt niet. Hij komt morgen terug tot hij is afgehandeld.' },
@@ -3105,7 +3105,7 @@ function Home() {
         link={{ label: 'meer over team-aansturing', href: 'team-aansturing.html' }}
         staticStep={0}
         renderGraphic={() => <Phone w={258} className="gfx-warm"><TaskOverviewScreen /></Phone>} />
-      <PinnedFeature soft eyebrow="GymOps Flow · Jouw website" title="Een website die werkt voor jouw gym."
+      <PinnedFeature soft eyebrow="GymOps · Jouw website" title="Een website die werkt voor jouw gym."
         items={[
           { icon: 'search', title: 'Gevonden in Google én AI', body: 'Technisch geoptimaliseerd voor zoekmachines en AI. Wie zoekt naar een gym in jouw plaats, vindt jou.' },
           { icon: 'palette', title: 'Op maat, in jouw merk', body: 'Geen standaard thema. Een site op maat in dezelfde techniek als grote merken: snel, strak en helemaal van jou.' },
