@@ -3222,9 +3222,9 @@ const HN = {
     eyebrow: 'Wat je niet kunt downloaden',
     title: ['Software kun je kopiëren.', 'De weg niet.'],
     cards: [
-      { k: 'Wij groeien zelf naar 1 miljoen', b: 'Al onze eigen gyms lopen dezelfde route. Jij krijgt hem erbij.' },
-      { k: '13 gyms als benchmark', b: 'Jouw cijfers naast die van 13 andere gyms. Je ziet wat een goed cijfer is qua leads, verloop en omzet per lid.' },
-      { k: 'Nederlands en snel', b: 'Support van gym-eigenaren, in jouw tijdzone. WhatsApp erin, geen sms. Binnen 2 weken live.' },
+      { k: 'Al onze gyms lopen dezelfde route', b: 'Wij hebben dit pad zelf gelopen, in onze eigen gyms. Dezelfde klantreis, dezelfde taken, dezelfde cijfers. Wat werkt houden we, wat niet werkt gaat eruit. Jij krijgt de route zoals hij nu is, en elke verbetering erbij.' },
+      { k: 'De data van alle aangesloten gyms', b: 'Elke gym op GymOps voegt cijfers toe: leads, verloop, omzet per lid. Daardoor zien we steeds beter wat werkt en wat niet. En jij ziet hoe jouw gym ervoor staat naast de rest.' },
+      { k: 'Nederlands en snel', b: 'Support van mensen die zelf een gym runnen en weten hoe een dinsdagavond eruitziet. In jouw tijdzone, WhatsApp erin, geen sms. Binnen twee weken live.' },
     ],
     mentor: { pill: 'Vanaf nu voor iedereen', lead: '1-op-1 mentorschap erbij.', body: 'Een mentor die élke dag meekijkt in jouw eigen systeem: je leden, je in- en uitstroom, je cijfers. Alleen 1-op-1 en minimaal zes maanden, dus een beperkt aantal plekken.' },
   },
@@ -3363,6 +3363,50 @@ function DrieVragen() {
         <div data-reveal style={{ maxWidth: 680, margin: (m ? 36 : 52) + 'px auto 0', textAlign: 'center' }}>
           <p style={{ fontSize: m ? 22 : 26, fontWeight: 800, letterSpacing: '-.025em', lineHeight: 1.2, color: 'var(--ink)' }}>{V.meerDanGeld.kop}</p>
           <p style={{ fontSize: m ? 16 : 18, lineHeight: 1.65, color: 'var(--fg2)', marginTop: 14 }}>{V.meerDanGeld.tekst}</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* Zo werkt het: de drie dingen waar het om draait. */
+const HN_WERKT = {
+  eyebrow: 'Zo werkt het in de praktijk',
+  title: 'Een gezonde gym draaien hoeft niet moeilijk te zijn.',
+  sub: 'Het draait om drie dingen. Niet meer, niet minder.',
+  items: [
+    { icon: 'zap', tag: 'Leads', title: 'Zorg dat je leads binnenkomen, en volg ze op tot ze lid zijn.', body: 'Elke aanvraag krijgt binnen een minuut een reactie en een taak bij een coach. Niet één keer, maar tot er antwoord is.', link: { label: 'meer over leadopvolging', href: 'leadopvolging.html' } },
+    { icon: 'heart', tag: 'Leden', title: 'Zorg dat je leden lang lid blijven.', body: 'Een klantreis van de eerste week tot het tweede jaar: aandacht op het juiste moment, en een taak zodra iemand wegzakt.', link: { label: 'meer over ledenbehoud', href: 'ledenbehoud.html' } },
+    { icon: 'rotate-ccw', tag: 'Ex-leden', title: 'Haal je ex-leden terug.', body: 'Een warm afscheid, in beeld blijven, en op het juiste moment een persoonlijk berichtje. De warmste leads die er zijn.', link: { label: 'meer over ledenbehoud', href: 'ledenbehoud.html' } },
+  ],
+};
+
+function ZoWerktHet() {
+  useReveal();
+  useLucide();
+  const m = useIsMobile();
+  const W = HN_WERKT;
+  const lnk = (h) => route(h);
+  return (
+    <section className="section section-soft" style={{ padding: m ? '54px 0' : '96px 0' }}>
+      <div className="wrap">
+        <div data-reveal style={{ textAlign: 'center', maxWidth: 780, margin: '0 auto' }}>
+          <div className="eyebrow" style={{ marginBottom: 18 }}>{W.eyebrow}</div>
+          <h2 style={{ fontSize: 'clamp(30px,4.4vw,54px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.04, color: 'var(--ink)' }}>{W.title}</h2>
+          <p style={{ fontSize: m ? 16 : 18, lineHeight: 1.6, color: 'var(--fg3)', maxWidth: 560, margin: '18px auto 0' }}>{W.sub}</p>
+        </div>
+        <div data-reveal-stagger style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : 'repeat(3, 1fr)', gap: m ? 14 : 20, marginTop: m ? 34 : 52 }}>
+          {W.items.map((it, i) => (
+            <div key={i} className="card" style={{ padding: m ? 22 : 28, display: 'flex', flexDirection: 'column', transitionDelay: (i * 0.08) + 's' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <div className="icon-chip" style={{ width: 38, height: 38, borderRadius: 11 }}><Icon data-lucide={it.icon} style={{ width: 18, height: 18, color: 'var(--mint-deep)' }}></Icon></div>
+                <div className="eyebrow" style={{ fontSize: 12.5 }}>{it.tag}</div>
+              </div>
+              <h3 style={{ fontSize: 21, fontWeight: 800, letterSpacing: '-.02em', lineHeight: 1.25, color: 'var(--ink)', marginTop: 16 }}>{it.title}</h3>
+              <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--fg3)', marginTop: 10, flex: 1 }}>{it.body}</p>
+              <a href={lnk(it.link.href)} className="btn-ghost" style={{ fontSize: 15, marginTop: 18 }}>{it.link.label}<Icon data-lucide="arrow-right"></Icon></a>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -3684,7 +3728,7 @@ function KlantLogos() {
         </div>
         <div data-reveal-stagger style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: m ? 10 : 14, marginTop: m ? 26 : 40, maxWidth: 1000, marginLeft: 'auto', marginRight: 'auto' }}>
           {logos.map((l, i) => (
-            <div key={i} title={l.name} style={{ width: m ? 'calc(50% - 5px)' : 176, height: m ? 84 : 96, borderRadius: 16, background: '#fff', border: '1px solid var(--border)', boxShadow: 'var(--shadow-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: m ? '14px 18px' : '18px 24px', transitionDelay: (i * 0.04) + 's' }}>
+            <div key={i} title={l.name} style={{ width: m ? 'calc(50% - 5px)' : 176, height: m ? 84 : 96, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: m ? '14px 18px' : '18px 24px', transitionDelay: (i * 0.04) + 's' }}>
               <img src={GO.A + l.src} alt={l.name} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', display: 'block', transform: l.scale ? `scale(${l.scale})` : undefined }} />
             </div>
           ))}
@@ -3738,10 +3782,6 @@ function NietDownloaden() {
               <p style={{ fontSize: 17, lineHeight: 1.5, color: 'var(--fg1)', fontWeight: 500, marginTop: 12 }}>{c.b}</p>
             </div>
           ))}
-        </div>
-        <div data-reveal style={{ marginTop: 20, padding: m ? '20px 20px' : '26px 30px', borderRadius: 20, background: '#fff', border: '1.5px solid var(--mint)', boxShadow: 'var(--shadow-mint)' }}>
-          <span style={{ display: 'inline-block', fontSize: 11.5, fontWeight: 800, letterSpacing: '.06em', textTransform: 'uppercase', background: 'var(--mint-deep)', color: '#fff', padding: '5px 12px', borderRadius: 999 }}>{D.mentor.pill}</span>
-          <p style={{ fontSize: m ? 16 : 18, lineHeight: 1.6, color: 'var(--fg2)', marginTop: 12 }}><strong style={{ color: 'var(--mint-deep)', fontWeight: 800 }}>{D.mentor.lead}</strong> {D.mentor.body}</p>
         </div>
       </div>
     </section>
@@ -3856,14 +3896,9 @@ function HomeNieuwPage() {
       <Opening />
       <Oprichters />
       <DrieVragen />
-      <LisaIntro />
-      <LisaLead />
-      <LisaTijdlijn />
-      <LisaCirkel />
-      <LisaSlot />
+      <ZoWerktHet />
       <NietDownloaden />
       <KlantLogos />
-      <Testimonials />
       <EenSysteem />
       <RoutekaartCta />
       <CtaFooter noCta />
