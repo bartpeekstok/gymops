@@ -2596,6 +2596,8 @@ function Ledenervaring() {
         body={'Tevreden leden willen vaak best een review achterlaten, maar denken er zelf niet aan. GymOps vraagt het automatisch op piekmomenten: na een mijlpaal, na een PR, na een goede les. De meeste GymOps gyms staan al op 250+ reviews.'}
         visual={<ReviewMock />} />
 
+      <LisaCirkel />
+
       <MiniGrid eyebrow="En verder" title="Alles voor ledenbehoud, geregeld." items={[
         { icon: 'sparkles', title: 'Welkomstflow voor nieuwe leden', body: 'De eerste weken zijn cruciaal. GymOps stuurt berichten op de juiste momenten en zet taken klaar voor je coach.' },
         { icon: 'mail', title: 'Branded, geen leverancier-template', body: 'Mails, kaarten en agenda-uitnodigingen komen uit jouw gym, niet uit een GymOps-template.' },
@@ -3120,7 +3122,7 @@ function Home() {
 }
 
 function LeadopvolgingPage() { return (<React.Fragment><Nav current="leadopvolging.html" /><Leadopvolging /><CtaFooter /></React.Fragment>); }
-function LedenervaringPage() { return (<React.Fragment><Nav current="ledenbehoud.html" /><Ledenervaring /><LisaCirkel /><CtaFooter /></React.Fragment>); }
+function LedenervaringPage() { return (<React.Fragment><Nav current="ledenbehoud.html" /><Ledenervaring /><CtaFooter /></React.Fragment>); }
 function TeamAansturingPage() { return (<React.Fragment><Nav current="team-aansturing.html" /><TeamAansturing /><CtaFooter /></React.Fragment>); }
 function WebsitePage() { return (<React.Fragment><Nav current="website.html" /><Website /><CtaFooter /></React.Fragment>); }
 function PrijzenPage() { return (<React.Fragment><Nav current="prijzen.html" /><Prijzen /><CtaFooter /></React.Fragment>); }
