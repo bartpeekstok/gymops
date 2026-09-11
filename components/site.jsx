@@ -3359,7 +3359,7 @@ const HN = {
     standaardBedrag: 100,
     maanden: 24,
     items: [
-      { tag: 'De lead', icon: 'zap', q: 'Hoeveel aanvragen bleven er vorig jaar liggen?', body: 'Tussen een paar facturen in je inbox, een opzegging en een PostNL-melding. Je dacht: doe ik vanavond. Maar toen stond je weer op de vloer.', factor: 12, foot: '2 gemiste leads per maand, we tellen er maar één.' },
+      { tag: 'De lead', icon: 'zap', q: 'Hoeveel aanvragen bleven er vorig jaar liggen?', body: 'Tussen een paar facturen in je inbox, een opzegging en een PostNL-melding. Je dacht: doe ik vanavond. Maar toen stond je weer op de vloer.', factor: 12, foot: '2 gemiste leads per maand, waarvan er één lid wordt.' },
       { tag: 'Het lid', icon: 'heart', q: 'Hoeveel leden zijn er aan het wegzakken?', body: 'Drie keer per week, dan één keer, dan af en toe, dan opgezegd. Iedereen had het kunnen zien. Niemand kreeg het te horen.', factor: 6, foot: '1 gered lid per maand, eerlijk gerekend met de halve rit.' },
       { tag: 'Het ex-lid', icon: 'rotate-ccw', q: 'De warmste leads die er zijn.', body: 'De goedkoopste leden die je ooit krijgt. Ze kennen je gym, je coaches, je cultuur. Er hoeft alleen iemand te zeggen: we missen je.', factor: 12, foot: '1 terugkeerder per maand.' },
     ],
@@ -3535,7 +3535,7 @@ const KS = {
   title: 'Reken eerst uit wat niets doen kost.',
   sub: 'Dezelfde drie posten als op de homepage, voorzichtig geteld. Vul in wat een lid bij jou per maand betaalt.',
   regels: [
-    { label: 'Aanvragen die blijven liggen', sub: '2 gemiste leads per maand, we tellen er 1', factor: 12 },
+    { label: 'Aanvragen die blijven liggen', sub: '2 gemiste leads per maand, waarvan er één lid wordt', factor: 12 },
     { label: 'Leden die wegzakken zonder dat iemand belt', sub: '1 gered lid per maand, met de halve rit gerekend', factor: 6 },
     { label: 'Ex-leden die niemand terugvraagt', sub: '1 terugkeerder per maand', factor: 12 },
   ],
