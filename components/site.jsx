@@ -3138,7 +3138,6 @@ const HN = {
   hero: {
     eyebrow: 'Voor gym-eigenaren in Nederland en België',
     headline: ['Een gym die draait.', 'Ook zonder jou.'],
-    accent: 'Een gym die levens verandert. Ook dat van jou.',
     primary: 'Plan een demo',
   },
   opening: {
@@ -3271,7 +3270,6 @@ function HeroNieuw() {
       <div className="wrap" style={{ position: 'relative', paddingTop: m ? 44 : 92, paddingBottom: m ? 48 : 104, textAlign: 'center' }}>
         <div className="eyebrow eyebrow-dark" data-reveal style={{ marginBottom: m ? 16 : 22 }}>{h.eyebrow}</div>
         <SplitHeadline lines={h.headline} style={{ fontSize: 'clamp(38px, 8vw, 78px)', fontWeight: 800, letterSpacing: '-.04em', lineHeight: 1.02, color: '#fff', maxWidth: 940, margin: '0 auto' }} />
-        <div data-reveal style={{ fontSize: 'clamp(19px, 2.6vw, 27px)', fontWeight: 700, letterSpacing: '-.02em', lineHeight: 1.3, color: 'var(--mint-light)', maxWidth: 720, margin: (m ? 18 : 24) + 'px auto 0', transitionDelay: '.2s' }}>{h.accent}</div>
         <div data-reveal style={{ display: 'flex', flexWrap: 'wrap', gap: 14, marginTop: m ? 28 : 38, justifyContent: 'center', transitionDelay: '.3s' }}>
           <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-primary">{h.primary}<Icon data-lucide="arrow-right"></Icon></a>
         </div>
