@@ -1715,7 +1715,7 @@ function CtaFooter({ noCta }) {
         <div className="wrap" style={{ display: 'grid', gridTemplateColumns: m ? '1fr 1fr' : '1.4fr 1fr 1fr 1fr', gap: m ? 30 : 40 }}>
           <div style={{ gridColumn: m ? '1 / -1' : 'auto' }}>
             <img src={GO.A + 'logo-wit.png'} alt="GymOps" style={{ height: 20, width: 'auto', marginBottom: 18 }} />
-            <p style={{ fontSize: 14, lineHeight: 1.6, color: 'rgba(255,255,255,.55)', maxWidth: 280 }}>Het alles-in-één systeem voor leadopvolging, ledenbehoud en team-aansturing. Gebouwd voor en door gym-owners.</p>
+            <p style={{ fontSize: 14, lineHeight: 1.6, color: 'rgba(255,255,255,.55)', maxWidth: 280 }}>Het systeem waarmee je gym draait, ook zonder jou. Leads, leden en ex-leden op één plek, gebouwd door twee gym-eigenaren die het zelf doen.</p>
           </div>
           {[['Product', ['Leadopvolging', 'Ledenbehoud', 'Website', 'Prijzen']], ['Bedrijf', ['Over ons', 'Klanten', 'Demo plannen', 'Contact']], ['Volg ons', ['Instagram', 'Facebook']]].map(([h, items]) => (
             <div key={h}>
