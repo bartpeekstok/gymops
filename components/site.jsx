@@ -3899,7 +3899,6 @@ function HomeNieuwPage() {
       <ZoWerktHet />
       <NietDownloaden />
       <KlantLogos />
-      <EenSysteem />
       <RoutekaartCta />
       <CtaFooter noCta />
     </React.Fragment>
