@@ -3155,8 +3155,8 @@ const MS = {
   video: { id: 'ekUdKW3g28A', title: 'SportBazen #5 · Gevangen in je eigen onderneming. Over loslaten, prijzen verhogen en bouwen.', duur: '46 minuten' },
   hero: {
     eyebrow: 'Mentorschap',
-    title: 'Een mentor die niet luistert naar je verhaal, maar meekijkt in je systeem.',
-    sub: 'Elke businesscoach werkt met wat jij vertelt in een wekelijks gesprek. Jouw GymOps-mentor ziet wat er echt gebeurt: je leads, je opvolging, je verloop en je taken. Van dag tot dag.',
+    title: 'Bart en Jeroen kijken mee in jouw systeem. En sturen bij.',
+    sub: 'Elke businesscoach werkt met wat jij vertelt in een wekelijks gesprek. Jouw mentor ziet wat er echt gebeurt in jouw GymOps: je leads, je opvolging, je verloop en je taken. Van dag tot dag.',
     cta: 'Vraag een plek aan',
   },
   hoe: {
