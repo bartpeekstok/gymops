@@ -3229,7 +3229,7 @@ const HN = {
     title: 'Niet bedacht op een kantoor. Gebouwd op de vloer.',
     people: [
       { photo: 'jeroen-van-duijn.webp', name: 'Jeroen van Duijn', role: 'Eigenaar CrossFit Leiden', tekst: 'Sinds 2016 eigenaar, en jarenlang alles zelf gedaan: coaches aansturen via WhatsApp, leads opvolgen tussen de trainingen door. Wilde een systeem dat ook werkt als hij zelf op de vloer staat.' },
-      { photo: 'bart-peekstok.webp', name: 'Bart Peekstok', role: 'Eigenaar CrossFit Alkmaar', tekst: 'Al ruim twaalf jaar eigenaar. Probeerde Nederlandse en Amerikaanse CRM-systemen, geen één was gemaakt voor een coaching gym. Persoonlijk contact is zijn ding, het systeem zorgt dat niemand wordt vergeten.' },
+      { photo: 'bart-peekstok.webp', name: 'Bart Peekstok', role: 'Eigenaar CrossFit Alkmaar', tekst: 'Al ruim twaalf jaar eigenaar. Probeerde Nederlandse en Amerikaanse CRM-systemen, geen één was gemaakt voor een coaching gym. Het contact met onze leden is nog steeds echt en oprecht, GymOps zorgt ervoor dat het niet wordt vergeten.' },
     ],
     link: { label: 'lees ons hele verhaal', href: 'over-ons.html' },
   },
