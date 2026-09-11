@@ -7,7 +7,8 @@ De gebruiker wil de conversieaanpassingen stap voor stap beoordelen en eerst aan
 - Uitgangspunt: `df6a480` op `origin/main`, inclusief Barts nieuwe Willemsoord-logo.
 - Afzonderlijk Vercel-project: `gymops/gymops-conversie-preview`.
 - Deze werkmap is niet gekoppeld aan het live Vercel-project of domein.
-- Deploy dit project uitsluitend als preview: `vercel deploy --target preview --yes --scope gymops`.
+- Deploy dit project uitsluitend als preview: `vercel deploy --target preview --yes --scope gymops --archive=tgz --local-config .vercel/review.json`.
+- `.vercel/review.json` voegt `X-Robots-Tag: noindex, nofollow` toe. De deelbare link staat lokaal in `.vercel/review-access.json` en heeft een geldigheid van 30 dagen vanaf 11 september 2026.
 - Geen merge naar main, productiepromotie, domeinwijziging of bericht aan Bart zonder gebruikersinstructie.
 
 ## Eerste versie ter beoordeling
