@@ -3137,7 +3137,8 @@ const MS = {
   video: { id: 'ekUdKW3g28A', title: 'SportBazen #5 · Gevangen in je eigen onderneming. Over loslaten, prijzen verhogen en bouwen.', duur: '46 minuten' },
   hero: {
     eyebrow: 'Mentorschap',
-    title: 'Bart en Jeroen kijken mee in jouw systeem. En sturen bij.',
+    title: 'Een systeem dat voor je werkt,',
+    accent: 'met een mentor die met jou werkt',
     sub: 'Elke businesscoach werkt met wat jij vertelt in een wekelijks gesprek. Jouw mentor ziet wat er echt gebeurt in jouw GymOps: je leads, je opvolging, je verloop en je taken. Van dag tot dag.',
     cta: 'Vraag een plek aan',
   },
@@ -3201,7 +3202,7 @@ function Mentorschap() {
   const founders = [...GOP.overons.founders].reverse();
   return (
     <React.Fragment>
-      <PageHero eyebrow={MS.hero.eyebrow} title={MS.hero.title} sub={MS.hero.sub} cta={{ primary: MS.hero.cta }} />
+      <PageHero eyebrow={MS.hero.eyebrow} title={MS.hero.title} accent={MS.hero.accent} sub={MS.hero.sub} cta={{ primary: MS.hero.cta }} />
 
       {/* Hoe het werkt */}
       <section className="section">
