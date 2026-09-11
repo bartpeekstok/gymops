@@ -2841,7 +2841,7 @@ function Prijzen() {
               <div style={{ fontSize: 12.5, color: 'var(--fg3)', marginTop: 4 }}>{MS.voorwaarden.opbouw}</div>
             </div>
             <div style={{ flex: 1 }}>
-              <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--fg2)', margin: 0 }}>Bart of Jeroen als mentor, die dagelijks meekijkt in jouw GymOps en stuurt op wat er echt gebeurt. Alleen 1-op-1, minimaal zes maanden, tien plekken.</p>
+              <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--fg2)', margin: 0 }}>Bart en Jeroen als mentor, die dagelijks meekijken in jouw GymOps en sturen op wat er echt gebeurt. Alleen 1-op-1, minimaal zes maanden, tien plekken.</p>
               <a href={route('mentorschap.html')} className="btn-ghost" style={{ marginTop: 10, fontSize: 15 }}>meer over mentorschap<Icon data-lucide="arrow-right"></Icon></a>
             </div>
           </div>
@@ -3175,9 +3175,9 @@ const MS = {
     onderschrift: 'Het hele gesprek, 46 minuten. Over loslaten, prijzen verhogen en bouwen.',
   },
   wie: {
-    eyebrow: 'Wie je mentor is',
+    eyebrow: 'Wie je mentors zijn',
     title: 'Twee gym-eigenaren die de route zelf lopen.',
-    body: 'Je mentor is Bart of Jeroen. Allebei eigenaar van een gym die volledig op GymOps draait, allebei met dezelfde cijfers op het scherm als jij. Wat ze zien in jouw systeem, hebben ze zelf ook gezien.',
+    body: 'Je mentors zijn Bart en Jeroen. Allebei eigenaar van een gym die volledig op GymOps draait, allebei met dezelfde cijfers op het scherm als jij. Wat ze zien in jouw systeem, hebben ze zelf ook gezien.',
   },
   voorwaarden: {
     eyebrow: 'Voorwaarden',
@@ -3197,7 +3197,7 @@ const MS = {
   teaser: {
     pill: 'Nieuw · 10 plekken',
     title: 'Wil je iemand die dagelijks meekijkt in jouw systeem?',
-    body: 'Met mentorschap krijg je Bart of Jeroen als mentor. Niet op basis van wat jij vertelt, maar op basis van wat jouw GymOps laat zien. 1-op-1, minimaal zes maanden.',
+    body: 'Met mentorschap krijg je Bart en Jeroen als mentor. Niet op basis van wat jij vertelt, maar op basis van wat jouw GymOps laat zien. 1-op-1, minimaal zes maanden.',
     link: 'meer over mentorschap',
   },
 };
@@ -3216,7 +3216,7 @@ function Mentorschap() {
   useReveal();
   useLucide();
   const m = useIsMobile();
-  const founders = GOP.overons.founders;
+  const founders = [...GOP.overons.founders].reverse();
   return (
     <React.Fragment>
       <PageHero eyebrow={MS.hero.eyebrow} title={MS.hero.title} sub={MS.hero.sub} cta={{ primary: MS.hero.cta }} />
@@ -3313,7 +3313,7 @@ function MentorTeaser() {
   useLucide();
   const m = useIsMobile();
   const T = MS.teaser;
-  const founders = GOP.overons.founders;
+  const founders = [...GOP.overons.founders].reverse();
   const lnk = (h) => route(h);
   return (
     <section className="section" style={{ background: '#fff', padding: m ? '48px 0' : '80px 0' }}>
