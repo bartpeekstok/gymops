@@ -20,4 +20,4 @@ De huidige homepage bevat vooral ervaringen van de oprichters. De bestaande mark
 
 In `lib/site-data.js` staan nog ongebruikte voorbeeldquotes. Deze niet opnieuw gebruiken als klantbewijs: commit `cd46ca34e7a7b9ebefeb637d3da1fb1e031f5c16` van 7 juni 2026 heet expliciet “Fake reviews weg (testimonial-muur + quote-marquee), founder-quotes blijven; CTA-kop verbreed naar lead/lid/taak”. De diff verwijdert de betreffende reviewblokken. De marketingprototype-map bevat dezelfde soort voorbeeldnamen.
 
-De vraag naar een geschikte echte klant en diens ervaring staat bij Jeroen open. Geen klant of Bart benaderd.
+Jeroen heeft het klantverhaal tijdelijk overgeslagen en als belangrijke taak laten vastleggen om bij bestaande klanten op te halen. Zie `../../TODO.md`. Deze taak houdt de andere previewverbeteringen niet tegen. Geen klant of Bart benaderd.

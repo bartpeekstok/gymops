@@ -36,20 +36,23 @@ De weergave is als voorbeeld gelabeld en gebruikt de functies die al op de produ
 
 Validatie van de versie met retentie voorop: productiebuild inclusief lint/typechecks geslaagd. Op 1440×1000, 390×844 en 320×740 zijn beide voorbeelden, alle vier stappen, het terugzetten naar stap 1, toetsenbordbediening, de detailpagina-links, de demo-knop en video gecontroleerd. Geen paginafouten of horizontale overloop; de hero-CTA blijft in het eerste scherm. De demo opent en sluit zonder gegevens te versturen. Video laadt pas na bediening. Formulier en kalender niet ingestuurd.
 
-## Stap 3 — klantbewijs voorbereiden
+## Stap 3 — klantbewijs geparkeerd, belangrijke to-do
 
 Vormvoorstel in `review/klantverhaal/Voorstel-klantverhaal.html` en bijbehorende PDF, met bronbevindingen en benodigde inhoud in `review/klantverhaal/INHOUD.md`. Voorgestelde plaats is direct na het productvoorbeeld. De homepage krijgt dit blok pas met een echte, bevestigde klantcase; de vorige preview blijft daarom actueel.
 
-De ongebruikte reviews uit de oude broncode zijn geen bewijs: de versiegeschiedenis vermeldt expliciet dat de fictieve reviews zijn verwijderd. Er is naar een echte externe klant en een concrete ervaring met ledenbehoud gevraagd. Die inhoud is nog nodig om deze stap af te maken.
+Jeroen wil het echte klantverhaal nu overslaan en als belangrijke taak bewaren om bij bestaande klanten op te halen. Dit staat met hoge prioriteit en concrete ophaalvragen in `TODO.md`. Er staat hiervoor nu geen vraag meer open die de verdere siteverbeteringen blokkeert. De ongebruikte reviews uit de oude broncode worden niet als bewijs gebruikt.
 
 Het zelfstandige vormvoorstel is op 1100, 390 en 320 px breed gecontroleerd: geen overloop of paginafouten. De PDF past op één liggende A4. Er zijn in stap 3 geen wijzigingen aan de websitecode of deployments gedaan.
 
+## Besluit over de rekentool — ongewijzigd behouden
+
+Jeroen wil de huidige rekentool zo laten, omdat de totale omzet over de lidduur het gewenste uitgangspunt is, ook als die over twee jaar binnenkomt. De begonnen wijziging is volledig teruggedraaid. De bestaande teksten, aannames en bedragen blijven staan. Pas dit niet opnieuw aan zonder een nieuwe gebruikersinstructie.
+
 ## Volgende stappen, nog te bespreken
 
-- Rekentool: tijdsperiode, aannames en onderscheid omzet/winst corrigeren.
 - Prijzen en inbegrepen/variabele kosten verduidelijken op basis van de echte afspraken.
 - Twee versus vier weken onboarding afstemmen.
 - Demo: 30/45/60 minuten gelijkmaken, dubbele velden oplossen en kalender vernederlandsen. Kalenderwijzigingen kunnen de live verkooproute raken; eerst de echte duur en testaanpak vaststellen.
 - Overstapvragen, toon en concrete invulling mentorschap.
 
-Stap 3 wacht op echte klantinhoud. De vorm kan alvast worden beoordeeld. Voer niet automatisch alle overige aanbevelingen uit.
+Stap 3 is op gebruikersverzoek geparkeerd en de rekentool blijft ongewijzigd. De overige aanbevelingen worden afzonderlijk doorlopen.
