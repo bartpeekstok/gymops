@@ -10,6 +10,8 @@ import { icons } from 'lucide-react';
 import { GO, GOP } from '@/lib/site-data';
 import PodcastFragment from '@/components/PodcastFragment';
 import ProductVoorbeeld from '@/components/ProductVoorbeeld';
+import PricingOverview, { PricingStart } from '@/components/PricingOverview';
+import RoutekaartTeaser from '@/components/RoutekaartTeaser';
 
 const { useState, useEffect, useRef, useMemo, useCallback, useLayoutEffect } = React;
 
@@ -2771,13 +2773,16 @@ function Prijzen() {
   const plan = D.plans.find((p) => !p.comingSoon) || D.plans[0];
   return (
     <React.Fragment>
-      <PageHero eyebrow={D.hero.eyebrow} title={D.hero.title} />
+      <PricingOverview background={<HeaderBg />} price={plan.price} period={plan.period}
+        terms={plan.disclaimer} yearly={plan.yearly} demoUrl={BOOKING_URL}
+        onDemoClick={openLeadFormClick} mentorExtra={MS.voorwaarden.extraPrijs} mentorTotal={MS.voorwaarden.prijs} />
 
-      {/* Eerst wat niets doen kost, dan wat je krijgt en wat het kost */}
+      {/* De bestaande rekentool blijft ongewijzigd, na het directe prijsaanbod. */}
       <KostenSom />
+      <RoutekaartTeaser />
 
       {/* Prijsoverzicht — value stack + merk-bonus + de prijs */}
-      <section className="section">
+      <section className="section" id="wat-je-krijgt" style={{ scrollMarginTop: 90 }}>
         <div className="wrap" style={{ maxWidth: 720 }}>
           <SectionHead eyebrow="Wat je krijgt" title="Reken maar uit wat dit los zou kosten." sub="Een websitebureau, een marketeer, een planner én een retentiesysteem. Bij GymOps zit het in één abonnement." max={620} />
           <div data-reveal className="card" style={{ marginTop: 44, padding: m ? '24px 20px' : '36px 40px' }}>
@@ -2808,9 +2813,9 @@ function Prijzen() {
 
           {/* Merk-bonus: hoort logisch bij het prijsoverzicht */}
           <div data-reveal style={{ marginTop: 22, background: 'var(--mint-tint)', border: '1px solid var(--border)', borderRadius: 18, padding: m ? '24px 20px' : '28px 32px' }}>
-            <div style={{ fontSize: 12, fontWeight: 800, letterSpacing: '.06em', textTransform: 'uppercase', color: 'var(--mint-deep)', marginBottom: 6 }}>Plus, gratis bovenop</div>
+            <div style={{ fontSize: 12, fontWeight: 800, letterSpacing: '.06em', textTransform: 'uppercase', color: 'var(--mint-deep)', marginBottom: 6 }}>Ook voor je zichtbaarheid</div>
             <h4 style={{ fontSize: m ? 19 : 22, fontWeight: 800, letterSpacing: '-.02em', color: 'var(--ink)' }}>Je leden bouwen mee aan je merk</h4>
-            <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--fg2)', marginTop: 8 }}>Veel van wat GymOps doet, groeit je gym ook nog eens zichtbaar. Zonder dat het je extra tijd of geld kost.</p>
+            <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--fg2)', marginTop: 8 }}>Dezelfde functies helpen je gym ook zichtbaar te worden: via reviews, gedeelde mijlpalen en persoonlijk contact.</p>
             <div style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : 'repeat(2, 1fr)', gap: m ? 12 : 16, marginTop: 20 }}>
               {[
                 { icon: 'star', title: 'Reviews komen vanzelf binnen', body: 'GymOps vraagt leden automatisch om een Google review op piekmomenten. Beter vindbaar én betrouwbaarder.' },
@@ -2829,29 +2834,7 @@ function Prijzen() {
             </div>
           </div>
 
-          <div data-reveal style={{ marginTop: 22, textAlign: 'center', background: 'var(--ink)', borderRadius: 18, padding: m ? '28px 22px' : '36px 32px' }}>
-            <p style={{ fontSize: 15, fontWeight: 600, color: 'rgba(255,255,255,.7)' }}>Bij GymOps betaal je</p>
-            <p style={{ fontSize: m ? 38 : 48, fontWeight: 800, letterSpacing: '-.03em', color: '#fff', marginTop: 4 }}>{plan.price}<span style={{ fontSize: 18, color: 'rgba(255,255,255,.6)', fontWeight: 600 }}> {plan.period}</span></p>
-            <p style={{ fontSize: m ? 15 : 17, fontWeight: 700, color: 'var(--mint-light)', marginTop: 10 }}>Ruim 4× de waarde, plus gratis merkgroei, in één systeem.</p>
-            <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-primary" style={{ marginTop: 24 }}>{plan.cta}<Icon data-lucide={plan.ctaIcon || 'arrow-right'}></Icon></a>
-            <p style={{ fontSize: 12.5, lineHeight: 1.6, color: 'rgba(255,255,255,.5)', marginTop: 18, maxWidth: 420, margin: '18px auto 0' }}>{plan.disclaimer}{plan.yearly ? ' ' + plan.yearly : ''}</p>
-          </div>
 
-          {/* Mentorschap: GymOps plus een mentor die dagelijks meekijkt */}
-          <div data-reveal className="card" style={{ marginTop: 16, padding: m ? '24px 20px' : '30px 36px', border: '1.5px solid var(--mint)', display: 'flex', flexDirection: m ? 'column' : 'row', gap: m ? 18 : 32, alignItems: m ? 'stretch' : 'center' }}>
-            <div style={{ flex: '0 0 auto' }}>
-              <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--mint-deep)' }}>GymOps met mentorschap</div>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginTop: 4 }}>
-                <span style={{ fontSize: m ? 32 : 38, fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1, color: 'var(--ink)', fontVariantNumeric: 'tabular-nums' }}>{MS.voorwaarden.prijs}</span>
-                <span style={{ fontSize: 16, color: 'var(--fg3)' }}>{MS.voorwaarden.periode}</span>
-              </div>
-              <div style={{ fontSize: 12.5, color: 'var(--fg3)', marginTop: 4 }}>{MS.voorwaarden.opbouw}</div>
-            </div>
-            <div style={{ flex: 1 }}>
-              <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--fg2)', margin: 0 }}>Bart en Jeroen als mentor, die dagelijks meekijken in jouw GymOps en sturen op wat er echt gebeurt. Alleen 1-op-1, minimaal zes maanden, tien plekken.</p>
-              <a href={route('mentorschap.html')} className="btn-ghost" style={{ marginTop: 10, fontSize: 15 }}>meer over mentorschap<Icon data-lucide="arrow-right"></Icon></a>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -2859,6 +2842,7 @@ function Prijzen() {
       <section className="section">
         <div className="wrap">
           <SectionHead eyebrow={D.onboarding.eyebrow} title={D.onboarding.title} sub={D.onboarding.sub} max={620} />
+          <PricingStart />
         </div>
       </section>
 
@@ -3167,6 +3151,7 @@ const MS = {
     eyebrow: 'Voorwaarden',
     title: 'Eén prijs, één afspraak, tien plekken.',
     prijs: '€ 1.050',
+    extraPrijs: '€ 600',
     periode: '/ maand',
     opbouw: 'GymOps € 450 + mentorschap € 600, excl. btw.',
     punten: [
@@ -3505,6 +3490,7 @@ function HeroNieuw() {
         </div>
         <div data-reveal style={{ display: 'flex', flexWrap: 'wrap', gap: 14, marginTop: m ? 28 : 38, justifyContent: 'center', transitionDelay: '.3s' }}>
           <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-primary">{h.primary}<Icon data-lucide="arrow-right"></Icon></a>
+          <a href="/routekaart" className="btn btn-outline-light">Maak mijn routekaart<Icon data-lucide="map"></Icon></a>
         </div>
       </div>
 
@@ -4202,6 +4188,7 @@ function HomeNieuwPage() {
       <ProductVoorbeeld demoUrl={BOOKING_URL} onDemoClick={openLeadFormClick} />
       <Oprichters />
       <DrieVragen />
+      <RoutekaartTeaser />
       <ZoWerktHet />
       <PodcastFragment />
       <NietDownloaden />

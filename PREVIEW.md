@@ -48,9 +48,19 @@ Het zelfstandige vormvoorstel is op 1100, 390 en 320 px breed gecontroleerd: gee
 
 Jeroen wil de huidige rekentool zo laten, omdat de totale omzet over de lidduur het gewenste uitgangspunt is, ook als die over twee jaar binnenkomt. De begonnen wijziging is volledig teruggedraaid. De bestaande teksten, aannames en bedragen blijven staan. Pas dit niet opnieuw aan zonder een nieuwe gebruikersinstructie.
 
+## Stap 4 — prijzen en routekaart, klaar voor beoordeling
+
+De prijzenpagina begint nu met ledenbehoud en toont het abonnement van €450 per maand, de bestaande looptijd en de jaarbetaling direct bovenaan. De demoknop is op desktop en mobiel zichtbaar in het eerste scherm. Mentorschap staat als optionele aanvulling met €600 extra en het totaal van €1.050 per maand. Drie stappen maken concreet wat de klant aanlevert, wat GymOps inricht en hoe het team start. De bestaande rekentool is alleen in de paginavolgorde verplaatst; teksten, aannames, berekeningen en bedragen zijn ongewijzigd.
+
+Jeroen vraagt expliciet om `https://gymops.nl/routekaart` mee te nemen. De homepage krijgt naast de demo een tweede knop “Maak mijn routekaart” en na het overzicht met drie vragen een uitlegblok. Hetzelfde blok staat op de prijzenpagina na de bestaande rekentool. De uitleg begint bij ledenbehoud, gevolgd door instroom en omzet per lid. De bestaande routekaart, formulieren, berekeningen en redirects zijn niet aangepast.
+
+Open feitelijke vraag aan Jeroen: gelden de afspraken uit de huidige dienstverleningsovereenkomst nog bij dit abonnement — bellen, sms, WhatsApp en fysieke kaarten apart op verbruik, en maatwerk buiten het pakket voor €80 per uur excl. btw? Hierover is nog geen antwoord ontvangen. Nieuwe kostentekst wacht op bevestiging; dit blokkeert de beoordeling van de indeling en de routekaart niet.
+
+Validatie: productiebuild inclusief lint/typechecks geslaagd. Homepage en prijzenpagina gecontroleerd op 1440×1000, 390×844 en 320×740, inclusief prijsweergave, looptijden, ankerlinks, demo openen/sluiten, beide productvoorbeelden en podcast. Routekaartknoppen openen het bestaande formulier; assets laden en de eerste stap verschijnt. Geen horizontale overloop of paginafouten. Bestaande calculatoruitkomsten blijven gelijk; formulier en kalender niet ingestuurd. Deze stap is een voorstel voor de preview, nog geen akkoord op publicatie.
+
 ## Volgende stappen, nog te bespreken
 
-- Prijzen en inbegrepen/variabele kosten verduidelijken op basis van de echte afspraken.
+- Nieuwe prijzenindeling beoordelen en de open vraag over inbegrepen/variabele kosten beantwoorden.
 - Twee versus vier weken onboarding afstemmen.
 - Demo: 30/45/60 minuten gelijkmaken, dubbele velden oplossen en kalender vernederlandsen. Kalenderwijzigingen kunnen de live verkooproute raken; eerst de echte duur en testaanpak vaststellen.
 - Overstapvragen, toon en concrete invulling mentorschap.

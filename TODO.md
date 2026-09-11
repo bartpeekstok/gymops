@@ -23,9 +23,14 @@ Het [vormvoorstel](review/klantverhaal/Voorstel-klantverhaal.pdf) en de [inhouds
 
 Jeroen wil de huidige rekentool zo laten: de totale omzet over de lidduur blijft het uitgangspunt, ook als de betalingen over twee jaar binnenkomen. De voorgestelde aanpassing is ingetrokken. Dit onderwerp niet opnieuw aanpassen zonder een nieuwe gebruikersinstructie.
 
+## Klaar voor beoordeling in de preview
+
+- [ ] Nieuwe prijzenindeling beoordelen: abonnement bovenaan, mentorschap als optie en drie concrete startstappen.
+- [ ] Routekaart beoordelen op de homepage en prijzenpagina; de bestaande routekaart zelf blijft ongewijzigd.
+
 ## Verdere stappen in de conversiereview
 
-- [ ] Prijzen en inbegrepen/variabele kosten verduidelijken.
+- [ ] Jeroen bevestigt of de bestaande afspraken nog gelden: bellen, sms, WhatsApp en fysieke kaarten op verbruik; maatwerk buiten het pakket €80 per uur excl. btw. Daarna de extra kosten helder op de prijzenpagina zetten. De vraag is gesteld en staat nog open.
 - [ ] Eén juiste onboardingtermijn vaststellen.
 - [ ] Demo: één duur, gegevens één keer invullen en een Nederlandse kalender.
 - [ ] Overstapvragen en concrete invulling van mentorschap verduidelijken.
