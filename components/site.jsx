@@ -3141,6 +3141,10 @@ const HN = {
     accent: 'Een gym die levens verandert. Ook dat van jou.',
     primary: 'Plan een demo',
   },
+  opening: {
+    kop: 'Je bent een gym begonnen om levens te veranderen.',
+    tekst: 'Niet om vast te zitten in een slechtbetaalde baan die je zelf hebt verzonnen. Toch is dat waar veel eigenaren na een paar jaar staan: zestig uur per week, alles zelf doen, en aan het eind van de maand minder overhouden dan in loondienst. Dat ligt niet aan jou. Het ligt aan hoe je gym is ingericht.',
+  },
   vragen: {
     eyebrow: 'Drie vragen die we elke gym-eigenaar stellen',
     title: 'Wat kost het je nu, zonder systeem?',
@@ -3284,6 +3288,23 @@ function HeroNieuw() {
         </div>
       </div>
     </header>
+  );
+}
+
+/* Openingsalinea direct onder de hero. */
+function Opening() {
+  useReveal();
+  const m = useIsMobile();
+  const O = HN.opening;
+  return (
+    <section className="section" style={{ background: '#fff', padding: m ? '52px 0 8px' : '88px 0 16px' }}>
+      <div className="wrap">
+        <div data-reveal style={{ maxWidth: 680, margin: '0 auto', textAlign: 'center' }}>
+          <p style={{ fontSize: m ? 22 : 28, fontWeight: 800, letterSpacing: '-.025em', lineHeight: 1.2, color: 'var(--ink)' }}>{O.kop}</p>
+          <p style={{ fontSize: m ? 16.5 : 19, lineHeight: 1.65, color: 'var(--fg2)', marginTop: 16 }}>{O.tekst}</p>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -3798,6 +3819,7 @@ function HomeNieuwPage() {
     <React.Fragment>
       <Nav />
       <HeroNieuw />
+      <Opening />
       <DrieVragen />
       <Oprichters />
       <LisaIntro />
