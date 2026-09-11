@@ -2769,6 +2769,9 @@ function Prijzen() {
     <React.Fragment>
       <PageHero eyebrow={D.hero.eyebrow} title={D.hero.title} />
 
+      {/* Eerst wat niets doen kost, dan wat je krijgt en wat het kost */}
+      <KostenSom />
+
       {/* Prijsoverzicht — value stack + merk-bonus + de prijs */}
       <section className="section">
         <div className="wrap" style={{ maxWidth: 720 }}>
@@ -2844,29 +2847,6 @@ function Prijzen() {
               <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--fg2)', margin: 0 }}>Bart en Jeroen als mentor, die dagelijks meekijken in jouw GymOps en sturen op wat er echt gebeurt. Alleen 1-op-1, minimaal zes maanden, tien plekken.</p>
               <a href={route('mentorschap.html')} className="btn-ghost" style={{ marginTop: 10, fontSize: 15 }}>meer over mentorschap<Icon data-lucide="arrow-right"></Icon></a>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ROI — terugverdienen */}
-      <section className="section">
-        <div className="wrap">
-          <SectionHead eyebrow="Wat het oplevert" title="€450 per maand verdien je zo terug." sub="Geen kostenpost, maar een investering die zichzelf betaalt. Op drie manieren tegelijk." max={640} />
-          <div style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : 'repeat(3, 1fr)', gap: 24, marginTop: 52 }} data-reveal-stagger>
-            {[
-              { icon: 'heart', title: 'Leden blijven langer', body: 'Eén lid dat een maand langer blijft, verdient al een groot deel van je abonnement terug. GymOps houdt leden betrokken en niemand valt stil uit beeld.' },
-              { icon: 'trending-up', title: 'Meer leads worden lid', body: 'Snellere, consistente opvolging levert meer kennismakingen en inschrijvingen op. Een paar extra leden per maand dekt de kosten ruim.' },
-              { icon: 'clock', title: 'Je team werkt efficiënter', body: 'Minder handwerk en losse appjes. De uren die je terugkrijgt steek je in coaching, niet in administratie.' },
-            ].map((c, i) => (
-              <div key={i} className="card" style={{ padding: 30, display: 'flex', flexDirection: 'column' }}>
-                <div className="icon-chip" style={{ width: 52, height: 52, borderRadius: 15, marginBottom: 22 }}><Icon data-lucide={c.icon} style={{ width: 23, height: 23, color: 'var(--mint-deep)' }}></Icon></div>
-                <h4 style={{ fontSize: 19, fontWeight: 800, letterSpacing: '-.02em', color: 'var(--ink)', marginBottom: 12 }}>{c.title}</h4>
-                <p style={{ fontSize: 15, lineHeight: 1.65, color: 'var(--fg3)' }}>{c.body}</p>
-              </div>
-            ))}
-          </div>
-          <div data-reveal style={{ marginTop: 32, textAlign: 'center', background: 'var(--mint-tint)', border: '1px solid var(--border)', borderRadius: 18, padding: m ? '24px 22px' : '30px 32px' }}>
-            <p style={{ fontSize: m ? 17 : 21, fontWeight: 700, letterSpacing: '-.01em', color: 'var(--ink)' }}>Stel je voor dat al je leden gemiddeld <span style={{ color: 'var(--mint-deep)' }}>één maand langer</span> blijven. Dan verdient GymOps zichzelf al meerdere keren terug.</p>
           </div>
         </div>
       </section>
@@ -3479,6 +3459,18 @@ const HN = {
 
 const euro = (n) => '€ ' + String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 
+/* Wat een lid per maand betaalt. Ingevuld op de homepage of de prijzenpagina,
+   en onthouden in de browser zodat beide pagina's hetzelfde bedrag laten zien. */
+const LIDBEDRAG_KEY = 'gymops_lidbedrag';
+function useLidBedrag(standaard) {
+  const [bedrag, setBedragState] = React.useState(String(standaard));
+  React.useEffect(() => {
+    try { const v = window.localStorage.getItem(LIDBEDRAG_KEY); if (v != null && v !== '') setBedragState(v); } catch (e) {}
+  }, []);
+  const setBedrag = (v) => { setBedragState(v); try { window.localStorage.setItem(LIDBEDRAG_KEY, v); } catch (e) {} };
+  return [bedrag, setBedrag];
+}
+
 /* Kleuren per soort moment op de tijdlijn. */
 const HN_KIND = {
   task: { bg: 'var(--ink)', fg: '#fff', dot: 'var(--ink)', lbl: 'Taak voor je team' },
@@ -3536,12 +3528,87 @@ function Opening() {
   );
 }
 
+/* Prijzenpagina: dezelfde som als op de homepage, maar als rekening.
+   Onderaan de tegenpost: wat GymOps per jaar kost. */
+const KS = {
+  eyebrow: 'Wat het je nu kost',
+  title: 'Reken eerst uit wat niets doen kost.',
+  sub: 'Dezelfde drie posten als op de homepage, voorzichtig geteld. Vul in wat een lid bij jou per maand betaalt.',
+  regels: [
+    { label: 'Aanvragen die blijven liggen', sub: '2 gemiste leads per maand, we tellen er 1', factor: 12 },
+    { label: 'Leden die wegzakken zonder dat iemand belt', sub: '1 gered lid per maand, met de halve rit gerekend', factor: 6 },
+    { label: 'Ex-leden die niemand terugvraagt', sub: '1 terugkeerder per maand', factor: 12 },
+  ],
+  gymopsPerMaand: 450,
+};
+
+function KostenSom() {
+  useReveal();
+  useLucide();
+  const m = useIsMobile();
+  const V = HN.vragen;
+  const [bedrag, setBedrag] = useLidBedrag(V.standaardBedrag);
+  const fee = Math.max(0, parseFloat(String(bedrag).replace(',', '.')) || 0);
+  const perLid = fee * V.maanden;
+  const totaal = KS.regels.reduce((acc, r) => acc + r.factor * perLid, 0);
+  const gymopsJaar = KS.gymopsPerMaand * 12;
+  const maandenPerLid = perLid > 0 ? Math.max(1, Math.floor(perLid * 12 / gymopsJaar)) : 0;
+  return (
+    <section className="section section-soft">
+      <div className="wrap" style={{ maxWidth: 760 }}>
+        <SectionHead eyebrow={KS.eyebrow} title={KS.title} sub={KS.sub} max={640} />
+        <div data-reveal style={{ display: 'flex', justifyContent: 'center', marginTop: 28 }}>
+          <div style={{ display: 'inline-flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '10px 12px', padding: m ? '14px 16px' : '16px 24px', borderRadius: 18, background: '#fff', border: '1px solid var(--border)', fontSize: m ? 16 : 18, color: 'var(--fg2)' }}>
+            <span>Eén lid is</span>
+            <label style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#fff', border: '1.5px solid var(--mint)', borderRadius: 12, padding: '6px 12px', boxShadow: 'var(--shadow-sm)' }}>
+              <span style={{ fontWeight: 800, color: 'var(--mint-deep)' }}>€</span>
+              <input type="number" inputMode="decimal" min="0" step="5" value={bedrag} onChange={(e) => setBedrag(e.target.value)} aria-label="Wat een lid per maand betaalt"
+                style={{ width: 76, border: 0, outline: 'none', background: 'transparent', font: 'inherit', fontWeight: 800, fontSize: m ? 20 : 22, color: 'var(--ink)', letterSpacing: '-.02em', fontVariantNumeric: 'tabular-nums' }} />
+            </label>
+            <span>per maand, gemiddeld twee jaar.</span>
+            <span style={{ fontWeight: 800, color: 'var(--mint-deep)', fontVariantNumeric: 'tabular-nums' }}>Dus {euro(perLid)} per lid.</span>
+          </div>
+        </div>
+
+        <div data-reveal className="card" style={{ marginTop: 28, padding: m ? '24px 20px' : '36px 40px' }}>
+          {KS.regels.map((r, i) => (
+            <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 14, padding: '14px 0', borderTop: i === 0 ? 'none' : '1px solid var(--border)' }}>
+              <Icon data-lucide="minus" style={{ width: 18, height: 18, color: 'var(--danger)', flexShrink: 0, marginTop: 3 }}></Icon>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: m ? 15 : 16, fontWeight: 700, color: 'var(--ink)' }}>{r.label}</div>
+                <div style={{ fontSize: 13, color: 'var(--fg3)', marginTop: 2 }}>{r.sub}</div>
+              </div>
+              <div style={{ fontSize: m ? 15 : 16, fontWeight: 700, color: 'var(--fg2)', whiteSpace: 'nowrap', fontVariantNumeric: 'tabular-nums' }}>{euro(r.factor * perLid)}<span style={{ fontSize: 11, color: 'var(--fg3)', fontWeight: 600 }}>/jaar</span></div>
+            </div>
+          ))}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 18, paddingTop: 18, borderTop: '2px solid var(--ink)' }}>
+            <span style={{ fontSize: m ? 15 : 17, fontWeight: 700, color: 'var(--fg2)' }}>Wat niets doen je kost</span>
+            <span style={{ fontSize: m ? 20 : 24, fontWeight: 800, color: 'var(--ink)', letterSpacing: '-.02em', fontVariantNumeric: 'tabular-nums' }}>{euro(totaal)}<span style={{ fontSize: 12, color: 'var(--fg3)', fontWeight: 600 }}>/jaar</span></span>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 }}>
+            <span style={{ fontSize: m ? 15 : 17, fontWeight: 700, color: 'var(--mint-deep)' }}>Wat GymOps kost</span>
+            <span style={{ fontSize: m ? 20 : 24, fontWeight: 800, color: 'var(--mint-deep)', letterSpacing: '-.02em', fontVariantNumeric: 'tabular-nums' }}>{euro(gymopsJaar)}<span style={{ fontSize: 12, color: 'var(--fg3)', fontWeight: 600 }}>/jaar</span></span>
+          </div>
+          <p style={{ fontSize: 13, color: 'var(--fg3)', marginTop: 6, textAlign: 'right' }}>€ {KS.gymopsPerMaand} per maand, excl. btw. Upsell naar PT, small group en voeding is niet meegeteld.</p>
+        </div>
+
+        {maandenPerLid > 0 && (
+          <div data-reveal style={{ marginTop: 22, textAlign: 'center', background: 'var(--ink)', borderRadius: 18, padding: m ? '24px 22px' : '30px 32px' }}>
+            <p style={{ fontSize: m ? 18 : 22, fontWeight: 800, letterSpacing: '-.02em', lineHeight: 1.3, color: '#fff' }}>Eén gered lid per <span style={{ color: 'var(--mint-light)' }}>{maandenPerLid === 1 ? 'maand' : maandenPerLid + ' maanden'}</span> betaalt GymOps al terug.</p>
+            <p style={{ fontSize: 14, color: 'rgba(255,255,255,.6)', marginTop: 8 }}>Bij {euro(fee)} per lid per maand. Alles daarboven is winst.</p>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
 function DrieVragen() {
   useReveal();
   useLucide();
   const m = useIsMobile();
   const V = HN.vragen;
-  const [bedrag, setBedrag] = React.useState(String(V.standaardBedrag));
+  const [bedrag, setBedrag] = useLidBedrag(V.standaardBedrag);
   const fee = Math.max(0, parseFloat(String(bedrag).replace(',', '.')) || 0);
   const perLid = fee * V.maanden;
   const totaal = V.items.reduce((acc, it) => acc + it.factor * perLid, 0);
