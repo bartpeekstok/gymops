@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>GymOps — vormvoorstel klantverhaal</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f1f5f6; color: #0c161b; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; }
+    main { max-width: 1140px; margin: 0 auto; padding: 32px; }
+    .review-header { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; margin-bottom: 18px; }
+    .brand { font-size: 25px; font-weight: 800; letter-spacing: -.04em; }
+    .brand span { color: #3e788e; }
+    .review-label { color: #2e5c6e; font-size: 12px; font-weight: 700; }
+    .placement { padding: 14px 18px; border: 1px dashed #9aafb7; border-radius: 10px; margin-bottom: 20px; font-size: 13px; color: #34454d; }
+    .placement strong { display: block; margin-bottom: 3px; color: #0c161b; }
+    .case { padding: 32px; background: #fff; border: 1px solid #d8e0e4; border-radius: 20px; }
+    .eyebrow { color: #2e5c6e; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; }
+    .case-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 42px; margin-top: 14px; }
+    h1 { font-size: 32px; font-weight: 800; line-height: 1.14; letter-spacing: -.035em; margin: 0 0 20px; text-wrap: balance; }
+    blockquote { margin: 0; border-left: 3px solid #3e788e; padding: 3px 0 3px 18px; font-size: 19px; line-height: 1.6; }
+    .placeholder { color: #536770; }
+    .person { margin-top: 22px; font-size: 14px; }
+    .person strong { display: block; }
+    .person span { color: #536770; }
+    .case-steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 18px; }
+    .case-steps li { display: grid; grid-template-columns: 29px 1fr; gap: 12px; }
+    .number { display: grid; place-items: center; height: 29px; border-radius: 50%; background: #e9f2f5; color: #2e5c6e; font-weight: 800; font-size: 13px; }
+    h2 { font-size: 16px; margin: 1px 0 5px; }
+    .case-steps p { font-size: 14px; margin: 0; color: #536770; }
+    .case-footer { display: flex; justify-content: space-between; gap: 24px; align-items: center; margin-top: 26px; padding-top: 20px; border-top: 1px solid #e3e8eb; }
+    .case-footer p { font-size: 14px; margin: 0; }
+    .demo { background: #3e788e; border-radius: 10px; padding: 12px 19px; color: white; font-size: 14px; font-weight: 700; white-space: nowrap; }
+    .editor-note { margin: 18px 0 0; color: #34454d; font-size: 13px; }
+    .editor-note strong { color: #0c161b; }
+    @media (max-width: 700px) {
+      main { padding: 20px; }
+      .review-header { align-items: center; gap: 16px; }
+      .review-label { max-width: 175px; text-align: right; }
+      .case { padding: 24px 20px; }
+      .case-grid { grid-template-columns: 1fr; gap: 30px; }
+      h1 { font-size: 28px; }
+      blockquote { font-size: 18px; }
+      .case-footer { flex-direction: column; align-items: flex-start; gap: 14px; }
+    }
+    @page { size: A4 landscape; margin: 12mm; }
+    @media print {
+      body { background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      main { padding: 0; max-width: none; }
+      .case, .placement { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="review-header">
+      <div class="brand">gym<span>ops</span></div>
+      <div class="review-label">Stap 3 · Vormvoorstel voor Jeroen en Bart</div>
+    </div>
+    <aside class="placement">
+      <strong>Voorgestelde plek: direct na het interactieve productvoorbeeld, vóór het verhaal van de oprichters.</strong>
+      De velden tussen haken zijn nog in te vullen. Dit ontwerp bevat nog geen klantuitspraak of vastgesteld resultaat.
+    </aside>
+    <section class="case" aria-labelledby="case-title">
+      <div class="eyebrow">Ledenbehoud in de praktijk</div>
+      <div class="case-grid">
+        <div>
+          <h1 id="case-title">Zo werkt ledenbehoud bij <span class="placeholder">[Gymnaam]</span></h1>
+          <blockquote class="placeholder">[Letterlijke uitspraak van de eigenaar over wat er in de dagelijkse begeleiding van leden is veranderd.]</blockquote>
+          <div class="person"><strong class="placeholder">[Naam eigenaar]</strong><span>Eigenaar · [Gymnaam]</span></div>
+        </div>
+        <ol class="case-steps">
+          <li><span class="number">1</span><div><h2>Wat bleef er liggen?</h2><p>[Eén herkenbare situatie: welke aandacht voor leden kwam er eerder onvoldoende van?]</p></div></li>
+          <li><span class="number">2</span><div><h2>Wat doet het team nu?</h2><p>[Welk signaal of welke taak uit GymOps helpt de coach om persoonlijk contact te maken?]</p></div></li>
+          <li><span class="number">3</span><div><h2>Wat veranderde er in de praktijk?</h2><p>[Een concrete, bevestigde ervaring van de klant. Bijvoorbeeld wat er na het contact met een lid gebeurde.]</p></div></li>
+        </ol>
+      </div>
+      <div class="case-footer"><p>Bekijk hoe je ledenbehoud organiseert in jouw gym.</p><span class="demo">Plan een demo →</span></div>
+    </section>
+    <p class="editor-note"><strong>Om dit af te maken:</strong> kies één klant buiten de gyms van de oprichters en geef een echte uitspraak plus het bijbehorende praktijkvoorbeeld. Leg de bron vast. Voor een percentage of verandering in lidduur zijn ook de meetperiode en onderliggende aantallen nodig; een helder praktijkverhaal kan prima zonder cijfers.</p>
+  </main>
+</body>
+</html>
