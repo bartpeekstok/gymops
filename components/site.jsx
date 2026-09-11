@@ -3669,7 +3669,7 @@ const HN_WERKT = {
   sub: 'Het draait om drie dingen. Niet meer, niet minder.',
   items: [
     { icon: 'zap', tag: 'Leads', title: 'Zorg dat je leads binnenkomen, en volg ze op tot ze lid zijn.', body: 'Elke aanvraag krijgt binnen een minuut een reactie en een taak bij een coach. Niet één keer, maar tot er antwoord is.', link: { label: 'meer over leadopvolging', href: 'leadopvolging.html' } },
-    { icon: 'heart', tag: 'Leden', title: 'Zorg dat je leden lang lid blijven.', body: 'Een klantreis van de eerste week tot het tweede jaar: aandacht op het juiste moment, en een taak zodra iemand wegzakt.', link: { label: 'meer over ledenbehoud', href: 'ledenbehoud.html' } },
+    { icon: 'heart', tag: 'Leden', title: 'Zorg dat je leden lang lid blijven.', body: 'Leden blijven waar ze zich gezien voelen en waar ze met plezier naartoe gaan. Dat is geen toeval, maar een klantreis: van de eerste week tot het tweede jaar aandacht op het juiste moment, en een taak bij een coach zodra iemand wegzakt.', link: { label: 'meer over ledenbehoud', href: 'ledenbehoud.html' } },
     { icon: 'rotate-ccw', tag: 'Ex-leden', title: 'Haal je ex-leden terug.', body: 'Een warm afscheid, in beeld blijven, en op het juiste moment een persoonlijk berichtje. De warmste leads die er zijn.', link: { label: 'meer over ledenbehoud', href: 'ledenbehoud.html' } },
   ],
 };
