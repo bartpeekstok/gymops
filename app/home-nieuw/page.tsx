@@ -1,11 +1,4 @@
-import type { Metadata } from "next";
-import { HomeNieuwPage } from "@/components/site";
+import { redirect } from "next/navigation";
 
-/* Voorbeeld van de homepage in de nieuwe insteek (1 box, 1 miljoen).
-   Bewust verborgen: niet in de nav, niet in Google. */
-export const metadata: Metadata = {
-  title: "Voorbeeld nieuwe homepage · GymOps",
-  robots: { index: false, follow: false },
-};
-
-export default function Page() { return <HomeNieuwPage />; }
+/* De nieuwe homepage staat sinds 11 september 2026 op /. */
+export default function Page() { redirect("/"); }
