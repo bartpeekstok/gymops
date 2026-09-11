@@ -3668,9 +3668,9 @@ const HN_WERKT = {
   title: 'Een gezonde gym draaien hoeft niet moeilijk te zijn.',
   sub: 'Het draait om drie dingen. Niet meer, niet minder.',
   items: [
-    { icon: 'zap', tag: 'Leads', title: 'Zorg dat je leads binnenkomen, en volg ze op tot ze lid zijn.', body: 'Elke aanvraag krijgt binnen een minuut een reactie en een taak bij een coach. Niet één keer, maar tot er antwoord is.', link: { label: 'meer over leadopvolging', href: 'leadopvolging.html' } },
+    { icon: 'zap', tag: 'Leads', title: 'Zorg dat je leads binnenkomen, en volg ze op tot ze lid zijn.', body: 'Wie een aanvraag doet, wil nu geholpen worden, niet morgen. Elke aanvraag krijgt daarom binnen een minuut een reactie en een taak bij een coach. Niet één keer, maar tot er antwoord is, en tot de kennismaking echt gepland staat.', link: { label: 'meer over leadopvolging', href: 'leadopvolging.html' } },
     { icon: 'heart', tag: 'Leden', title: 'Zorg dat je leden lang lid blijven.', body: 'Leden blijven waar ze zich gezien voelen en waar ze met plezier naartoe gaan. Dat is geen toeval, maar een klantreis: van de eerste week tot het tweede jaar aandacht op het juiste moment, en een taak bij een coach zodra iemand wegzakt.', link: { label: 'meer over ledenbehoud', href: 'ledenbehoud.html' } },
-    { icon: 'rotate-ccw', tag: 'Ex-leden', title: 'Haal je ex-leden terug.', body: 'Een warm afscheid, in beeld blijven, en op het juiste moment een persoonlijk berichtje. De warmste leads die er zijn.', link: { label: 'meer over ledenbehoud', href: 'ledenbehoud.html' } },
+    { icon: 'rotate-ccw', tag: 'Ex-leden', title: 'Haal je ex-leden terug.', body: 'Wie opzegt, hoeft geen ex-lid te blijven. Ze kennen je gym, je coaches en je cultuur, en met een goed gevoel vertrokken. Een warm afscheid, in beeld blijven, en op het juiste moment een persoonlijk berichtje. De warmste leads die er zijn.', link: { label: 'meer over ledenbehoud', href: 'ledenbehoud.html' } },
   ],
 };
 
