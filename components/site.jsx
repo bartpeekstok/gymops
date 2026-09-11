@@ -3818,8 +3818,8 @@ function HomeNieuwPage() {
       <Nav />
       <HeroNieuw />
       <Opening />
-      <DrieVragen />
       <Oprichters />
+      <DrieVragen />
       <LisaIntro />
       <LisaLead />
       <LisaTijdlijn />
