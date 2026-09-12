@@ -9,6 +9,7 @@ import React from 'react';
 import { icons } from 'lucide-react';
 import { GO, GOP } from '@/lib/site-data';
 import { STARTEN } from '@/lib/start-content';
+import { BOOKING_SYSTEMS } from '@/lib/booking-systems';
 import PodcastFragment from '@/components/PodcastFragment';
 import ProductVoorbeeld from '@/components/ProductVoorbeeld';
 import PricingOverview, { PricingStart } from '@/components/PricingOverview';
@@ -1542,17 +1543,16 @@ function SectionHead({ eyebrow, title, sub, align = 'center', dark = false, max 
 
 
 /* ============================ LeadFormModal.jsx ============================ */
-/* Lead-popup in GymOps-stijl. Opent via het window-event (openLeadForm), vraagt
-   naam/e-mail/telefoon (alle verplicht), duwt de lead naar GoHighLevel en stuurt
-   de bezoeker daarna door naar de booking-agenda om een tijd te kiezen. */
+/* Lead-popup in GymOps-stijl. Contactgegevens en optioneel het huidige
+   reserveringssysteem gaan naar GoHighLevel; daarna kiest de bezoeker een tijd. */
 function LeadFormModal() {
   const [open, setOpen] = useState(false);
   const [sending, setSending] = useState(false);
-  const [form, setForm] = useState({ name: '', gym: '', email: '', phone: '' });
+  const [form, setForm] = useState({ name: '', gym: '', email: '', phone: '', bookingSystem: '', bookingSystemOther: '' });
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
   useEffect(() => {
-    const on = () => { setForm({ name: '', gym: '', email: '', phone: '' }); setSending(false); setOpen(true); };
+    const on = () => { setForm({ name: '', gym: '', email: '', phone: '', bookingSystem: '', bookingSystemOther: '' }); setSending(false); setOpen(true); };
     window.addEventListener(LEAD_EVENT, on);
     return () => window.removeEventListener(LEAD_EVENT, on);
   }, []);
@@ -1576,6 +1576,9 @@ function LeadFormModal() {
     const parts = name.split(/\s+/);
     const firstName = parts.shift() || '';
     const lastName = parts.join(' ');
+    const bookingSystem = form.bookingSystem === 'Ander systeem'
+      ? form.bookingSystemOther.trim() || 'Ander systeem'
+      : form.bookingSystem;
     /* GoHighLevel weigert een text/plain body, dus sturen we expliciet JSON.
        GHL beantwoordt de CORS-preflight (Allow-Origin *), dus dit komt netjes aan.
        De reactie hoeven we niet te lezen; we sturen daarna door naar de agenda. */
@@ -1588,6 +1591,7 @@ function LeadFormModal() {
           first_name: firstName, last_name: lastName, full_name: name, name,
           email: form.email.trim(), phone: form.phone.trim(),
           gym_name: form.gym.trim(), company_name: form.gym.trim(),
+          ...(bookingSystem ? { booking_system: bookingSystem } : {}),
           source: 'GymOps website', tags: 'website lead', tag: 'website lead',
           page: typeof window !== 'undefined' ? window.location.pathname : '',
         }),
@@ -1630,6 +1634,21 @@ function LeadFormModal() {
                 <label className="lead-label" htmlFor="lf-phone">Telefoonnummer *</label>
                 <input id="lf-phone" className="lead-input" type="tel" required placeholder="06 12 34 56 78" value={form.phone} onChange={set('phone')} autoComplete="tel" />
               </div>
+              <div className="lead-field-wide">
+                <label className="lead-label" htmlFor="lf-booking-system">Welk reserveringssysteem gebruik je? <span className="lead-optional">(optioneel)</span></label>
+                <select id="lf-booking-system" name="booking_system" className="lead-input" value={form.bookingSystem}
+                  aria-describedby="lf-booking-system-help"
+                  onChange={(e) => setForm((f) => ({ ...f, bookingSystem: e.target.value, bookingSystemOther: '' }))}>
+                  <option value="">Kies je huidige systeem</option>
+                  {BOOKING_SYSTEMS.map((system) => <option key={system} value={system}>{system}</option>)}
+                </select>
+                <p id="lf-booking-system-help" className="lead-field-help">Dan stemmen we de demo af op jouw gym. GymOps werkt ook zonder koppeling.</p>
+              </div>
+              {form.bookingSystem === 'Ander systeem' && <div className="lead-field-wide">
+                <label className="lead-label" htmlFor="lf-booking-system-other">Naam van je reserveringssysteem <span className="lead-optional">(optioneel)</span></label>
+                <input id="lf-booking-system-other" className="lead-input" type="text" maxLength={120}
+                  placeholder="Vul de naam van je systeem in" value={form.bookingSystemOther} onChange={set('bookingSystemOther')} />
+              </div>}
             </div>
             <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: 18 }} disabled={sending}>
               {sending ? 'Versturen…' : <React.Fragment>Aanvragen<Icon data-lucide="arrow-right"></Icon></React.Fragment>}
@@ -1827,7 +1846,7 @@ function PromiseCards() {
         <div data-reveal style={{ textAlign: 'center', maxWidth: 820, margin: '0 auto' }}>
           <div className="eyebrow" style={{ marginBottom: 18 }}>Alles op één plek</div>
           <h2 style={{ fontSize: 'clamp(32px,4.6vw,56px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.04, color: 'var(--ink)' }}>Leadopvolging, ledenbehoud en team-aansturing</h2>
-          <p style={{ fontSize: m ? 17 : 19, lineHeight: 1.6, color: 'var(--fg3)', maxWidth: 600, margin: '20px auto 0' }}>De drie processen waar het in jouw gym om draait, op één plek en volledig geautomatiseerd. Elke lead opgevolgd, elk lid gezien en elke taak voor je team geregeld. Naadloos gekoppeld aan SportBit. Hieronder leggen we elk van de drie uit.</p>
+          <p style={{ fontSize: m ? 17 : 19, lineHeight: 1.6, color: 'var(--fg3)', maxWidth: 600, margin: '20px auto 0' }}>De drie processen waar het in jouw gym om draait, op één plek en volledig geautomatiseerd. Elke lead opgevolgd, elk lid gezien en elke taak voor je team geregeld. Werkt met en zonder SportBit. Hieronder leggen we elk van de drie uit.</p>
         </div>
         {/* connector: leidt het oog van de intro naar het eerste genummerde blok */}
         <div data-reveal style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: m ? 38 : 56 }}>
@@ -2598,7 +2617,7 @@ function Ledenervaring() {
   return (
     <React.Fragment>
       <PageHero eyebrow="GymOps · Ledenbehoud" title="Leden die zich gezien voelen," accent="blijven langer"
-        sub="Automatisering doet het werk, jij maakt het persoonlijk. GymOps signaleert het juiste moment en zorgt dat niemand zich vergeten voelt, zodat leden langer bij je blijven."
+        sub="GymOps helpt je team om leden op het juiste moment aandacht te geven, ook zonder koppeling met een reserveringssysteem. Met de directe SportBit-koppeling krijg je extra inzicht in reserveringen en bezoeken."
         cta={{ primary: 'Plan een demo' }} />
 
       <FeatureRow icon="party-popper" title="Vier elke mijlpaal, samen met je leden"
@@ -2606,7 +2625,7 @@ function Ledenervaring() {
         visual={<Phone w={258}><MilestoneScreen /></Phone>} />
 
       <FeatureRow icon="heart-pulse" flip soft title="Zie direct wie dreigt af te haken"
-        body={'GymOps houdt via SportBit bij wie er traint en wie wegblijft. Komt een vast lid ineens twee weken niet? Dan krijg je een seintje en staat er meteen een taak klaar bij de juiste coach.\n\nGeen massamail, maar een persoonlijk berichtje van iemand die ze kennen, precies op het moment dat het nog uitmaakt.'}
+        body={'Met de SportBit-koppeling houdt GymOps bij wie er traint en wie wegblijft. Komt een vast lid ineens twee weken niet? Dan krijg je een seintje en staat er meteen een taak klaar bij de juiste coach.\n\nGebruik je een ander reserveringssysteem? Dan bekijken we op aanvraag hoe we de benodigde gegevens kunnen gebruiken. Ook zonder koppeling kun je met GymOps werken aan persoonlijke aandacht en opvolging.'}
         visual={<Phone w={258}><ContactScreen /></Phone>} />
 
       <section className="section">
@@ -2711,7 +2730,7 @@ function Website() {
       <MiniGrid eyebrow="En verder" title="Alles rond je website, geregeld." items={[
         { icon: 'gauge', title: 'Razendsnel, ook op mobiel', body: 'Gebouwd in moderne techniek (dezelfde als bedrijven als Netflix en Spotify). Geen trage laadtijden die bezoekers wegjagen.' },
         { icon: 'wrench', title: 'Zelf aanpassen, direct live', body: 'Nieuwe abonnementsvorm, tariefswijziging of een nieuwe coach? Je past het zelf aan vanuit je GymOps-dashboard en het staat meteen live. Geen wachttijd, geen offertes.' },
-        { icon: 'link', title: 'Naadloos gekoppeld', body: 'Je website werkt samen met SportBit en de flows van GymOps. Inschrijven, betalen en opvolgen lopen automatisch door.' },
+        { icon: 'link', title: 'Website en opvolging werken samen', body: 'Je website werkt samen met de flows van GymOps. Gebruik je SportBit? Dan is er een directe koppeling. Voor andere reserveringssystemen bekijken we op aanvraag wat mogelijk is.' },
         { icon: 'credit-card', title: 'Online betalen en inschrijven', body: 'Bezoekers boeken een kennismaking of rekenen een event direct af via iDEAL. Minder mailtjes, meer inschrijvingen.' },
         { icon: 'shield-check', title: 'Veilig en onderhoudsvrij', body: 'Hosting, beveiliging en updates regelen wij. Jij hebt er geen omkijken naar en je site is altijd up-to-date.' },
         { icon: 'chart-column', title: 'Inzicht in wat werkt', body: 'Zie waar je leads vandaan komen, zodat je weet welke kanalen het meeste opleveren voor jouw gym.' },
@@ -2821,7 +2840,7 @@ function Prijzen() {
               { label: 'Team-aansturing & takensysteem', sub: 'Elke taak bij de juiste coach, niets blijft liggen', value: '€175' },
               { label: 'Slim plannen met meerdere agenda’s', sub: 'PT, intakes, kennismakingen, eigen beschikbaarheid', value: '€125' },
               { label: 'Reviews & merk-marketing', sub: 'Google reviews, social posts, deelbare mijlpalen', value: '€300' },
-              { label: 'SportBit-koppeling & ledeninzicht', sub: 'Actief vs wegzakkend, alles in één beeld', value: '€150' },
+              { label: 'Directe SportBit-koppeling', sub: 'Extra reserveringsdata voor ledenbehoud, als je SportBit gebruikt', value: '€150' },
               { label: 'Onboarding & support van gym owners', sub: '4 begeleide calls, inrichting en de GymOps Academy', value: '€250' },
             ].map((r, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 14, padding: '14px 0', borderTop: i === 0 ? 'none' : '1px solid var(--border)' }}>
@@ -3362,7 +3381,7 @@ const HN = {
     eyebrow: 'Voor gym-eigenaren in Nederland en België',
     headline: ['Een gym die draait.', 'Ook zonder jou.'],
     sub: 'GymOps helpt je leden langer te behouden. De software signaleert wie aandacht nodig heeft, zet taken klaar voor je coaches en volgt nieuwe aanvragen op.',
-    support: 'Gekoppeld aan SportBit, met inrichting en begeleiding door twee gym-eigenaren.',
+    support: 'Met of zonder SportBit, ingericht en begeleid door twee gym-eigenaren.',
     primary: 'Plan een demo',
   },
   opening: {
@@ -3467,7 +3486,7 @@ const HN = {
     eyebrow: 'Uitgezoomd',
     title: ['Nu ben jij de lijm tussen tien tools.', 'En jij bent altijd de lijm.'],
     zonder: { lbl: 'Zonder GymOps', items: ['Website laten bouwen, daarna hosting en onderhoud', 'Mailchimp, een SEO-partij, landingspagina’s', 'Calendly voor kennismakingen', 'Eventbrite of Weeztix voor je events', 'Typeform voor de intake', 'WhatsApp Business op je privételefoon', 'Sheets voor de lijstjes, Gmail voor de opvolging', 'Zapier om het aan elkaar te knopen'], tot: 'En elke avond ben jij degene die het aan elkaar plakt.' },
-    met: { lbl: 'Met GymOps', items: ['Eén systeem, één login', 'Website, leads, klantreis, events, kaarten en taken praten met elkaar', 'WhatsApp en e-mail vanuit het systeem, niet vanaf jouw telefoon', 'Je ledenadministratie blijft gewoon SportBit, daar koppelen we direct mee'], tot: 'Eén login, één overzicht, en je team ziet hetzelfde als jij.' },
+    met: { lbl: 'Met GymOps', items: ['Eén systeem, één login', 'Website, leads, klantreis, events, kaarten en taken praten met elkaar', 'WhatsApp en e-mail vanuit het systeem, niet vanaf jouw telefoon', 'Gebruik je SportBit? Dan koppelen we direct met je ledenadministratie. GymOps werkt ook zonder die koppeling.'], tot: 'Eén login, één overzicht, en je team ziet hetzelfde als jij.' },
   },
   cta: {
     eyebrow: 'En nu jij',
@@ -4213,7 +4232,7 @@ function StartVragen() {
     <section className="section" id="starten" style={{ scrollMarginTop: 90 }}>
       <div className="wrap" style={{ maxWidth: 760 }}>
         <SectionHead eyebrow="Starten met GymOps" title="Wat betekent dit voor jouw gym?"
-          sub="Je ledenadministratie blijft in SportBit. Wij richten GymOps in en helpen je team ermee werken." max={620} />
+          sub="GymOps werkt ook zonder SportBit. Wij richten het systeem in en helpen je team ermee werken." max={620} />
         <div data-reveal style={{ marginTop: 36, borderTop: '1px solid var(--border)' }}>
           {STARTEN.faqs.map((f) => <Faq key={f.q} q={f.q} a={f.a} />)}
         </div>

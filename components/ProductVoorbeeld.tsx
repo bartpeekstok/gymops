@@ -13,7 +13,7 @@ const leadSteps = [
 const examples = {
   retention: {
     label: 'Leden behouden',
-    intro: 'Volg Lisa als lid: van een goede start tot aandacht op het moment dat ze die nodig heeft.',
+    intro: 'Volg Lisa als lid: van een goede start tot aandacht op het moment dat ze die nodig heeft. In dit voorbeeld gebruiken we de directe SportBit-koppeling.',
     steps: [
       { title: 'Een goede start', summary: 'Je coach checkt hoe het gaat', icon: UserRound },
       { title: 'Mijlpalen vieren', summary: 'Aandacht voor haar 50e les', icon: PartyPopper },

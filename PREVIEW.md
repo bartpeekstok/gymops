@@ -62,13 +62,25 @@ Validatie: productiebuild inclusief lint/typechecks geslaagd. Homepage en prijze
 
 De homepage beantwoordt nu vier concrete startvragen: blijf ik SportBit gebruiken, wat lever ik zelf aan, hoe snel kunnen we starten en welke hulp krijgen we daarna? Dezelfde antwoorden staan in de veelgestelde vragen op de prijzenpagina. Vanuit het nieuwe homepageblok kan de bezoeker direct naar de drie startstappen op de prijzenpagina. Beide onderdelen hebben het anker `#starten`.
 
-Het verhaal sluit aan op de bestaande productuitleg: SportBit blijft de ledenadministratie, GymOps wordt daaraan gekoppeld, de eigenaar levert informatie aan en geeft feedback, GymOps verzorgt de inrichting en begeleidt het team. De vier begeleidingsgesprekken bestrijken ook de periode na de start. Bronnen: de bestaande website, het GymOps Onboarding Stappenplan en de dienstverleningsovereenkomst.
+Deze eerste versie sloot aan op de bestaande productuitleg en ging uit van SportBit als ledenadministratie. Jeroen heeft dat uitgangspunt in stap 6 gecorrigeerd: SportBit is niet verplicht. De eigenaar levert informatie aan en geeft feedback, GymOps verzorgt de inrichting en begeleidt het team. De vier begeleidingsgesprekken bestrijken ook de periode na de start. Bronnen voor die begeleiding: de bestaande website, het GymOps Onboarding Stappenplan en de dienstverleningsovereenkomst.
 
 De homepage noemde twee weken, de prijzenpagina vier. Jeroen is gevraagd welke termijn klopt. Zolang zijn antwoord ontbreekt, gebruikt deze preview **vier weken na complete aanlevering als voorlopig uitgangspunt**, overeenkomstig de documenten. De tekst zegt dat we daarop mikken en de precieze startdatum samen afspreken. Dit is nog geen door Jeroen bevestigde termijn. De tweewekentekst op de homepage is vervangen door concrete uitleg over begeleiding. De gedeelde tekst staat in `lib/start-content.ts`, zodat homepage en prijzenpagina gelijk blijven.
 
 Validatie: productiebuild inclusief lint/typechecks geslaagd. Op desktop (1440 px), mobiel (390 px) en kleine mobiel (320 px) werken alle vier vragen, het openen/sluiten met toetsenbord en de verwijzing naar de startstappen. De sectielink houdt rekening met de mobiele indeling na het laden. Antwoorden op homepage en prijzenpagina zijn gelijk; geen horizontale overloop, paginafouten of verstuurde formulieren.
 
 De rekentool, routekaart, podcast en interactieve productvoorbeelden blijven ongewijzigd. De eerder geschrapte toelichting over verbruikskosten is niet toegevoegd. Publicatie op gymops.nl blijft afhankelijk van een aparte gebruikersinstructie.
+
+## Stap 6 — SportBit optioneel en huidig systeem bij demo-aanvraag
+
+Jeroen verduidelijkt dat GymOps ook zonder SportBit en zonder koppeling met een reserveringssysteem werkt. De directe SportBit-koppeling geeft extra reserverings- en bezoekgegevens. Zonder koppeling is minder reserveringsdata beschikbaar; voor andere systemen bekijken Bart en Jeroen op aanvraag welke koppeling of andere manier van gegevens aanleveren mogelijk is. De tekst belooft geen kant-en-klare koppeling met andere aanbieders.
+
+Dit staat nu in de hero, de gedeelde startvragen, de startstappen, de prijzenpagina, de ledenbehoudpagina en de paginabeschrijving voor zoekmachines. De eerste startvraag is “Heb ik SportBit nodig om GymOps te gebruiken?” en begint met “Nee.” Het interactieve ledenvoorbeeld vermeldt dat het de SportBit-koppeling gebruikt.
+
+Alle knoppen “Plan een demo” openen het bestaande formulier met een nieuwe optionele systeemkeuze. Er zijn acht aanbieders, een optie Ander systeem met vrij tekstveld en een optie Geen reserveringssysteem. De geselecteerde of ingevulde naam gaat mee als `booking_system` in de bestaande webhook-aanvraag. Geen keuze blokkeert de aanvraag niet.
+
+Build, lint en typechecks zijn geslaagd. Browsercontrole op 1440, 390 en 320 px: de optionele keuze, een eigen systeemnaam, een lege keuze, geen systeem, het wissen van een vorige eigen naam en de bestaande verplichte contactgegevens zijn gecontroleerd. Testverzoeken naar de webhook zijn onderschept en de kalender is vervangen door een lokale testrespons; er zijn geen echte aanvragen of afspraken verstuurd. De rekentool, routekaart en podcast blijven inhoudelijk ongewijzigd.
+
+Het bewaren van het nieuwe veld in de live CRM-contactkaart is nog niet geverifieerd. De concrete mapping en controle voor de publicatiestap staan in `review/demo-aanvraag.md`; de live workflow is niet gewijzigd. De websitepreview blijft afzonderlijk te beoordelen.
 
 ## Volgende stappen, nog te bespreken
 

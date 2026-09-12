@@ -283,6 +283,9 @@ img { display: block; max-width: 100%; }
 .lead-modal-head { position: relative; overflow: hidden; background: var(--ink); padding: 26px 28px 22px; }
 .lead-modal-body { padding: 22px 28px 26px; }
 .lead-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px 14px; }
+.lead-field-wide { grid-column: 1 / -1; }
+.lead-optional { font-weight: 400; color: var(--fg3); }
+.lead-field-help { margin-top: 7px; font-size: 12px; line-height: 1.5; color: var(--fg3); }
 @media (max-width: 460px) { .lead-grid { grid-template-columns: 1fr; gap: 12px; } }
 .lead-eyebrow { font-size: 13px; }
 .lead-glow {

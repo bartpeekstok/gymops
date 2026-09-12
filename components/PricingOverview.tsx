@@ -37,7 +37,7 @@ export default function PricingOverview({ background, price, period, terms, year
         </div>
         <ul className="pricing-highlights">
           <li><Heart size={22} aria-hidden="true" /><div><strong>Leden langer behouden</strong><span>Een klantreis, aandacht voor mijlpalen en een taak bij je coach als iemand wegzakt.</span></div></li>
-          <li><ListChecks size={22} aria-hidden="true" /><div><strong>Je team weet wat er moet gebeuren</strong><span>Taken voor je coaches, overzicht voor jou en gekoppeld aan SportBit.</span></div></li>
+          <li><ListChecks size={22} aria-hidden="true" /><div><strong>Je team weet wat er moet gebeuren</strong><span>Taken voor je coaches en overzicht voor jou, ook zonder SportBit.</span></div></li>
           <li><MessageCircle size={22} aria-hidden="true" /><div><strong>Nieuwe aanvragen krijgen opvolging</strong><span>Je website, berichten en afspraken werken samen in één systeem.</span></div></li>
         </ul>
       </div>
