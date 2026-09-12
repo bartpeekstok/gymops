@@ -54,13 +54,13 @@ De prijzenpagina begint nu met ledenbehoud en toont het abonnement van €450 pe
 
 Jeroen vraagt expliciet om `https://gymops.nl/routekaart` mee te nemen. De homepage krijgt naast de demo een tweede knop “Maak mijn routekaart” en na het overzicht met drie vragen een uitlegblok. Hetzelfde blok staat op de prijzenpagina na de bestaande rekentool. De uitleg begint bij ledenbehoud, gevolgd door instroom en omzet per lid. De bestaande routekaart, formulieren, berekeningen en redirects zijn niet aangepast.
 
-Open feitelijke vraag aan Jeroen: gelden de afspraken uit de huidige dienstverleningsovereenkomst nog bij dit abonnement — bellen, sms, WhatsApp en fysieke kaarten apart op verbruik, en maatwerk buiten het pakket voor €80 per uur excl. btw? Hierover is nog geen antwoord ontvangen. Nieuwe kostentekst wacht op bevestiging; dit blokkeert de beoordeling van de indeling en de routekaart niet.
+Besluit van Jeroen op 12 september 2026: de voorgestelde toelichting over verbruikskosten en maatwerk nu niet noemen, omdat die verwarrend is. Deze tekst was nog niet aan de preview toegevoegd en blijft voor deze ronde achterwege. De vraag is daarmee gesloten voor deze conversiereview; niet opnieuw als open punt opvoeren zonder een nieuwe gebruikersinstructie. Dit besluit bevestigt of wijzigt de onderliggende prijsafspraken niet.
 
 Validatie: productiebuild inclusief lint/typechecks geslaagd. Homepage en prijzenpagina gecontroleerd op 1440×1000, 390×844 en 320×740, inclusief prijsweergave, looptijden, ankerlinks, demo openen/sluiten, beide productvoorbeelden en podcast. Routekaartknoppen openen het bestaande formulier; assets laden en de eerste stap verschijnt. Geen horizontale overloop of paginafouten. Bestaande calculatoruitkomsten blijven gelijk; formulier en kalender niet ingestuurd. Deze stap is een voorstel voor de preview, nog geen akkoord op publicatie.
 
 ## Volgende stappen, nog te bespreken
 
-- Nieuwe prijzenindeling beoordelen en de open vraag over inbegrepen/variabele kosten beantwoorden.
+- Nieuwe prijzenindeling beoordelen; de toelichting over verbruikskosten blijft op verzoek van Jeroen achterwege.
 - Twee versus vier weken onboarding afstemmen.
 - Demo: 30/45/60 minuten gelijkmaken, dubbele velden oplossen en kalender vernederlandsen. Kalenderwijzigingen kunnen de live verkooproute raken; eerst de echte duur en testaanpak vaststellen.
 - Overstapvragen, toon en concrete invulling mentorschap.

@@ -30,7 +30,7 @@ Jeroen wil de huidige rekentool zo laten: de totale omzet over de lidduur blijft
 
 ## Verdere stappen in de conversiereview
 
-- [ ] Jeroen bevestigt of de bestaande afspraken nog gelden: bellen, sms, WhatsApp en fysieke kaarten op verbruik; maatwerk buiten het pakket €80 per uur excl. btw. Daarna de extra kosten helder op de prijzenpagina zetten. De vraag is gesteld en staat nog open.
+- Besluit 12 september 2026: de voorgestelde toelichting over verbruikskosten en maatwerk nu niet op de website noemen. Jeroen vindt die verwarrend. De tekst stond nog niet in de preview; dit is geen openstaande vraag of taak meer voor deze ronde.
 - [ ] Eén juiste onboardingtermijn vaststellen.
 - [ ] Demo: één duur, gegevens één keer invullen en een Nederlandse kalender.
 - [ ] Overstapvragen en concrete invulling van mentorschap verduidelijken.
