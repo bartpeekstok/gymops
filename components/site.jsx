@@ -8,6 +8,7 @@
 import React from 'react';
 import { icons } from 'lucide-react';
 import { GO, GOP } from '@/lib/site-data';
+import { STARTEN } from '@/lib/start-content';
 import PodcastFragment from '@/components/PodcastFragment';
 import ProductVoorbeeld from '@/components/ProductVoorbeeld';
 import PricingOverview, { PricingStart } from '@/components/PricingOverview';
@@ -56,6 +57,32 @@ function useReveal() {
 }
 
 function useLucide() { /* icons now render via <Icon>; nothing to do */ }
+
+/* A section link must land after the mobile layout and fonts have settled. */
+function useStartAnchor() {
+  useEffect(() => {
+    if (window.location.hash !== '#starten') return;
+    let cancelled = false;
+    let frame = 0;
+    const cancel = () => { cancelled = true; cancelAnimationFrame(frame); };
+    const events = ['wheel', 'touchstart', 'keydown'];
+    events.forEach((event) => window.addEventListener(event, cancel, { once: true, passive: true }));
+    document.fonts.ready.then(() => {
+      if (cancelled) return;
+      frame = requestAnimationFrame(() => {
+        frame = requestAnimationFrame(() => {
+          if (!cancelled && window.location.hash === '#starten') {
+            document.getElementById('starten')?.scrollIntoView({ behavior: 'instant', block: 'start' });
+          }
+        });
+      });
+    });
+    return () => {
+      cancel();
+      events.forEach((event) => window.removeEventListener(event, cancel));
+    };
+  }, []);
+}
 
 function SplitHeadline({ lines, className = '', style = {} }) {
   return (
@@ -2768,6 +2795,7 @@ function Faq({ q, a }) {
 function Prijzen() {
   useReveal();
   useLucide();
+  useStartAnchor();
   const m = useIsMobile();
   const D = GOP.prijzen;
   const plan = D.plans.find((p) => !p.comingSoon) || D.plans[0];
@@ -2838,8 +2866,8 @@ function Prijzen() {
         </div>
       </section>
 
-      {/* Onboarding timeline */}
-      <section className="section">
+      {/* Inrichting en begeleiding, met dezelfde startuitleg als op de homepage. */}
+      <section className="section" id="starten" style={{ scrollMarginTop: 90 }}>
         <div className="wrap">
           <SectionHead eyebrow={D.onboarding.eyebrow} title={D.onboarding.title} sub={D.onboarding.sub} max={620} />
           <PricingStart />
@@ -3422,7 +3450,7 @@ const HN = {
     cards: [
       { k: 'Al onze gyms lopen dezelfde route', b: 'Wij hebben dit pad zelf gelopen, in onze eigen gyms. Dezelfde klantreis, dezelfde taken, dezelfde cijfers. Wat werkt houden we, wat niet werkt gaat eruit. Jij krijgt de route zoals hij nu is, en elke verbetering erbij.' },
       { k: 'De data van alle aangesloten gyms', b: 'Elke gym op GymOps voegt cijfers toe: leads, verloop, omzet per lid. Daardoor zien we steeds beter wat werkt en wat niet. En jij ziet hoe jouw gym ervoor staat naast de rest.' },
-      { k: 'Nederlands en snel', b: 'Support van mensen die zelf een gym runnen en weten hoe een dinsdagavond eruitziet. In jouw tijdzone, WhatsApp erin, geen sms. Binnen twee weken live.' },
+      { k: 'Begeleiding door gym-eigenaren', b: 'Support van mensen die zelf een gym runnen en weten hoe een dinsdagavond eruitziet. We helpen je bij de inrichting en blijven bereikbaar als je team ermee werkt.' },
     ],
     mentor: { pill: 'Vanaf nu voor iedereen', lead: '1-op-1 mentorschap erbij.', body: 'Een mentor die élke dag meekijkt in jouw eigen systeem: je leden, je in- en uitstroom, je cijfers. Alleen 1-op-1 en minimaal zes maanden, dus een beperkt aantal plekken.' },
   },
@@ -4178,6 +4206,25 @@ function RoutekaartCta() {
   );
 }
 
+function StartVragen() {
+  useReveal();
+  useStartAnchor();
+  return (
+    <section className="section" id="starten" style={{ scrollMarginTop: 90 }}>
+      <div className="wrap" style={{ maxWidth: 760 }}>
+        <SectionHead eyebrow="Starten met GymOps" title="Wat betekent dit voor jouw gym?"
+          sub="Je ledenadministratie blijft in SportBit. Wij richten GymOps in en helpen je team ermee werken." max={620} />
+        <div data-reveal style={{ marginTop: 36, borderTop: '1px solid var(--border)' }}>
+          {STARTEN.faqs.map((f) => <Faq key={f.q} q={f.q} a={f.a} />)}
+        </div>
+        <div data-reveal style={{ marginTop: 24, textAlign: 'center' }}>
+          <a href="/prijzen#starten" className="btn-ghost">Bekijk hoe we je gym inrichten<Icon data-lucide="arrow-right" /></a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function HomeNieuwPage() {
   useReveal();
   return (
@@ -4192,6 +4239,7 @@ function HomeNieuwPage() {
       <ZoWerktHet />
       <PodcastFragment />
       <NietDownloaden />
+      <StartVragen />
       <MentorTeaser />
       <KlantLogos />
       <RoutekaartCta />

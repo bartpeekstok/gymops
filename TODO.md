@@ -27,11 +27,12 @@ Jeroen wil de huidige rekentool zo laten: de totale omzet over de lidduur blijft
 
 - [ ] Nieuwe prijzenindeling beoordelen: abonnement bovenaan, mentorschap als optie en drie concrete startstappen.
 - [ ] Routekaart beoordelen op de homepage en prijzenpagina; de bestaande routekaart zelf blijft ongewijzigd.
+- [ ] Overstapuitleg beoordelen op homepage en prijzenpagina: SportBit behouden, eigen aanlevering, startplanning en begeleiding na de start.
 
 ## Verdere stappen in de conversiereview
 
 - Besluit 12 september 2026: de voorgestelde toelichting over verbruikskosten en maatwerk nu niet op de website noemen. Jeroen vindt die verwarrend. De tekst stond nog niet in de preview; dit is geen openstaande vraag of taak meer voor deze ronde.
-- [ ] Eén juiste onboardingtermijn vaststellen.
+- [ ] Voorlopige starttermijn bevestigen of corrigeren: de preview gebruikt vier weken na complete aanlevering als streefplanning uit de documenten. De vraag is gesteld; Jeroen heeft nog geen termijn bevestigd.
 - [ ] Demo: één duur, gegevens één keer invullen en een Nederlandse kalender.
 - [ ] Overstapvragen en concrete invulling van mentorschap verduidelijken.
 

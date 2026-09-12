@@ -58,10 +58,22 @@ Besluit van Jeroen op 12 september 2026: de voorgestelde toelichting over verbru
 
 Validatie: productiebuild inclusief lint/typechecks geslaagd. Homepage en prijzenpagina gecontroleerd op 1440×1000, 390×844 en 320×740, inclusief prijsweergave, looptijden, ankerlinks, demo openen/sluiten, beide productvoorbeelden en podcast. Routekaartknoppen openen het bestaande formulier; assets laden en de eerste stap verschijnt. Geen horizontale overloop of paginafouten. Bestaande calculatoruitkomsten blijven gelijk; formulier en kalender niet ingestuurd. Deze stap is een voorstel voor de preview, nog geen akkoord op publicatie.
 
+## Stap 5 — overstap en begeleiding, voorstel voor de preview
+
+De homepage beantwoordt nu vier concrete startvragen: blijf ik SportBit gebruiken, wat lever ik zelf aan, hoe snel kunnen we starten en welke hulp krijgen we daarna? Dezelfde antwoorden staan in de veelgestelde vragen op de prijzenpagina. Vanuit het nieuwe homepageblok kan de bezoeker direct naar de drie startstappen op de prijzenpagina. Beide onderdelen hebben het anker `#starten`.
+
+Het verhaal sluit aan op de bestaande productuitleg: SportBit blijft de ledenadministratie, GymOps wordt daaraan gekoppeld, de eigenaar levert informatie aan en geeft feedback, GymOps verzorgt de inrichting en begeleidt het team. De vier begeleidingsgesprekken bestrijken ook de periode na de start. Bronnen: de bestaande website, het GymOps Onboarding Stappenplan en de dienstverleningsovereenkomst.
+
+De homepage noemde twee weken, de prijzenpagina vier. Jeroen is gevraagd welke termijn klopt. Zolang zijn antwoord ontbreekt, gebruikt deze preview **vier weken na complete aanlevering als voorlopig uitgangspunt**, overeenkomstig de documenten. De tekst zegt dat we daarop mikken en de precieze startdatum samen afspreken. Dit is nog geen door Jeroen bevestigde termijn. De tweewekentekst op de homepage is vervangen door concrete uitleg over begeleiding. De gedeelde tekst staat in `lib/start-content.ts`, zodat homepage en prijzenpagina gelijk blijven.
+
+Validatie: productiebuild inclusief lint/typechecks geslaagd. Op desktop (1440 px), mobiel (390 px) en kleine mobiel (320 px) werken alle vier vragen, het openen/sluiten met toetsenbord en de verwijzing naar de startstappen. De sectielink houdt rekening met de mobiele indeling na het laden. Antwoorden op homepage en prijzenpagina zijn gelijk; geen horizontale overloop, paginafouten of verstuurde formulieren.
+
+De rekentool, routekaart, podcast en interactieve productvoorbeelden blijven ongewijzigd. De eerder geschrapte toelichting over verbruikskosten is niet toegevoegd. Publicatie op gymops.nl blijft afhankelijk van een aparte gebruikersinstructie.
+
 ## Volgende stappen, nog te bespreken
 
 - Nieuwe prijzenindeling beoordelen; de toelichting over verbruikskosten blijft op verzoek van Jeroen achterwege.
-- Twee versus vier weken onboarding afstemmen.
+- Overstapuitleg beoordelen en de voorlopige starttermijn van vier weken na complete aanlevering bevestigen of corrigeren.
 - Demo: 30/45/60 minuten gelijkmaken, dubbele velden oplossen en kalender vernederlandsen. Kalenderwijzigingen kunnen de live verkooproute raken; eerst de echte duur en testaanpak vaststellen.
 - Overstapvragen, toon en concrete invulling mentorschap.
 

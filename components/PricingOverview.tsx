@@ -1,5 +1,6 @@
 import type { MouseEventHandler, ReactNode } from 'react';
 import { ArrowRight, Heart, ListChecks, MessageCircle } from 'lucide-react';
+import { STARTEN } from '@/lib/start-content';
 
 type Props = {
   background: ReactNode;
@@ -64,11 +65,7 @@ export default function PricingOverview({ background, price, period, terms, year
 
 export function PricingStart() {
   return <ol className="pricing-start">
-    {[
-      { title: 'Jij levert de basis aan', body: 'Je logo, foto’s, aanbod en informatie over je team. Samen bespreken we hoe je leden wilt begeleiden.' },
-      { title: 'Wij richten alles in', body: 'Je website, SportBit-koppeling, opvolging en klantreis krijgen een plek in GymOps.' },
-      { title: 'Samen testen en starten', body: 'We lopen de werkwijze met je team door: waar staan de taken, wie pakt ze op en hoe houd jij overzicht?' },
-    ].map((step, index) => <li key={step.title}>
+    {STARTEN.steps.map((step, index) => <li key={step.title}>
       <span className="pricing-start-number" aria-hidden="true">{index + 1}</span>
       <h3>{step.title}</h3><p>{step.body}</p>
     </li>)}
