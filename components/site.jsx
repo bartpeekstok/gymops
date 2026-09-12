@@ -3381,7 +3381,7 @@ const HN = {
     eyebrow: 'Voor gym-eigenaren in Nederland en België',
     headline: ['Een gym die draait.', 'Ook zonder jou.'],
     sub: 'GymOps helpt je leden langer te behouden. De software signaleert wie aandacht nodig heeft, zet taken klaar voor je coaches en volgt nieuwe aanvragen op.',
-    support: 'Met of zonder SportBit, ingericht en begeleid door twee gym-eigenaren.',
+    support: 'Ingericht en begeleid door de twee gym-eigenaren.',
     primary: 'Plan een demo',
   },
   opening: {

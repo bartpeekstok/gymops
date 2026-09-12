@@ -74,7 +74,9 @@ De rekentool, routekaart, podcast en interactieve productvoorbeelden blijven ong
 
 Jeroen verduidelijkt dat GymOps ook zonder SportBit en zonder koppeling met een reserveringssysteem werkt. De directe SportBit-koppeling geeft extra reserverings- en bezoekgegevens. Zonder koppeling is minder reserveringsdata beschikbaar; voor andere systemen bekijken Bart en Jeroen op aanvraag welke koppeling of andere manier van gegevens aanleveren mogelijk is. De tekst belooft geen kant-en-klare koppeling met andere aanbieders.
 
-Dit staat nu in de hero, de gedeelde startvragen, de startstappen, de prijzenpagina, de ledenbehoudpagina en de paginabeschrijving voor zoekmachines. De eerste startvraag is “Heb ik SportBit nodig om GymOps te gebruiken?” en begint met “Nee.” Het interactieve ledenvoorbeeld vermeldt dat het de SportBit-koppeling gebruikt.
+Dit staat in de gedeelde startvragen, de startstappen, de prijzenpagina, de ledenbehoudpagina en de paginabeschrijving voor zoekmachines. De eerste startvraag is “Heb ik SportBit nodig om GymOps te gebruiken?” en begint met “Nee.” Het interactieve ledenvoorbeeld vermeldt dat het de SportBit-koppeling gebruikt.
+
+Vervolgaanpassing op 12 september 2026: op verzoek van Jeroen vervalt “Met of zonder SportBit” uitsluitend in de ondersteunende regel van de homepagehero. Die regel luidt nu: “Ingericht en begeleid door de twee gym-eigenaren.” De uitleg over SportBit op de andere plekken blijft staan.
 
 Alle knoppen “Plan een demo” openen het bestaande formulier met een nieuwe optionele systeemkeuze. Er zijn acht aanbieders, een optie Ander systeem met vrij tekstveld en een optie Geen reserveringssysteem. De geselecteerde of ingevulde naam gaat mee als `booking_system` in de bestaande webhook-aanvraag. Geen keuze blokkeert de aanvraag niet.
 
