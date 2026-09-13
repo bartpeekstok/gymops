@@ -12,6 +12,8 @@ Productiebuild met lint/typechecks geslaagd. De samengevoegde versie is op deskt
 
 De CRM-opslag van `booking_system` blijft een expliciet open punt. De website verstuurt het veld correct; de live workflowmapping is nog niet bevestigd of gewijzigd. Dit is aan Jeroen gemeld en wordt afzonderlijk bijgehouden. De overige open verbeteringen worden niet stilzwijgend als afgerond aangemerkt.
 
+Vervolg op 13 september: op verzoek van Jeroen neemt de boekingsagenda nu de contactgegevens uit alle gedeelde demo-popups over. Dezelfde HighLevel-agenda opent als embed na het formulier. De native gegevensoverdracht behoudt ook plustekens in e-mailadressen en laat de velden bewerkbaar. De bestaande webhook, agenda en CRM-workflow blijven behouden. Zie [de uitleg en controle](review/demo-aanvraag.md).
+
 ## Historie van de previewronde
 
 - Werkmap: `/Users/jeroenvanduijn/gymops-preview`

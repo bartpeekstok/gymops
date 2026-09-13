@@ -1,6 +1,6 @@
 # Demo-aanvraag — reserveringssysteem
 
-## Klaar in de websitepreview
+## In de website
 
 De demo-popup vraagt optioneel welk reserveringssysteem de gym gebruikt. De opties zijn SportBit, ClubPlanner, Virtuagym, Trainin, Eversports, Pay n Plan, Momence, Wodify, Ander systeem en Geen reserveringssysteem. Dit is een inventarisatie van het huidige systeem van de aanvrager, geen lijst met beschikbare GymOps-integraties.
 
@@ -12,11 +12,19 @@ Voorbeeld van het extra veld:
 { "booking_system": "ClubPlanner" }
 ```
 
-## Voor publicatie: opslaan op de contactkaart
+## Contactgegevens meenemen naar de agenda — 13 september 2026
+
+De gedeelde demo-popup opent na de bestaande webhook-aanvraag dezelfde HighLevel-agenda als embed in de popup. `BookingCalendar.tsx` beantwoordt de native berichten `fetch-query-params` en `fetch-sticky-contacts`. Voornaam, achternaam, e-mail en telefoon worden via `postMessage` overgedragen, uitsluitend aan het eigen agenda-iframe op `https://links.gymops.nl` voor de GymOps-locatie. De bestaande agenda heeft Sticky Contact al ingeschakeld; de agenda-instellingen zijn niet gewijzigd.
+
+Deze vorm is in de echte agenda getest. De standaard query-prefill van het huidige HighLevel-formulier verandert een `+` in een e-mailadres in een spatie. De native embed-overdracht behoudt de oorspronkelijke gegevens, laat ze bewerkbaar en zet geen contactgegevens in de URL of persistente opslag van de website. De gymnaam en systeemkeuze blijven meegaan naar de bestaande webhook; de boekingsagenda heeft daar geen losse invoervelden voor.
+
+Controle: desktop 1440 px, mobiel 390 px en kleine mobiel 320 px; homepage, prijzen en mentorschap; tussenvoegsels, accenten, plustekens, Nederlandse en internationale telefoonnummers; opnieuw openen begint met een leeg formulier. Ook bij een mislukte webhook-aanvraag blijft de agenda bereikbaar. Testaanvragen en alle schrijfacties vanuit de agenda worden onderschept, zodat er geen leads, afspraken of berichten worden aangemaakt.
+
+## Open opvolging: opslaan op de contactkaart
 
 De verzending vanuit de website is gecontroleerd met onderschepte verzoeken. De live HighLevel-workflow is niet gewijzigd of getest met een echte aanvraag. Het veld toevoegen aan de JSON betekent niet automatisch dat HighLevel het op de contactkaart bewaart: daarvoor moet de workflow het inkomende veld verbinden met een contactveld. Zie de [officiële uitleg over het koppelen van webhookgegevens](https://help.gohighlevel.com/support/solutions/articles/155000001183) en het [bijwerken van de mapping reference](https://help.gohighlevel.com/support/solutions/articles/48001237383).
 
-Concrete inrichting om bij de publicatiestap uit te voeren en te controleren:
+Concrete inrichting om afzonderlijk uit te voeren en te controleren:
 
 1. Open de bestaande workflow voor demo-aanvragen van gymops.nl en controleer of er al een contactveld voor het huidige reserveringssysteem is.
 2. Gebruik dat veld, of maak een tekstveld “Huidig reserveringssysteem”. Een tekstveld ondersteunt ook de vrij ingevulde systeemnaam.

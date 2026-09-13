@@ -10,6 +10,7 @@ import { icons } from 'lucide-react';
 import { GO, GOP } from '@/lib/site-data';
 import { STARTEN } from '@/lib/start-content';
 import { BOOKING_SYSTEMS } from '@/lib/booking-systems';
+import BookingCalendar from './BookingCalendar';
 import PodcastFragment from '@/components/PodcastFragment';
 import ProductVoorbeeld from '@/components/ProductVoorbeeld';
 import PricingOverview, { PricingStart } from '@/components/PricingOverview';
@@ -1548,18 +1549,21 @@ function SectionHead({ eyebrow, title, sub, align = 'center', dark = false, max 
 function LeadFormModal() {
   const [open, setOpen] = useState(false);
   const [sending, setSending] = useState(false);
+  const [bookingContact, setBookingContact] = useState(null);
+  const flowVersion = React.useRef(0);
+  const close = () => { flowVersion.current += 1; setOpen(false); };
   const [form, setForm] = useState({ name: '', gym: '', email: '', phone: '', bookingSystem: '', bookingSystemOther: '' });
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
   useEffect(() => {
-    const on = () => { setForm({ name: '', gym: '', email: '', phone: '', bookingSystem: '', bookingSystemOther: '' }); setSending(false); setOpen(true); };
+    const on = () => { flowVersion.current += 1; setForm({ name: '', gym: '', email: '', phone: '', bookingSystem: '', bookingSystemOther: '' }); setBookingContact(null); setSending(false); setOpen(true); };
     window.addEventListener(LEAD_EVENT, on);
     return () => window.removeEventListener(LEAD_EVENT, on);
   }, []);
 
   useEffect(() => {
     if (!open) return;
-    const onKey = (e) => { if (e.key === 'Escape') setOpen(false); };
+    const onKey = (e) => { if (e.key === 'Escape') { flowVersion.current += 1; setOpen(false); } };
     window.addEventListener('keydown', onKey);
     const prev = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
@@ -1567,11 +1571,13 @@ function LeadFormModal() {
   }, [open]);
 
   if (!open) return null;
+  if (bookingContact) return <BookingCalendar contact={bookingContact} onClose={close} />;
 
   const submit = async (e) => {
     e.preventDefault();
     if (sending) return;
     setSending(true);
+    const requestVersion = flowVersion.current;
     const name = form.name.trim();
     const parts = name.split(/\s+/);
     const firstName = parts.shift() || '';
@@ -1581,7 +1587,7 @@ function LeadFormModal() {
       : form.bookingSystem;
     /* GoHighLevel weigert een text/plain body, dus sturen we expliciet JSON.
        GHL beantwoordt de CORS-preflight (Allow-Origin *), dus dit komt netjes aan.
-       De reactie hoeven we niet te lezen; we sturen daarna door naar de agenda. */
+       Daarna openen we de agenda met de ingevulde contactgegevens. */
     try {
       await fetch(GHL_WEBHOOK_URL, {
         method: 'POST',
@@ -1597,17 +1603,19 @@ function LeadFormModal() {
         }),
       });
     } catch (_) { /* fire-and-forget: bezoeker mag niet vastlopen */ }
-    window.location.href = BOOKING_URL;
+    if (requestVersion !== flowVersion.current) return;
+    setSending(false);
+    setBookingContact({ first_name: firstName, last_name: lastName, email: form.email.trim(), phone: form.phone.trim() });
   };
 
   return (
-    <div className="lead-overlay" onMouseDown={(e) => { if (e.target === e.currentTarget) setOpen(false); }}>
+    <div className="lead-overlay" onMouseDown={(e) => { if (e.target === e.currentTarget) close(); }}>
       <div className="lead-modal" role="dialog" aria-modal="true" aria-label="Plan je gratis kennismaking">
         <div className="lead-modal-head">
           {/* mint-gloed + dot-grid, identiek aan de hero */}
           <div className="lead-glow" />
           <div className="lead-dots" />
-          <button type="button" className="lead-close" aria-label="Sluiten" onClick={() => setOpen(false)}>
+          <button type="button" className="lead-close" aria-label="Sluiten" onClick={close}>
             <Icon data-lucide="x" style={{ width: 17, height: 17 }}></Icon>
           </button>
           <div className="lead-chip"><Icon data-lucide="calendar-check" style={{ width: 22, height: 22, color: 'var(--mint-light)' }}></Icon></div>

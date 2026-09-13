@@ -34,7 +34,8 @@ Jeroen wil de huidige rekentool zo laten: de totale omzet over de lidduur blijft
 
 - Besluit 12 september 2026: de voorgestelde toelichting over verbruikskosten en maatwerk nu niet op de website noemen. Jeroen vindt die verwarrend. De tekst stond nog niet in de preview; dit is geen openstaande vraag of taak meer voor deze ronde.
 - [ ] Voorlopige starttermijn bevestigen of corrigeren: de preview gebruikt vier weken na complete aanlevering als streefplanning uit de documenten. De vraag is gesteld; Jeroen heeft nog geen termijn bevestigd.
-- [ ] Demo: één duur, gegevens één keer invullen en een Nederlandse kalender.
+- [x] Demo: contactgegevens één keer invullen. De agenda opent na de pop-up als embed en neemt voornaam, achternaam, e-mail en telefoon over. Ook plustekens blijven behouden.
+- [ ] Demo: één duur en een Nederlandse kalender.
 - [ ] Open technische opvolging bij publicatie: het nieuwe veld `booking_system` in de bestaande HighLevel-workflow koppelen aan het CRM-contactveld en de opslag controleren. [Concrete inrichting en testafbakening](review/demo-aanvraag.md). De website stuurt het veld mee; live opslag is nog niet geverifieerd. Dit open punt is bij publicatie expliciet aan Jeroen gemeld.
 - [ ] Overstapvragen en concrete invulling van mentorschap verduidelijken.
 
