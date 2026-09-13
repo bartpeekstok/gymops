@@ -1,6 +1,18 @@
 # GymOps — review vóór publicatie
 
-De gebruiker wil de conversieaanpassingen stap voor stap beoordelen en eerst aan Bart laten zien. Publicatie op gymops.nl is nog niet goedgekeurd.
+De gebruiker heeft de conversieaanpassingen stap voor stap beoordeeld en op 13 september 2026 expliciet opdracht gegeven de huidige versie live te zetten. De eerdere beperking tot previews geldt niet meer voor deze publicatie.
+
+## Publicatie op 13 september 2026
+
+Jeroens instructie: “kan jij de versie die we nu hebben gemaakt ook live zetten?” Publicatie wordt voorbereid vanuit `/Users/jeroenvanduijn/gymops-publicatie`, branch `release/conversie-20260913`. De beoordeelde preview is samengevoegd met `origin/main` op `c56b62b`, inclusief Barts nieuwe mentorschapkop. De merge bevat uitsluitend die extra kopwijziging bovenop de preview.
+
+De bestaande productieroute loopt via `bartpeekstok/gymops` op GitHub en Vercel-project `cross-fit-alkmaar/gymops`. De huidige productieversie is gekoppeld aan commit `c56b62b`; de live mentorschappagina is hiermee vergeleken. Het aparte previewproject in scope `gymops` wordt niet gebruikt om het live domein te publiceren. De previewconfig met `noindex` wordt niet meegepubliceerd.
+
+Productiebuild met lint/typechecks geslaagd. De samengevoegde versie is op desktop, mobiel en kleine mobiel gecontroleerd: retentie- en leadvoorbeelden, podcast, prijzen, bestaande rekentool, routekaart en de demo-popup met systeemkeuze. Formulierverzendingen zijn onderschept; er zijn geen testleads of afspraken aangemaakt.
+
+De CRM-opslag van `booking_system` blijft een expliciet open punt. De website verstuurt het veld correct; de live workflowmapping is nog niet bevestigd of gewijzigd. Dit is aan Jeroen gemeld en wordt afzonderlijk bijgehouden. De overige open verbeteringen worden niet stilzwijgend als afgerond aangemerkt.
+
+## Historie van de previewronde
 
 - Werkmap: `/Users/jeroenvanduijn/gymops-preview`
 - Branch: `preview/conversie-stap-1`
@@ -9,7 +21,7 @@ De gebruiker wil de conversieaanpassingen stap voor stap beoordelen en eerst aan
 - Deze werkmap is niet gekoppeld aan het live Vercel-project of domein.
 - Deploy dit project uitsluitend als preview: `vercel deploy --target preview --yes --scope gymops --archive=tgz --local-config .vercel/review.json`.
 - `.vercel/review.json` voegt `X-Robots-Tag: noindex, nofollow` toe. De deelbare link staat lokaal in `.vercel/review-access.json` en heeft een geldigheid van 30 dagen vanaf 11 september 2026.
-- Geen merge naar main, productiepromotie, domeinwijziging of bericht aan Bart zonder gebruikersinstructie.
+- Publicatie naar main is inmiddels expliciet opgedragen. Er is geen opdracht om Bart een bericht te sturen.
 
 ## Stap 1 — akkoord op de uitleg bovenaan
 
