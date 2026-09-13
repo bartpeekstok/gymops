@@ -8,6 +8,12 @@
 import React from 'react';
 import { icons } from 'lucide-react';
 import { GO, GOP } from '@/lib/site-data';
+import { STARTEN } from '@/lib/start-content';
+import { BOOKING_SYSTEMS } from '@/lib/booking-systems';
+import PodcastFragment from '@/components/PodcastFragment';
+import ProductVoorbeeld from '@/components/ProductVoorbeeld';
+import PricingOverview, { PricingStart } from '@/components/PricingOverview';
+import RoutekaartTeaser from '@/components/RoutekaartTeaser';
 
 const { useState, useEffect, useRef, useMemo, useCallback, useLayoutEffect } = React;
 
@@ -52,6 +58,32 @@ function useReveal() {
 }
 
 function useLucide() { /* icons now render via <Icon>; nothing to do */ }
+
+/* A section link must land after the mobile layout and fonts have settled. */
+function useStartAnchor() {
+  useEffect(() => {
+    if (window.location.hash !== '#starten') return;
+    let cancelled = false;
+    let frame = 0;
+    const cancel = () => { cancelled = true; cancelAnimationFrame(frame); };
+    const events = ['wheel', 'touchstart', 'keydown'];
+    events.forEach((event) => window.addEventListener(event, cancel, { once: true, passive: true }));
+    document.fonts.ready.then(() => {
+      if (cancelled) return;
+      frame = requestAnimationFrame(() => {
+        frame = requestAnimationFrame(() => {
+          if (!cancelled && window.location.hash === '#starten') {
+            document.getElementById('starten')?.scrollIntoView({ behavior: 'instant', block: 'start' });
+          }
+        });
+      });
+    });
+    return () => {
+      cancel();
+      events.forEach((event) => window.removeEventListener(event, cancel));
+    };
+  }, []);
+}
 
 function SplitHeadline({ lines, className = '', style = {} }) {
   return (
@@ -1511,17 +1543,16 @@ function SectionHead({ eyebrow, title, sub, align = 'center', dark = false, max 
 
 
 /* ============================ LeadFormModal.jsx ============================ */
-/* Lead-popup in GymOps-stijl. Opent via het window-event (openLeadForm), vraagt
-   naam/e-mail/telefoon (alle verplicht), duwt de lead naar GoHighLevel en stuurt
-   de bezoeker daarna door naar de booking-agenda om een tijd te kiezen. */
+/* Lead-popup in GymOps-stijl. Contactgegevens en optioneel het huidige
+   reserveringssysteem gaan naar GoHighLevel; daarna kiest de bezoeker een tijd. */
 function LeadFormModal() {
   const [open, setOpen] = useState(false);
   const [sending, setSending] = useState(false);
-  const [form, setForm] = useState({ name: '', gym: '', email: '', phone: '' });
+  const [form, setForm] = useState({ name: '', gym: '', email: '', phone: '', bookingSystem: '', bookingSystemOther: '' });
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
   useEffect(() => {
-    const on = () => { setForm({ name: '', gym: '', email: '', phone: '' }); setSending(false); setOpen(true); };
+    const on = () => { setForm({ name: '', gym: '', email: '', phone: '', bookingSystem: '', bookingSystemOther: '' }); setSending(false); setOpen(true); };
     window.addEventListener(LEAD_EVENT, on);
     return () => window.removeEventListener(LEAD_EVENT, on);
   }, []);
@@ -1545,6 +1576,9 @@ function LeadFormModal() {
     const parts = name.split(/\s+/);
     const firstName = parts.shift() || '';
     const lastName = parts.join(' ');
+    const bookingSystem = form.bookingSystem === 'Ander systeem'
+      ? form.bookingSystemOther.trim() || 'Ander systeem'
+      : form.bookingSystem;
     /* GoHighLevel weigert een text/plain body, dus sturen we expliciet JSON.
        GHL beantwoordt de CORS-preflight (Allow-Origin *), dus dit komt netjes aan.
        De reactie hoeven we niet te lezen; we sturen daarna door naar de agenda. */
@@ -1557,6 +1591,7 @@ function LeadFormModal() {
           first_name: firstName, last_name: lastName, full_name: name, name,
           email: form.email.trim(), phone: form.phone.trim(),
           gym_name: form.gym.trim(), company_name: form.gym.trim(),
+          ...(bookingSystem ? { booking_system: bookingSystem } : {}),
           source: 'GymOps website', tags: 'website lead', tag: 'website lead',
           page: typeof window !== 'undefined' ? window.location.pathname : '',
         }),
@@ -1599,6 +1634,21 @@ function LeadFormModal() {
                 <label className="lead-label" htmlFor="lf-phone">Telefoonnummer *</label>
                 <input id="lf-phone" className="lead-input" type="tel" required placeholder="06 12 34 56 78" value={form.phone} onChange={set('phone')} autoComplete="tel" />
               </div>
+              <div className="lead-field-wide">
+                <label className="lead-label" htmlFor="lf-booking-system">Welk reserveringssysteem gebruik je? <span className="lead-optional">(optioneel)</span></label>
+                <select id="lf-booking-system" name="booking_system" className="lead-input" value={form.bookingSystem}
+                  aria-describedby="lf-booking-system-help"
+                  onChange={(e) => setForm((f) => ({ ...f, bookingSystem: e.target.value, bookingSystemOther: '' }))}>
+                  <option value="">Kies je huidige systeem</option>
+                  {BOOKING_SYSTEMS.map((system) => <option key={system} value={system}>{system}</option>)}
+                </select>
+                <p id="lf-booking-system-help" className="lead-field-help">Dan stemmen we de demo af op jouw gym. GymOps werkt ook zonder koppeling.</p>
+              </div>
+              {form.bookingSystem === 'Ander systeem' && <div className="lead-field-wide">
+                <label className="lead-label" htmlFor="lf-booking-system-other">Naam van je reserveringssysteem <span className="lead-optional">(optioneel)</span></label>
+                <input id="lf-booking-system-other" className="lead-input" type="text" maxLength={120}
+                  placeholder="Vul de naam van je systeem in" value={form.bookingSystemOther} onChange={set('bookingSystemOther')} />
+              </div>}
             </div>
             <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: 18 }} disabled={sending}>
               {sending ? 'Versturen…' : <React.Fragment>Aanvragen<Icon data-lucide="arrow-right"></Icon></React.Fragment>}
@@ -1796,7 +1846,7 @@ function PromiseCards() {
         <div data-reveal style={{ textAlign: 'center', maxWidth: 820, margin: '0 auto' }}>
           <div className="eyebrow" style={{ marginBottom: 18 }}>Alles op één plek</div>
           <h2 style={{ fontSize: 'clamp(32px,4.6vw,56px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.04, color: 'var(--ink)' }}>Leadopvolging, ledenbehoud en team-aansturing</h2>
-          <p style={{ fontSize: m ? 17 : 19, lineHeight: 1.6, color: 'var(--fg3)', maxWidth: 600, margin: '20px auto 0' }}>De drie processen waar het in jouw gym om draait, op één plek en volledig geautomatiseerd. Elke lead opgevolgd, elk lid gezien en elke taak voor je team geregeld. Naadloos gekoppeld aan SportBit. Hieronder leggen we elk van de drie uit.</p>
+          <p style={{ fontSize: m ? 17 : 19, lineHeight: 1.6, color: 'var(--fg3)', maxWidth: 600, margin: '20px auto 0' }}>De drie processen waar het in jouw gym om draait, op één plek en volledig geautomatiseerd. Elke lead opgevolgd, elk lid gezien en elke taak voor je team geregeld. Werkt met en zonder SportBit. Hieronder leggen we elk van de drie uit.</p>
         </div>
         {/* connector: leidt het oog van de intro naar het eerste genummerde blok */}
         <div data-reveal style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: m ? 38 : 56 }}>
@@ -2567,7 +2617,7 @@ function Ledenervaring() {
   return (
     <React.Fragment>
       <PageHero eyebrow="GymOps · Ledenbehoud" title="Leden die zich gezien voelen," accent="blijven langer"
-        sub="Automatisering doet het werk, jij maakt het persoonlijk. GymOps signaleert het juiste moment en zorgt dat niemand zich vergeten voelt, zodat leden langer bij je blijven."
+        sub="GymOps helpt je team om leden op het juiste moment aandacht te geven, ook zonder koppeling met een reserveringssysteem. Met de directe SportBit-koppeling krijg je extra inzicht in reserveringen en bezoeken."
         cta={{ primary: 'Plan een demo' }} />
 
       <FeatureRow icon="party-popper" title="Vier elke mijlpaal, samen met je leden"
@@ -2575,7 +2625,7 @@ function Ledenervaring() {
         visual={<Phone w={258}><MilestoneScreen /></Phone>} />
 
       <FeatureRow icon="heart-pulse" flip soft title="Zie direct wie dreigt af te haken"
-        body={'GymOps houdt via SportBit bij wie er traint en wie wegblijft. Komt een vast lid ineens twee weken niet? Dan krijg je een seintje en staat er meteen een taak klaar bij de juiste coach.\n\nGeen massamail, maar een persoonlijk berichtje van iemand die ze kennen, precies op het moment dat het nog uitmaakt.'}
+        body={'Met de SportBit-koppeling houdt GymOps bij wie er traint en wie wegblijft. Komt een vast lid ineens twee weken niet? Dan krijg je een seintje en staat er meteen een taak klaar bij de juiste coach.\n\nGebruik je een ander reserveringssysteem? Dan bekijken we op aanvraag hoe we de benodigde gegevens kunnen gebruiken. Ook zonder koppeling kun je met GymOps werken aan persoonlijke aandacht en opvolging.'}
         visual={<Phone w={258}><ContactScreen /></Phone>} />
 
       <section className="section">
@@ -2680,7 +2730,7 @@ function Website() {
       <MiniGrid eyebrow="En verder" title="Alles rond je website, geregeld." items={[
         { icon: 'gauge', title: 'Razendsnel, ook op mobiel', body: 'Gebouwd in moderne techniek (dezelfde als bedrijven als Netflix en Spotify). Geen trage laadtijden die bezoekers wegjagen.' },
         { icon: 'wrench', title: 'Zelf aanpassen, direct live', body: 'Nieuwe abonnementsvorm, tariefswijziging of een nieuwe coach? Je past het zelf aan vanuit je GymOps-dashboard en het staat meteen live. Geen wachttijd, geen offertes.' },
-        { icon: 'link', title: 'Naadloos gekoppeld', body: 'Je website werkt samen met SportBit en de flows van GymOps. Inschrijven, betalen en opvolgen lopen automatisch door.' },
+        { icon: 'link', title: 'Website en opvolging werken samen', body: 'Je website werkt samen met de flows van GymOps. Gebruik je SportBit? Dan is er een directe koppeling. Voor andere reserveringssystemen bekijken we op aanvraag wat mogelijk is.' },
         { icon: 'credit-card', title: 'Online betalen en inschrijven', body: 'Bezoekers boeken een kennismaking of rekenen een event direct af via iDEAL. Minder mailtjes, meer inschrijvingen.' },
         { icon: 'shield-check', title: 'Veilig en onderhoudsvrij', body: 'Hosting, beveiliging en updates regelen wij. Jij hebt er geen omkijken naar en je site is altijd up-to-date.' },
         { icon: 'chart-column', title: 'Inzicht in wat werkt', body: 'Zie waar je leads vandaan komen, zodat je weet welke kanalen het meeste opleveren voor jouw gym.' },
@@ -2764,18 +2814,22 @@ function Faq({ q, a }) {
 function Prijzen() {
   useReveal();
   useLucide();
+  useStartAnchor();
   const m = useIsMobile();
   const D = GOP.prijzen;
   const plan = D.plans.find((p) => !p.comingSoon) || D.plans[0];
   return (
     <React.Fragment>
-      <PageHero eyebrow={D.hero.eyebrow} title={D.hero.title} />
+      <PricingOverview background={<HeaderBg />} price={plan.price} period={plan.period}
+        terms={plan.disclaimer} yearly={plan.yearly} demoUrl={BOOKING_URL}
+        onDemoClick={openLeadFormClick} mentorExtra={MS.voorwaarden.extraPrijs} mentorTotal={MS.voorwaarden.prijs} />
 
-      {/* Eerst wat niets doen kost, dan wat je krijgt en wat het kost */}
+      {/* De bestaande rekentool blijft ongewijzigd, na het directe prijsaanbod. */}
       <KostenSom />
+      <RoutekaartTeaser />
 
       {/* Prijsoverzicht — value stack + merk-bonus + de prijs */}
-      <section className="section">
+      <section className="section" id="wat-je-krijgt" style={{ scrollMarginTop: 90 }}>
         <div className="wrap" style={{ maxWidth: 720 }}>
           <SectionHead eyebrow="Wat je krijgt" title="Reken maar uit wat dit los zou kosten." sub="Een websitebureau, een marketeer, een planner én een retentiesysteem. Bij GymOps zit het in één abonnement." max={620} />
           <div data-reveal className="card" style={{ marginTop: 44, padding: m ? '24px 20px' : '36px 40px' }}>
@@ -2786,7 +2840,7 @@ function Prijzen() {
               { label: 'Team-aansturing & takensysteem', sub: 'Elke taak bij de juiste coach, niets blijft liggen', value: '€175' },
               { label: 'Slim plannen met meerdere agenda’s', sub: 'PT, intakes, kennismakingen, eigen beschikbaarheid', value: '€125' },
               { label: 'Reviews & merk-marketing', sub: 'Google reviews, social posts, deelbare mijlpalen', value: '€300' },
-              { label: 'SportBit-koppeling & ledeninzicht', sub: 'Actief vs wegzakkend, alles in één beeld', value: '€150' },
+              { label: 'Directe SportBit-koppeling', sub: 'Extra reserveringsdata voor ledenbehoud, als je SportBit gebruikt', value: '€150' },
               { label: 'Onboarding & support van gym owners', sub: '4 begeleide calls, inrichting en de GymOps Academy', value: '€250' },
             ].map((r, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 14, padding: '14px 0', borderTop: i === 0 ? 'none' : '1px solid var(--border)' }}>
@@ -2806,9 +2860,9 @@ function Prijzen() {
 
           {/* Merk-bonus: hoort logisch bij het prijsoverzicht */}
           <div data-reveal style={{ marginTop: 22, background: 'var(--mint-tint)', border: '1px solid var(--border)', borderRadius: 18, padding: m ? '24px 20px' : '28px 32px' }}>
-            <div style={{ fontSize: 12, fontWeight: 800, letterSpacing: '.06em', textTransform: 'uppercase', color: 'var(--mint-deep)', marginBottom: 6 }}>Plus, gratis bovenop</div>
+            <div style={{ fontSize: 12, fontWeight: 800, letterSpacing: '.06em', textTransform: 'uppercase', color: 'var(--mint-deep)', marginBottom: 6 }}>Ook voor je zichtbaarheid</div>
             <h4 style={{ fontSize: m ? 19 : 22, fontWeight: 800, letterSpacing: '-.02em', color: 'var(--ink)' }}>Je leden bouwen mee aan je merk</h4>
-            <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--fg2)', marginTop: 8 }}>Veel van wat GymOps doet, groeit je gym ook nog eens zichtbaar. Zonder dat het je extra tijd of geld kost.</p>
+            <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--fg2)', marginTop: 8 }}>Dezelfde functies helpen je gym ook zichtbaar te worden: via reviews, gedeelde mijlpalen en persoonlijk contact.</p>
             <div style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : 'repeat(2, 1fr)', gap: m ? 12 : 16, marginTop: 20 }}>
               {[
                 { icon: 'star', title: 'Reviews komen vanzelf binnen', body: 'GymOps vraagt leden automatisch om een Google review op piekmomenten. Beter vindbaar én betrouwbaarder.' },
@@ -2827,36 +2881,15 @@ function Prijzen() {
             </div>
           </div>
 
-          <div data-reveal style={{ marginTop: 22, textAlign: 'center', background: 'var(--ink)', borderRadius: 18, padding: m ? '28px 22px' : '36px 32px' }}>
-            <p style={{ fontSize: 15, fontWeight: 600, color: 'rgba(255,255,255,.7)' }}>Bij GymOps betaal je</p>
-            <p style={{ fontSize: m ? 38 : 48, fontWeight: 800, letterSpacing: '-.03em', color: '#fff', marginTop: 4 }}>{plan.price}<span style={{ fontSize: 18, color: 'rgba(255,255,255,.6)', fontWeight: 600 }}> {plan.period}</span></p>
-            <p style={{ fontSize: m ? 15 : 17, fontWeight: 700, color: 'var(--mint-light)', marginTop: 10 }}>Ruim 4× de waarde, plus gratis merkgroei, in één systeem.</p>
-            <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-primary" style={{ marginTop: 24 }}>{plan.cta}<Icon data-lucide={plan.ctaIcon || 'arrow-right'}></Icon></a>
-            <p style={{ fontSize: 12.5, lineHeight: 1.6, color: 'rgba(255,255,255,.5)', marginTop: 18, maxWidth: 420, margin: '18px auto 0' }}>{plan.disclaimer}{plan.yearly ? ' ' + plan.yearly : ''}</p>
-          </div>
 
-          {/* Mentorschap: GymOps plus een mentor die dagelijks meekijkt */}
-          <div data-reveal className="card" style={{ marginTop: 16, padding: m ? '24px 20px' : '30px 36px', border: '1.5px solid var(--mint)', display: 'flex', flexDirection: m ? 'column' : 'row', gap: m ? 18 : 32, alignItems: m ? 'stretch' : 'center' }}>
-            <div style={{ flex: '0 0 auto' }}>
-              <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--mint-deep)' }}>GymOps met mentorschap</div>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginTop: 4 }}>
-                <span style={{ fontSize: m ? 32 : 38, fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1, color: 'var(--ink)', fontVariantNumeric: 'tabular-nums' }}>{MS.voorwaarden.prijs}</span>
-                <span style={{ fontSize: 16, color: 'var(--fg3)' }}>{MS.voorwaarden.periode}</span>
-              </div>
-              <div style={{ fontSize: 12.5, color: 'var(--fg3)', marginTop: 4 }}>{MS.voorwaarden.opbouw}</div>
-            </div>
-            <div style={{ flex: 1 }}>
-              <p style={{ fontSize: 14.5, lineHeight: 1.6, color: 'var(--fg2)', margin: 0 }}>Bart en Jeroen als mentor, die dagelijks meekijken in jouw GymOps en sturen op wat er echt gebeurt. Alleen 1-op-1, minimaal zes maanden, tien plekken.</p>
-              <a href={route('mentorschap.html')} className="btn-ghost" style={{ marginTop: 10, fontSize: 15 }}>meer over mentorschap<Icon data-lucide="arrow-right"></Icon></a>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* Onboarding timeline */}
-      <section className="section">
+      {/* Inrichting en begeleiding, met dezelfde startuitleg als op de homepage. */}
+      <section className="section" id="starten" style={{ scrollMarginTop: 90 }}>
         <div className="wrap">
           <SectionHead eyebrow={D.onboarding.eyebrow} title={D.onboarding.title} sub={D.onboarding.sub} max={620} />
+          <PricingStart />
         </div>
       </section>
 
@@ -3166,6 +3199,7 @@ const MS = {
     eyebrow: 'Voorwaarden',
     title: 'Eén prijs, één afspraak, tien plekken.',
     prijs: '€ 1.050',
+    extraPrijs: '€ 600',
     periode: '/ maand',
     opbouw: 'GymOps € 450 + mentorschap € 600, excl. btw.',
     punten: [
@@ -3347,6 +3381,8 @@ const HN = {
   hero: {
     eyebrow: 'Voor gym-eigenaren in Nederland en België',
     headline: ['Een gym die draait.', 'Ook zonder jou.'],
+    sub: 'GymOps helpt je leden langer te behouden. De software signaleert wie aandacht nodig heeft, zet taken klaar voor je coaches en volgt nieuwe aanvragen op.',
+    support: 'Ingericht en begeleid door de twee gym-eigenaren.',
     primary: 'Plan een demo',
   },
   opening: {
@@ -3434,7 +3470,7 @@ const HN = {
     cards: [
       { k: 'Al onze gyms lopen dezelfde route', b: 'Wij hebben dit pad zelf gelopen, in onze eigen gyms. Dezelfde klantreis, dezelfde taken, dezelfde cijfers. Wat werkt houden we, wat niet werkt gaat eruit. Jij krijgt de route zoals hij nu is, en elke verbetering erbij.' },
       { k: 'De data van alle aangesloten gyms', b: 'Elke gym op GymOps voegt cijfers toe: leads, verloop, omzet per lid. Daardoor zien we steeds beter wat werkt en wat niet. En jij ziet hoe jouw gym ervoor staat naast de rest.' },
-      { k: 'Nederlands en snel', b: 'Support van mensen die zelf een gym runnen en weten hoe een dinsdagavond eruitziet. In jouw tijdzone, WhatsApp erin, geen sms. Binnen twee weken live.' },
+      { k: 'Begeleiding door gym-eigenaren', b: 'Support van mensen die zelf een gym runnen en weten hoe een dinsdagavond eruitziet. We helpen je bij de inrichting en blijven bereikbaar als je team ermee werkt.' },
     ],
     mentor: { pill: 'Vanaf nu voor iedereen', lead: '1-op-1 mentorschap erbij.', body: 'Een mentor die élke dag meekijkt in jouw eigen systeem: je leden, je in- en uitstroom, je cijfers. Alleen 1-op-1 en minimaal zes maanden, dus een beperkt aantal plekken.' },
   },
@@ -3451,7 +3487,7 @@ const HN = {
     eyebrow: 'Uitgezoomd',
     title: ['Nu ben jij de lijm tussen tien tools.', 'En jij bent altijd de lijm.'],
     zonder: { lbl: 'Zonder GymOps', items: ['Website laten bouwen, daarna hosting en onderhoud', 'Mailchimp, een SEO-partij, landingspagina’s', 'Calendly voor kennismakingen', 'Eventbrite of Weeztix voor je events', 'Typeform voor de intake', 'WhatsApp Business op je privételefoon', 'Sheets voor de lijstjes, Gmail voor de opvolging', 'Zapier om het aan elkaar te knopen'], tot: 'En elke avond ben jij degene die het aan elkaar plakt.' },
-    met: { lbl: 'Met GymOps', items: ['Eén systeem, één login', 'Website, leads, klantreis, events, kaarten en taken praten met elkaar', 'WhatsApp en e-mail vanuit het systeem, niet vanaf jouw telefoon', 'Je ledenadministratie blijft gewoon SportBit, daar koppelen we direct mee'], tot: 'Eén login, één overzicht, en je team ziet hetzelfde als jij.' },
+    met: { lbl: 'Met GymOps', items: ['Eén systeem, één login', 'Website, leads, klantreis, events, kaarten en taken praten met elkaar', 'WhatsApp en e-mail vanuit het systeem, niet vanaf jouw telefoon', 'Gebruik je SportBit? Dan koppelen we direct met je ledenadministratie. GymOps werkt ook zonder die koppeling.'], tot: 'Eén login, één overzicht, en je team ziet hetzelfde als jij.' },
   },
   cta: {
     eyebrow: 'En nu jij',
@@ -3496,8 +3532,13 @@ function HeroNieuw() {
       <div className="wrap" style={{ position: 'relative', paddingTop: m ? 44 : 92, paddingBottom: m ? 48 : 104, textAlign: 'center' }}>
         <div className="eyebrow eyebrow-dark" data-reveal style={{ marginBottom: m ? 16 : 22 }}>{h.eyebrow}</div>
         <SplitHeadline lines={h.headline} style={{ fontSize: 'clamp(38px, 8vw, 78px)', fontWeight: 800, letterSpacing: '-.04em', lineHeight: 1.02, color: '#fff', maxWidth: 940, margin: '0 auto' }} />
+        <div data-reveal style={{ maxWidth: 690, margin: m ? '22px auto 0' : '28px auto 0', transitionDelay: '.2s' }}>
+          <p style={{ fontSize: m ? 17 : 20, lineHeight: 1.55, color: 'rgba(255,255,255,.92)' }}>{h.sub}</p>
+          <p style={{ fontSize: m ? 14 : 16, lineHeight: 1.55, color: 'rgba(255,255,255,.78)', marginTop: 12 }}>{h.support}</p>
+        </div>
         <div data-reveal style={{ display: 'flex', flexWrap: 'wrap', gap: 14, marginTop: m ? 28 : 38, justifyContent: 'center', transitionDelay: '.3s' }}>
           <a href={BOOKING_URL} onClick={openLeadFormClick} className="btn btn-primary">{h.primary}<Icon data-lucide="arrow-right"></Icon></a>
+          <a href="/routekaart" className="btn btn-outline-light">Maak mijn routekaart<Icon data-lucide="map"></Icon></a>
         </div>
       </div>
 
@@ -3670,10 +3711,10 @@ function DrieVragen() {
 const HN_WERKT = {
   eyebrow: 'Zo werkt het in de praktijk',
   title: 'Een gezonde gym draaien hoeft niet moeilijk te zijn.',
-  sub: 'Het draait om drie dingen. Niet meer, niet minder.',
+  sub: 'Leden behouden staat centraal. Nieuwe leden aantrekken en oud-leden terughalen maken het compleet.',
   items: [
-    { icon: 'zap', tag: 'Leads', title: 'Zorg dat je leads binnenkomen, en volg ze op tot ze lid zijn.', body: 'Wie een aanvraag doet, wil nu geholpen worden, niet morgen. Elke aanvraag krijgt daarom binnen een minuut een reactie en een taak bij een coach. Niet één keer, maar tot er antwoord is, en tot de kennismaking echt gepland staat.', link: { label: 'meer over leadopvolging', href: 'leadopvolging.html' } },
     { icon: 'heart', tag: 'Leden', title: 'Zorg dat je leden lang lid blijven.', body: 'Leden blijven waar ze zich gezien voelen en waar ze met plezier naartoe gaan. Dat is geen toeval, maar een klantreis: van de eerste week tot het tweede jaar aandacht op het juiste moment, en een taak bij een coach zodra iemand wegzakt.', link: { label: 'meer over ledenbehoud', href: 'ledenbehoud.html' } },
+    { icon: 'zap', tag: 'Leads', title: 'Zorg dat je leads binnenkomen, en volg ze op tot ze lid zijn.', body: 'Wie een aanvraag doet, wil nu geholpen worden, niet morgen. Elke aanvraag krijgt daarom binnen een minuut een reactie en een taak bij een coach. Niet één keer, maar tot er antwoord is, en tot de kennismaking echt gepland staat.', link: { label: 'meer over leadopvolging', href: 'leadopvolging.html' } },
     { icon: 'rotate-ccw', tag: 'Ex-leden', title: 'Haal je ex-leden terug.', body: 'Wie opzegt, hoeft geen ex-lid te blijven. Ze kennen je gym, je coaches en je cultuur, en met een goed gevoel vertrokken. Een warm afscheid, in beeld blijven, en op het juiste moment een persoonlijk berichtje. De warmste leads die er zijn.', link: { label: 'meer over ledenbehoud', href: 'ledenbehoud.html' } },
   ],
 };
@@ -4185,6 +4226,25 @@ function RoutekaartCta() {
   );
 }
 
+function StartVragen() {
+  useReveal();
+  useStartAnchor();
+  return (
+    <section className="section" id="starten" style={{ scrollMarginTop: 90 }}>
+      <div className="wrap" style={{ maxWidth: 760 }}>
+        <SectionHead eyebrow="Starten met GymOps" title="Wat betekent dit voor jouw gym?"
+          sub="GymOps werkt ook zonder SportBit. Wij richten het systeem in en helpen je team ermee werken." max={620} />
+        <div data-reveal style={{ marginTop: 36, borderTop: '1px solid var(--border)' }}>
+          {STARTEN.faqs.map((f) => <Faq key={f.q} q={f.q} a={f.a} />)}
+        </div>
+        <div data-reveal style={{ marginTop: 24, textAlign: 'center' }}>
+          <a href="/prijzen#starten" className="btn-ghost">Bekijk hoe we je gym inrichten<Icon data-lucide="arrow-right" /></a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function HomeNieuwPage() {
   useReveal();
   return (
@@ -4192,10 +4252,14 @@ function HomeNieuwPage() {
       <Nav />
       <HeroNieuw />
       <Opening />
+      <ProductVoorbeeld demoUrl={BOOKING_URL} onDemoClick={openLeadFormClick} />
       <Oprichters />
       <DrieVragen />
+      <RoutekaartTeaser />
       <ZoWerktHet />
+      <PodcastFragment />
       <NietDownloaden />
+      <StartVragen />
       <MentorTeaser />
       <KlantLogos />
       <RoutekaartCta />
