@@ -12,6 +12,9 @@
  *   node scripts/budget-agent.js              # dry-run (default)
  *   node scripts/budget-agent.js --dry-run    # idem, expliciet
  *   node scripts/budget-agent.js --live       # voert de wijzigingen echt door
+ *   node scripts/budget-agent.js --live --fail-on-escalation
+ *                                             # idem, eindigt met foutcode 2 bij
+ *                                             # een escalatie, voor onbewaakt draaien
  *   node scripts/budget-agent.js --help
  *
  * Config in .env (naast dit bestand of in de projectroot):
@@ -628,6 +631,10 @@ Budget-agent voor Meta ads
   node scripts/budget-agent.js --live     voert de budgetwijzigingen echt door
   node scripts/budget-agent.js --help     deze uitleg
 
+Extra vlag:
+  --fail-on-escalation                   eindig met foutcode 2 bij een escalatie,
+                                         zodat een cron of CI je een melding stuurt
+
 Config komt uit .env: META_TOKEN, AD_ACCOUNT_ID, ADSET_IDS.
 Beslissingen komen in scripts/budget-agent-log.jsonl, de stand in scripts/budget-agent-state.json.
 `);
@@ -643,7 +650,7 @@ async function main() {
     return 0;
   }
 
-  const unknown = args.filter((a) => !['--live', '--dry-run'].includes(a));
+  const unknown = args.filter((a) => !['--live', '--dry-run', '--fail-on-escalation'].includes(a));
   if (unknown.length) {
     console.error(`Onbekende optie: ${unknown.join(', ')}`);
     printHelp();
@@ -651,6 +658,10 @@ async function main() {
   }
 
   const live = args.includes('--live');
+  // Draait de agent onbewaakt, dan is een logregel geen melding. Met deze vlag
+  // eindigt de run met een foutcode zodra er iets escaleert, zodat de omgeving
+  // eromheen (een mislukte CI-run, een cron-mail) alsnog aan de bel trekt.
+  const failOnEscalation = args.includes('--fail-on-escalation');
   if (live && args.includes('--dry-run')) {
     console.error('Kies --live of --dry-run, niet allebei.');
     return 1;
@@ -716,7 +727,15 @@ async function main() {
   if (!live) console.log('\nDit was een dry-run. Draai met --live zodra je de beslissingen vertrouwt.');
   console.log(`Log: ${LOG_FILE}`);
 
-  return failures.length ? 1 : 0;
+  if (failures.length) return 1;
+
+  const escalations = results.filter((r) => r.action === 'ESCALATE');
+  if (escalations.length && failOnEscalation) {
+    console.error(`\n${escalations.length} escalatie(s), de run eindigt met een foutcode zodat je een melding krijgt.`);
+    return 2;
+  }
+
+  return 0;
 }
 
 if (require.main === module) {

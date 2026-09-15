@@ -1,0 +1,64 @@
+name: Budget-agent
+
+# LET OP: deze repo moet op Private staan voordat je dit inschakelt.
+# De runlogs bevatten je ROAS, omzet, budgetten en adset-ids. Op een publieke
+# repo zijn die logs voor iedereen te lezen.
+
+on:
+  schedule:
+    # 07:00 UTC = 09:00 in Amsterdam zolang het zomertijd is (tot 25 oktober 2026).
+    - cron: '0 7 * * *'
+  workflow_dispatch:
+    inputs:
+      modus:
+        description: Handmatige run
+        type: choice
+        default: dry-run
+        options: [dry-run, live]
+
+jobs:
+  budget:
+    runs-on: ubuntu-latest
+    permissions:
+      # Nodig om de stand en het logboek terug te committen. Zonder dat is de
+      # agent elke run zijn geheugen kwijt: geen cooldown, geen ROAS-trend.
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Beslisregels testen
+        # Een kapotte regel mag nooit tot een budgetwijziging leiden.
+        run: node scripts/budget-agent.test.js
+
+      - name: Agent draaien
+        id: agent
+        env:
+          META_TOKEN: ${{ secrets.META_TOKEN }}
+          AD_ACCOUNT_ID: ${{ secrets.AD_ACCOUNT_ID }}
+          ADSET_IDS: ${{ secrets.ADSET_IDS }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.modus }}" = "dry-run" ]; then
+            node scripts/budget-agent.js --dry-run
+          else
+            node scripts/budget-agent.js --live --fail-on-escalation
+          fi
+
+      - name: Stand en logboek bewaren
+        # Draait ook als de vorige stap faalde, anders raak je de logregels van
+        # precies de run kwijt waarin er iets misging.
+        if: always()
+        run: |
+          git config user.name  "budget-agent"
+          git config user.email "budget-agent@users.noreply.github.com"
+          git add -f scripts/budget-agent-state.json scripts/budget-agent-log.jsonl 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "Niets veranderd, niets te committen."
+          else
+            git commit -m "Budget-agent run $(date -u +%Y-%m-%d)"
+            git push
+          fi
