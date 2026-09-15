@@ -38,7 +38,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# meta budget-agent (lokale stand en logboek)
-/scripts/budget-agent-state.json
-/scripts/budget-agent-log.jsonl
