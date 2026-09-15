@@ -211,7 +211,7 @@ async function fetchInsights(token, accountId) {
 
 async function fetchAdset(token, adsetId) {
   const params = new URLSearchParams({
-    fields: 'id,name,learning_stage_info,daily_budget,lifetime_budget,status,effective_status,optimization_goal,campaign{id,name,objective}',
+    fields: 'id,name,learning_stage_info,daily_budget,lifetime_budget,status,effective_status,optimization_goal,start_time,end_time,campaign{id,name,objective}',
     access_token: token,
   });
   return apiFetch(`${GRAPH}/${adsetId}?${params.toString()}`);
@@ -273,6 +273,39 @@ function isRetargeting(adsetName) {
  *   - een verkoop-adset die budget opmaakt en niets verkoopt, en dat is juist
  *     het geval waarvoor de escalatie bestaat
  */
+/**
+ * Loopt deze adset op dit moment volgens zijn eigen planning?
+ *
+ * Let op: Meta zet status en effective_status niet terug naar PAUSED zodra de
+ * end_time is gepasseerd, die blijven op ACTIVE staan. Een adset die netjes is
+ * uitgelopen is met een statuscontrole dus niet te herkennen, terwijl hij nog
+ * dagen insights over last_7d blijft teruggeven. Zonder deze controle blijft de
+ * agent alarm slaan over een campagne die gewoon klaar is.
+ *
+ * Geeft null terug als er niets aan de hand is, anders de reden om over te slaan.
+ */
+function scheduleBlock(adset, now) {
+  const end = adset.end_time ? new Date(adset.end_time) : null;
+  if (end && !Number.isNaN(end.getTime()) && end <= now) {
+    return `looptijd van de adset is verlopen op ${formatDateTime(end)}, de status blijft bij Meta op ${adset.status} staan maar er wordt niets meer bezorgd`;
+  }
+
+  const start = adset.start_time ? new Date(adset.start_time) : null;
+  if (start && !Number.isNaN(start.getTime()) && start > now) {
+    return `adset start pas op ${formatDateTime(start)}, er valt nu nog niets bij te sturen`;
+  }
+
+  return null;
+}
+
+function formatDateTime(date) {
+  return new Intl.DateTimeFormat('nl-NL', {
+    timeZone: CAMPAIGN_TIMEZONE,
+    dateStyle: 'short',
+    timeStyle: 'short',
+  }).format(date);
+}
+
 function isSalesAdset(adset) {
   const objective = (adset.campaign && adset.campaign.objective) || '';
   if (objective === 'OUTCOME_SALES') return true;
@@ -467,10 +500,9 @@ async function processAdset({ adsetId, token, insights, state, now, today, live 
     newBudgetCents: null,
   };
 
-  // Blokkades die losstaan van de beslisregels.
-  if (!insights) {
-    return finish({ ...base, action: 'SKIP', reason: `geen insights over ${DATE_PRESET}, adset heeft niet gedraaid of niets uitgegeven` });
-  }
+  // Blokkades die losstaan van de beslisregels. Eerst wat structureel waar is
+  // over de adset, daarna pas wat de cijfers zeggen, zodat de reden in de log
+  // de werkelijke oorzaak noemt.
   if (!salesAdset) {
     const goal = adset.optimization_goal || 'onbekend';
     const objective = (adset.campaign && adset.campaign.objective) || 'onbekend';
@@ -482,6 +514,13 @@ async function processAdset({ adsetId, token, insights, state, now, today, live 
   }
   if (adset.status !== 'ACTIVE') {
     return finish({ ...base, action: 'SKIP', reason: `adset-status is ${adset.status}, budget van een niet-actieve adset raken we niet aan` });
+  }
+  const blocked = scheduleBlock(adset, now);
+  if (blocked) {
+    return finish({ ...base, action: 'SKIP', reason: blocked });
+  }
+  if (!insights) {
+    return finish({ ...base, action: 'SKIP', reason: `geen insights over ${DATE_PRESET}, adset heeft niet gedraaid of niets uitgegeven` });
   }
   if (!Number.isFinite(currentBudgetCents) || currentBudgetCents <= 0) {
     const cause = adset.lifetime_budget && Number(adset.lifetime_budget) > 0
@@ -690,4 +729,4 @@ if (require.main === module) {
 }
 
 // Geexporteerd zodat de beslislogica los van de API te testen is.
-module.exports = { decide, applyDateGuards, readPurchases, readRoas, isRetargeting, isSalesAdset, lowerBudget, raiseBudget };
+module.exports = { decide, applyDateGuards, readPurchases, readRoas, isRetargeting, isSalesAdset, scheduleBlock, lowerBudget, raiseBudget };

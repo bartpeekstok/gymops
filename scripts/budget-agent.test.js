@@ -79,6 +79,18 @@ check('ROAS 0 in leerfase escaleert niet', d({ roas: 0, purchases: 0, learningSt
 check('ROAS 0 binnen cooldown escaleert niet', d({ roas: 0, purchases: 0, daysSinceChange: 2 }).action, 'SKIP');
 check('ROAS null raakt geen enkele regel', d({ roas: null, previousRoas: null, purchases: 0 }).action, 'HOLD');
 
+console.log('\n-- looptijd van de adset --');
+const nu = new Date('2026-09-15T12:00:00+02:00');
+const blok = (o) => a.scheduleBlock({ status: 'ACTIVE', ...o }, nu);
+check('lopende adset zonder einddatum', blok({ start_time: '2026-08-26T09:33:25+0200' }), null);
+check('lopende adset binnen het venster', blok({ start_time: '2026-09-11T16:29:43+0200', end_time: '2026-10-21T09:36:00+0200' }), null);
+check('verlopen adset wordt geblokkeerd', blok({ end_time: '2026-09-10T15:24:00+0200' }) !== null, true);
+check('verlopen adset noemt de einddatum', /10-09-2026/.test(blok({ end_time: '2026-09-10T15:24:00+0200' })), true);
+check('adset die nog moet starten wordt geblokkeerd', blok({ start_time: '2026-10-10T00:00:00+0200', end_time: '2026-10-21T09:36:00+0200' }) !== null, true);
+check('einddatum precies nu telt als verlopen', blok({ end_time: '2026-09-15T12:00:00+0200' }) !== null, true);
+check('lege planning blokkeert niet', blok({}), null);
+check('onleesbare datum blokkeert niet', blok({ end_time: 'niet-een-datum' }), null);
+
 console.log('\n-- prospecting of retargeting --');
 check('Retarget sim bezoekers website', a.isRetargeting('Retarget sim bezoekers website'), true);
 check('Nieuwe advertentieset voor Verkoop', a.isRetargeting('Nieuwe advertentieset voor Verkoop'), false);
