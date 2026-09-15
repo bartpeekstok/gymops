@@ -45,7 +45,7 @@ const ROAS_RAISE_MIN_PURCHASES = 5;
 const FREQUENCY_CEILING = 3.0; // boven deze frequentie geen verhoging
 
 const BUDGET_STEP_DOWN = 0.30; // -30%
-const BUDGET_STEP_UP = 0.30; // +30%
+const BUDGET_STEP_UP = 0.50; // +50%, afgestemd op de korte looptijd van deze verkoopcampagne
 
 // Harde cap op het dagbudget per adset bij een verhoging.
 const MAX_DAILY_BUDGET_EUR = 50;

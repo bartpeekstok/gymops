@@ -38,11 +38,12 @@ check('ROAS-regel gaat voor frequentieregel', d({ roas: 2.5, purchases: 3, previ
 
 console.log('\n-- bedragen, cap en vloer --');
 check('-30% van 1000', a.lowerBudget(1000), 700);
-check('+30% van 1000', a.raiseBudget(1000), 1300);
+check('+50% van 1000', a.raiseBudget(1000), 1500);
 check('cap op 5000 cent', a.raiseBudget(4500), 5000);
 check('cap blokkeert boven 50 euro', a.raiseBudget(9000), 5000);
 check('vloer op 500 cent', a.lowerBudget(600), 500);
-check('afronding op hele centen', a.raiseBudget(333), 433);
+check('afronding op hele centen', a.raiseBudget(333), 500);
+check('afronding naar beneden bij verlagen', a.lowerBudget(3333), 2333);
 
 console.log('\n-- datumgrenzen --');
 const ctxP = { ...base, retargeting: false };
