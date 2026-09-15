@@ -64,6 +64,11 @@ const CAMPAIGN_TIMEZONE = 'Europe/Amsterdam';
 // Adsets waarvan de naam hierop matcht gelden als retargeting, de rest als prospecting.
 const RETARGETING_NAME_PATTERN = /(retarget|remarketing|\bRT\b|\bRTG\b)/i;
 
+// Optimalisatiedoelen die op aankopen sturen. Een adset met een ander doel,
+// bijvoorbeeld LANDING_PAGE_VIEWS voor opwarming, heeft geen ROAS en valt
+// buiten het bereik van deze agent. Vul aan als je andere doelen gaat gebruiken.
+const SALES_OPTIMIZATION_GOALS = new Set(['OFFSITE_CONVERSIONS', 'VALUE']);
+
 const STATE_FILE = path.join(__dirname, 'budget-agent-state.json');
 const LOG_FILE = path.join(__dirname, 'budget-agent-log.jsonl');
 
@@ -206,7 +211,7 @@ async function fetchInsights(token, accountId) {
 
 async function fetchAdset(token, adsetId) {
   const params = new URLSearchParams({
-    fields: 'id,name,learning_stage_info,daily_budget,lifetime_budget,status,effective_status',
+    fields: 'id,name,learning_stage_info,daily_budget,lifetime_budget,status,effective_status,optimization_goal,campaign{id,name,objective}',
     access_token: token,
   });
   return apiFetch(`${GRAPH}/${adsetId}?${params.toString()}`);
@@ -254,6 +259,24 @@ function readRoas(purchaseRoas) {
 
 function isRetargeting(adsetName) {
   return RETARGETING_NAME_PATTERN.test(adsetName || '');
+}
+
+/**
+ * Stuurt deze adset op aankopen?
+ *
+ * Dit is geen cosmetisch onderscheid. Meta laat het veld purchase_roas
+ * helemaal weg zodra er nul aankopen zijn, in plaats van een ROAS van 0 terug
+ * te geven. Zonder dit onderscheid zijn twee totaal verschillende situaties
+ * niet uit elkaar te houden:
+ *   - een opwarm-adset die op landingspaginaweergaven stuurt en per definitie
+ *     geen ROAS heeft, daar mag de agent niets mee
+ *   - een verkoop-adset die budget opmaakt en niets verkoopt, en dat is juist
+ *     het geval waarvoor de escalatie bestaat
+ */
+function isSalesAdset(adset) {
+  const objective = (adset.campaign && adset.campaign.objective) || '';
+  if (objective === 'OUTCOME_SALES') return true;
+  return SALES_OPTIMIZATION_GOALS.has(adset.optimization_goal);
 }
 
 // --- State -------------------------------------------------------------------
@@ -418,10 +441,17 @@ async function processAdset({ adsetId, token, insights, state, now, today, live 
   const learningStatus = (adset.learning_stage_info && adset.learning_stage_info.status) || null;
   const currentBudgetCents = Number(adset.daily_budget);
 
-  const roas = insights ? readRoas(insights.purchase_roas) : null;
+  const salesAdset = isSalesAdset(adset);
+  let roas = insights ? readRoas(insights.purchase_roas) : null;
   const frequency = insights && insights.frequency !== undefined ? Number(insights.frequency) : null;
   const purchases = insights ? readPurchases(insights.actions) : 0;
   const spend = insights ? Number(insights.spend) : null;
+
+  // Meta laat purchase_roas weg bij nul aankopen. Voor een verkoop-adset die
+  // wel geld uitgeeft is dat geen ontbrekende meting maar een ROAS van 0, en
+  // dat hoort te escaleren in plaats van stilletjes op HOLD te blijven staan.
+  const roasReadAsZero = roas === null && salesAdset && Number.isFinite(spend) && spend > 0;
+  if (roasReadAsZero) roas = 0;
 
   const base = {
     timestamp: runAt,
@@ -440,6 +470,15 @@ async function processAdset({ adsetId, token, insights, state, now, today, live 
   // Blokkades die losstaan van de beslisregels.
   if (!insights) {
     return finish({ ...base, action: 'SKIP', reason: `geen insights over ${DATE_PRESET}, adset heeft niet gedraaid of niets uitgegeven` });
+  }
+  if (!salesAdset) {
+    const goal = adset.optimization_goal || 'onbekend';
+    const objective = (adset.campaign && adset.campaign.objective) || 'onbekend';
+    return finish({
+      ...base,
+      action: 'SKIP',
+      reason: `adset stuurt niet op aankopen (doel ${goal}, campagne ${objective}), heeft dus geen ROAS en valt buiten het bereik van deze agent`,
+    });
   }
   if (adset.status !== 'ACTIVE') {
     return finish({ ...base, action: 'SKIP', reason: `adset-status is ${adset.status}, budget van een niet-actieve adset raken we niet aan` });
@@ -472,7 +511,14 @@ async function processAdset({ adsetId, token, insights, state, now, today, live 
     return finish({ ...base, action: 'HOLD', reason: `${decision.reason} | ${edge}` });
   }
 
-  const result = { ...base, action: decision.action, reason: decision.reason, newBudgetCents: decision.newBudgetCents || null };
+  const result = {
+    ...base,
+    roas,
+    roasAfgeleidAlsNul: roasReadAsZero,
+    action: decision.action,
+    reason: decision.reason,
+    newBudgetCents: decision.newBudgetCents || null,
+  };
 
   if (decision.action === 'ESCALATE') {
     sendNotification(`${name} draait onder ROAS ${ROAS_ESCALATE_BELOW}`, [
@@ -644,4 +690,4 @@ if (require.main === module) {
 }
 
 // Geexporteerd zodat de beslislogica los van de API te testen is.
-module.exports = { decide, applyDateGuards, readPurchases, readRoas, isRetargeting, lowerBudget, raiseBudget };
+module.exports = { decide, applyDateGuards, readPurchases, readRoas, isRetargeting, isSalesAdset, lowerBudget, raiseBudget };

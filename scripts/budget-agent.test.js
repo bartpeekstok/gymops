@@ -65,6 +65,20 @@ check('geen actions = 0 aankopen', a.readPurchases(undefined), 0);
 check('ROAS pakt omni_purchase', a.readRoas([{ action_type: 'purchase', value: '2' }, { action_type: 'omni_purchase', value: '4.5' }]), 4.5);
 check('lege purchase_roas geeft null', a.readRoas([]), null);
 
+console.log('\n-- stuurt de adset op aankopen? --');
+check('verkoopcampagne telt als verkoop', a.isSalesAdset({ campaign: { objective: 'OUTCOME_SALES' }, optimization_goal: 'OFFSITE_CONVERSIONS' }), true);
+check('conversiedoel telt als verkoop', a.isSalesAdset({ campaign: { objective: 'OUTCOME_TRAFFIC' }, optimization_goal: 'OFFSITE_CONVERSIONS' }), true);
+check('opwarming op landingspaginas telt niet', a.isSalesAdset({ campaign: { objective: 'OUTCOME_TRAFFIC' }, optimization_goal: 'LANDING_PAGE_VIEWS' }), false);
+check('bereik-doel telt niet', a.isSalesAdset({ campaign: { objective: 'OUTCOME_AWARENESS' }, optimization_goal: 'REACH' }), false);
+check('zonder campagneveld valt terug op het doel', a.isSalesAdset({ optimization_goal: 'LANDING_PAGE_VIEWS' }), false);
+
+console.log('\n-- ontbrekende ROAS --');
+check('ontbrekend purchase_roas geeft null', a.readRoas(undefined), null);
+check('ROAS 0 escaleert', d({ roas: 0, purchases: 0 }).action, 'ESCALATE');
+check('ROAS 0 in leerfase escaleert niet', d({ roas: 0, purchases: 0, learningStatus: 'LEARNING' }).action, 'SKIP');
+check('ROAS 0 binnen cooldown escaleert niet', d({ roas: 0, purchases: 0, daysSinceChange: 2 }).action, 'SKIP');
+check('ROAS null raakt geen enkele regel', d({ roas: null, previousRoas: null, purchases: 0 }).action, 'HOLD');
+
 console.log('\n-- prospecting of retargeting --');
 check('Retarget sim bezoekers website', a.isRetargeting('Retarget sim bezoekers website'), true);
 check('Nieuwe advertentieset voor Verkoop', a.isRetargeting('Nieuwe advertentieset voor Verkoop'), false);
