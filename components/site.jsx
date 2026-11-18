@@ -3364,12 +3364,28 @@ const WB = {
   getallen: {
     eyebrow: 'Wat je uitrekent',
     title: 'Drie getallen van je eigen gym.',
-    sub: 'Je rekent ze tijdens het webinar zelf uit. Neem je omzet, je uren en het aantal lessen per maand mee.',
+    sub: 'Je rekent ze tijdens het webinar zelf uit, met de cijfers van je eigen gym.',
     items: [
       { num: '1', title: 'Jouw uurloon', body: 'Wat je jezelf per maand betaalt, gedeeld door al je uren. Ook het rooster, de appjes, de administratie en het schoonmaken.' },
       { num: '2', title: 'Omzet per les', body: 'Je omzet per maand gedeeld door het aantal lessen. Kan deze les een coach betalen?' },
       { num: '3', title: 'Jou vervangen', body: 'Wat het kost als een ander jouw lessen en het werk eromheen overneemt. Is dat meer dan je jezelf betaalt, dan draait je gym op uren die niemand betaalt.' },
     ],
+  },
+  voorbereiding: {
+    eyebrow: 'Kom voorbereid',
+    title: 'Dit is geen webinar om naar te luisteren. Je rekent mee.',
+    body: 'Zonder je eigen cijfers kijk je naar onze som in plaats van die van jou. Leg ze vooraf klaar, dan weet je na een uur waar jouw gym staat.',
+    kop: 'Leg deze cijfers klaar',
+    punten: [
+      'Wat je jezelf per maand betaalt',
+      'Al je uren per maand: lessen, rooster, appjes, administratie en schoonmaken',
+      'Je omzet per maand, exclusief btw',
+      'Het aantal lessen dat je per maand draait',
+      'Wat een coach je per les kost',
+      'Wat een lid gemiddeld per maand betaalt',
+      'Hoeveel aanvragen je per maand krijgt',
+    ],
+    voet: 'Pen en papier of een rekenmachine erbij is genoeg.',
   },
   route: {
     eyebrow: 'De route',
@@ -3394,7 +3410,7 @@ const WB = {
     knop: 'Ik ben erbij!',
     voet: 'Het webinar wordt opgenomen. We gebruiken je gegevens alleen voor dit webinar en om contact met je op te nemen.',
     klaarTitel: 'Je bent aangemeld',
-    klaarTekst: 'Je ontvangt de link voor Google Meet per mail en WhatsApp. Tot woensdag 2 december om 12:30 uur.',
+    klaarTekst: 'Je ontvangt de link voor Google Meet per mail en WhatsApp. Leg vooraf je cijfers klaar: je omzet, je uren en het aantal lessen per maand. Tot woensdag 2 december om 12:30 uur.',
     slotTitel: 'Woensdag 2 december om 12:30 uur.',
     slotTekst: 'Online via Google Meet, 60 minuten. Aanmelden kost je een halve minuut.',
     fout: 'Aanmelden is niet gelukt. Probeer het opnieuw of stuur ons een bericht via WhatsApp.',
@@ -3596,6 +3612,33 @@ function Webinar() {
             ))}
           </div>
           <WebinarCta m={m} />
+        </div>
+      </section>
+
+      {/* Kom voorbereid */}
+      <section className="section" style={m ? { padding: '64px 0' } : undefined}>
+        <div className="wrap">
+          <div style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : '1fr 1fr', gap: m ? 28 : 64, alignItems: 'center' }}>
+            <div data-reveal>
+              <div className="eyebrow" style={{ marginBottom: 16 }}>{WB.voorbereiding.eyebrow}</div>
+              <h2 style={{ fontSize: 'clamp(26px,3.2vw,40px)', fontWeight: 800, letterSpacing: '-.025em', color: 'var(--ink)' }}>{WB.voorbereiding.title}</h2>
+              <p style={{ fontSize: 17, lineHeight: 1.65, color: 'var(--fg2)', marginTop: 18 }}>{WB.voorbereiding.body}</p>
+              <div style={{ marginTop: 28 }}>
+                <a href="#aanmelden" onClick={openWebinarForm} className="btn btn-primary">{WB.form.knop}<Icon data-lucide="arrow-right"></Icon></a>
+              </div>
+            </div>
+            <div data-reveal className="card" style={{ padding: m ? '26px 22px' : '34px 36px', border: '2px solid var(--mint)' }}>
+              <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-.02em', color: 'var(--ink)' }}>{WB.voorbereiding.kop}</div>
+              <ul style={{ listStyle: 'none', margin: '18px 0 0', padding: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
+                {WB.voorbereiding.punten.map((pt, i) => (
+                  <li key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontSize: 15.5, lineHeight: 1.5, color: 'var(--fg2)' }}>
+                    <Icon data-lucide="check" style={{ width: 18, height: 18, color: 'var(--mint)', flexShrink: 0, marginTop: 3 }}></Icon>{pt}
+                  </li>
+                ))}
+              </ul>
+              <p style={{ fontSize: 13.5, lineHeight: 1.5, color: 'var(--fg3)', margin: '18px 0 0', paddingTop: 16, borderTop: '1px solid var(--border)' }}>{WB.voorbereiding.voet}</p>
+            </div>
+          </div>
         </div>
       </section>
 
