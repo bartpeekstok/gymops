@@ -3374,7 +3374,7 @@ const WB = {
   voorbereiding: {
     eyebrow: 'Kom voorbereid',
     title: 'Dit is geen webinar om naar te luisteren. Je rekent mee.',
-    body: 'Zonder je eigen cijfers kijk je naar onze som in plaats van die van jou. Leg ze vooraf klaar, dan weet je na een uur waar jouw gym staat.',
+    body: 'Zonder je eigen cijfers kun je niet meerekenen. Leg ze vooraf klaar, dan weet je na een uur waar jouw gym staat.',
     kop: 'Leg deze cijfers klaar',
     punten: [
       'Wat je jezelf per maand betaalt',
