@@ -3388,7 +3388,8 @@ const WB = {
     body: 'Jeroen is eigenaar van CrossFit Leiden, Bart van CrossFit Alkmaar. In dit webinar delen we onze eigen cijfers.',
   },
   form: {
-    title: 'Meld je aan',
+    eyebrow: 'Gratis webinar',
+    title: 'Meld je aan voor 2 december',
     sub: 'Je krijgt de link voor Google Meet en een herinnering vooraf.',
     knop: 'Ik meld me aan',
     voet: 'Het webinar wordt opgenomen. We gebruiken je gegevens alleen voor dit webinar en om contact met je op te nemen.',
@@ -3398,11 +3399,37 @@ const WB = {
   },
 };
 
-function WebinarForm({ id }) {
-  const [form, setForm] = useState({ name: '', gym: '', email: '', phone: '' });
+/* Aanmelden gaat via een pop-up, net als de demo-aanvraag. Elke knop op de
+   pagina opent dezelfde modal via een window-event. */
+const WEBINAR_EVENT = 'gymops:open-webinar-form';
+const openWebinarForm = (e) => { if (e) e.preventDefault(); if (typeof window !== 'undefined') window.dispatchEvent(new Event(WEBINAR_EVENT)); };
+
+function WebinarFormModal() {
+  const leeg = { name: '', gym: '', email: '', phone: '' };
+  const [open, setOpen] = useState(false);
+  const [form, setForm] = useState(leeg);
   const [status, setStatus] = useState('idle'); // idle | sending | done | error
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
+  const close = () => setOpen(false);
   const F = WB.form;
+
+  useEffect(() => {
+    /* Na een geslaagde aanmelding blijft de bevestiging staan als iemand de pop-up opnieuw opent. */
+    const on = () => { setStatus((st) => (st === 'done' ? st : 'idle')); setOpen(true); };
+    window.addEventListener(WEBINAR_EVENT, on);
+    return () => window.removeEventListener(WEBINAR_EVENT, on);
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => { if (e.key === 'Escape') setOpen(false); };
+    window.addEventListener('keydown', onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { window.removeEventListener('keydown', onKey); document.body.style.overflow = prev; };
+  }, [open]);
+
+  if (!open) return null;
 
   const submit = async (e) => {
     e.preventDefault();
@@ -3429,51 +3456,66 @@ function WebinarForm({ id }) {
         }),
       });
       if (!res.ok) throw new Error('status ' + res.status);
+      setForm(leeg);
       setStatus('done');
     } catch (_) {
       setStatus('error');
     }
   };
 
-  if (status === 'done') {
-    return (
-      <div id={id} className="card" role="status" style={{ padding: '36px 28px', textAlign: 'center' }}>
-        <div className="icon-chip" style={{ margin: '0 auto' }}><Icon data-lucide="check" style={{ width: 22, height: 22, color: 'var(--mint-deep)' }}></Icon></div>
-        <div style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-.025em', color: 'var(--ink)', marginTop: 18 }}>{F.klaarTitel}</div>
-        <p style={{ fontSize: 15.5, lineHeight: 1.6, color: 'var(--fg2)', marginTop: 10 }}>{F.klaarTekst}</p>
-      </div>
-    );
-  }
-
   return (
-    <div id={id} className="card" style={{ padding: '28px 28px 26px', scrollMarginTop: 96 }}>
-      <div style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-.025em', color: 'var(--ink)' }}>{F.title}</div>
-      <p style={{ fontSize: 14.5, lineHeight: 1.55, color: 'var(--fg3)', margin: '8px 0 20px' }}>{F.sub}</p>
-      <form onSubmit={submit}>
-        <div className="lead-grid">
-          <div className="lead-field-wide">
-            <label className="lead-label" htmlFor={id + '-name'}>Naam *</label>
-            <input id={id + '-name'} className="lead-input" type="text" required placeholder="Voornaam Achternaam" value={form.name} onChange={set('name')} autoComplete="name" />
-          </div>
-          <div className="lead-field-wide">
-            <label className="lead-label" htmlFor={id + '-gym'}>Naam van je gym *</label>
-            <input id={id + '-gym'} className="lead-input" type="text" required placeholder="CrossFit Zuidlaren" value={form.gym} onChange={set('gym')} autoComplete="organization" />
-          </div>
-          <div>
-            <label className="lead-label" htmlFor={id + '-email'}>E-mailadres *</label>
-            <input id={id + '-email'} className="lead-input" type="email" required placeholder="naam@email.nl" value={form.email} onChange={set('email')} autoComplete="email" />
-          </div>
-          <div>
-            <label className="lead-label" htmlFor={id + '-phone'}>Telefoonnummer *</label>
-            <input id={id + '-phone'} className="lead-input" type="tel" required placeholder="06 12 34 56 78" value={form.phone} onChange={set('phone')} autoComplete="tel" />
-          </div>
+    <div className="lead-overlay" onMouseDown={(e) => { if (e.target === e.currentTarget) close(); }}>
+      <div className="lead-modal" role="dialog" aria-modal="true" aria-label="Aanmelden voor het webinar">
+        <div className="lead-modal-head">
+          <div className="lead-glow" />
+          <div className="lead-dots" />
+          <button type="button" className="lead-close" aria-label="Sluiten" onClick={close}>
+            <Icon data-lucide="x" style={{ width: 17, height: 17 }}></Icon>
+          </button>
+          <div className="lead-chip"><Icon data-lucide="video" style={{ width: 22, height: 22, color: 'var(--mint-light)' }}></Icon></div>
+          <div className="eyebrow eyebrow-dark lead-eyebrow" style={{ marginBottom: 10 }}>{F.eyebrow}</div>
+          <div style={{ position: 'relative', fontSize: 'clamp(20px,5.2vw,24px)', fontWeight: 800, color: '#fff', letterSpacing: '-.025em', lineHeight: 1.12, paddingRight: 24 }}>{F.title}</div>
         </div>
-        <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: 18 }} disabled={status === 'sending'}>
-          {status === 'sending' ? 'Versturen…' : <React.Fragment>{F.knop}<Icon data-lucide="arrow-right"></Icon></React.Fragment>}
-        </button>
-        {status === 'error' && <p role="alert" style={{ fontSize: 13.5, lineHeight: 1.5, color: 'var(--danger)', textAlign: 'center', margin: '12px 0 0' }}>{F.fout}</p>}
-        <p style={{ fontSize: 12, lineHeight: 1.5, color: 'var(--fg3)', textAlign: 'center', margin: '12px 0 0' }}>{F.voet}</p>
-      </form>
+        <div className="lead-modal-body">
+          {status === 'done' ? (
+            <div role="status" style={{ textAlign: 'center', padding: '10px 0 4px' }}>
+              <div className="icon-chip" style={{ margin: '0 auto' }}><Icon data-lucide="check" style={{ width: 22, height: 22, color: 'var(--mint-deep)' }}></Icon></div>
+              <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-.025em', color: 'var(--ink)', marginTop: 16 }}>{F.klaarTitel}</div>
+              <p style={{ fontSize: 15, lineHeight: 1.6, color: 'var(--fg2)', margin: '10px 0 20px' }}>{F.klaarTekst}</p>
+              <button type="button" className="btn btn-outline" style={{ width: '100%', justifyContent: 'center' }} onClick={close}>Sluiten</button>
+            </div>
+          ) : (
+            <React.Fragment>
+              <p style={{ fontSize: 14, lineHeight: 1.5, color: 'var(--fg3)', margin: '0 0 18px' }}>{F.sub}</p>
+              <form onSubmit={submit}>
+                <div className="lead-grid">
+                  <div>
+                    <label className="lead-label" htmlFor="wf-name">Naam *</label>
+                    <input id="wf-name" className="lead-input" type="text" required placeholder="Voornaam Achternaam" value={form.name} onChange={set('name')} autoComplete="name" />
+                  </div>
+                  <div>
+                    <label className="lead-label" htmlFor="wf-gym">Naam van je gym *</label>
+                    <input id="wf-gym" className="lead-input" type="text" required placeholder="CrossFit Zuidlaren" value={form.gym} onChange={set('gym')} autoComplete="organization" />
+                  </div>
+                  <div>
+                    <label className="lead-label" htmlFor="wf-email">E-mailadres *</label>
+                    <input id="wf-email" className="lead-input" type="email" required placeholder="naam@email.nl" value={form.email} onChange={set('email')} autoComplete="email" />
+                  </div>
+                  <div>
+                    <label className="lead-label" htmlFor="wf-phone">Telefoonnummer *</label>
+                    <input id="wf-phone" className="lead-input" type="tel" required placeholder="06 12 34 56 78" value={form.phone} onChange={set('phone')} autoComplete="tel" />
+                  </div>
+                </div>
+                <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: 18 }} disabled={status === 'sending'}>
+                  {status === 'sending' ? 'Versturen…' : <React.Fragment>{F.knop}<Icon data-lucide="arrow-right"></Icon></React.Fragment>}
+                </button>
+                {status === 'error' && <p role="alert" style={{ fontSize: 13.5, lineHeight: 1.5, color: 'var(--danger)', textAlign: 'center', margin: '12px 0 0' }}>{F.fout}</p>}
+                <p className="lead-foot" style={{ fontSize: 12, lineHeight: 1.5, color: 'var(--fg3)', textAlign: 'center', margin: '12px 0 0' }}>{F.voet}</p>
+              </form>
+            </React.Fragment>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
@@ -3486,28 +3528,27 @@ function Webinar() {
   const H = WB.hero;
   return (
     <React.Fragment>
-      {/* Hero met het aanmeldformulier */}
+      {/* Hero: de knop opent de aanmeld-pop-up */}
       <section style={{ position: 'relative', overflow: 'hidden', background: 'var(--ink)', color: '#fff' }}>
         <HeaderBg />
         <div style={{ position: 'absolute', top: -180, right: -120, width: 640, height: 640, borderRadius: '50%',
           background: 'radial-gradient(circle, rgba(16,185,129,.20), transparent 62%)', filter: 'blur(20px)', pointerEvents: 'none' }} />
-        <div className="wrap" style={{ position: 'relative', paddingTop: m ? 120 : 150, paddingBottom: m ? 56 : 96,
-          display: 'grid', gridTemplateColumns: m ? '1fr' : '1.1fr .9fr', gap: m ? 36 : 64, alignItems: 'center' }}>
-          <div>
-            <div className="eyebrow eyebrow-dark" data-reveal style={{ marginBottom: 18 }}>{H.eyebrow}</div>
-            <h1 data-reveal style={{ fontSize: 'clamp(38px,5.4vw,68px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.04, color: '#fff', margin: 0 }}>
-              {H.title} <span style={{ color: 'var(--mint-light)' }}>{H.accent}</span>
-            </h1>
-            <p data-reveal style={{ fontSize: m ? 17 : 19, lineHeight: 1.6, color: 'rgba(255,255,255,.74)', maxWidth: 520, marginTop: 22 }}>{H.sub}</p>
-            <ul data-reveal style={{ listStyle: 'none', margin: '28px 0 0', padding: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
-              {H.feiten.map((f, i) => (
-                <li key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, fontSize: 16, fontWeight: 600, color: '#fff' }}>
-                  <Icon data-lucide={f.icon} style={{ width: 20, height: 20, color: 'var(--mint-light)', flexShrink: 0 }}></Icon>{f.label}
-                </li>
-              ))}
-            </ul>
+        <div className="wrap" style={{ position: 'relative', paddingTop: m ? 124 : 160, paddingBottom: m ? 64 : 104, textAlign: 'center' }}>
+          <div className="eyebrow eyebrow-dark" data-reveal style={{ marginBottom: 18 }}>{H.eyebrow}</div>
+          <h1 data-reveal style={{ fontSize: 'clamp(40px,6vw,76px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.04, color: '#fff', maxWidth: 920, margin: '0 auto' }}>
+            {H.title} <span style={{ color: 'var(--mint-light)' }}>{H.accent}</span>
+          </h1>
+          <p data-reveal style={{ fontSize: m ? 17 : 19, lineHeight: 1.6, color: 'rgba(255,255,255,.74)', maxWidth: 600, margin: '22px auto 0' }}>{H.sub}</p>
+          <ul data-reveal style={{ listStyle: 'none', margin: m ? '28px auto 0' : '32px auto 0', padding: 0, display: 'flex', flexDirection: m ? 'column' : 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: m ? 12 : '12px 32px' }}>
+            {H.feiten.map((f, i) => (
+              <li key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 16, fontWeight: 600, color: '#fff' }}>
+                <Icon data-lucide={f.icon} style={{ width: 20, height: 20, color: 'var(--mint-light)', flexShrink: 0 }}></Icon>{f.label}
+              </li>
+            ))}
+          </ul>
+          <div data-reveal style={{ marginTop: m ? 32 : 40 }}>
+            <a href="#aanmelden" onClick={openWebinarForm} className="btn btn-primary">{WB.form.knop}<Icon data-lucide="arrow-right"></Icon></a>
           </div>
-          <div data-reveal><WebinarForm id="aanmelden" /></div>
         </div>
       </section>
 
@@ -3579,7 +3620,7 @@ function Webinar() {
             ))}
           </div>
           <div data-reveal style={{ textAlign: 'center', marginTop: m ? 32 : 48 }}>
-            <a href="#aanmelden" className="btn btn-primary">{WB.form.knop}<Icon data-lucide="arrow-right"></Icon></a>
+            <a href="#aanmelden" onClick={openWebinarForm} className="btn btn-primary">{WB.form.knop}<Icon data-lucide="arrow-right"></Icon></a>
           </div>
         </div>
       </section>
@@ -3587,7 +3628,7 @@ function Webinar() {
   );
 }
 
-function WebinarPage() { return (<React.Fragment><Nav /><Webinar /><CtaFooter noCta /></React.Fragment>); }
+function WebinarPage() { return (<React.Fragment><Nav /><Webinar /><CtaFooter noCta /><WebinarFormModal /></React.Fragment>); }
 
 /* Kort blok op de homepage: verwijst naar de mentorschap-pagina. */
 function MentorTeaser() {
