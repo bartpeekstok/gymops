@@ -3332,6 +3332,263 @@ function Mentorschap() {
 
 function MentorschapPage() { return (<React.Fragment><Nav current="mentorschap.html" /><Mentorschap /><CtaFooter noCta /></React.Fragment>); }
 
+/* ============================ Webinar ============================ */
+/* Aanmeldpagina voor het webinar "Twee banen, één salaris". Teksten in WB.
+   Het formulier stuurt de aanmelding naar een eigen GoHighLevel inbound
+   webhook; de workflow daarachter verstuurt de Meet-link en de herinneringen.
+   Zet de URL in NEXT_PUBLIC_WEBINAR_WEBHOOK_URL (Vercel) of hieronder. */
+const WEBINAR_WEBHOOK_URL = process.env.NEXT_PUBLIC_WEBINAR_WEBHOOK_URL || '';
+
+const WB = {
+  hero: {
+    eyebrow: 'Gratis webinar',
+    title: 'Twee banen,',
+    accent: 'één salaris',
+    sub: 'Zo kom je als gym-eigenaar uit de operatie. Je bent coach én ondernemer. Wie jou wil vervangen, heeft twee mensen nodig.',
+    feiten: [
+      { icon: 'calendar', label: 'Woensdag 2 december 2026' },
+      { icon: 'clock', label: '12:30 uur, 45 minuten' },
+      { icon: 'video', label: 'Online via Google Meet' },
+    ],
+  },
+  herken: {
+    eyebrow: 'Herken je dit?',
+    title: 'Je werkt veel en houdt te weinig over.',
+    items: [
+      { icon: 'calendar-clock', title: 'Je staat zelf de meeste uren op het rooster', body: 'En daarna begint de rest van het werk.' },
+      { icon: 'users', title: 'Coaches komen en gaan', body: 'De juiste coach vinden én betalen lukt niet goed.' },
+      { icon: 'wallet', title: 'Je werkt veel en houdt te weinig over', body: 'Je uren en je inkomen kloppen niet met elkaar.' },
+      { icon: 'compass', title: 'Je weet niet goed wat de volgende stap is', body: 'Je bent coach geworden, het ondernemen kwam erbij.' },
+    ],
+  },
+  getallen: {
+    eyebrow: 'Wat je uitrekent',
+    title: 'Drie getallen van je eigen gym.',
+    sub: 'Je rekent ze tijdens het webinar zelf uit. Neem je omzet, je uren en het aantal lessen per maand mee.',
+    items: [
+      { num: '1', title: 'Jouw uurloon', body: 'Wat je jezelf per maand betaalt, gedeeld door al je uren. Ook het rooster, de appjes, de administratie en het schoonmaken.' },
+      { num: '2', title: 'Omzet per les', body: 'Je omzet per maand gedeeld door het aantal lessen. Kan deze les een coach betalen?' },
+      { num: '3', title: 'Jou vervangen', body: 'Wat het kost als een ander jouw lessen en het werk eromheen overneemt. Is dat meer dan je jezelf betaalt, dan draait je gym op uren die niemand betaalt.' },
+    ],
+  },
+  route: {
+    eyebrow: 'De route',
+    title: 'Vier stappen om je uren terug te krijgen.',
+    items: [
+      { num: '1', title: 'Prijs', body: 'Klopt wat een lid je per maand betaalt?' },
+      { num: '2', title: 'Verkoop', body: 'Hoeveel abonnementen verkoop je per maand?' },
+      { num: '3', title: 'Behoud', body: 'Blijven nieuwe leden na 90 dagen?' },
+      { num: '4', title: 'Jezelf vervangen', body: 'Les voor les een coach erin.' },
+    ],
+    voet: 'Stap 1, 2 en 3 maken elke les meer waard. Stap 4 geeft jou je uren terug. Per stap krijg je één ding mee dat je de dag erna zelf kunt doen.',
+  },
+  wie: {
+    eyebrow: 'Wie wij zijn',
+    title: 'Twee gym-eigenaren, geen bureau.',
+    body: 'Jeroen is eigenaar van CrossFit Leiden, Bart van CrossFit Alkmaar. In dit webinar delen we onze eigen cijfers.',
+  },
+  form: {
+    title: 'Meld je aan',
+    sub: 'Je krijgt de link voor Google Meet en een herinnering vooraf.',
+    knop: 'Ik meld me aan',
+    voet: 'Het webinar wordt opgenomen. We gebruiken je gegevens alleen voor dit webinar en om contact met je op te nemen.',
+    klaarTitel: 'Je bent aangemeld',
+    klaarTekst: 'Je ontvangt de link voor Google Meet per mail en WhatsApp. Tot woensdag 2 december om 12:30 uur.',
+    fout: 'Aanmelden is niet gelukt. Probeer het opnieuw of stuur ons een bericht via WhatsApp.',
+  },
+};
+
+function WebinarForm({ id }) {
+  const [form, setForm] = useState({ name: '', gym: '', email: '', phone: '' });
+  const [status, setStatus] = useState('idle'); // idle | sending | done | error
+  const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
+  const F = WB.form;
+
+  const submit = async (e) => {
+    e.preventDefault();
+    if (status === 'sending') return;
+    setStatus('sending');
+    const name = form.name.trim();
+    const parts = name.split(/\s+/);
+    const firstName = parts.shift() || '';
+    const lastName = parts.join(' ');
+    /* Anders dan bij het demo-formulier tonen we hier wél een fout: iemand
+       mag niet denken dat hij is aangemeld als de aanmelding niet aankwam. */
+    try {
+      if (!WEBINAR_WEBHOOK_URL) throw new Error('webhook ontbreekt');
+      const res = await fetch(WEBINAR_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          first_name: firstName, last_name: lastName, full_name: name, name,
+          email: form.email.trim(), phone: form.phone.trim(),
+          gym_name: form.gym.trim(), company_name: form.gym.trim(),
+          source: 'GymOps webinar', tags: 'webinar-aangemeld', tag: 'webinar-aangemeld',
+          webinar: 'twee-banen-een-salaris', webinar_date: '2026-12-02',
+          page: typeof window !== 'undefined' ? window.location.pathname : '',
+        }),
+      });
+      if (!res.ok) throw new Error('status ' + res.status);
+      setStatus('done');
+    } catch (_) {
+      setStatus('error');
+    }
+  };
+
+  if (status === 'done') {
+    return (
+      <div id={id} className="card" role="status" style={{ padding: '36px 28px', textAlign: 'center' }}>
+        <div className="icon-chip" style={{ margin: '0 auto' }}><Icon data-lucide="check" style={{ width: 22, height: 22, color: 'var(--mint-deep)' }}></Icon></div>
+        <div style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-.025em', color: 'var(--ink)', marginTop: 18 }}>{F.klaarTitel}</div>
+        <p style={{ fontSize: 15.5, lineHeight: 1.6, color: 'var(--fg2)', marginTop: 10 }}>{F.klaarTekst}</p>
+      </div>
+    );
+  }
+
+  return (
+    <div id={id} className="card" style={{ padding: '28px 28px 26px', scrollMarginTop: 96 }}>
+      <div style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-.025em', color: 'var(--ink)' }}>{F.title}</div>
+      <p style={{ fontSize: 14.5, lineHeight: 1.55, color: 'var(--fg3)', margin: '8px 0 20px' }}>{F.sub}</p>
+      <form onSubmit={submit}>
+        <div className="lead-grid">
+          <div className="lead-field-wide">
+            <label className="lead-label" htmlFor={id + '-name'}>Naam *</label>
+            <input id={id + '-name'} className="lead-input" type="text" required placeholder="Voornaam Achternaam" value={form.name} onChange={set('name')} autoComplete="name" />
+          </div>
+          <div className="lead-field-wide">
+            <label className="lead-label" htmlFor={id + '-gym'}>Naam van je gym *</label>
+            <input id={id + '-gym'} className="lead-input" type="text" required placeholder="CrossFit Zuidlaren" value={form.gym} onChange={set('gym')} autoComplete="organization" />
+          </div>
+          <div>
+            <label className="lead-label" htmlFor={id + '-email'}>E-mailadres *</label>
+            <input id={id + '-email'} className="lead-input" type="email" required placeholder="naam@email.nl" value={form.email} onChange={set('email')} autoComplete="email" />
+          </div>
+          <div>
+            <label className="lead-label" htmlFor={id + '-phone'}>Telefoonnummer *</label>
+            <input id={id + '-phone'} className="lead-input" type="tel" required placeholder="06 12 34 56 78" value={form.phone} onChange={set('phone')} autoComplete="tel" />
+          </div>
+        </div>
+        <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: 18 }} disabled={status === 'sending'}>
+          {status === 'sending' ? 'Versturen…' : <React.Fragment>{F.knop}<Icon data-lucide="arrow-right"></Icon></React.Fragment>}
+        </button>
+        {status === 'error' && <p role="alert" style={{ fontSize: 13.5, lineHeight: 1.5, color: 'var(--danger)', textAlign: 'center', margin: '12px 0 0' }}>{F.fout}</p>}
+        <p style={{ fontSize: 12, lineHeight: 1.5, color: 'var(--fg3)', textAlign: 'center', margin: '12px 0 0' }}>{F.voet}</p>
+      </form>
+    </div>
+  );
+}
+
+function Webinar() {
+  useReveal();
+  useLucide();
+  const m = useIsMobile();
+  const founders = GOP.overons.founders;
+  const H = WB.hero;
+  return (
+    <React.Fragment>
+      {/* Hero met het aanmeldformulier */}
+      <section style={{ position: 'relative', overflow: 'hidden', background: 'var(--ink)', color: '#fff' }}>
+        <HeaderBg />
+        <div style={{ position: 'absolute', top: -180, right: -120, width: 640, height: 640, borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(16,185,129,.20), transparent 62%)', filter: 'blur(20px)', pointerEvents: 'none' }} />
+        <div className="wrap" style={{ position: 'relative', paddingTop: m ? 120 : 150, paddingBottom: m ? 56 : 96,
+          display: 'grid', gridTemplateColumns: m ? '1fr' : '1.1fr .9fr', gap: m ? 36 : 64, alignItems: 'center' }}>
+          <div>
+            <div className="eyebrow eyebrow-dark" data-reveal style={{ marginBottom: 18 }}>{H.eyebrow}</div>
+            <h1 data-reveal style={{ fontSize: 'clamp(38px,5.4vw,68px)', fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1.04, color: '#fff', margin: 0 }}>
+              {H.title} <span style={{ color: 'var(--mint-light)' }}>{H.accent}</span>
+            </h1>
+            <p data-reveal style={{ fontSize: m ? 17 : 19, lineHeight: 1.6, color: 'rgba(255,255,255,.74)', maxWidth: 520, marginTop: 22 }}>{H.sub}</p>
+            <ul data-reveal style={{ listStyle: 'none', margin: '28px 0 0', padding: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {H.feiten.map((f, i) => (
+                <li key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, fontSize: 16, fontWeight: 600, color: '#fff' }}>
+                  <Icon data-lucide={f.icon} style={{ width: 20, height: 20, color: 'var(--mint-light)', flexShrink: 0 }}></Icon>{f.label}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div data-reveal><WebinarForm id="aanmelden" /></div>
+        </div>
+      </section>
+
+      {/* Herken je dit */}
+      <section className="section" style={m ? { padding: '64px 0' } : undefined}>
+        <div className="wrap">
+          <SectionHead eyebrow={WB.herken.eyebrow} title={WB.herken.title} max={720} />
+          <div data-reveal-stagger style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : '1fr 1fr', gap: m ? 14 : 20, marginTop: m ? 30 : 48 }}>
+            {WB.herken.items.map((it, i) => (
+              <div key={i} className="card" style={{ padding: m ? 22 : 28, display: 'flex', gap: 18, alignItems: 'flex-start', transitionDelay: (i * 0.08) + 's' }}>
+                <div className="icon-chip"><Icon data-lucide={it.icon} style={{ width: 22, height: 22, color: 'var(--mint-deep)' }}></Icon></div>
+                <div>
+                  <h3 style={{ fontSize: 19, fontWeight: 800, letterSpacing: '-.02em', lineHeight: 1.25, color: 'var(--ink)', margin: 0 }}>{it.title}</h3>
+                  <p style={{ fontSize: 15, lineHeight: 1.6, color: 'var(--fg3)', marginTop: 8 }}>{it.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Drie getallen */}
+      <section className="section section-soft" style={m ? { padding: '64px 0' } : undefined}>
+        <div className="wrap">
+          <SectionHead eyebrow={WB.getallen.eyebrow} title={WB.getallen.title} sub={WB.getallen.sub} max={720} />
+          <div data-reveal-stagger style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : 'repeat(3, 1fr)', gap: m ? 14 : 20, marginTop: m ? 30 : 48 }}>
+            {WB.getallen.items.map((it, i) => (
+              <div key={i} className="card" style={{ padding: m ? 22 : 28, transitionDelay: (i * 0.08) + 's' }}>
+                <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', color: 'var(--mint-deep)' }}>Getal {it.num}</div>
+                <h3 style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-.02em', lineHeight: 1.2, color: 'var(--ink)', marginTop: 10 }}>{it.title}</h3>
+                <p style={{ fontSize: 15, lineHeight: 1.6, color: 'var(--fg3)', marginTop: 10 }}>{it.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* De route in vier stappen */}
+      <section className="section section-dark" style={m ? { padding: '64px 0' } : undefined}>
+        <div className="wrap">
+          <SectionHead eyebrow={WB.route.eyebrow} title={WB.route.title} dark max={720} />
+          <div data-reveal-stagger style={{ display: 'grid', gridTemplateColumns: m ? '1fr 1fr' : 'repeat(4, 1fr)', gap: m ? 12 : 20, marginTop: m ? 30 : 48 }}>
+            {WB.route.items.map((it, i) => (
+              <div key={i} style={{ padding: m ? 18 : 26, borderRadius: 20, transitionDelay: (i * 0.08) + 's',
+                background: i === 3 ? 'var(--mint-deep)' : 'var(--surface-dark-2)', border: '1px solid var(--border-on-dark)' }}>
+                <div style={{ fontSize: 34, fontWeight: 800, letterSpacing: '-.03em', lineHeight: 1, color: i === 3 ? '#fff' : 'var(--mint-light)', fontVariantNumeric: 'tabular-nums' }}>{it.num}</div>
+                <h3 style={{ fontSize: m ? 17 : 20, fontWeight: 800, letterSpacing: '-.02em', lineHeight: 1.2, color: '#fff', marginTop: 14 }}>{it.title}</h3>
+                <p style={{ fontSize: 14.5, lineHeight: 1.55, color: i === 3 ? 'rgba(255,255,255,.88)' : 'rgba(255,255,255,.66)', marginTop: 8 }}>{it.body}</p>
+              </div>
+            ))}
+          </div>
+          <p data-reveal style={{ fontSize: 17, lineHeight: 1.6, color: 'rgba(255,255,255,.78)', maxWidth: 720, margin: m ? '28px auto 0' : '40px auto 0', textAlign: 'center' }}>{WB.route.voet}</p>
+        </div>
+      </section>
+
+      {/* Wie wij zijn */}
+      <section className="section" style={m ? { padding: '64px 0' } : undefined}>
+        <div className="wrap">
+          <SectionHead eyebrow={WB.wie.eyebrow} title={WB.wie.title} sub={WB.wie.body} max={720} />
+          <div data-reveal-stagger style={{ display: 'grid', gridTemplateColumns: m ? '1fr' : '1fr 1fr', gap: m ? 14 : 20, marginTop: m ? 30 : 48, maxWidth: 900, marginLeft: 'auto', marginRight: 'auto' }}>
+            {founders.map((f, i) => (
+              <div key={i} className="card" style={{ overflow: 'hidden', display: 'flex', alignItems: 'center', gap: 18, padding: 18, transitionDelay: (i * 0.08) + 's' }}>
+                <img src={GO.A + f.photo} alt={f.name} style={{ width: 92, height: 92, borderRadius: 18, objectFit: 'cover', flexShrink: 0 }} />
+                <div>
+                  <div style={{ fontSize: 19, fontWeight: 800, letterSpacing: '-.02em', color: 'var(--ink)' }}>{f.name}</div>
+                  <div style={{ fontSize: 13.5, color: 'var(--fg3)', marginTop: 3 }}>{f.role}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div data-reveal style={{ textAlign: 'center', marginTop: m ? 32 : 48 }}>
+            <a href="#aanmelden" className="btn btn-primary">{WB.form.knop}<Icon data-lucide="arrow-right"></Icon></a>
+          </div>
+        </div>
+      </section>
+    </React.Fragment>
+  );
+}
+
+function WebinarPage() { return (<React.Fragment><Nav /><Webinar /><CtaFooter noCta /></React.Fragment>); }
+
 /* Kort blok op de homepage: verwijst naar de mentorschap-pagina. */
 function MentorTeaser() {
   useReveal();
@@ -4277,4 +4534,4 @@ function HomeNieuwPage() {
 }
 
 
-export { Home, LeadopvolgingPage, LedenervaringPage, TeamAansturingPage, WebsitePage, PrijzenPage, KlantenPage, OverOnsPage, PrivacyPage, HomeNieuwPage, MentorschapPage };
+export { Home, LeadopvolgingPage, LedenervaringPage, TeamAansturingPage, WebsitePage, PrijzenPage, KlantenPage, OverOnsPage, PrivacyPage, HomeNieuwPage, MentorschapPage, WebinarPage };
