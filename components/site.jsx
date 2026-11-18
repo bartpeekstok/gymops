@@ -3391,10 +3391,12 @@ const WB = {
     eyebrow: 'Gratis webinar',
     title: 'Meld je aan voor 2 december',
     sub: 'Je krijgt de link voor Google Meet en een herinnering vooraf.',
-    knop: 'Ik meld me aan',
+    knop: 'Ik ben erbij!',
     voet: 'Het webinar wordt opgenomen. We gebruiken je gegevens alleen voor dit webinar en om contact met je op te nemen.',
     klaarTitel: 'Je bent aangemeld',
     klaarTekst: 'Je ontvangt de link voor Google Meet per mail en WhatsApp. Tot woensdag 2 december om 12:30 uur.',
+    slotTitel: 'Woensdag 2 december om 12:30 uur.',
+    slotTekst: 'Online via Google Meet, 60 minuten. Aanmelden kost je een halve minuut.',
     fout: 'Aanmelden is niet gelukt. Probeer het opnieuw of stuur ons een bericht via WhatsApp.',
   },
 };
@@ -3520,6 +3522,15 @@ function WebinarFormModal() {
   );
 }
 
+/* Eén knop voor alle aanmeldplekken op de pagina. */
+function WebinarCta({ m, style }) {
+  return (
+    <div data-reveal style={{ textAlign: 'center', marginTop: m ? 32 : 48, ...style }}>
+      <a href="#aanmelden" onClick={openWebinarForm} className="btn btn-primary">{WB.form.knop}<Icon data-lucide="arrow-right"></Icon></a>
+    </div>
+  );
+}
+
 function Webinar() {
   useReveal();
   useLucide();
@@ -3567,6 +3578,7 @@ function Webinar() {
               </div>
             ))}
           </div>
+          <WebinarCta m={m} />
         </div>
       </section>
 
@@ -3583,6 +3595,7 @@ function Webinar() {
               </div>
             ))}
           </div>
+          <WebinarCta m={m} />
         </div>
       </section>
 
@@ -3601,6 +3614,7 @@ function Webinar() {
             ))}
           </div>
           <p data-reveal style={{ fontSize: 17, lineHeight: 1.6, color: 'rgba(255,255,255,.78)', maxWidth: 720, margin: m ? '28px auto 0' : '40px auto 0', textAlign: 'center' }}>{WB.route.voet}</p>
+          <WebinarCta m={m} style={{ marginTop: m ? 28 : 36 }} />
         </div>
       </section>
 
@@ -3619,8 +3633,20 @@ function Webinar() {
               </div>
             ))}
           </div>
-          <div data-reveal style={{ textAlign: 'center', marginTop: m ? 32 : 48 }}>
-            <a href="#aanmelden" onClick={openWebinarForm} className="btn btn-primary">{WB.form.knop}<Icon data-lucide="arrow-right"></Icon></a>
+        </div>
+      </section>
+
+      {/* Afsluitende oproep */}
+      <section style={{ background: '#fff', padding: m ? '0 0 72px' : '0 0 96px' }}>
+        <div className="wrap">
+          <div data-reveal style={{ position: 'relative', overflow: 'hidden', background: 'var(--ink)', borderRadius: 28, padding: m ? '48px 24px' : '72px 48px', textAlign: 'center' }}>
+            <div style={{ position: 'absolute', bottom: -160, left: '50%', transform: 'translateX(-50%)', width: 640, height: 400, borderRadius: '50%', background: 'radial-gradient(circle, rgba(16,185,129,.28), transparent 60%)', filter: 'blur(20px)', pointerEvents: 'none' }} />
+            <div className="eyebrow eyebrow-dark" style={{ position: 'relative', marginBottom: 14 }}>{WB.hero.eyebrow}</div>
+            <h2 style={{ position: 'relative', fontSize: 'clamp(28px,3.6vw,46px)', fontWeight: 800, letterSpacing: '-.03em', color: '#fff', maxWidth: 680, margin: '0 auto' }}>{WB.form.slotTitel}</h2>
+            <p style={{ position: 'relative', fontSize: 18, color: 'rgba(255,255,255,.7)', maxWidth: 520, margin: '18px auto 0' }}>{WB.form.slotTekst}</p>
+            <div style={{ position: 'relative', marginTop: 32 }}>
+              <a href="#aanmelden" onClick={openWebinarForm} className="btn btn-primary">{WB.form.knop}<Icon data-lucide="arrow-right"></Icon></a>
+            </div>
           </div>
         </div>
       </section>
