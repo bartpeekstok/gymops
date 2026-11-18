@@ -3401,7 +3401,7 @@ const WB = {
   wie: {
     eyebrow: 'Wie wij zijn',
     title: 'Twee gym-eigenaren, geen bureau.',
-    body: 'Jeroen is eigenaar van CrossFit Leiden, Bart van CrossFit Alkmaar. In dit webinar delen we onze eigen cijfers.',
+    body: 'Jeroen is eigenaar van CrossFit Leiden, Bart van CrossFit Alkmaar.',
   },
   form: {
     eyebrow: 'Gratis webinar',
