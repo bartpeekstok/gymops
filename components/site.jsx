@@ -3347,7 +3347,7 @@ const WB = {
     sub: 'Zo kom je als gym-eigenaar uit de operatie. Je bent coach én ondernemer. Wie jou wil vervangen, heeft twee mensen nodig.',
     feiten: [
       { icon: 'calendar', label: 'Woensdag 2 december 2026' },
-      { icon: 'clock', label: '12:30 uur, 45 minuten' },
+      { icon: 'clock', label: '12:30 uur, 60 minuten' },
       { icon: 'video', label: 'Online via Google Meet' },
     ],
   },
