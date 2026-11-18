@@ -3385,7 +3385,7 @@ const WB = {
       'Wat een lid gemiddeld per maand betaalt',
       'Hoeveel aanvragen je per maand krijgt',
     ],
-    voet: 'Pen en papier of een rekenmachine erbij is genoeg.',
+    voet: 'Na je aanmelding krijg je een uitleg waarin per cijfer staat hoe je het uitrekent.',
   },
   route: {
     eyebrow: 'De route',
@@ -3410,7 +3410,9 @@ const WB = {
     knop: 'Ik ben erbij!',
     voet: 'Het webinar wordt opgenomen. We gebruiken je gegevens alleen voor dit webinar en om contact met je op te nemen.',
     klaarTitel: 'Je bent aangemeld',
-    klaarTekst: 'Je ontvangt de link voor Google Meet per mail en WhatsApp. Leg vooraf je cijfers klaar: je omzet, je uren en het aantal lessen per maand. Tot woensdag 2 december om 12:30 uur.',
+    klaarTekst: 'Je ontvangt de link voor Google Meet per mail en WhatsApp. Leg vooraf je zeven cijfers klaar. In de uitleg staat per cijfer hoe je het uitrekent. Tot woensdag 2 december om 12:30 uur.',
+    uitlegKnop: 'Download de uitleg (pdf)',
+    uitlegUrl: '/downloads/gymops-webinar-zeven-cijfers.pdf',
     slotTitel: 'Woensdag 2 december om 12:30 uur.',
     slotTekst: 'Online via Google Meet, 60 minuten. Aanmelden kost je een halve minuut.',
     fout: 'Aanmelden is niet gelukt. Probeer het opnieuw of stuur ons een bericht via WhatsApp.',
@@ -3500,7 +3502,8 @@ function WebinarFormModal() {
               <div className="icon-chip" style={{ margin: '0 auto' }}><Icon data-lucide="check" style={{ width: 22, height: 22, color: 'var(--mint-deep)' }}></Icon></div>
               <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-.025em', color: 'var(--ink)', marginTop: 16 }}>{F.klaarTitel}</div>
               <p style={{ fontSize: 15, lineHeight: 1.6, color: 'var(--fg2)', margin: '10px 0 20px' }}>{F.klaarTekst}</p>
-              <button type="button" className="btn btn-outline" style={{ width: '100%', justifyContent: 'center' }} onClick={close}>Sluiten</button>
+              <a href={F.uitlegUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>{F.uitlegKnop}<Icon data-lucide="download"></Icon></a>
+              <button type="button" className="btn btn-outline" style={{ width: '100%', justifyContent: 'center', marginTop: 10 }} onClick={close}>Sluiten</button>
             </div>
           ) : (
             <React.Fragment>
