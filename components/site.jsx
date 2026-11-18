@@ -3336,8 +3336,8 @@ function MentorschapPage() { return (<React.Fragment><Nav current="mentorschap.h
 /* Aanmeldpagina voor het webinar "Twee banen, één salaris". Teksten in WB.
    Het formulier stuurt de aanmelding naar een eigen GoHighLevel inbound
    webhook; de workflow daarachter verstuurt de Meet-link en de herinneringen.
-   Zet de URL in NEXT_PUBLIC_WEBINAR_WEBHOOK_URL (Vercel) of hieronder. */
-const WEBINAR_WEBHOOK_URL = process.env.NEXT_PUBLIC_WEBINAR_WEBHOOK_URL || '';
+   NEXT_PUBLIC_WEBINAR_WEBHOOK_URL (Vercel) gaat voor op de URL hieronder. */
+const WEBINAR_WEBHOOK_URL = process.env.NEXT_PUBLIC_WEBINAR_WEBHOOK_URL || 'https://services.leadconnectorhq.com/hooks/5o3lAbdsLNLtkKEcTJYU/webhook-trigger/1ae0861b-e5fe-4fd7-b4ea-76ccbd56adcb';
 
 const WB = {
   hero: {
