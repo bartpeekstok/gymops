@@ -9,13 +9,13 @@ import VideoEmbed from "./VideoEmbed";
    ============================================================ */
 const FOTO_ACHTERGROND = false;
 const TOON_KOP = true; // true = grote kop boven de update tonen
-const URGENT = true; // true = rode alarm-styling bij de kop en het tekstblok
-const VIDEO_ID = "https://www.loom.com/share/c280be969fb74b7883d9696640577cc3";
-const KOP = "BELANGRIJK";
-const TITEL = "Verifieer nu je bedrijf in Meta, anders lopen je koppelingen stuk";
-const TEKST = `Kijk deze video even, dit is echt belangrijk. Ik laat je stap voor stap zien hoe je je bedrijf verifieert in Meta. Doe je dit niet, dan is de kans groot dat je koppelingen met WhatsApp, Facebook en Instagram op een gegeven moment stuklopen. Dan komen berichten van leads niet meer binnen en loop je aanvragen mis zonder dat je het doorhebt.
+const URGENT = false; // true = rode alarm-styling bij de kop en het tekstblok
+const VIDEO_ID = "https://www.loom.com/share/de8fa95cdf064901968d1b59b1dc1cc2";
+const KOP = "NIEUW";
+const TITEL = "Kijk hier hoe je mooie nieuwsbrieven verstuurt vanuit GymOps";
+const TEKST = `Vanuit GymOps stuur je nu zelf mooie nieuwsbrieven naar je leden, leads of oud-leden. In deze video zie je hoe je in een paar minuten een nieuwsbrief opzet vanuit jullie eigen template, met je eigen tekst, foto's, video en knoppen.
 
-Het kost je maar een paar minuten en je hoeft het maar een keer te doen. Pak het nu meteen op, dat scheelt je straks een hoop gedoe.`;
+In de Academy staan ook de vervolgvideo's: je nieuwsbrief checken op mobiel en desktop, en hem slim versturen in batches zodat hij goed aankomt.`;
 const VOETER_VOOR = "Deze en alle andere video's over jouw GymOps-systeem vind je in de ";
 const VOETER_ACCENT = "GymOps Academy";
 const VOETER_NA = ".";
